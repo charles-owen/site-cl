@@ -601,6 +601,13 @@ th {
   margin-top: 2em;
   margin-bottom: 2em; }
 
+@font-face {
+  font-family: 'InconsolataMedium';
+  src: url("fonts/Inconsolata-webfont.eot");
+  src: url("fonts/Inconsolata-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/Inconsolata-webfont.woff") format("woff"), url("fonts/Inconsolata-webfont.ttf") format("truetype"), url("fonts/Inconsolata-webfont.svg") format("svg");
+  /* fonts/Inconsolata-webfont.svg#InconsolataMedium */
+  font-weight: normal;
+  font-style: normal; }
 .rightbox, .rightboxprimary, .rightboxseconda, .rightboxsecondb, .rightboxcomp,
 .centerbox, .centerboxprimary, .centerboxseconda, .centerboxsecondb,
 .centerboxcomp, .advice, .problem, .scenario, .blindblock, aside, iframe, textarea, div.toggleblock, pre.code, textarea.code, figure img, img.figure, p.figure img, p.borderfigure img, p.rightfigure img, figure.submitfigure, .shadow, table {
@@ -1191,13 +1198,6 @@ form.remote-exec p {
 form.remote-exec button {
   width: 8em; }
 
-@font-face {
-  font-family: 'InconsolataMedium';
-  src: url("fonts/Inconsolata-webfont.eot");
-  src: url("fonts/Inconsolata-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/Inconsolata-webfont.woff") format("woff"), url("fonts/Inconsolata-webfont.ttf") format("truetype"), url("fonts/Inconsolata-webfont.svg") format("svg");
-  /* fonts/Inconsolata-webfont.svg#InconsolataMedium */
-  font-weight: normal;
-  font-style: normal; }
 body {
   font-size: 0.875em;
   font-family: Verdana, Geneva, sans-serif;
