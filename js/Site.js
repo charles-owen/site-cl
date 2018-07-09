@@ -69,7 +69,7 @@ pathList.forEach((item) => {
 });
 
 let path = '/';
-for(let i=0; i<pathList2.length - 1; i++) {
+for(let i=0; i<pathList2.length - 2; i++) {
     path += pathList2[i] + '/';
 }
 

@@ -1,0 +1,80 @@
+
+figure img, img.figure, p.figure img, p.borderfigure img, p.rightfigure img {
+  @extend %shadow;
+}
+
+figure {
+  box-sizing: border-box;
+  margin: 1em 0;
+}
+
+figure.submitfigure {
+  @extend %shadow;
+  margin: 0 0.5em;
+  overflow: auto;
+  border: 1px solid black;
+}
+
+figure.submitfigure img {
+  max-width: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+figure figcaption {
+  text-align: center;
+}
+
+figure.border img {
+  border: 1px solid black;
+}
+
+.scroll {
+  overflow-x: scroll;
+}
+
+figure.scroll img {
+  max-width: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.right figure img {
+  max-width: 15em;
+  height: auto;
+}
+
+p.rightfigure img {
+  width: 15em;
+  position: absolute;
+  padding: 0;
+  right: 0;
+}
+
+figure figcaption {
+  font-size: 0.9em;
+  font-style:italic;
+  margin-top: 0;
+}
+
+img.inline-image {
+  vertical-align:baseline;
+}
+
+p.figure, p.borderfigure, p.figurenoshadow {
+   text-align:center;
+   overflow:auto;
+ }
+
+p.borderfigure img {
+  border: 1px solid black;
+}
+
+p.figure, p.borderfigure {
+  padding-bottom:10pt;
+  margin-bottom:-10pt;
+}

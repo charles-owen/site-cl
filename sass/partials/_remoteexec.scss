@@ -1,0 +1,90 @@
+
+$height: 25em;
+
+div.remote-exec {
+  width: 100%;
+  margin: 1em 0 1em 0;
+  display: table;
+  table-layout: fixed;
+  position: relative;
+
+  .bar {
+    margin: 0;
+    padding: 0;
+    background-color: #e8d9b5;
+  }
+
+  h2.menubar {
+    position: relative;
+    width: auto;
+    padding: 0;
+    margin: 0;
+    background: #e8d9b5;
+    font-size: 1.3em;
+    border: 1px solid #aaa;
+    text-align: center;
+    height: 1.3em;
+  }
+
+  .left {
+    position: relative;
+    display: table-cell;
+    width: 50%;
+    margin: 0;
+    padding: 0 5px;
+    vertical-align: top;
+    //border: thin solid black;
+
+    .left > div {
+      position: absolute;
+      left: 5px;
+      right: 5px;
+      padding: 0 5px;
+    }
+
+    textarea {
+      @extend %noshadow;
+      height: $height;
+      margin: 0;
+      width: 100%;
+      box-sizing: border-box;
+      border-top: 0;
+      border-left: thin solid #aaa;
+      border-right: thin solid #aaa;
+    }
+
+    textarea:focus {
+      outline: none;
+    }
+  }
+
+  .right {
+    display: table-cell;
+    width: 50%;
+    margin: 0;
+    padding: 0 5px;
+    vertical-align: top;
+
+    pre {
+      @extend %noshadow;
+      height: $height;
+      margin: 0;
+      box-sizing: border-box;
+      border-top: 0;
+      border-left: thin solid #aaa;
+      border-right: thin solid #aaa;
+    }
+  }
+
+}
+
+form.remote-exec {
+  p {
+    margin: 0.25em 0;
+  }
+
+  button {
+    width: 8em;
+
+  }
+}

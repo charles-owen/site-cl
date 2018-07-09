@@ -1,0 +1,8 @@
+
+.shadow {
+  @extend %shadow;
+}
+
+.noshadow, .noshadow img {
+  @extend %noshadow;
+}

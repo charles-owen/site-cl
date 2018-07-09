@@ -1,0 +1,145 @@
+@import "../modules/_variables";
+
+/**
+ * @file
+ * The top-level div for content in the standard two-column format
+ * is div.content. This page includes the styles in relation to
+ * div.content.
+ */
+
+div.content {
+  position: relative;
+  max-width: $max-width;
+  padding: 0 $margin;
+  margin-left: auto;
+  margin-right: auto;
+
+  // Normal top level content with space for right column
+  & > p,
+  & > div.centerbox,
+  & > div.centerboxprimary,
+  & > div.centerboxcomp,
+  & > div.centerboxseconda,
+  & > div.centerboxsecondb,
+  & > pre,
+  & > div.toggleblock,
+  & > ul,
+  & > ol,
+  & > form,
+  & > .advice,
+  & > .left,
+  & > div.problem,
+  & > div.scenario,
+  & > div.toggle,
+  & > figure {
+    margin-left: 0;
+    margin-right: $right-margin;
+  }
+
+  & > h3 {
+    margin-right: 13.33em;
+  }
+
+  & > p.shoutout {
+    margin-right: 12.3em;
+  }
+
+  // Override to force full width
+  & > .full, & > div.full {
+    margin-right: 0;
+    margin-left: 0;
+    padding-right: 0;
+    max-width: none;
+  }
+
+  // Right side items
+  & > p.rightbox,
+  & > p.rightboxprimary,
+  & > p.rightboxcomp,
+  & > p.rightboxseconda,
+  & > p.rightboxsecondb,
+  & > p.problemright,
+  & > p.scenarioright {
+    margin-right: 0;
+  }
+
+  & > .right, & > figure.right, & > figure.maybe-right {
+    box-sizing: border-box;
+    width: $aside-width;
+    position: absolute;
+    padding: 0;
+    right: 0;
+    margin-right: 0;
+  }
+
+  & > figure {
+    overflow: visible;
+    text-align: center;
+  }
+
+  & > figure img {
+    margin: 0.5em auto;
+  }
+
+  & > .scroll {
+    overflow: auto;
+  }
+
+  & > p.figure {
+    position: relative;
+    max-width: 100%;
+    text-align:center;
+    margin: 0.5em auto;
+    overflow: hidden;
+  }
+}
+
+div.content > .width60 {
+  width: 60%;
+  margin: 0 auto;
+}
+
+div.content > p.vsrun, div.content > p.run, div.content > p.compile, div.content > p.vsbuild {
+  margin-right: 17em;
+}
+
+div.wide {
+  div.content {
+    max-width: none;
+  }
+
+}
+
+@media only screen and (max-width: $medium-width) {
+
+  div.content {
+    // Normal top level content with space for right column
+    & > p,
+    & > div.centerbox,
+    & > div.centerboxprimary,
+    & > div.centerboxcomp,
+    & > div.centerboxseconda,
+    & > div.centerboxsecondb,
+    & > pre,
+    & > div.toggleblock,
+    & > div.toggle,
+    & > ul,
+    & > ol,
+    & > form,
+    & > .advice,
+    & > .left,
+    & > div.problem,
+    & > div.scenario,
+    & > figure {
+      margin-right: $right-margin-mobile;
+    }
+
+    & > .right, & > figure.right, & > figure.maybe-right {
+      width: 15em;
+      position: relative;
+      padding: 0;
+      margin: 0 auto;
+    }
+  }
+
+}

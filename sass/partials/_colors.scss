@@ -1,0 +1,62 @@
+@import '../modules/_colors';
+
+.primary {
+  background: $primary;
+  color:white;
+}
+
+.seconda {
+  background: $seconda;
+  color: white;
+}
+
+.secondb {
+  background: $secondb;
+  color: black;
+}
+
+.comp {
+  background: $comp;
+  color: white;
+}
+
+.blindblock {
+  background: $blind;
+  color: black;
+}
+
+.comp a:link,
+.primary a:link,
+.seconda a:link {
+  color: $primary-link;
+}
+
+.comp a:visited,
+.primary a:visited,
+.seconda a:visited {
+  color: $primary-visited;
+}
+
+.secondb a:visited {
+  color: $secondb-visited;
+}
+
+.comp a:hover {
+  color: yellow;
+}
+
+.blu {
+  color:#0000cc;
+}
+
+.white {
+  color: white;
+}
+
+.red {
+  color: #ff0000;
+}
+
+.grn {
+  color: #008800;
+}

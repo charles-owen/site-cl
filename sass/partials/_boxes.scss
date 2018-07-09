@@ -1,0 +1,51 @@
+@import '../modules/_colors';
+
+.rightbox, .rightboxprimary, .rightboxseconda, .rightboxsecondb, .rightboxcomp,
+.centerbox, .centerboxprimary, .centerboxseconda, .centerboxsecondb,
+.centerboxcomp, .advice, .problem, .scenario, .blindblock, aside {
+  @extend %shadow;
+  background: $primary; /* Default color */
+  color:white;
+
+  p:first-child {
+    margin-top: 0;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.centerbox, .centerboxprimary, .centerboxseconda, .centerboxsecondb,
+.centerboxcomp, .advice, .problem, .scenario, .blindblock {
+  padding:8px;
+  border: 1px ridge black;
+  overflow:auto;
+  max-width: 40em;
+  margin: 1em auto;
+}
+
+.rightbox, .rightboxprimary, .rightboxseconda,
+.rightboxsecondb, .rightboxcomp, .problemright, .scenarioright, aside {
+  box-sizing: border-box;
+  width: $aside-width;
+  position: absolute;
+  right: 0;
+  padding: $aside-padding;
+  margin: 0 0 1em 0;
+  border: 1px ridge black;
+  text-align: left;
+  z-index: 100;
+}
+
+@media only screen and (max-width: $medium-width) {
+
+  .rightbox, .rightboxprimary, .rightboxseconda,
+  .rightboxsecondb, .rightboxcomp, .problemright, .scenarioright, aside {
+    position: relative;
+    width: auto;
+    overflow: auto;
+    padding: 8px;
+    margin: 1em auto;
+  }
+}

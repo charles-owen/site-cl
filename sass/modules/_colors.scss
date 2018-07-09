@@ -1,0 +1,81 @@
+// The major colors
+// We have a primary color, two secondary colors, and a complementary color.
+$dark-primary: #00796B;
+$primary: #009688;
+$light-primary: #B2DFDB;
+$accent: #607D8B;
+$primary-text: #212121;
+$divider-color: #BDBDBD;
+$secondary-text: #606060;
+
+$window-borders: #aaaaaa;
+
+$tabs-background: #ddd;
+$tab-background: #ccc;
+$tab-text: black;
+$tab-selected-background: white;
+$tab-selected-text: black;
+
+$menu-focus: $dark-primary;
+$menu-background: #f0f3f0;
+$menu-color: black;
+$menu-divider-color: black;
+$menu-border-color: #808080; 
+
+$resizer: $dark-primary;
+
+$toast-background: #151515;
+$toast-text: white;
+
+$header-background: #535054;
+$header-text: #eeeeee;
+
+// The major colors
+// We have a primary color, two secondary colors, and a complementary color.
+$primary: #00723f;
+$seconda: #00909e;
+$secondb: #fcaf17;
+$comp: #c41425;
+$blind: #efc6ff;
+
+// Menus
+$focus: #008183;
+$menu-background: #e8e8e8;
+$menu-color: black;
+
+// Page background
+$background: #eeeeee;
+
+// Tables
+$table-gradient-from: #204c42;
+$table-gradient-to: #389b54;
+
+// Dialog boxes
+$dialog-gradient-from: #204c42;
+$dialog-gradient-to: #389b54;
+$dialog-bar-color: white;
+
+// Link colors
+$primary-link: white;
+$primary-visited: #dddddd;
+$secondb-visited: #555555;
+
+$shadow-x: 3px;
+$shadow-y: 3px;
+$shadow-radius: 8px;
+$shadow-color: #ccc;
+
+$toggle-link-hover-color: #006600;
+
+%shadow {
+  -moz-box-shadow: $shadow-x $shadow-y $shadow-radius $shadow-color;
+  -webkit-box-shadow: $shadow-x $shadow-y $shadow-radius $shadow-color;
+  box-shadow: $shadow-x $shadow-y $shadow-radius $shadow-color;
+  margin-bottom: 1em;
+}
+
+%noshadow {
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}

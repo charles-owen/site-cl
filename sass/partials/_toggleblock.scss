@@ -1,0 +1,39 @@
+div.toggle {
+
+  >:first-child {
+    background-image: url('images/plus.png');
+    background-repeat: no-repeat;
+    padding-left: 1.4em;
+    background-position: left 0.15em;
+    background-size: 1.2em;
+
+    a:link {
+
+    }
+
+    a:hover {
+      text-decoration: none;
+      color: $toggle-link-hover-color;
+    }
+  }
+
+  > .visible {
+    background-image: url('images/minus.png');
+  }
+
+  >div {
+    display: none;
+  }
+}
+
+div.toggleblock {
+  @extend %shadow;
+  position: relative;
+  overflow:auto;
+  background:#f0f0f0;
+  color: #000000;
+  padding: 5px;
+  margin-bottom:6pt;
+  border: 1pt gray solid;
+  word-wrap:normal;
+}

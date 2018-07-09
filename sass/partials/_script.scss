@@ -1,0 +1,20 @@
+/**
+ * @file
+ * Presentation of video scripts.
+ */
+
+div.script p.Dialog {
+  margin-left: 72pt;
+  margin-right: 72pt;
+}
+
+div.script h4, div.script p.Shot {
+  text-transform:uppercase;
+  font-size: 10pt;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-decoration:none;
+  margin-left: 5px;
+  margin-right: 5px;
+  font-style:normal;
+  font-weight:normal;
+}

@@ -1,0 +1,68 @@
+
+pre {
+  margin-left:0;
+  margin-right:0;
+}
+
+pre.code, textarea.code {
+  @extend %shadow;
+}
+
+code, .code {
+  font-family: 'InconsolataMedium', Arial, sans-serif;
+  font-weight: bold;
+  color: #0014e5;
+}
+
+/* Place where we can present and enter code */
+pre.code, pre.code1, textarea.code, textarea.code1,
+.ui-widget textarea.code1, pre > code {
+  display: block;
+  font-family: 'InconsolataMedium', Arial, sans-serif;
+  font-size: 1em;
+  font-weight :bold;
+  color:#333333;
+  background: url("images/bars.png") repeat;
+  border:1px black solid;
+  tab-size: 4;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  white-space:pre;
+  word-wrap: normal;
+  padding:6pt;
+  line-height: 16px;
+  clear:both;
+  overflow:auto;
+}
+
+textarea.code, pre.codeback {
+  box-sizing: border-box;
+  background: url("images/codeback.png") no-repeat,
+  url("images/bars.png") repeat;
+  padding-left: 30px;
+  white-space: pre;
+  word-wrap: normal;
+  overflow: auto;
+}
+
+pre.code1 {
+  margin-bottom:0;
+}
+
+pre.small {
+  font-size: 0.9em;
+}
+
+pre.large {
+  font-size: 1.5em;
+}
+
+pre.tiny {
+  font-size: 0.7em;
+}
+
+@media only screen and (max-width: 750px) {
+  div.content > pre.code {
+    margin-right: 0;
+  }
+}

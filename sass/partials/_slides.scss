@@ -1,0 +1,36 @@
+div.content > p.slideshow {
+  max-width: 100%;
+  margin-right: 0;
+}
+
+p.slideshow {
+  display: block;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #e0e0e0;
+  padding-top: 3pt;
+  padding-left: 3pt;
+  padding-right: 4pt;
+  padding-bottom: 3pt;
+  text-align:center;
+  -moz-box-shadow: 6pt 6px 10pt #888;
+  -webkit-box-shadow: 6pt 6px 10pt #888;
+  box-shadow: 6pt 6px 10pt #888;
+}
+
+p.slideshow img {
+  width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 3pt;
+  padding-bottom: 0pt;
+  border: 1px solid black;
+}
+
+p.slideshow img.transport {
+  width: 25px;
+  height: 25px;
+  border: 0pt;
+}

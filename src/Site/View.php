@@ -16,7 +16,7 @@ class View {
 		}
 
 		// Always included
-		$this->addCSS('cl/site/site.css');
+		$this->addCSS('vendor/cl/site/site.css');
 		$this->addJS('vendor');
 		$this->addJS('site');
 	}

@@ -291,7 +291,7 @@ class Site {
 	private $rootDir;           ///< Site root directory
 	private $started = false;   ///< Has site been started?
 
-	private $jsRoot = 'dist';   ///< Javascript root directory
+	private $jsRoot = 'cl/dist';   ///< Javascript root directory
 	private $jsSuffix = null;   ///< Javascript suffix: .js or .min.js
 
 	private $sandbox = false;   ///< Are we running in a sandbox?

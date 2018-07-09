@@ -1,0 +1,68 @@
+@import '../modules/_colors';
+
+div.menu {
+  position: relative;
+  float: right;
+  font-size: 0.75rem;
+
+  .ui-menu-content, .ui-state-focus {
+    background-color: $focus;
+    color: $menu-color;
+  }
+
+  > a {
+    text-decoration: none;
+  }
+
+  ul {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background: $menu-background;
+    list-style-type: none;
+    list-style-image: none;
+    z-index: 120;
+    padding: 0.25em 0.5em;
+    margin: 0;
+    border: 1px solid $menu-background;
+
+    > li {
+      display: table-row;
+      list-style-type: none;
+      list-style-image: none;
+      margin-left: 5px;
+      margin-right: 10px;
+      white-space: nowrap;
+      line-height: 18px;
+
+      > a {
+        display: table-cell;
+        padding-right: 0.5em;
+        text-decoration: none;
+      }
+    }
+
+  }
+
+  li img {
+    width: 16px;
+    height: 16px;
+    vertical-align: top;
+    max-width: none;
+  }
+
+  li span.menusep {
+    display: table-cell;
+    background: black;
+    height: 1px;
+    margin: 5px 0;
+  }
+
+  .only {
+    width: 8em;
+    padding-left: 5px;
+    font-size: 90%;
+    font-style: italic;
+  }
+}

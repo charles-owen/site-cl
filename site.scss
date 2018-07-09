@@ -1,0 +1,43 @@
+@import 'sass/modules/variables';
+@import "sass/modules/colors";
+
+// Keep this first
+@import 'sass/partials/reset';
+
+// Vendor sass
+@import 'sass/vendor/main';
+@import 'sass/vendor/normalize';
+
+@import 'sass/partials/standard';
+@import 'sass/partials/header';
+@import 'sass/partials/footer';
+@import "sass/partials/content";
+@import "sass/partials/adminmenu";
+@import "sass/partials/adminhome";
+
+@import 'sass/partials/boxes';
+@import 'sass/partials/dialog';
+@import 'sass/partials/menus';
+
+@import 'sass/partials/colors';
+
+@import 'sass/partials/slides';
+@import 'sass/partials/remoteexec';
+@import 'sass/partials/playarea';
+@import 'sass/partials/body';
+@import 'sass/partials/content';
+@import 'sass/partials/code';
+@import 'sass/partials/figure';
+@import 'sass/partials/utility';
+@import 'sass/partials/backto';
+@import 'sass/partials/shadow';
+@import 'sass/partials/tables';
+@import 'sass/partials/resizer';
+@import 'sass/partials/header';
+@import 'sass/partials/quiz';
+@import 'sass/partials/ide';
+@import 'sass/partials/toggleblock';
+@import 'sass/partials/script';
+@import 'sass/partials/powerpoint';
+
+@import 'sass/partials/unsorted';
