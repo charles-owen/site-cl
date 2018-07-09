@@ -1,0 +1,13 @@
+{
+  "name": "site-cl",
+  "version": "0.0.1",
+  "description": "CourseLib Website base Site components",
+  "main": "",
+  "module": "",
+  "keywords": [
+    "Education",
+    "LTI"
+  ],
+  "author": "Charles B. Owen",
+  "license": "MIT"
+}
