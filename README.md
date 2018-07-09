@@ -2,10 +2,10 @@
 
 For many years I have been developing software to support my course websites. 
 I think I have made a really sophisticated tool for sites that can support
-a wide range of different types of sites. I have decided it would be nice to
-make this course open-source. However, it has been one big library. To make it
+a wide range of different uses. I have decided it would be nice to
+make this code open-source. However, it has been one big library. To make it
 easier to develop and maintain and more flexible for users, I'm restructuring
-it in components that can be installed as needed. 
+it into components that can be installed as needed. 
 
 ***This is a work in progress***
 
