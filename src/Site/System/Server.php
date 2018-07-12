@@ -45,6 +45,9 @@ class Server {
 			case 'cookie':
 				return $_COOKIE;
 
+			case 'files':
+				return $_FILES;
+
 			default:
 				$trace = debug_backtrace();
 				trigger_error(
@@ -95,6 +98,10 @@ class Server {
 		exit;
 	}
 
+	public function header($value) {
+		header($value);
+	}
+
 	public function deleteCookie($name) {
 		setcookie ($name, "", 1, "/");
 		setcookie ($name, false);
@@ -102,5 +109,31 @@ class Server {
 
 	public function setcookie($name, $value, $expire) {
 		setcookie($name, $value, $expire, '/', '', false, true);
+	}
+
+	/**
+	 * Parse the request URI into components after the specified parent directory.
+	 *
+	 * Calling this function when the URI is /whatever/api/user/login and with
+	 * $parent set to 'api' will return the array: ['user', 'login'].
+	 * @param string $parent Parent directory
+	 * @return array|null Array or null if failure.
+	 */
+	public function parseRequestURI($parent) {
+		$uri = $this->__get('server')['REQUEST_URI'];
+		$path = explode('/', parse_url($uri, PHP_URL_PATH));
+
+		for($i=0; $i<(count($path) - 1); $i++) {
+			if($path[$i] === $parent) {
+				$i++;
+				break;
+			}
+		}
+
+		if($i >= count($path) || $path[$i] === '') {
+			return null;
+		}
+
+		return array_slice($path, $i);
 	}
 }

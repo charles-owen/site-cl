@@ -36,6 +36,10 @@ class JsonAPI {
         $this->errors[] = $error;
     }
 
+    public function hasErrors() {
+    	return count($this->errors) > 0;
+    }
+
     /**
      * Add standard database select error message
      */

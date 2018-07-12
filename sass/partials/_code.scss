@@ -22,7 +22,7 @@ pre.code, pre.code1, textarea.code, textarea.code1,
   font-size: 1em;
   font-weight :bold;
   color:#333333;
-  background: url("images/bars.png") repeat;
+  background: url("img/bars.png") repeat;
   border:1px black solid;
   tab-size: 4;
   -moz-tab-size: 4;
@@ -37,8 +37,8 @@ pre.code, pre.code1, textarea.code, textarea.code1,
 
 textarea.code, pre.codeback {
   box-sizing: border-box;
-  background: url("images/codeback.png") no-repeat,
-  url("images/bars.png") repeat;
+  background: url("img/codeback.png") no-repeat,
+  url("img/bars.png") repeat;
   padding-left: 30px;
   white-space: pre;
   word-wrap: normal;

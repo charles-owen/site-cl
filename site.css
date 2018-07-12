@@ -588,6 +588,18 @@ td,
 th {
   padding: 0; }
 
+@font-face {
+  font-family: 'InconsolataMedium';
+  src: url("fonts/Inconsolata-webfont.eot");
+  src: url("fonts/Inconsolata-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/Inconsolata-webfont.woff") format("woff"), url("fonts/Inconsolata-webfont.ttf") format("truetype"), url("fonts/Inconsolata-webfont.svg") format("svg");
+  /* fonts/Inconsolata-webfont.svg#InconsolataMedium */
+  font-weight: normal;
+  font-style: normal; }
+p.shoutout {
+  text-align: center;
+  font-size: 1.3em;
+  font-weight: bold; }
+
 .center {
   text-align: center; }
 
@@ -601,13 +613,6 @@ th {
   margin-top: 2em;
   margin-bottom: 2em; }
 
-@font-face {
-  font-family: 'InconsolataMedium';
-  src: url("fonts/Inconsolata-webfont.eot");
-  src: url("fonts/Inconsolata-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/Inconsolata-webfont.woff") format("woff"), url("fonts/Inconsolata-webfont.ttf") format("truetype"), url("fonts/Inconsolata-webfont.svg") format("svg");
-  /* fonts/Inconsolata-webfont.svg#InconsolataMedium */
-  font-weight: normal;
-  font-style: normal; }
 .rightbox, .rightboxprimary, .rightboxseconda, .rightboxsecondb, .rightboxcomp,
 .centerbox, .centerboxprimary, .centerboxseconda, .centerboxsecondb,
 .centerboxcomp, .advice, .problem, .scenario, .blindblock, aside, iframe, textarea, div.toggleblock, pre.code, textarea.code, figure img, img.figure, p.figure img, p.borderfigure img, p.rightfigure img, figure.submitfigure, .shadow, table {
@@ -958,67 +963,6 @@ div.menu {
     padding-left: 5px;
     font-size: 90%;
     font-style: italic; }
-
-.rightbox, .rightboxprimary, .rightboxseconda, .rightboxsecondb, .rightboxcomp,
-.centerbox, .centerboxprimary, .centerboxseconda, .centerboxsecondb,
-.centerboxcomp, .advice, .problem, .scenario, .blindblock, aside, iframe, textarea, div.toggleblock, pre.code, textarea.code, figure img, img.figure, p.figure img, p.borderfigure img, p.rightfigure img, figure.submitfigure, .shadow, table {
-  -moz-box-shadow: 3px 3px 8px #ccc;
-  -webkit-box-shadow: 3px 3px 8px #ccc;
-  box-shadow: 3px 3px 8px #ccc;
-  margin-bottom: 1em; }
-
-div.remote-exec .left textarea, div.remote-exec .right pre, div.play-area .left textarea, div.play-area .right pre, .noshadow, .noshadow img {
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
-  box-shadow: none; }
-
-.primary {
-  background: #00723f;
-  color: white; }
-
-.seconda {
-  background: #00909e;
-  color: white; }
-
-.secondb {
-  background: #fcaf17;
-  color: black; }
-
-.comp {
-  background: #c41425;
-  color: white; }
-
-.blindblock {
-  background: #efc6ff;
-  color: black; }
-
-.comp a:link,
-.primary a:link,
-.seconda a:link {
-  color: white; }
-
-.comp a:visited,
-.primary a:visited,
-.seconda a:visited {
-  color: #dddddd; }
-
-.secondb a:visited {
-  color: #555555; }
-
-.comp a:hover {
-  color: yellow; }
-
-.blu {
-  color: #0000cc; }
-
-.white {
-  color: white; }
-
-.red {
-  color: #ff0000; }
-
-.grn {
-  color: #008800; }
 
 div.content > p.slideshow {
   max-width: 100%;
@@ -1377,7 +1321,7 @@ pre.code, pre.code1, textarea.code, textarea.code1,
   font-size: 1em;
   font-weight: bold;
   color: #333333;
-  background: url("images/bars.png") repeat;
+  background: url("img/bars.png") repeat;
   border: 1px black solid;
   tab-size: 4;
   -moz-tab-size: 4;
@@ -1391,7 +1335,7 @@ pre.code, pre.code1, textarea.code, textarea.code1,
 
 textarea.code, pre.codeback {
   box-sizing: border-box;
-  background: url("images/codeback.png") no-repeat, url("images/bars.png") repeat;
+  background: url("img/codeback.png") no-repeat, url("img/bars.png") repeat;
   padding-left: 30px;
   white-space: pre;
   word-wrap: normal;
@@ -1628,7 +1572,22 @@ table {
   margin-right: auto;
   border-collapse: separate;
   border-spacing: 0; }
-  table th {
+  table tr th {
+    color: white;
+    background: #389b54;
+    text-shadow: rgba(0, 0, 0, 0.4) 0 1px 0;
+    border-right: 1px solid #C1DAD7;
+    border-bottom: 1px solid #C1DAD7;
+    letter-spacing: 1px;
+    text-align: right;
+    padding: 0.25em 6px;
+    font-family: Helvetica, Arial, sans-serif;
+    text-decoration: none; }
+    table tr th input[type=checkbox] {
+      margin-top: 3px; }
+  table tr th.center {
+    text-align: center; }
+  table tr:first-child th {
     color: white;
     background: #204c42;
     background: linear-gradient(#204c42, #389b54);
@@ -1641,14 +1600,14 @@ table {
     padding: 2px 6px;
     font-family: Helvetica, Arial, sans-serif;
     text-decoration: none; }
-    table th input[type=checkbox] {
-      margin-top: 3px; }
-    table th a:link {
+    table tr:first-child th a:link {
       color: #F5F3EB; }
-    table th a:visited {
+    table tr:first-child th a:visited {
       color: #E3DCC5; }
-    table th a:hover {
+    table tr:first-child th a:hover {
       color: #ffffff; }
+  table tr:first-child th.center {
+    text-align: center; }
   table th.width40 {
     width: 20%; }
   table th.width40em {
@@ -1698,7 +1657,7 @@ table {
     padding-left: 0.5em;
     font-style: italic; }
   table tr.skip {
-    borders: none; }
+    border: none; }
 
 table.wide {
   width: 80%; }
@@ -1759,13 +1718,6 @@ table.intermediate2 td:nth-last-child(3), table.intermediate2 th:nth-last-child(
   border-left: thin solid black; }
 
 /** @endcond */
-.resizer, pre.resizer, textarea.resizer {
-  position: relative;
-  resize: none;
-  background-color: #f0fffb;
-  border-bottom: 10px solid #18453B;
-  min-height: 10em; }
-
 .rightbox, .rightboxprimary, .rightboxseconda, .rightboxsecondb, .rightboxcomp,
 .centerbox, .centerboxprimary, .centerboxseconda, .centerboxsecondb,
 .centerboxcomp, .advice, .problem, .scenario, .blindblock, aside, iframe, textarea, div.toggleblock, pre.code, textarea.code, figure img, img.figure, p.figure img, p.borderfigure img, p.rightfigure img, figure.submitfigure, .shadow, table {
@@ -1856,16 +1808,16 @@ header.cl-site {
  * Style items related to the use of IDE's
  */
 p.run {
-  background: url(images/runicon.png); }
+  background: url(img/runicon.png); }
 
 p.compile {
-  background: url(images/compicon16.png); }
+  background: url(img/compicon16.png); }
 
 p.vsrun {
-  background: url(images/vsrunicon16.png); }
+  background: url(img/vsrunicon16.png); }
 
 p.vsbuild {
-  background: url(images/vsbuildicon16.png); }
+  background: url(img/vsbuildicon16.png); }
 
 p.run, p.compile, p.vsrun, p.vsbuild {
   vertical-align: middle;
@@ -1931,6 +1883,67 @@ p.powerpoint {
     background-repeat: no-repeat;
     padding-left: 57px;
     padding-top: 15px; }
+
+.rightbox, .rightboxprimary, .rightboxseconda, .rightboxsecondb, .rightboxcomp,
+.centerbox, .centerboxprimary, .centerboxseconda, .centerboxsecondb,
+.centerboxcomp, .advice, .problem, .scenario, .blindblock, aside, iframe, textarea, div.toggleblock, pre.code, textarea.code, figure img, img.figure, p.figure img, p.borderfigure img, p.rightfigure img, figure.submitfigure, .shadow, table {
+  -moz-box-shadow: 3px 3px 8px #ccc;
+  -webkit-box-shadow: 3px 3px 8px #ccc;
+  box-shadow: 3px 3px 8px #ccc;
+  margin-bottom: 1em; }
+
+div.remote-exec .left textarea, div.remote-exec .right pre, div.play-area .left textarea, div.play-area .right pre, .noshadow, .noshadow img {
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none; }
+
+.primary {
+  background: #00723f;
+  color: white; }
+
+.seconda {
+  background: #00909e;
+  color: white; }
+
+.secondb {
+  background: #fcaf17;
+  color: black; }
+
+.comp {
+  background: #c41425;
+  color: white; }
+
+.blindblock {
+  background: #efc6ff;
+  color: black; }
+
+.comp a:link,
+.primary a:link,
+.seconda a:link {
+  color: white; }
+
+.comp a:visited,
+.primary a:visited,
+.seconda a:visited {
+  color: #dddddd; }
+
+.secondb a:visited {
+  color: #555555; }
+
+.comp a:hover {
+  color: yellow; }
+
+.blu {
+  color: #0000cc; }
+
+.white {
+  color: white; }
+
+.red {
+  color: #ff0000; }
+
+.grn {
+  color: #008800; }
 
 .clicktoexpand {
   font-weight: normal;

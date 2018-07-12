@@ -47,27 +47,13 @@ class Api {
 		//
 		// Parse the input path
 		//
-		$uri = $this->server->server['REQUEST_URI'];
-		$path = explode('/', parse_url($uri, PHP_URL_PATH));
-
-		for($i=0; $i<(count($path) - 1); $i++) {
-			if($path[$i] === 'api') {
-				$i++;
-				break;
-			}
-		}
-
-		if($i >= count($path) || $path[$i] === '') {
+		$path = $this->server->parseRequestURI('api');
+		if($path === null || count($path) === 0) {
 			throw new APIException("Invalid API Path", APIException::INVALID_API_PATH);
 		}
 
-		$cmd = $path[$i];
-		$rest = array_slice($path, $i+1);
-
-		//
-		// Standard API paths??
-		//
-
+		$cmd = $path[0];
+		$rest = array_slice($path, 1);
 
 		//
 		// Handle API paths

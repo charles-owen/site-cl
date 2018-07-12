@@ -26,6 +26,10 @@ class View {
 	 * @return string HTML for the page
 	 */
 	public function whole() {
+		if($this->view !== null) {
+			return $this->view->whole();
+		}
+
 		$head = $this->head();
 		$all = $this->all();
 
@@ -45,6 +49,10 @@ HTML;
 	 * @return string HTML for the page
 	 */
 	public function vue($id, $js=[], $script=null) {
+		if($this->view !== null) {
+			return $this->view->vue($id, $js, $script);
+		}
+
 		foreach($js as $j) {
 			$this->addJS($j);
 		}
@@ -72,6 +80,10 @@ HTML;
 	 * @return string HTML
 	 */
 	public function head() {
+		if($this->view !== null) {
+			return $this->view->head();
+		}
+
 		$this->getAppearance();
 
 		$html = <<<HTML
@@ -93,6 +105,10 @@ HTML;
 	 * @return string HTML
 	 */
 	public function tail($header=false, $footer=false) {
+		if($this->view !== null) {
+			return $this->view->tail();
+		}
+
 		$html = '';
 
 		foreach($this->js as $js) {
@@ -161,19 +177,35 @@ HTML;
 	}
 
 	public function header() {
+		if($this->view !== null) {
+			return $this->view->header();
+		}
+
 		return '<div class="body">' . $this->appearance->header($this, $this->title);
 	}
 
 
 	public function footer() {
+		if($this->view !== null) {
+			return $this->view->footer();
+		}
+
 		return $this->appearance->footer($this) . '</div>' . $this->tail();
 	}
 
 	public function present() {
+		if($this->view !== null) {
+			return $this->view->present();
+		}
+
 		return '';
 	}
 
 	public function all() {
+		if($this->view !== null) {
+			return $this->view->all();
+		}
+
 		return $this->header() . $this->present() . $this->footer();
 	}
 
@@ -298,6 +330,16 @@ HTML;
 		}
 	}
 
+	/**
+	 * If a view is set on this view, all operations are redirected
+	 * to that view instead. This allows a view to use routing to
+	 * install a different view for different routes.
+	 * @param View $view View to set
+	 */
+	public function setView(View $view) {
+		$this->view = $view;
+	}
+
 	private $appearance = null; ///< Installed appearance
 
 	private $site;
@@ -306,4 +348,6 @@ HTML;
 	private $css = [];  ///< CSS to include
 	private $js = [];   ///< Javascript to include
 	private $script = '';   ///< Any additional script content
+
+	private $view = null;   ///< A redirection view for routing
 }

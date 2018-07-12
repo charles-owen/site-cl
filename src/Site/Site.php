@@ -299,8 +299,6 @@ class Site {
 	private $siteName = '';     ///< Name of the site
 	private $cookiePrefix = 'site';  ///< Prefix for cookie names
 
-
-
 	//
 	// The startup phases
 	//
