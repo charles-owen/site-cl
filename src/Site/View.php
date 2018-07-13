@@ -6,8 +6,17 @@
 
 namespace CL\Site;
 
-
+/**
+ * Base class for Views for pages.
+ */
 class View {
+	/**
+	 * View constructor.
+	 * If the system has not been started, start it now.
+	 *
+	 * @param Site $site The Site configuration object
+	 * @param array $options Options to pass to start.
+	 */
 	public function __construct(Site $site, $options=[]) {
 		$this->site = $site;
 
@@ -26,10 +35,6 @@ class View {
 	 * @return string HTML for the page
 	 */
 	public function whole() {
-		if($this->view !== null) {
-			return $this->view->whole();
-		}
-
 		$head = $this->head();
 		$all = $this->all();
 
@@ -49,10 +54,6 @@ HTML;
 	 * @return string HTML for the page
 	 */
 	public function vue($id, $js=[], $script=null) {
-		if($this->view !== null) {
-			return $this->view->vue($id, $js, $script);
-		}
-
 		foreach($js as $j) {
 			$this->addJS($j);
 		}
@@ -80,11 +81,9 @@ HTML;
 	 * @return string HTML
 	 */
 	public function head() {
-		if($this->view !== null) {
-			return $this->view->head();
+		if($this->appearance === null) {
+			$this->getAppearance();
 		}
-
-		$this->getAppearance();
 
 		$html = <<<HTML
 <meta charset="UTF-8">
@@ -105,10 +104,6 @@ HTML;
 	 * @return string HTML
 	 */
 	public function tail($header=false, $footer=false) {
-		if($this->view !== null) {
-			return $this->view->tail();
-		}
-
 		$html = '';
 
 		foreach($this->js as $js) {
@@ -176,36 +171,43 @@ HTML;
 		}
 	}
 
+	/**
+	 * Present the page header.
+	 * @return string HTML
+	 */
 	public function header() {
-		if($this->view !== null) {
-			return $this->view->header();
+		if($this->appearance === null) {
+			$this->getAppearance();
 		}
 
 		return '<div class="body">' . $this->appearance->header($this, $this->title);
 	}
 
-
+	/**
+	 * Present the page footer
+	 * @return string HTML
+	 */
 	public function footer() {
-		if($this->view !== null) {
-			return $this->view->footer();
+		if($this->appearance === null) {
+			$this->getAppearance();
 		}
 
 		return $this->appearance->footer($this) . '</div>' . $this->tail();
 	}
 
+	/**
+	 * Present the page body.
+	 * @return string HTML
+	 */
 	public function present() {
-		if($this->view !== null) {
-			return $this->view->present();
-		}
-
 		return '';
 	}
 
+	/**
+	 * Present the entire page body
+	 * @return string HTML
+	 */
 	public function all() {
-		if($this->view !== null) {
-			return $this->view->all();
-		}
-
 		return $this->header() . $this->present() . $this->footer();
 	}
 
@@ -330,16 +332,6 @@ HTML;
 		}
 	}
 
-	/**
-	 * If a view is set on this view, all operations are redirected
-	 * to that view instead. This allows a view to use routing to
-	 * install a different view for different routes.
-	 * @param View $view View to set
-	 */
-	public function setView(View $view) {
-		$this->view = $view;
-	}
-
 	private $appearance = null; ///< Installed appearance
 
 	private $site;
@@ -348,6 +340,4 @@ HTML;
 	private $css = [];  ///< CSS to include
 	private $js = [];   ///< Javascript to include
 	private $script = '';   ///< Any additional script content
-
-	private $view = null;   ///< A redirection view for routing
 }

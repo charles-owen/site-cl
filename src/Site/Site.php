@@ -1,6 +1,7 @@
 <?php
 /**
- * @file Site configuration object for a general purpose web site
+ * @file
+ * Master configuration object for a general purpose web site
  */
 
 namespace CL\Site;
@@ -10,11 +11,26 @@ use CL\Site\System\Server;
 use CL\Site\System\UsersTableMaker;
 
 /**
- * Site configuration object for a general purpose web site
+ * Site configuration object for a general purpose web site.
+ *
+ * Every site will have one instance of this object instantiated
+ * for each access. It is where all of the site configuration is
+ * defined.
+ *
+ * Normally a single instance of this object is created in the
+ * root directory of the site in a file site.php that will begin like this:
+ *
+ * \code
+ * require __DIR__ . '/vendor/autoload.php';
+ * $site = new CL\Site\Site(__DIR__);
+ * \endcode
  */
 class Site {
-	const SESSION_ID = 'CL_SITE_SESSION';
-
+	/**
+	 * Site constructor.
+	 *
+	 * @param string $rootDir Root directory for the site.
+	 */
 	public function __construct($rootDir) {
 		$this->rootDir = $rootDir;
 
@@ -43,8 +59,22 @@ class Site {
 	 * Property get magic method
 	 * @param string $key Property name
 	 *
-	 * Properties supported:
-	 * rootDir - Site root directory
+	 * <b>Properties</b>
+	 * Property | Type | Description
+	 * -------- | ---- | -----------
+	 * appearance | Appearance | Installed site appearance object
+	 * cookiePrefix | A prefix to attach to all cookie names (to ensure uniqueness)
+	 * db | \\CL\\Tables\\Config | Database configuration object
+	 * jsSuffix | Suffix to append to base Javascript (default is .min.js or .js (sandbox)
+	 * jsRoot | The root directory for the site Javascript (default is cl/dist
+	 * jsSuffix | Suffix to append to base Javascript (default is .min.js or .js (sandbox)
+	 * options | array | Options passed to the start function.
+	 * root | string | %Site root path
+	 * rootDir | string | %Site root directory
+	 * sandbox | boolean | True if running in the sandbox
+	 * siteName | A name for the website.
+	 * started | boolean | True if the system has been started
+	 *
 	 *
 	 * @return null|string
 	 */
@@ -54,8 +84,23 @@ class Site {
 		}
 
 		switch($key) {
+			case "appearance":
+				return $this->appearance;
+
+			case 'cookiePrefix':
+				return $this->cookiePrefix;
+
 			case "db":
 				return $this->db;
+
+			case 'jsRoot':
+				return $this->jsRoot;
+
+			case 'jsSuffix':
+				return $this->jsSuffix;
+
+			case 'options':
+				return $this->options;
 
 			case 'root':
 				return $this->root;
@@ -63,32 +108,14 @@ class Site {
 			case "rootDir":
 				return $this->rootDir;
 
-			case "appearance":
-				return $this->appearance;
-
-			case 'serverData':
-				return $this->serverData;
-
-			case 'started':
-				return $this->started;
-
-			case 'options':
-				return $this->options;
-
 			case 'sandbox':
 				return $this->sandbox;
 
 			case 'siteName':
 				return $this->siteName;
 
-			case 'cookiePrefix':
-				return $this->cookiePrefix;
-
-			case 'jsRoot':
-				return $this->jsRoot;
-
-			case 'jsSuffix':
-				return $this->jsSuffix;
+			case 'started':
+				return $this->started;
 
 			default:
 				$trace = debug_backtrace();
@@ -103,25 +130,25 @@ class Site {
 
 	/**
 	 * Property set magic method
+	 *
+	 * <b>Properties</b>
+	 * Property | Type | Description
+	 * -------- | ---- | -----------
+	 * appearance | Appearance | Installed site appearance object
+	 * cookiePrefix | A prefix to attach to all cookie names (to ensure uniqueness)
+	 * jsRoot | The root directory for the site Javascript (default is cl/dist
+	 * jsSuffix | Suffix to append to base Javascript (default is .min.js or .js (sandbox)
+	 * root | string | %Site root path
+	 * sandbox | boolean | True if running in the sandbox
+	 * siteName | A name for the website.
+	 *
 	 * @param $key Property name
 	 * @param $value Value to set
 	 */
 	public function __set($key, $value) {
 		switch($key) {
-			case 'root':
-				$this->root = $value;
-				break;
-
 			case 'appearance':
 				$this->appearance = $value;
-				break;
-
-			case 'sandbox':
-				$this->sandbox = $value;
-				break;
-
-			case 'siteName':
-				$this->siteName = $value;
 				break;
 
 			case 'cookiePrefix':
@@ -130,6 +157,22 @@ class Site {
 
 			case 'jsRoot':
 				$this->jsRoot = $value;
+				break;
+
+			case 'jsSuffix':
+				$this->jsSuffix = $value;
+				break;
+
+			case 'root':
+				$this->root = $value;
+				break;
+
+			case 'sandbox':
+				$this->sandbox = $value;
+				break;
+
+			case 'siteName':
+				$this->siteName = $value;
 				break;
 
 			default:
@@ -144,9 +187,12 @@ class Site {
 
 	}
 
+
 	/**
 	 * Start the system
+	 * @param array $options Options for system operation
 	 * @param Server|null $server Optional dependency injection of Server
+	 * @param int $time Optional time to pass in.
 	 * @return True if success, false if we redirected.
 	 */
 	public function start(array $options=[], Server $server = null, $time=null) {
@@ -178,7 +224,14 @@ class Site {
 		return true;
 	}
 
-	private function _start(array $options, Server $server = null, $time=null) {
+	/**
+	 * Actual system startup
+	 * @param array $options Supplied startup options
+	 * @param Server $server Server component
+	 * @param int $time Current time
+	 * @return null|string Returns a redirect address if redirect is necessary.
+	 */
+	private function _start(array $options, Server $server, $time) {
 		//
 		// Activities that must occur before the system has started.
 		//
@@ -226,7 +279,7 @@ class Site {
 	}
 
 	/**
-	 * Add activities that must occur before the session is started
+	 * Add activities that must occur before system is started
 	 * @param callable $function with parameters: Site $site, Server $server, $time
 	 * Must return null or a redirect link.
 	 */
@@ -253,22 +306,79 @@ class Site {
 	}
 
 	/**
-	 * Add an API handler
-	 * @param callable $function
+	 * Add a route
+	 * @param array $path Array of path values, like ['login'] or ['api', '*']
+	 * '*' indicates anything can follow.
+	 * @param callable $function Function to call to create the route handler.
 	 */
-	public function addApi($path, $function) {
-		$this->api[$path] = $function;
-	}
-
-	public function apiDispatch(Site $site, Server $server, $cmd, array $params, $time) {
-		if(isset($this->api[$cmd])) {
-			return $this->api[$cmd]($site, $server, $params, $time);
-		} else {
-			return null;
+	public function addRoute($path, $function) {
+		$root = $path[0];
+		$rest = array_slice($path, 1);
+		if(!isset($this->routes[$root])) {
+			$this->routes[$root] = [];
 		}
+
+		$this->routes[$root][] = [
+			'path' => $path,
+			'function' => $function
+		];
 	}
 
+	public function routeDispatch(Site $site, Server $server, array $path, $time) {
+		$path0 = $path[0];
 
+		if(isset($this->routes[$path0])) {
+			foreach($this->routes[$path0] as $route) {
+				$routePath = $route['path'];
+				$properties = [];
+				for($i=1;  ; $i++) {
+					if($i >= count($routePath) && ($i >= count($path) || $path[$i] === '')) {
+						// Both reached the end, so this is a valid path
+						return $route['function']($site, $server, [], $properties, $time);
+					}
+
+					if($i >= count($path)) {
+						// We reached the end of the path. If we
+						// are not at the end of the route path,
+						// it is not a match unless it has an '*'
+						if($routePath[$i] === '*') {
+							return $route['function']($site, $server, [], $properties, $time);
+						}
+
+						// Path was not long enough
+						break;
+					}
+
+					if($i >= count($routePath)) {
+						// Route is not as long as the path
+						break;
+					}
+
+					if($routePath[$i] === '*') {
+						// This is a valid path
+						$path1 = array_slice($path, $i);
+						return $route['function']($site, $server, $path1, $properties, $time);
+					}
+
+					if($path[$i] === $routePath[$i]) {
+						// We have a partial match
+						continue;
+					}
+
+					if($routePath[$i][0] === ':') {
+						// We have a property
+						$properties[substr($routePath[$i], 1)] = $path[$i];
+					} else {
+						// This is not a match!
+						break;
+					}
+				}
+			}
+		}
+
+		$view = new \CL\Site\Views\InvalidPathView($site);
+		return $view->whole();
+	}
 
 	/// Array of options passed to start
 	private $options;
@@ -312,9 +422,6 @@ class Site {
 	/// Activities after the system is started
 	private $postStartup = [];
 
-	/// The API definition.
-	/// Components add keys to this key for API functions they handle.
-	/// The values are closures that are called when that key is
-	/// provided as the command.
-	private $api = [];
+	/// Installed top-level routes
+	private $routes = [];
 }

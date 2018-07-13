@@ -24,7 +24,7 @@ class JsonAPI {
 
     /**
      * Add an error to the response.
-     * @param $title Text associated with the error
+     * @param string $title Text associated with the error
      * @param null $code Optional error code. See APIException for valid codes
      * @param int $status HTTP status value
      */
