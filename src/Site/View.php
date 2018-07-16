@@ -63,7 +63,7 @@ HTML;
 		}
 
 		$head = $this->head();
-		$tail = $this->tail(true, true);
+		$tail = $this->tail(true);
 
 		$html = <<<HTML
 <!DOCTYPE html>
@@ -85,10 +85,12 @@ HTML;
 			$this->getAppearance();
 		}
 
+		$siteName = $this->site->siteName;
+
 		$html = <<<HTML
 <meta charset="UTF-8">
 <meta content="width=device-width, initial-scale=1.0, minimum-scale=1" name="viewport">
-<title>$this->title</title>
+<title>$siteName $this->title</title>
 HTML;
 
 
@@ -101,40 +103,38 @@ HTML;
 
 	/**
 	 * Create contents for the tail section of a page, after the footer
+	 * @param bool $addHeaderFooter If true, add JSON for the header and footer.
 	 * @return string HTML
 	 */
-	public function tail($header=false, $footer=false) {
+	public function tail($addHeaderFooter = false) {
 		$html = '';
+
+		$siteName = $this->site->siteName;
+
+		$siteInfo = [
+			'siteName'=>$siteName
+		];
+
+		if($addHeaderFooter) {
+			$root = $this->site->root;
+			$siteInfo['header'] = $this->appearance->header($this, "<a href=\"/$root\">$siteName</a> {{title}}", '<slot></slot>');
+			$siteInfo['footer'] = $this->appearance->footer($this);
+		}
+
+		$json = htmlspecialchars(json_encode($siteInfo));
+		$html .= '<div id="cl-site" style="display: none">' . $json . '</div>';
+
+		foreach($this->json as $id => $json) {
+			$json = htmlspecialchars($json);
+			$html .= '<div id="' . $id . '" style="display: none">' . $json . '</div>';
+		}
 
 		foreach($this->js as $js) {
 			$html .= $this->tsjs($js);
 		}
 
-		$scripts = $header || $footer || $this->script !== '';
-		if($scripts) {
-			$html .= '<script>';
-		}
-
-		if($header) {
-			$json = json_encode(['header'=>$this->appearance->header($this, '{{title}}', '<slot></slot>')]);
-			$html .= <<<HTML
-Site.header = new Site.Header($json);
-HTML;
-		}
-
-		if($footer) {
-			$json = json_encode(['footer'=>$this->appearance->footer($this)]);
-			$html .= <<<HTML
-Site.footer = new Site.Footer($json);
-HTML;
-		}
-
 		if($this->script !== '') {
-			$html .= $this->script;
-		}
-
-		if($scripts) {
-			$html .= '</script>';
+			$html .= '<script>' . $this->script . '</script>';
 		}
 
 		return $html;
@@ -180,7 +180,10 @@ HTML;
 			$this->getAppearance();
 		}
 
-		return '<div class="body">' . $this->appearance->header($this, $this->title);
+		$siteName = $this->site->siteName;
+		$root = $this->site->root;
+		$title = "<a href=\"$root/\">$siteName</a> $this->title";
+		return '<div class="body">' . $this->appearance->header($this, $title);
 	}
 
 	/**
@@ -303,6 +306,18 @@ HTML;
 	}
 
 	/**
+	 * Add JSON data to include on the page.
+	 *
+	 * Data will be included in a <div id="$id" style="display:none"> tag.
+	 *
+	 * @param $id
+	 * @param $json
+	 */
+	public function addJSON($id, $json) {
+		$this->json[$id] = $json;
+	}
+
+	/**
 	 * Get any installed appearance. If none are
 	 * provided, use the default versions.
 	 */
@@ -335,8 +350,9 @@ HTML;
 	private $appearance = null; ///< Installed appearance
 
 	private $site;
-	private $title = 'Title';
+	private $title = 'Title';   ///< Page title
 
+	private $json = []; ///< JSON content to include
 	private $css = [];  ///< CSS to include
 	private $js = [];   ///< Javascript to include
 	private $script = '';   ///< Any additional script content

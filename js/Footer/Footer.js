@@ -3,8 +3,8 @@
  * Footer presentation and manipulation
  */
 
-let Footer = function(json) {
-    this.html = json.footer;
+let Footer = function(html) {
+    this.html = html;
 
     this.component = function() {
         return {template: this.html}

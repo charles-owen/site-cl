@@ -1,29 +1,51 @@
 <?php
 /**
+ * @file
+ * Base class that defines the appearance of a site.
+ */
+
+namespace CL\Site;
+
+/**
  * Base class that defines the appearance of a site.
  *
  * Classes derived from this are used to plug in custom
  * styles, headers, and footers.
  */
-
-namespace CL\Site;
-
-
 class Appearance {
+	/**
+	 * Install this appearance into a view.
+	 *
+	 * This is a place to indicate custom CSS or JS that must be loaded.
+	 * @param View $view View to install into
+	 */
 	public function install(View $view) {
 	}
 
+	/**
+	 * Generate the page header
+	 * @param View $view The view class we are displaying
+	 * @param string $title Page title
+	 * @param string $nav Content for a nav section of the page
+	 * @return string HTML
+	 */
 	public function header(View $view, $title, $nav='') {
 		$html = <<<HTML
 <header class="cl-site">
-<h1>$title</h1>
-$nav
+	<div class="heading">
+		<h1>$title</h1>
+	</div>$nav
 </header>
 HTML;
 
 		return $html;
 	}
 
+	/**
+	 * Generate the page footer
+	 * @param View $view The view class we are displaying
+	 * @return string HTML
+	 */
 	public function footer(View $view) {
 		$html = <<<HTML
 <footer class="cl-site">

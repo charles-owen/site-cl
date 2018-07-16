@@ -12,7 +12,7 @@ use CL\Site\System\Server;
 
 class NotAuthorizedView extends View {
 	public function __construct(Site $site, Server $server, array $path) {
-		parent::__construct($site, ['open']);
+		parent::__construct($site, ['open'=>true]);
 
 		$this->title = 'Not Authorized!';
 

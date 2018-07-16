@@ -58,9 +58,9 @@ SiteFactory.create = function() {
         }
     })
 
-//
-// Compute the path to the library
-//
+    //
+    // Compute the path to the library
+    //
     let rootURL = new URL(__webpack_public_path__);
     let pathList = rootURL.pathname.split('/');
     let pathList2 = [];
@@ -104,6 +104,15 @@ SiteFactory.create = function() {
             console.log(response);
         }
 
+    }
+
+    // Optional header and footer JSON
+    let en;
+    if( (en = document.getElementById('cl-site')) !== null) {
+        let info = JSON.parse(en.textContent);
+        Site.header = new Header(info.header);
+        Site.footer = new Footer(info.footer);
+        Site.siteName = info.siteName;
     }
 
     return Site;

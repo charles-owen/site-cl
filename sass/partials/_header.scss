@@ -7,8 +7,13 @@ header.cl-site {
   margin: 0 auto;
   padding: 0;
   min-width: $min-width;
-  max-width: $max-width;
   width: 100%;
+
+  div.heading {
+    max-width: $max-width;
+    width: 100%;
+    margin: 0 auto;
+  }
 
   h1 {
     font-family: "Trebuchet MS", Helvetica, sans-serif;
@@ -16,6 +21,11 @@ header.cl-site {
     margin: 0;
     padding: $padding;
     width: 100%;
+
+    a {
+      text-decoration: none;
+      color: $header-text;
+    }
   }
 
   nav {

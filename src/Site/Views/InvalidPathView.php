@@ -14,7 +14,7 @@ use CL\Site\System\Server;
 
 class InvalidPathView extends View {
 	public function __construct(Site $site, Server $server=null) 	{
-		parent::__construct($site, ['open']);
+		parent::__construct($site, ['open'=>true]);
 
 		$this->title = "Invalid URL";
 	}

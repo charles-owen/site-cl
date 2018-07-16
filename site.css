@@ -632,15 +632,21 @@ header.cl-site {
   margin: 0 auto;
   padding: 0;
   min-width: 320px;
-  max-width: 56em;
   width: 100%;
   border-bottom: 1px solid black; }
+  header.cl-site div.heading {
+    max-width: 56em;
+    width: 100%;
+    margin: 0 auto; }
   header.cl-site h1 {
     font-family: "Trebuchet MS", Helvetica, sans-serif;
     font-size: 2em;
     margin: 0;
     padding: 8px;
     width: 100%; }
+    header.cl-site h1 a {
+      text-decoration: none;
+      color: #eeeeee; }
   header.cl-site nav {
     width: 100%;
     background: url("img/nav_pattern.png");
@@ -1718,71 +1724,6 @@ table.intermediate2 td:nth-last-child(3), table.intermediate2 th:nth-last-child(
   border-left: thin solid black; }
 
 /** @endcond */
-.rightbox, .rightboxprimary, .rightboxseconda, .rightboxsecondb, .rightboxcomp,
-.centerbox, .centerboxprimary, .centerboxseconda, .centerboxsecondb,
-.centerboxcomp, .advice, .problem, .scenario, .blindblock, aside, iframe, textarea, div.toggleblock, pre.code, textarea.code, figure img, img.figure, p.figure img, p.borderfigure img, p.rightfigure img, figure.submitfigure, .shadow, table {
-  -moz-box-shadow: 3px 3px 8px #ccc;
-  -webkit-box-shadow: 3px 3px 8px #ccc;
-  box-shadow: 3px 3px 8px #ccc;
-  margin-bottom: 1em; }
-
-div.remote-exec .left textarea, div.remote-exec .right pre, div.play-area .left textarea, div.play-area .right pre, .noshadow, .noshadow img {
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
-  box-shadow: none; }
-
-header.cl-site {
-  color: #eeeeee;
-  background-color: #535054;
-  margin: 0 auto;
-  padding: 0;
-  min-width: 320px;
-  max-width: 56em;
-  width: 100%;
-  border-bottom: 1px solid black; }
-  header.cl-site h1 {
-    font-family: "Trebuchet MS", Helvetica, sans-serif;
-    font-size: 2em;
-    margin: 0;
-    padding: 8px;
-    width: 100%; }
-  header.cl-site nav {
-    width: 100%;
-    background: url("img/nav_pattern.png");
-    margin: 0;
-    padding: 0; }
-  header.cl-site ul {
-    max-width: 56em;
-    margin: 0 auto;
-    padding: 0;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    list-style: none; }
-    header.cl-site ul li {
-      display: inline-block;
-      border: 0;
-      border-right: 1px solid #c2d95d;
-      padding: 3px 14px;
-      margin: 0; }
-      header.cl-site ul li a {
-        font-size: 16px;
-        line-height: 18px;
-        outline: none;
-        text-decoration: none;
-        color: white;
-        cursor: pointer; }
-        header.cl-site ul li a span {
-          display: inline-block;
-          background: url(img/white-home.png) center no-repeat;
-          text-indent: -9999px;
-          width: 30px;
-          height: 13px; }
-      header.cl-site ul li a:link, header.cl-site ul li a:active, header.cl-site ul li a:hover {
-        color: white; }
-      header.cl-site ul li a:hover {
-        color: #ffcccc; }
-    header.cl-site ul li:last-child {
-      border: 0; }
-
 #quiz {
   border: solid black 1pt;
   padding: 3pt 3pt 3pt 3pt;

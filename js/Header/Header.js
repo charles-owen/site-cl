@@ -3,9 +3,7 @@
  * Header manipulation component
  */
 
-let Header = function(json) {
-    let html = json.header;
-
+let Header = function(html) {
     this.html = html;
 
     this.component = function() {

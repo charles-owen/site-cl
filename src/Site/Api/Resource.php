@@ -18,11 +18,23 @@ use CL\Site\Api\APIException;
  */
 abstract class Resource {
 
+	/**
+	 * Resource constructor.
+	 */
 	public function __construct() {
 	}
 
+	/**
+	 * Top-level dispatching by the API. This is called by the router for an API call
+	 * @param Site $site The Site object
+	 * @param Server $server The Server object
+	 * @param array $path The path beyond the page that invoked this call
+	 * @param array $properties Properties determined from the page options like :id
+	 * @param $time The crurent time
+	 * @return mixed Result of the API operation.
+	 */
 	public function apiDispatch(Site $site, Server $server, array $path, array $properties, $time) {
-		$site->start(['open']);
+		$site->start(['open'=>true]);
 
 		try {
 			return $this->internal_dispatch($site, $server, $path, $properties, $time);
@@ -49,8 +61,22 @@ abstract class Resource {
 		return $ret;
 	}
 
+	/**
+	 * Concrete API resources implement this function to handle an actual router dispatch.
+	 * @param Site $site The Site object
+	 * @param Server $server The Server object
+	 * @param array $path The path beyond the page that invoked this call
+	 * @param array $properties Properties determined from the page options like :id
+	 * @param $time The crurent time
+	 * @return mixed Result of the API operation.
+	 */
 	protected abstract function dispatch(Site $site, Server $server, array $path, array $properties, $time);
 
+	/**
+	 * Basic sanitization of values. Does a strip_tags and a trim.
+	 * @param string $value Value to be sanitized
+	 * @return string Sanitized result.
+	 */
 	protected static function sanitize($value) {
 		return trim(strip_tags($value));
 	}
