@@ -12,7 +12,8 @@
   "autoload":{
     "psr-4": {
       "CL\\Site\\": "src/Site"
-    }
+    },
+    "classmap": ["src/Global"]
   },
   "repositories": [
     {
