@@ -7,11 +7,13 @@ import Vue from 'vue';
 import Toasted from 'vue-toasted';
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';
+
 const url = require('url');
 
 import ApiService from './ApiService.js';
 import Header from './Header/Header.js';
 import Footer from './Footer/Footer.js';
+import {Toggler} from './Util/Toggler.js';
 
 export let SiteFactory = function() {
 }
@@ -21,6 +23,8 @@ SiteFactory.create = function() {
     Vue.use(VueRouter);
     Vue.use(Toasted);
     Vue.use(Vuex);
+
+    Toggler.install();
 
     let Site = function () {
 

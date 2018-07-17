@@ -1771,18 +1771,23 @@ p.run, p.compile, p.vsrun, p.vsbuild {
   padding: 5px 5px 5px 25px; }
 
 div.toggle > :first-child {
-  background-image: url("images/plus.png");
+  background-image: url("img/plus.png");
   background-repeat: no-repeat;
   padding-left: 1.4em;
   background-position: left 0.15em;
   background-size: 1.2em; }
+  div.toggle > :first-child a {
+    text-decoration: none;
+    color: inherit; }
   div.toggle > :first-child a:hover {
     text-decoration: none;
     color: #006600; }
 div.toggle > .visible {
-  background-image: url("images/minus.png"); }
+  background-image: url("img/minus.png"); }
 div.toggle > div {
-  display: none; }
+  transform-origin: top left;
+  display: none;
+  overflow-y: hidden; }
 
 div.toggleblock {
   position: relative;
@@ -1824,6 +1829,15 @@ p.powerpoint {
     background-repeat: no-repeat;
     padding-left: 57px;
     padding-top: 15px; }
+
+div.hot {
+  width: 25em;
+  min-height: 45px;
+  margin: 0 auto;
+  background: #ffffff url("img/hot.gif") no-repeat;
+  padding-left: 85px; }
+  div.hot p {
+    margin: 0; }
 
 .rightbox, .rightboxprimary, .rightboxseconda, .rightboxsecondb, .rightboxcomp,
 .centerbox, .centerboxprimary, .centerboxseconda, .centerboxsecondb,
