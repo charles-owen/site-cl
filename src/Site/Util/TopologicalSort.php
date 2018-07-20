@@ -20,25 +20,25 @@ class TopologicalSort {
 			$any = false;
 
 			// Find all plugins that has no dependency
-			foreach ($plugins as $js => $depends) {
+			foreach ($plugins as $plugin => $depends) {
 				if (count($depends) === 0) {
-					$sorted[] = $js;
+					$sorted[] = $plugin;
 					$any = true;
 				} else {
-					$temp[$js] = $depends;
+					$temp[$plugin] = $depends;
 				}
 			}
 
 			// Remove all dependencies from the
 			// remaining plugins
 			$plugins = [];
-			foreach ($temp as $js => $depends) {
+			foreach ($temp as $plugin => $depends) {
 				$depends = array_diff($depends, $sorted);
-				$plugins[$js] = $depends;
+				$plugins[$plugin] = $depends;
 			}
 
 			if (!$any) {
-				throw new \Exception('Javascript dependencies have a cycle');
+				throw new \Exception('Plugin dependencies have a cycle');
 			}
 
 		}

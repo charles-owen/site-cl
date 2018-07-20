@@ -8,7 +8,7 @@ namespace CL\Site;
 
 use CL\Site\Components\InstalledConfig;
 use CL\Site\System\Server;
-use CL\Site\System\UsersTableMaker;
+use CL\Site\Util\TopologicalSort;
 
 /**
  * Site configuration object for a general purpose web site.
@@ -43,12 +43,27 @@ class Site {
 		//
 		$installed = $rootDir . '/cl/installed.php';
 		if(file_exists($installed)) {
-			$this->plugins = require($installed);
+			$plugins = require($installed);
 
-			// We install the plugins to the configuration
+			// Collect into two arrays by plugin tag.
+			$pluginsByName = [];
+			$pluginsDeps = [];
+			foreach($plugins as $plugin) {
+				$tag = $plugin->tag();
+				$pluginsByName[$tag] = $plugin;
+				$pluginsDeps[$tag] = $plugin->depends();
+			}
+
+			// Topological sort the list and save in that order
+			$pluginsOrder = TopologicalSort::sort($pluginsDeps);
+
+			// We install the plugins in order into the configuration
 			// now so they are available for settings.
-			foreach($this->plugins as $install) {
-				$install->install($this);
+			$this->plugins = [];
+			foreach($pluginsOrder as $tag) {
+				$plugin = $pluginsByName[$tag];
+				$this->plugins[] = $plugin;
+				$plugin->install($this);
 			}
 		} else {
 			$this->plugins = [];
@@ -104,6 +119,9 @@ class Site {
 
 			case 'root':
 				return $this->root;
+
+			case 'img':
+				return $this->root . '/vendor/cl/site/img';
 
 			case "rootDir":
 				return $this->rootDir;
@@ -245,12 +263,8 @@ class Site {
 		//
 		// Startup activities
 		//
-		usort($this->startup, function($a, $b) {
-			return $a['order'] - $b['order'];
-		});
-
 		foreach($this->startup as $plugin) {
-			$ret = $plugin['function']($this, $server, $time);
+			$ret = $plugin($this, $server, $time);
 			if($ret !== null) {
 				return $ret;
 			}
@@ -292,8 +306,8 @@ class Site {
 	 * @param callable $function with parameters: Site $site, Server $server, $time
 	 * Must return null or a redirect link.
 	 */
-	public function addStartup($function, $order) {
-		$this->startup[] = ['function'=>$function, 'order'=>$order];
+	public function addStartup($function) {
+		$this->startup[] = $function;
 	}
 
 	/**

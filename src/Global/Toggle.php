@@ -34,7 +34,7 @@ class Toggle {
 	public static function begin($heading, $tag="h2", $class=null, $classBlock="toggleblock") {
 		$c = $class !== null ? " class=\"$class\"" : '';
 		$html = <<<HTML
-<div class="toggle">
+<div class="cl-toggle">
   <$tag$c><a>$heading</a></$tag>
   <div class="$classBlock">
 HTML;

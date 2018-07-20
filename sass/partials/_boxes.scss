@@ -1,8 +1,4 @@
-@import '../modules/_colors';
-
-.rightbox, .rightboxprimary, .rightboxseconda, .rightboxsecondb, .rightboxcomp,
-.centerbox, .centerboxprimary, .centerboxseconda, .centerboxsecondb,
-.centerboxcomp, .advice, .problem, .scenario, .blindblock, aside {
+.rightbox, .centerbox, .advice, .problem, .scenario, .blindblock, aside {
   @extend %shadow;
   background: $primary; /* Default color */
   color:white;
@@ -16,8 +12,7 @@
   }
 }
 
-.centerbox, .centerboxprimary, .centerboxseconda, .centerboxsecondb,
-.centerboxcomp, .advice, .problem, .scenario, .blindblock {
+.centerbox, .advice, .problem, .scenario, .blindblock {
   padding:8px;
   border: 1px ridge black;
   overflow:auto;
@@ -25,8 +20,7 @@
   margin: 1em auto;
 }
 
-.rightbox, .rightboxprimary, .rightboxseconda,
-.rightboxsecondb, .rightboxcomp, .problemright, .scenarioright, aside {
+.rightbox, .problemright, .scenarioright, aside {
   box-sizing: border-box;
   width: $aside-width;
   position: absolute;
@@ -40,8 +34,7 @@
 
 @media only screen and (max-width: $medium-width) {
 
-  .rightbox, .rightboxprimary, .rightboxseconda,
-  .rightboxsecondb, .rightboxcomp, .problemright, .scenarioright, aside {
+  .rightbox, .problemright, .scenarioright, aside {
     position: relative;
     width: auto;
     overflow: auto;

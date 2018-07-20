@@ -21,4 +21,16 @@ abstract class Plugin {
 	 * @param Site $site The site configuration component
 	 */
 	abstract public function install(Site $site);
+
+	/**
+	 * A tag that represents this plugin
+	 * @return string A tag like 'course', 'users', etc.
+	 */
+	abstract public function tag();
+
+	/**
+	 * Return an array of tags indicating what plugins this one is dependent on.
+	 * @return array of tags this plugin is dependent on
+	 */
+	abstract public function depends();
 }

@@ -13,7 +13,10 @@ const url = require('url');
 import ApiService from './ApiService.js';
 import Header from './Header/Header.js';
 import Footer from './Footer/Footer.js';
-import {Toggler} from './Util/Toggler.js';
+import {Ready} from './Util/Ready.js';
+import {Clock} from './Util/Clock.js';
+
+import 'toggler-cl';
 
 export let SiteFactory = function() {
 }
@@ -24,22 +27,22 @@ SiteFactory.create = function() {
     Vue.use(Toasted);
     Vue.use(Vuex);
 
-    Toggler.install();
-
     let Site = function () {
 
     }
 
 
-    // Exported vendor components
+    // Exported vendor singleton components
     Site.Vue = Vue;
     Site.VueRouter = VueRouter;
     Site.Vuex = Vuex;
 
-    // Exported Site components
-    Site.Header = Header;
-    Site.Footer = Footer;
+    // An array of function to be called when the page is ready.
+    Site.readyList = [];
 
+    Site.ready = function(fn) {
+        Site.readyList.push(fn);
+    }
     //
     // Set up the Vuex store
     //
@@ -110,14 +113,25 @@ SiteFactory.create = function() {
 
     }
 
-    // Optional header and footer JSON
-    let en;
-    if( (en = document.getElementById('cl-site')) !== null) {
-        let info = JSON.parse(en.textContent);
-        Site.header = new Header(info.header);
-        Site.footer = new Footer(info.footer);
-        Site.siteName = info.siteName;
-    }
+    Ready.go(() => {
+        // Optional header and footer JSON
+        let en;
+        if( (en = document.getElementById('cl-site')) !== null) {
+            let info = JSON.parse(en.textContent);
+            Site.header = new Header(info.header);
+            Site.footer = new Footer(info.footer);
+            Site.siteName = info.siteName;
+        }
+
+        if( (en = document.getElementById('cl-site-time')) !== null) {
+            new Clock(en);
+        }
+
+
+        Site.readyList.forEach((fun) => {
+            fun();
+        })
+    });
 
     return Site;
 }

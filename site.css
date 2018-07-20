@@ -1,6 +1,4 @@
-.rightbox, .rightboxprimary, .rightboxseconda, .rightboxsecondb, .rightboxcomp,
-.centerbox, .centerboxprimary, .centerboxseconda, .centerboxsecondb,
-.centerboxcomp, .advice, .problem, .scenario, .blindblock, aside, iframe, textarea, div.toggleblock, pre.code, textarea.code, figure img, img.figure, p.figure img, p.borderfigure img, p.rightfigure img, figure.submitfigure, .shadow, table {
+.rightbox, .centerbox, .advice, .problem, .scenario, .blindblock, aside, iframe, textarea, div.toggleblock, pre.code, textarea.code, figure img, img.figure, p.figure img, p.borderfigure img, p.rightfigure img, figure.submitfigure, .shadow, table {
   -moz-box-shadow: 3px 3px 8px #ccc;
   -webkit-box-shadow: 3px 3px 8px #ccc;
   box-shadow: 3px 3px 8px #ccc;
@@ -613,19 +611,6 @@ p.shoutout {
   margin-top: 2em;
   margin-bottom: 2em; }
 
-.rightbox, .rightboxprimary, .rightboxseconda, .rightboxsecondb, .rightboxcomp,
-.centerbox, .centerboxprimary, .centerboxseconda, .centerboxsecondb,
-.centerboxcomp, .advice, .problem, .scenario, .blindblock, aside, iframe, textarea, div.toggleblock, pre.code, textarea.code, figure img, img.figure, p.figure img, p.borderfigure img, p.rightfigure img, figure.submitfigure, .shadow, table {
-  -moz-box-shadow: 3px 3px 8px #ccc;
-  -webkit-box-shadow: 3px 3px 8px #ccc;
-  box-shadow: 3px 3px 8px #ccc;
-  margin-bottom: 1em; }
-
-div.remote-exec .left textarea, div.remote-exec .right pre, div.play-area .left textarea, div.play-area .right pre, .noshadow, .noshadow img {
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
-  box-shadow: none; }
-
 header.cl-site {
   color: #eeeeee;
   background-color: #535054;
@@ -808,44 +793,23 @@ div.cl-lti-admin div.adminhome {
     font-size: 1.5em;
     text-align: center; }
 
-.rightbox, .rightboxprimary, .rightboxseconda, .rightboxsecondb, .rightboxcomp,
-.centerbox, .centerboxprimary, .centerboxseconda, .centerboxsecondb,
-.centerboxcomp, .advice, .problem, .scenario, .blindblock, aside, iframe, textarea, div.toggleblock, pre.code, textarea.code, figure img, img.figure, p.figure img, p.borderfigure img, p.rightfigure img, figure.submitfigure, .shadow, table {
-  -moz-box-shadow: 3px 3px 8px #ccc;
-  -webkit-box-shadow: 3px 3px 8px #ccc;
-  box-shadow: 3px 3px 8px #ccc;
-  margin-bottom: 1em; }
-
-div.remote-exec .left textarea, div.remote-exec .right pre, div.play-area .left textarea, div.play-area .right pre, .noshadow, .noshadow img {
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
-  box-shadow: none; }
-
-.rightbox, .rightboxprimary, .rightboxseconda, .rightboxsecondb, .rightboxcomp,
-.centerbox, .centerboxprimary, .centerboxseconda, .centerboxsecondb,
-.centerboxcomp, .advice, .problem, .scenario, .blindblock, aside {
+.rightbox, .centerbox, .advice, .problem, .scenario, .blindblock, aside {
   background: #00723f;
   /* Default color */
   color: white; }
-  .rightbox p:first-child, .rightboxprimary p:first-child, .rightboxseconda p:first-child, .rightboxsecondb p:first-child, .rightboxcomp p:first-child,
-  .centerbox p:first-child, .centerboxprimary p:first-child, .centerboxseconda p:first-child, .centerboxsecondb p:first-child,
-  .centerboxcomp p:first-child, .advice p:first-child, .problem p:first-child, .scenario p:first-child, .blindblock p:first-child, aside p:first-child {
+  .rightbox p:first-child, .centerbox p:first-child, .advice p:first-child, .problem p:first-child, .scenario p:first-child, .blindblock p:first-child, aside p:first-child {
     margin-top: 0; }
-  .rightbox p:last-child, .rightboxprimary p:last-child, .rightboxseconda p:last-child, .rightboxsecondb p:last-child, .rightboxcomp p:last-child,
-  .centerbox p:last-child, .centerboxprimary p:last-child, .centerboxseconda p:last-child, .centerboxsecondb p:last-child,
-  .centerboxcomp p:last-child, .advice p:last-child, .problem p:last-child, .scenario p:last-child, .blindblock p:last-child, aside p:last-child {
+  .rightbox p:last-child, .centerbox p:last-child, .advice p:last-child, .problem p:last-child, .scenario p:last-child, .blindblock p:last-child, aside p:last-child {
     margin-bottom: 0; }
 
-.centerbox, .centerboxprimary, .centerboxseconda, .centerboxsecondb,
-.centerboxcomp, .advice, .problem, .scenario, .blindblock {
+.centerbox, .advice, .problem, .scenario, .blindblock {
   padding: 8px;
   border: 1px ridge black;
   overflow: auto;
   max-width: 40em;
   margin: 1em auto; }
 
-.rightbox, .rightboxprimary, .rightboxseconda,
-.rightboxsecondb, .rightboxcomp, .problemright, .scenarioright, aside {
+.rightbox, .problemright, .scenarioright, aside {
   box-sizing: border-box;
   width: 15.5em;
   position: absolute;
@@ -857,26 +821,12 @@ div.remote-exec .left textarea, div.remote-exec .right pre, div.play-area .left 
   z-index: 100; }
 
 @media only screen and (max-width: 750px) {
-  .rightbox, .rightboxprimary, .rightboxseconda,
-  .rightboxsecondb, .rightboxcomp, .problemright, .scenarioright, aside {
+  .rightbox, .problemright, .scenarioright, aside {
     position: relative;
     width: auto;
     overflow: auto;
     padding: 8px;
     margin: 1em auto; } }
-.rightbox, .rightboxprimary, .rightboxseconda, .rightboxsecondb, .rightboxcomp,
-.centerbox, .centerboxprimary, .centerboxseconda, .centerboxsecondb,
-.centerboxcomp, .advice, .problem, .scenario, .blindblock, aside, iframe, textarea, div.toggleblock, pre.code, textarea.code, figure img, img.figure, p.figure img, p.borderfigure img, p.rightfigure img, figure.submitfigure, .shadow, table {
-  -moz-box-shadow: 3px 3px 8px #ccc;
-  -webkit-box-shadow: 3px 3px 8px #ccc;
-  box-shadow: 3px 3px 8px #ccc;
-  margin-bottom: 1em; }
-
-div.remote-exec .left textarea, div.remote-exec .right pre, div.play-area .left textarea, div.play-area .right pre, .noshadow, .noshadow img {
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
-  box-shadow: none; }
-
 div.dialog-cl-top {
   background-color: #00723f !important;
   background: linear-gradient(#204c42, #389b54) !important;
@@ -907,19 +857,6 @@ div.dialog p.error {
   color: red;
   font-size: 0.85em;
   text-align: center; }
-
-.rightbox, .rightboxprimary, .rightboxseconda, .rightboxsecondb, .rightboxcomp,
-.centerbox, .centerboxprimary, .centerboxseconda, .centerboxsecondb,
-.centerboxcomp, .advice, .problem, .scenario, .blindblock, aside, iframe, textarea, div.toggleblock, pre.code, textarea.code, figure img, img.figure, p.figure img, p.borderfigure img, p.rightfigure img, figure.submitfigure, .shadow, table {
-  -moz-box-shadow: 3px 3px 8px #ccc;
-  -webkit-box-shadow: 3px 3px 8px #ccc;
-  box-shadow: 3px 3px 8px #ccc;
-  margin-bottom: 1em; }
-
-div.remote-exec .left textarea, div.remote-exec .right pre, div.play-area .left textarea, div.play-area .right pre, .noshadow, .noshadow img {
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
-  box-shadow: none; }
 
 div.menu {
   position: relative;
@@ -1245,71 +1182,6 @@ ul li ul {
   #body, .body {
     min-width: 300px;
     max-width: 500px; } }
-/**
- * @file
- * The top-level div for content in the standard two-column format
- * is div.content. This page includes the styles in relation to
- * div.content.
- */
-div.content {
-  position: relative;
-  max-width: 56em;
-  padding: 0 10px;
-  margin-left: auto;
-  margin-right: auto; }
-  div.content > p, div.content > div.centerbox, div.content > div.centerboxprimary, div.content > div.centerboxcomp, div.content > div.centerboxseconda, div.content > div.centerboxsecondb, div.content > pre, div.content > div.toggleblock, div.content > ul, div.content > ol, div.content > form, div.content > .advice, div.content > .left, div.content > div.problem, div.content > div.scenario, div.content > div.toggle, div.content > figure {
-    margin-left: 0;
-    margin-right: 16em; }
-  div.content > h3 {
-    margin-right: 13.33em; }
-  div.content > p.shoutout {
-    margin-right: 12.3em; }
-  div.content > .full, div.content > div.full {
-    margin-right: 0;
-    margin-left: 0;
-    padding-right: 0;
-    max-width: none; }
-  div.content > p.rightbox, div.content > p.rightboxprimary, div.content > p.rightboxcomp, div.content > p.rightboxseconda, div.content > p.rightboxsecondb, div.content > p.problemright, div.content > p.scenarioright {
-    margin-right: 0; }
-  div.content > .right, div.content > figure.right, div.content > figure.maybe-right {
-    box-sizing: border-box;
-    width: 15.5em;
-    position: absolute;
-    padding: 0;
-    right: 0;
-    margin-right: 0; }
-  div.content > figure {
-    overflow: visible;
-    text-align: center; }
-  div.content > figure img {
-    margin: 0.5em auto; }
-  div.content > .scroll {
-    overflow: auto; }
-  div.content > p.figure {
-    position: relative;
-    max-width: 100%;
-    text-align: center;
-    margin: 0.5em auto;
-    overflow: hidden; }
-
-div.content > .width60 {
-  width: 60%;
-  margin: 0 auto; }
-
-div.content > p.vsrun, div.content > p.run, div.content > p.compile, div.content > p.vsbuild {
-  margin-right: 17em; }
-
-div.wide div.content {
-  max-width: none; }
-
-@media only screen and (max-width: 750px) {
-  div.content > p, div.content > div.centerbox, div.content > div.centerboxprimary, div.content > div.centerboxcomp, div.content > div.centerboxseconda, div.content > div.centerboxsecondb, div.content > pre, div.content > div.toggleblock, div.content > div.toggle, div.content > ul, div.content > ol, div.content > form, div.content > .advice, div.content > .left, div.content > div.problem, div.content > div.scenario, div.content > figure {
-    margin-right: 5px; }
-  div.content > .right, div.content > figure.right, div.content > figure.maybe-right {
-    width: 15em;
-    position: relative;
-    padding: 0;
-    margin: 0 auto; } }
 pre {
   margin-left: 0;
   margin-right: 0; }
@@ -1555,19 +1427,6 @@ p.backto {
   border: 0px;
   padding-top: 2px; }
 
-.rightbox, .rightboxprimary, .rightboxseconda, .rightboxsecondb, .rightboxcomp,
-.centerbox, .centerboxprimary, .centerboxseconda, .centerboxsecondb,
-.centerboxcomp, .advice, .problem, .scenario, .blindblock, aside, iframe, textarea, div.toggleblock, pre.code, textarea.code, figure img, img.figure, p.figure img, p.borderfigure img, p.rightfigure img, figure.submitfigure, .shadow, table {
-  -moz-box-shadow: 3px 3px 8px #ccc;
-  -webkit-box-shadow: 3px 3px 8px #ccc;
-  box-shadow: 3px 3px 8px #ccc;
-  margin-bottom: 1em; }
-
-div.remote-exec .left textarea, div.remote-exec .right pre, div.play-area .left textarea, div.play-area .right pre, .noshadow, .noshadow img {
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
-  box-shadow: none; }
-
 /**
  * @file
  * Default style for tables for a CourseLib site
@@ -1770,21 +1629,21 @@ p.run, p.compile, p.vsrun, p.vsbuild {
   background-color: #ddffdd;
   padding: 5px 5px 5px 25px; }
 
-div.toggle > :first-child {
+div.xtoggle > :first-child {
   background-image: url("img/plus.png");
   background-repeat: no-repeat;
   padding-left: 1.4em;
   background-position: left 0.15em;
-  background-size: 1.2em; }
-  div.toggle > :first-child a {
+  background-size: 1.0em; }
+  div.xtoggle > :first-child a {
     text-decoration: none;
     color: inherit; }
-  div.toggle > :first-child a:hover {
+  div.xtoggle > :first-child a:hover {
     text-decoration: none;
     color: #006600; }
-div.toggle > .visible {
+div.xtoggle > .visible {
   background-image: url("img/minus.png"); }
-div.toggle > div {
+div.xtoggle > div {
   transform-origin: top left;
   display: none;
   overflow-y: hidden; }
@@ -1839,19 +1698,6 @@ div.hot {
   div.hot p {
     margin: 0; }
 
-.rightbox, .rightboxprimary, .rightboxseconda, .rightboxsecondb, .rightboxcomp,
-.centerbox, .centerboxprimary, .centerboxseconda, .centerboxsecondb,
-.centerboxcomp, .advice, .problem, .scenario, .blindblock, aside, iframe, textarea, div.toggleblock, pre.code, textarea.code, figure img, img.figure, p.figure img, p.borderfigure img, p.rightfigure img, figure.submitfigure, .shadow, table {
-  -moz-box-shadow: 3px 3px 8px #ccc;
-  -webkit-box-shadow: 3px 3px 8px #ccc;
-  box-shadow: 3px 3px 8px #ccc;
-  margin-bottom: 1em; }
-
-div.remote-exec .left textarea, div.remote-exec .right pre, div.play-area .left textarea, div.play-area .right pre, .noshadow, .noshadow img {
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
-  box-shadow: none; }
-
 .primary {
   background: #00723f;
   color: white; }
@@ -1899,175 +1745,5 @@ div.remote-exec .left textarea, div.remote-exec .right pre, div.play-area .left 
 
 .grn {
   color: #008800; }
-
-.clicktoexpand {
-  font-weight: normal;
-  font-size: 10pt; }
-
-div.editor {
-  margin-left: auto;
-  margin-right: auto;
-  width: 80%; }
-
-div.editor textarea {
-  border-top: 5pt solid #cccccc; }
-
-div.editor_small {
-  margin-left: auto;
-  margin-right: auto;
-  width: 80%; }
-
-div.bdblock {
-  margin-left: 1%;
-  margin-right: 1%;
-  background: #FFCfF9;
-  padding: 6px;
-  margin-top: 6px;
-  margin-bottom: 6px;
-  border: 1px gray solid;
-  overflow: auto;
-  color: black; }
-
-p.submitfigure {
-  text-align: center;
-  overflow: auto;
-  margin-left: 5%;
-  margin-right: 5%;
-  border: 1px solid black;
-  -moz-box-shadow: 8px 8px 8px #888;
-  -webkit-box-shadow: 8px 8px 8px #888;
-  box-shadow: 8px 8px 8px #888;
-  margin-bottom: 1em; }
-
-p.submitfigure img {
-  margin-top: 5px;
-  margin-bottom: 5px; }
-
-form.checklist {
-  padding-left: 3em;
-  padding-right: 3em;
-  border: thin solid black;
-  background-color: #f0f8f0; }
-  form.checklist p {
-    text-align: left;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-    position: relative; }
-  form.checklist input[type="checkbox"] {
-    position: absolute;
-    left: -1.5em;
-    top: 0.25em; }
-
-form {
-  position: relative;
-  max-width: 100%; }
-
-form.border {
-  border: 1px solid silver; }
-
-form fieldset {
-  /*width: 100%; */
-  border: 1px solid #c0c0c0;
-  margin: 0 2px;
-  padding: 0.35em 0.625em 0.75em; }
-
-form.fileform {
-  margin-left: 2em;
-  margin-right: 2em;
-  border: 1px solid black;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
-  text-align: center;
-  -moz-box-shadow: 8px 8px 8px #888;
-  -webkit-box-shadow: 8px 8px 8px #888;
-  box-shadow: 8px 8px 8px #888; }
-
-div.content > form.fileform {
-  margin-right: 18em; }
-
-p.reviewsappear {
-  text-align: center;
-  background: #00723f;
-  color: white; }
-
-p.content > div.reviews, p.content > p.reviewsappear {
-  margin-left: 1em;
-  margin-right: 17em; }
-
-p.reviewhead {
-  color: #009966;
-  font-size: 8pt;
-  font-style: italic; }
-
-span.staffreview {
-  color: red; }
-
-input.file, input.upload {
-  font: 9pt helvetica,sans-serif;
-  margin-left: 5px; }
-
-input.file {
-  width: 20em; }
-
-input.submit {
-  font-weight: bold; }
-
-div.selectors {
-  margin-top: 4pt; }
-
-div.selectors p, div.selectors form {
-  display: inline; }
-
-textarea {
-  width: 100%;
-  background-color: #e2fff7; }
-
-p.test {
-  text-align: center;
-  color: green; }
-
-.error {
-  color: #ff0000;
-  font-style: italic;
-  font-size: 0.9em; }
-
-.disabled {
-  opacity: 0.5; }
-
-.skype_hours {
-  font-size: 0.9em;
-  padding-left: 2em;
-  font-style: italic; }
-
-div.twocolumn {
-  position: relative;
-  display: table-row; }
-  div.twocolumn .left30 {
-    display: table-cell;
-    width: 30%; }
-  div.twocolumn .left35 {
-    display: table-cell;
-    width: 35%; }
-  div.twocolumn .left {
-    display: table-cell;
-    width: 50%; }
-  div.twocolumn .right {
-    display: table-cell; }
-
-.staff {
-  display: table;
-  margin: 0 auto; }
-  .staff .instructor, .staff .ta {
-    display: table-row;
-    padding: 1em 0; }
-  .staff img {
-    display: table-cell;
-    vertical-align: middle;
-    width: 150px;
-    height: auto;
-    padding: 0.5em 1em 0.5em 0; }
-  .staff .info {
-    display: table-cell;
-    vertical-align: middle; }
 
 /*# sourceMappingURL=site.css.map */

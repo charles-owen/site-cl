@@ -98,6 +98,14 @@ HTML;
 			$html .= $this->tscss($css);
 		}
 
+		foreach($this->js as $js) {
+			$html .= $this->tsjs($js);
+		}
+
+		foreach($this->aux as $aux) {
+			$html .= $aux->head();
+		}
+
 		return $html;
 	}
 
@@ -121,17 +129,15 @@ HTML;
 			$siteInfo['footer'] = $this->appearance->footer($this);
 		}
 
-		$json = htmlspecialchars(json_encode($siteInfo));
+		$json = htmlspecialchars(json_encode($siteInfo), ENT_NOQUOTES);
 		$html .= '<div id="cl-site" style="display: none">' . $json . '</div>';
 
 		foreach($this->json as $id => $json) {
-			$json = htmlspecialchars($json);
+			$json = htmlspecialchars($json, ENT_NOQUOTES);
 			$html .= '<div id="' . $id . '" style="display: none">' . $json . '</div>';
 		}
 
-		foreach($this->js as $js) {
-			$html .= $this->tsjs($js);
-		}
+
 
 		if($this->script !== '') {
 			$html .= '<script>' . $this->script . '</script>';
@@ -347,13 +353,40 @@ HTML;
 		}
 	}
 
+	/**
+	 * Add any auxiliary views that are utilized by this type
+	 * @param ViewAux $aux Auxiliary view utilized by this page
+	 * @return ViewAux The ViewAux object we added
+	 */
+	public function add_aux(ViewAux $aux) {
+		$this->aux[] = $aux;
+		$aux->view = $this;
+		return $aux;
+	}
+
+	/**
+	 * Find any auxiliary view of a given type.
+	 * @param $type PHP class we are looking for
+	 * @return mixed|null
+	 */
+	public function find_aux($type) {
+		foreach ($this->aux as $aux) {
+			if ($aux instanceof $type) {
+				return $aux;
+			}
+		}
+
+		return null;
+	}
+
 	private $appearance = null; ///< Installed appearance
 
 	private $site;
 	private $title = 'Title';   ///< Page title
 
-	private $json = []; ///< JSON content to include
-	private $css = [];  ///< CSS to include
-	private $js = [];   ///< Javascript to include
+	private $json = [];     ///< JSON content to include
+	private $css = [];      ///< CSS to include
+	private $js = [];       ///< Javascript to include
 	private $script = '';   ///< Any additional script content
+	private $aux = [];      ///< Auxiliary views (attached to view)
 }

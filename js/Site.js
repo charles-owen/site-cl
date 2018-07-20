@@ -2,8 +2,10 @@
 import './site-path.js';
 import './polyfills/polyfills.js';
 
-import NotFoundComponent from './Vue/NotFoundComponent.vue';
+import {Ready} from './Util/Ready.js';
+export {Ready};
 
+import NotFoundComponent from './Vue/NotFoundComponent.vue';
 export {NotFoundComponent};
 
 import {SiteFactory} from './SiteFactory.js';
