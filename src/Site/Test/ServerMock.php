@@ -58,6 +58,12 @@ class ServerMock extends \CL\Site\System\Server {
 		$this->cookie[$name] = $value;
 	}
 
+	public function redirect($where) {
+		$this->redirected = $where;
+	}
+
+	public $redirected = null;
+
 	private $post = [];
 	private $get = [];
 

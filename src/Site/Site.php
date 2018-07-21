@@ -29,45 +29,48 @@ class Site {
 	/**
 	 * Site constructor.
 	 *
+	 * If $rootDir is supplied, the directory $rootDir/cl will be checked
+	 * for a file installed.php that will instantiate the site plugins.
+	 *
 	 * @param string $rootDir Root directory for the site.
 	 */
-	public function __construct($rootDir) {
+	public function __construct($rootDir = null) {
 		$this->rootDir = $rootDir;
 
 		// Install the database component
 		$this->db = new \CL\Tables\Config();
 
-		//
-		// Find the 'installed.php' file that
-		// contains an array of installed components.
-		//
-		$installed = $rootDir . '/cl/installed.php';
-		if(file_exists($installed)) {
-			$plugins = require($installed);
+		if($rootDir !== null) {
+			//
+			// Find the 'installed.php' file that
+			// contains an array of installed components.
+			//
+			$installed = $rootDir . '/cl/installed.php';
+			if(file_exists($installed)) {
+				$plugins = require($installed);
 
-			// Collect into two arrays by plugin tag.
-			$pluginsByName = [];
-			$pluginsDeps = [];
-			foreach($plugins as $plugin) {
-				$tag = $plugin->tag();
-				$pluginsByName[$tag] = $plugin;
-				$pluginsDeps[$tag] = $plugin->depends();
+				// Collect into two arrays by plugin tag.
+				$pluginsByName = [];
+				$pluginsDeps = [];
+				foreach($plugins as $plugin) {
+					$tag = $plugin->tag();
+					$pluginsByName[$tag] = $plugin;
+					$pluginsDeps[$tag] = $plugin->depends();
+				}
+
+				// Topological sort the list and save in that order
+				$pluginsOrder = TopologicalSort::sort($pluginsDeps);
+
+				// We install the plugins in order into the configuration
+				// now so they are available for settings.
+				foreach($pluginsOrder as $tag) {
+					$plugin = $pluginsByName[$tag];
+					$this->plugins[] = $plugin;
+					$plugin->install($this);
+				}
 			}
-
-			// Topological sort the list and save in that order
-			$pluginsOrder = TopologicalSort::sort($pluginsDeps);
-
-			// We install the plugins in order into the configuration
-			// now so they are available for settings.
-			$this->plugins = [];
-			foreach($pluginsOrder as $tag) {
-				$plugin = $pluginsByName[$tag];
-				$this->plugins[] = $plugin;
-				$plugin->install($this);
-			}
-		} else {
-			$this->plugins = [];
 		}
+
 	}
 
 	/**
@@ -400,7 +403,7 @@ class Site {
 	/// The installed plugins.
 	/// A plugin is an object derived from the class Plugin
 	/// that adds features to the system.
-	private $plugins;
+	private $plugins = [];
 
 	/// Installed site components
 	/// The allows plugins to add to the Site object

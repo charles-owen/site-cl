@@ -69,7 +69,7 @@ HTML;
 <!DOCTYPE html>
 <html lang="en">
 <head>$head</head>
-<body><div class="body"><div id="$id"></div></div></div>$tail</body>
+<body><div class="$this->body"><div id="$id"></div></div>$tail</body>
 </html>
 HTML;
 
@@ -189,7 +189,7 @@ HTML;
 		$siteName = $this->site->siteName;
 		$root = $this->site->root;
 		$title = "<a href=\"$root/\">$siteName</a> $this->title";
-		return '<div class="body">' . $this->appearance->header($this, $title);
+		return '<div class="' . $this->body . '">' . $this->appearance->header($this, $title);
 	}
 
 	/**
@@ -379,6 +379,14 @@ HTML;
 		return null;
 	}
 
+	/**
+	 * Add a class to the top-level (body) div.
+	 * @param string $cls Class to add
+	 */
+	public function addBody($cls) {
+		$this->body .= ' ' . $cls;
+	}
+
 	private $appearance = null; ///< Installed appearance
 
 	private $site;
@@ -389,4 +397,5 @@ HTML;
 	private $js = [];       ///< Javascript to include
 	private $script = '';   ///< Any additional script content
 	private $aux = [];      ///< Auxiliary views (attached to view)
+	private $body = 'body'; ///< Classes to put in the top level div
 }

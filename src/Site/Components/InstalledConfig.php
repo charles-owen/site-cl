@@ -8,6 +8,16 @@ namespace CL\Site\Components;
 
 /**
  * Abstract base class for the installed configuration for a component.
+ *
+ * Derived classes can be added to the Site object using the install function
+ * like this:
+ *
+ * \code
+ * $site->install('course', new Course($site));
+ * \endcode
+ *
+ * They are then accessible like this:
+ * $site->course
  */
 abstract class InstalledConfig {
 	/**
@@ -20,13 +30,7 @@ abstract class InstalledConfig {
 	 * @return null|string
 	 */
 	public function __get($key) {
-		if(isset($this->components[$key])) {
-			return $this->components[$key];
-		}
-
 		switch($key) {
-
-
 			default:
 				$trace = debug_backtrace();
 				trigger_error(
@@ -45,8 +49,6 @@ abstract class InstalledConfig {
 	 */
 	public function __set($key, $value) {
 		switch($key) {
-
-
 			default:
 				$trace = debug_backtrace();
 				trigger_error(
