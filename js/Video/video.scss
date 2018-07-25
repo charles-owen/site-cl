@@ -1,0 +1,77 @@
+/** @file
+ * Style sheet for pages that use video playback/webpack
+ * @cond
+ */
+
+@import '../../sass/modules/colors';
+
+div.cl-video {
+
+	.vjs-default-skin .vjs-play-progress,
+	.vjs-default-skin .vjs-volume-level {
+		background-color: #007544;
+	}
+
+	.video-js {
+		position:relative;
+	}
+
+	div.video-large, div.video-medium, div.video-low, div.video-custom {
+		@extend %shadow;
+		position: relative;
+		top: 10px;
+		margin-bottom: 2em;
+		background-color:#e0e0e0;
+	}
+
+	div.video-low {
+		left: calc(50% - 320px);
+		width:640px;
+	}
+
+	div.video-medium {
+		left: calc(50% - 427px);
+		width:854px;
+	}
+
+	div.video-large {
+		left: calc(50% - 640px);
+		width:1280px;
+	}
+
+	div.video-custom {
+	  left: calc(50% - 640px);
+	  width:1280px;
+	}
+
+	p.buttons {
+		text-align:right;
+		margin-top:0;
+		font-style:italic;
+		font-size:80%;
+
+		button {
+			border: 0;
+			margin: 0;
+			padding: 0 0.5em;
+			outline: none;
+		}
+
+		button:hover {
+			color: red;
+		}
+
+		button.cl-current {
+			font-weight: bold;
+		}
+
+		a {
+			display: inline-block;
+			padding: 0 0.5em;
+			text-decoration: none;
+		}
+	}
+
+}
+
+/** @endcond */

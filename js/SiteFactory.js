@@ -16,12 +16,14 @@ import Footer from './Footer/Footer.js';
 import {Ready} from './Util/Ready.js';
 import {Clock} from './Util/Clock.js';
 
-import 'toggler-cl';
 
 export let SiteFactory = function() {
 }
 
 SiteFactory.create = function() {
+    require('toggler-cl');
+    require('autoback-cl');
+    require('icons-cl');
 
     Vue.use(VueRouter);
     Vue.use(Toasted);
@@ -118,6 +120,7 @@ SiteFactory.create = function() {
         let en;
         if( (en = document.getElementById('cl-site')) !== null) {
             let info = JSON.parse(en.textContent);
+            Site.info = info;
             Site.header = new Header(info.header);
             Site.footer = new Footer(info.footer);
             Site.siteName = info.siteName;

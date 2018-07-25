@@ -632,42 +632,6 @@ header.cl-site {
     header.cl-site h1 a {
       text-decoration: none;
       color: #eeeeee; }
-  header.cl-site nav {
-    width: 100%;
-    background: url("img/nav_pattern.png");
-    margin: 0;
-    padding: 0; }
-  header.cl-site ul {
-    max-width: 56em;
-    margin: 0 auto;
-    padding: 0;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    list-style: none; }
-    header.cl-site ul li {
-      display: inline-block;
-      border: 0;
-      border-right: 1px solid #c2d95d;
-      padding: 3px 14px;
-      margin: 0; }
-      header.cl-site ul li a {
-        font-size: 16px;
-        line-height: 18px;
-        outline: none;
-        text-decoration: none;
-        color: white;
-        cursor: pointer; }
-        header.cl-site ul li a span {
-          display: inline-block;
-          background: url(img/white-home.png) center no-repeat;
-          text-indent: -9999px;
-          width: 30px;
-          height: 13px; }
-      header.cl-site ul li a:link, header.cl-site ul li a:active, header.cl-site ul li a:hover {
-        color: white; }
-      header.cl-site ul li a:hover {
-        color: #ffcccc; }
-    header.cl-site ul li:last-child {
-      border: 0; }
 
 footer.cl-site {
   margin: 0 auto;
@@ -827,6 +791,20 @@ div.cl-lti-admin div.adminhome {
     overflow: auto;
     padding: 8px;
     margin: 1em auto; } }
+div.cl-dialog {
+  padding: 1em; }
+  div.cl-dialog div.tabular {
+    display: table;
+    margin: 0 auto; }
+    div.cl-dialog div.tabular p {
+      display: table-row; }
+      div.cl-dialog div.tabular p span:first-child {
+        padding-right: 1em;
+        font-style: italic;
+        text-align: right; }
+      div.cl-dialog div.tabular p span {
+        display: table-cell; }
+
 div.dialog-cl-top {
   background-color: #00723f !important;
   background: linear-gradient(#204c42, #389b54) !important;
@@ -1418,14 +1396,12 @@ a.tip:hover span {
 
   .mobile {
     display: inherit; } }
-p.backto {
-  vertical-align: middle;
-  min-height: 25px;
-  background: url(images/previcon.png);
-  background-repeat: no-repeat;
-  padding-left: 40px;
-  border: 0px;
-  padding-top: 2px; }
+div.cl-autoback p {
+  padding-top: 0; }
+div.cl-autoback a, div.cl-autoback a:visited, div.cl-autoback a:link {
+  color: #882222; }
+div.cl-autoback a:hover {
+  color: #cc2222; }
 
 /**
  * @file
@@ -1697,6 +1673,58 @@ div.hot {
   padding-left: 85px; }
   div.hot p {
     margin: 0; }
+
+nav {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  max-width: 1000px; }
+  nav > div {
+    background: url("img/nav_pattern.png"); }
+  nav ul {
+    max-width: 56em;
+    margin: 0 auto;
+    padding: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    list-style: none; }
+    nav ul li {
+      display: inline-block;
+      border: 0;
+      padding: 3px 14px;
+      margin: 0; }
+      nav ul li a {
+        font-size: 16px;
+        line-height: 18px;
+        outline: none;
+        text-decoration: none;
+        color: white;
+        cursor: pointer; }
+        nav ul li a span.home {
+          display: inline-block;
+          background-image: url(img/white-home.png);
+          background-repeat: no-repeat;
+          background-position: 50% 1px;
+          text-indent: -9999px;
+          width: 30px;
+          height: 100%; }
+      nav ul li a:link, nav ul li a:active, nav ul li a:hover, nav ul li a:visited {
+        color: white;
+        text-decoration: none; }
+      nav ul li a:hover {
+        color: #ffcccc; }
+    nav ul li:hover {
+      background: rgba(0, 0, 0, 0.3); }
+  nav ul.dividers li {
+    border-right: 1px solid #c2d95d; }
+  nav ul.dividers li:last-child {
+    border: 0; }
+
+nav.cl-sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100; }
 
 .primary {
   background: #00723f;

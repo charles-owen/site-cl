@@ -1,0 +1,15 @@
+div.cl-autoback {
+  p {
+    padding-top: 0;
+  }
+
+  a, a:visited, a:link {
+    color: $autoback-link;
+  }
+
+  a:hover {
+    color: $autoback-link-hover;
+  }
+
+}
+

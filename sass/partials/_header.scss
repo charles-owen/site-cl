@@ -5,6 +5,7 @@ header.cl-site {
   padding: 0;
   min-width: $min-width;
   width: 100%;
+  border-bottom: 1px solid black;
 
   div.heading {
     max-width: $max-width;
@@ -25,64 +26,8 @@ header.cl-site {
     }
   }
 
-  nav {
-    width: 100%;
-    background: url('img/nav_pattern.png');
-    margin: 0;
-    padding: 0;
-  }
 
-  border-bottom: 1px solid black;
 
-  ul {
-    max-width: $max-width;
-    margin: 0 auto;
-    padding: 0;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 
-    list-style: none;
-
-    li {
-      display: inline-block;
-      border: 0;
-      border-right: 1px solid #c2d95d;
-      padding: 3px 14px;
-      margin: 0;
-
-      a {
-        font-size: 16px;
-        line-height: 18px;
-        outline: none;
-        text-decoration: none;
-        color: white;
-        cursor: pointer;
-
-        span {
-          display: inline-block;
-          background: url(img/white-home.png) center no-repeat;
-          text-indent: -9999px;
-          width: 30px;
-          height: 13px;
-
-        }
-      }
-
-      a:link, a:active, a:hover {
-        color: white;
-      }
-
-      a:hover {
-        color: #ffcccc;
-      }
-    }
-
-    li:last-child {
-      border: 0;
-    }
-
-    li:hover {
-
-    }
-  }
 }
 

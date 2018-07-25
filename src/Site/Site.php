@@ -87,6 +87,7 @@ class Site {
 	 * jsRoot | The root directory for the site Javascript (default is cl/dist
 	 * jsSuffix | Suffix to append to base Javascript (default is .min.js or .js (sandbox)
 	 * options | array | Options passed to the start function.
+	 * plugins | array | Collection of installed plugins
 	 * root | string | %Site root path
 	 * rootDir | string | %Site root directory
 	 * sandbox | boolean | True if running in the sandbox
@@ -125,6 +126,9 @@ class Site {
 
 			case 'img':
 				return $this->root . '/vendor/cl/site/img';
+
+			case 'plugins':
+				return $this->plugins;
 
 			case "rootDir":
 				return $this->rootDir;
@@ -289,9 +293,9 @@ class Site {
 
 	/**
 	 * @param $component Name of the component
-	 * @param InstalledConfig $config
+	 * @param $config
 	 */
-	public function install($component, InstalledConfig $config) {
+	public function install($component, $config) {
 		$this->components[$component] = $config;
 	}
 
@@ -322,79 +326,26 @@ class Site {
 		$this->postStartup[] = $function;
 	}
 
-	/**
-	 * Add a route
-	 * @param array $path Array of path values, like ['login'] or ['api', '*']
-	 * '*' indicates anything can follow.
-	 * @param callable $function Function to call to create the route handler.
-	 */
-	public function addRoute($path, $function) {
-		$root = $path[0];
-		$rest = array_slice($path, 1);
-		if(!isset($this->routes[$root])) {
-			$this->routes[$root] = [];
-		}
 
-		$this->routes[$root][] = [
-			'path' => $path,
-			'function' => $function
+
+	public function data() {
+		return [
+			'siteName'=> $this->siteName,
+			'root'=>$this->root
 		];
 	}
 
-	public function routeDispatch(Site $site, Server $server, array $path, $time) {
-		$path0 = $path[0];
-
-		if(isset($this->routes[$path0])) {
-			foreach($this->routes[$path0] as $route) {
-				$routePath = $route['path'];
-				$properties = [];
-				for($i=1;  ; $i++) {
-					if($i >= count($routePath) && ($i >= count($path) || $path[$i] === '')) {
-						// Both reached the end, so this is a valid path
-						return $route['function']($site, $server, [], $properties, $time);
-					}
-
-					if($i >= count($path)) {
-						// We reached the end of the path. If we
-						// are not at the end of the route path,
-						// it is not a match unless it has an '*'
-						if($routePath[$i] === '*') {
-							return $route['function']($site, $server, [], $properties, $time);
-						}
-
-						// Path was not long enough
-						break;
-					}
-
-					if($i >= count($routePath)) {
-						// Route is not as long as the path
-						break;
-					}
-
-					if($routePath[$i] === '*') {
-						// This is a valid path
-						$path1 = array_slice($path, $i);
-						return $route['function']($site, $server, $path1, $properties, $time);
-					}
-
-					if($path[$i] === $routePath[$i]) {
-						// We have a partial match
-						continue;
-					}
-
-					if($routePath[$i][0] === ':') {
-						// We have a property
-						$properties[substr($routePath[$i], 1)] = $path[$i];
-					} else {
-						// This is not a match!
-						break;
-					}
-				}
-			}
+	/**
+	 * Allow plugins to amend an object as needed.
+	 * This allows a plugin the ability to add
+	 * extensions to an object such as adding grading
+	 * to an assignment.
+	 * @param mixed $object
+	 */
+	public function amend($object) {
+		foreach($this->plugins as $plugin) {
+			$plugin->amend($object);
 		}
-
-		$view = new \CL\Site\Views\InvalidPathView($site);
-		return $view->whole();
 	}
 
 	/// Array of options passed to start
@@ -403,6 +354,8 @@ class Site {
 	/// The installed plugins.
 	/// A plugin is an object derived from the class Plugin
 	/// that adds features to the system.
+	/// Plugins are in topological sorted order
+	/// by dependencies.
 	private $plugins = [];
 
 	/// Installed site components
@@ -438,7 +391,4 @@ class Site {
 
 	/// Activities after the system is started
 	private $postStartup = [];
-
-	/// Installed top-level routes
-	private $routes = [];
 }

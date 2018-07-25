@@ -51,9 +51,9 @@ class JsonAPI {
      * Add data to an API response
      * @param $type Name of the data type
      * @param $id Optional ID associated with data
-     * @param array $attributes Contents for the data item section
+     * @param mixed $attributes Contents for the data item section
      */
-    public function addData($type, $id, array $attributes=null) {
+    public function addData($type, $id, $attributes=null) {
         $data = ["type"=>$type, "attributes"=>$attributes];
         if($id !== null) {
             $data['id'] = $id;

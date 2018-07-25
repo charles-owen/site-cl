@@ -2,6 +2,8 @@
 tests/config.php
 /html
 /vendor
+/node_modules
+
 
 
 # compiled output

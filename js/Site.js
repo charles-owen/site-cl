@@ -8,13 +8,12 @@ export {Ready};
 import NotFoundComponent from './Vue/NotFoundComponent.vue';
 export {NotFoundComponent};
 
+import {TimeFormatter} from './Util/TimeFormatter.js';
+export {TimeFormatter};
+
 import {SiteFactory} from './SiteFactory.js';
 
-require('icons-cl');
-
 // Use the factory to create the Users object
-let Site = global.Site !== undefined ?
-    Site :
-    SiteFactory.create();
-
-export default Site;
+if(global.Site === undefined) {
+    global.Site = SiteFactory.create();
+}

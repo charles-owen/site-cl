@@ -24,6 +24,15 @@ class View {
 			$site->start($options);
 		}
 
+		$GLOBALS['view'] = $this;
+
+		//
+		// Enable output buffering during the processing of all content prior to
+		// the call to View::head(). This provides an way to strip out any
+		// included CSS we don't want to actually include.
+		//
+		ob_start();
+
 		// Always included
 		$this->addCSS('vendor/cl/site/site.css');
 		$this->addJS('vendor');
@@ -81,25 +90,52 @@ HTML;
 	 * @return string HTML
 	 */
 	public function head() {
+		//
+		// Get the buffered heading contents and
+		// remove any use of already included CSS.
+		//
+		// If a user manually includes site.css,
+		// it will be removed from the header by this
+		// code if the system would include it with
+		// the timestamp instead.
+		//
+		$html = ob_get_contents();
+		ob_end_clean();
+
+		$regex = '%<link[^>]*href=[^>]*(';
+		$first = true;
+		foreach($this->css as $css) {
+			if($first) {
+				$first = false;
+			} else {
+				$regex .= '|';
+			}
+			$regex .= $css;
+
+		}
+		$regex .= ')[^>]*>\R*%';
+		$html = preg_replace($regex, '', $html);
+
+
 		if($this->appearance === null) {
 			$this->getAppearance();
 		}
 
 		$siteName = $this->site->siteName;
 
-		$html = <<<HTML
+		$html .= <<<HTML
 <meta charset="UTF-8">
 <meta content="width=device-width, initial-scale=1.0, minimum-scale=1" name="viewport">
 <title>$siteName $this->title</title>
 HTML;
 
 
-		foreach($this->css as $css) {
-			$html .= $this->tscss($css);
-		}
-
 		foreach($this->js as $js) {
 			$html .= $this->tsjs($js);
+		}
+
+		foreach($this->css as $css) {
+			$html .= $this->tscss($css);
 		}
 
 		foreach($this->aux as $aux) {
@@ -117,11 +153,8 @@ HTML;
 	public function tail($addHeaderFooter = false) {
 		$html = '';
 
+		$siteInfo = $this->site->data();
 		$siteName = $this->site->siteName;
-
-		$siteInfo = [
-			'siteName'=>$siteName
-		];
 
 		if($addHeaderFooter) {
 			$root = $this->site->root;
@@ -179,9 +212,10 @@ HTML;
 
 	/**
 	 * Present the page header.
+	 * @param bool $contentDiv If true, the opening tag for the content div is included.
 	 * @return string HTML
 	 */
-	public function header() {
+	public function header($contentDiv = true, $nav='') {
 		if($this->appearance === null) {
 			$this->getAppearance();
 		}
@@ -189,19 +223,38 @@ HTML;
 		$siteName = $this->site->siteName;
 		$root = $this->site->root;
 		$title = "<a href=\"$root/\">$siteName</a> $this->title";
-		return '<div class="' . $this->body . '">' . $this->appearance->header($this, $title);
+		$html = '<div class="' . $this->body . '">' . $this->appearance->header($this, $title, $nav);
+		if($contentDiv) {
+			$html .= '<div class="content">';
+
+			if($this->autoback) {
+				$html .= '<div class="cl-autoback cl-strip"></div>';
+			}
+		}
+
+		return $html;
 	}
 
 	/**
 	 * Present the page footer
 	 * @return string HTML
 	 */
-	public function footer() {
+	public function footer($contentDiv = true) {
 		if($this->appearance === null) {
 			$this->getAppearance();
 		}
 
-		return $this->appearance->footer($this) . '</div>' . $this->tail();
+		$html = $this->appearance->footer($this) . '</div>' . $this->tail();
+		if($contentDiv) {
+			if($this->autoback) {
+				$html .= '</div><div class="cl-autoback cl-strip"></div>' . $html;
+			} else {
+				$html = '</div>' . $html;
+			}
+
+		}
+
+		return $html;
 	}
 
 	/**
@@ -238,6 +291,12 @@ HTML;
 			case 'root':
 				return $this->site->root;
 
+			case 'autoback':
+				return $this->autoback;
+
+			case 'appearance':
+				return $this->appearance;
+
 			default:
 				$trace = debug_backtrace();
 				trigger_error(
@@ -262,6 +321,10 @@ HTML;
 
 			case 'script':
 				$this->script .= $value;
+				break;
+
+			case 'autoback':
+				$this->autoback = $value;
 				break;
 
 			default:
@@ -321,6 +384,10 @@ HTML;
 	 */
 	public function addJSON($id, $json) {
 		$this->json[$id] = $json;
+	}
+
+	public function add_video() {
+		$this->addJS('video');
 	}
 
 	/**
@@ -398,4 +465,5 @@ HTML;
 	private $script = '';   ///< Any additional script content
 	private $aux = [];      ///< Auxiliary views (attached to view)
 	private $body = 'body'; ///< Classes to put in the top level div
+	private $autoback = false;  ///< The autoback option
 }

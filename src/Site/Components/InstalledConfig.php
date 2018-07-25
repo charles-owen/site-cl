@@ -44,8 +44,8 @@ abstract class InstalledConfig {
 
 	/**
 	 * Property set magic method
-	 * @param $key Property name
-	 * @param $value Value to set
+	 * @param string $key Property name
+	 * @param mixed $value Value to set
 	 */
 	public function __set($key, $value) {
 		switch($key) {

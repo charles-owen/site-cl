@@ -15,7 +15,6 @@ namespace CL\Site;
  * Meta-data is stored in tables as JSON
  */
 class MetaData {
-
     /**
      * Extra constructor.
      * @param MetaDataOwner $owner The class that owns this data

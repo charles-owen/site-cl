@@ -1,3 +1,30 @@
+div.cl-dialog {
+  padding: 1em;
+
+  div.tabular {
+    display: table;
+    margin: 0 auto;
+
+    p {
+      display: table-row;
+
+      span:first-child {
+        padding-right: 1em;
+        font-style: italic;
+        text-align: right;
+      }
+
+      span {
+        display: table-cell;
+      }
+    }
+
+
+  }
+
+}
+
+
 div.dialog-cl-top {
   background-color: $primary !important;
   background: linear-gradient($dialog-gradient-from, $dialog-gradient-to) !important;

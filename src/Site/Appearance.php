@@ -55,4 +55,14 @@ HTML;
 
 		return $html;
 	}
+
+	/**
+	 * Allow for replacing images with custom ones.
+	 * @param string $name Base name of the image (like taskicon)
+	 * @param string $default Default to return if image is not replaced
+	 * @return string
+	 */
+	public function image($name, $default) {
+		return $default;
+	}
 }
