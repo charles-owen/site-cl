@@ -1,0 +1,82 @@
+div.content > div.cl-slideshow {
+  max-width: 100%;
+  margin-right: 0;
+}
+
+div.cl-slideshow {
+  $background: #1a483d;
+
+  @extend %shadow;
+
+  display: block;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: $background;
+  padding-top: 3pt;
+  padding-left: 3pt;
+  padding-right: 4pt;
+  padding-bottom: 3pt;
+  text-align:center;
+
+  img {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    border: 1px solid black;
+  }
+
+  button {
+    background-color: $background;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  div.cl-transport {
+    display: block;
+    text-align: center;
+    padding: 6px;
+
+    img {
+      width: 80px;
+      height: 33px;
+      border: 0;
+    }
+
+    button.cl-narrow {
+      img {
+      width: 39px;
+      }
+    }
+  }
+
+  div.cl-preview {
+    display: block;
+    text-align: center;
+    overflow-x: auto;
+
+    button {
+      margin: 0;
+      padding: 0;
+      border: 2px solid transparent;
+    }
+
+
+
+    button.cl-selected {
+      border: 2px solid #93060f;
+    }
+
+    img {
+      width: 100px;
+      height: auto;
+    }
+
+
+
+
+
+  }
+}

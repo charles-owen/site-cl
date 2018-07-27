@@ -1,11 +1,14 @@
+import 'video.js/dist/video-js.css';
+import './video.scss';
+
 let videojs = require("video.js");
 
-/**
- * @file
- * Actually prevent a video.
- */
+let VideoPresenter = function(element) {
+    console.log(element);
 
-export let VideoPresenter = function(element) {
+    // Keep track of all active video presenters on the page
+    VideoPresenter.all.push(this);
+
     //
     // All of this must match values in Video.php
     //
@@ -22,8 +25,10 @@ export let VideoPresenter = function(element) {
         'S': {wid: 640, hit: 360, style: 'video-low'}
     };
 
+    let data;
+
     this.start = function() {
-        let data = JSON.parse(element.textContent);
+        data = JSON.parse(element.textContent);
         create(data);
     }
 
@@ -42,9 +47,6 @@ export let VideoPresenter = function(element) {
         video.setAttribute('width', data.wid);
         video.setAttribute('height', data.hit);
         div.appendChild(video);
-
-
-        //<video class="video-js vjs-default-skin" controls preload="auto" width="${data.wid}" height="${data.hit}" data-setup="{}">
 
         let html = `<source src="${data.src}" type='video/mp4'>
 <p class="vjs-no-js">To view this video you must enable JavaScript, and be 
@@ -103,18 +105,16 @@ using a web browser that supports HTML5 video</p>`;
         return button;
     }
 
-    let requestSize = function(size, data) {
+    let requestSize = (size, data) => {
         Site.api.post('/api/users/preference/' + PREFERENCE_VIDEO_SIZE, {value: size})
             .then((response) => {
                 if(response.hasError()) {
                     Site.toast(this, response);
                 } else {
-                    let info = SIZES[size];
-                    data.wid = info.wid;
-                    data.hit = info.hit;
-                    data.size = size;
-                    data.style = info.style;
-                    create(data);
+                    for(let presenter of VideoPresenter.all) {
+                        presenter.resize(size);
+                    }
+
                 }
 
             })
@@ -124,5 +124,20 @@ using a web browser that supports HTML5 video</p>`;
 
     }
 
+    this.resize = function(size) {
+        if(data.controls) {
+            let info = SIZES[size];
+            data.wid = info.wid;
+            data.hit = info.hit;
+            data.size = size;
+            data.style = info.style;
+            create(data);
+        }
+    }
+
     this.start();
 }
+
+VideoPresenter.all = [];
+
+export default VideoPresenter;

@@ -36,6 +36,7 @@ class View {
 		// Always included
 		$this->addCSS('vendor/cl/site/site.css');
 		$this->addJS('vendor');
+		$this->addJS('commons');
 		$this->addJS('site');
 	}
 
@@ -62,7 +63,7 @@ HTML;
 	 * Presentation of a page entirely used by Vue
 	 * @return string HTML for the page
 	 */
-	public function vue($id, $js=[], $script=null) {
+	public function vue($cls, $js=[], $script=null) {
 		foreach($js as $j) {
 			$this->addJS($j);
 		}
@@ -78,7 +79,7 @@ HTML;
 <!DOCTYPE html>
 <html lang="en">
 <head>$head</head>
-<body><div class="$this->body"><div id="$id"></div></div>$tail</body>
+<body><div class="$this->body"><div class="$cls"></div></div>$tail</body>
 </html>
 HTML;
 
@@ -295,6 +296,10 @@ HTML;
 				return $this->autoback;
 
 			case 'appearance':
+				if($this->appearance === null) {
+					$this->getAppearance();
+				}
+
 				return $this->appearance;
 
 			default:
@@ -384,10 +389,6 @@ HTML;
 	 */
 	public function addJSON($id, $json) {
 		$this->json[$id] = $json;
-	}
-
-	public function add_video() {
-		$this->addJS('video');
 	}
 
 	/**

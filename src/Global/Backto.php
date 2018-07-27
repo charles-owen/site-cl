@@ -5,20 +5,31 @@
  
 /** Simple way to display standard "Back to" indication on a page */
 class Backto {
-	
-	/**
-	 * Display the standard Back to link
-	 * 
+
+	/** Display the standard Back to link
+	 *
 	 * Usage:
 	 * @code
-	 * echo Backto::to();
+	 * echo Backto::to("Step 1", "../step1.php");
 	 * @endcode
 	 *
+	 * @param string $text Text to display
+	 * @param string $link Where to link to. This will be used verbatim as the
+	 * href in the a tag.
+	 * @param string $tag The type of tag to wrap this in or null if none
 	 * @returns string HTML */
-	public static function to() {
-		$html = <<<BACKTO
-<div class="cl-autoback"></div>
+	public static function to($text, $link, $tag='p') {
+		global $site;
+		$root = $site->root;
+		$html = $tag !== null ? '<' . $tag . '>' : "";
+
+		$html .= <<<BACKTO
+<a class="cl-backto" href="$link">$text</a>
 BACKTO;
+
+		if($tag !== null) {
+			$html .= '</' . $tag . '>';
+		}
 
 		return $html;
 	}
@@ -56,7 +67,11 @@ BACKTO;
 	 * @returns string HTML
 	 */
 	public static function autoback() {
-		return self::to();
+		$html = <<<BACKTO
+<div class="cl-autoback"></div>
+BACKTO;
+
+		return $html;
 	}
 }
 

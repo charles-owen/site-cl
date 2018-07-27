@@ -72,11 +72,13 @@ let ApiService = function(root) {
 
 
     this.post = function(path, args) {
-        return axios.post(root + 'cl' + path, args);
+        console.log('post: ' + path);
+        return axios.post(root + '/cl' + path, args);
     }
 
     this.get = function(path, args) {
-        return axios.get(root + 'cl' + path, {params: args});
+        console.log('get: ' + path);
+        return axios.get(root + '/cl' + path, {params: args});
     }
 }
 

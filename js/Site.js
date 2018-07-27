@@ -2,18 +2,30 @@
 import './site-path.js';
 import './polyfills/polyfills.js';
 
-import {Ready} from './Util/Ready.js';
-export {Ready};
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import Vuex from 'vuex';
+
+export {Vue};
+export {VueRouter};
+export {Vuex};
 
 import NotFoundComponent from './Vue/NotFoundComponent.vue';
 export {NotFoundComponent};
 
-import {TimeFormatter} from './Util/TimeFormatter.js';
-export {TimeFormatter};
-
 import {SiteFactory} from './SiteFactory.js';
 
-// Use the factory to create the Users object
-if(global.Site === undefined) {
-    global.Site = SiteFactory.create();
-}
+const Site = SiteFactory.create();
+export {Site};
+
+const root = Site.root;
+const api = Site.api;
+const toast = Site.toast;
+const info = Site.info;
+const store = Site.store;
+
+export {root};
+export {api};
+export {toast};
+export {info};
+export {store};

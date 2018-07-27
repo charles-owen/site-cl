@@ -120,18 +120,19 @@ class Server {
 	 * @param string $parent Parent directory
 	 * @return array|null Array or null if failure.
 	 */
-	public function parseRequestURI($parent) {
-		$uri = $this->__get('server')['REQUEST_URI'];
+	public function parseRequestURI($parent, $key='REQUEST_URI') {
+		$uri = $this->__get('server')[$key];
 		$path = explode('/', parse_url($uri, PHP_URL_PATH));
-
+		$found = false;
 		for($i=0; $i<(count($path) - 1); $i++) {
 			if($path[$i] === $parent) {
+				$found = true;
 				$i++;
 				break;
 			}
 		}
 
-		if($i >= count($path) || $path[$i] === '') {
+		if(!$found || $i >= count($path) || $path[$i] === '') {
 			return null;
 		}
 

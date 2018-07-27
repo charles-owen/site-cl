@@ -13,3 +13,13 @@ div.cl-autoback {
 
 }
 
+a.cl-backto {
+  display: inline-block;
+  background-image: url('./img/backarrow.png');
+  background-repeat: no-repeat;
+  background-size: auto 1.6em;
+  padding: 0.13em 0 0 2.6em;
+  height: 1.6em;
+
+  color: $autoback-link;
+}

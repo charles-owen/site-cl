@@ -31,6 +31,50 @@ class Router {
 		];
 	}
 
+
+	/**
+	 * Dispatch to the correct route.
+	 * @param Site $site
+	 * @param Server $server
+	 * @param $time
+	 * @return string Page response
+	 */
+	public function dispatch(Site $site, Server $server, $time) {
+		// Allow for added routes as specified by plugin
+		$site->amend($this);
+
+		// Determine the URI path, everything after /cl
+		$path = $server->parseRequestURI('cl');
+		if($path === null || empty($path)) {
+			if(isset($server->server['REDIRECT_URL'])) {
+				// Try REDIRECT_URL as well
+				$path = $server->parseRequestURI('cl', 'REDIRECT_URL');
+
+				if ($path === null || empty($path)) {
+					return $this->invalid($site);
+				}
+			} else {
+				return $this->invalid($site);
+			}
+		}
+
+
+		//
+		// Standard paths
+		//
+		switch($path[0]) {
+			case 'notauthorized':
+				$view = new \CL\Site\Views\NotAuthorizedView($site, $server, $path);
+				return $view->whole();
+
+			case 'setup':
+				return $this->setup($site, $server, $path, $time);
+		}
+
+		// Dispatch the route
+		return $this->routeDispatch($site, $server, $path, $time);
+	}
+
 	private function routeDispatch(Site $site, Server $server, array $path, $time) {
 		$path0 = $path[0];
 
@@ -87,38 +131,6 @@ class Router {
 		return $view->whole();
 	}
 
-	/**
-	 * Dispatch to the correct route.
-	 * @param Site $site
-	 * @param Server $server
-	 * @param $time
-	 * @return string Page response
-	 */
-	public function dispatch(Site $site, Server $server, $time) {
-		// Allow for added routes as specified by plugin
-		$site->amend($this);
-
-		// Determine the URI path, everything after /cl
-		$path = $server->parseRequestURI('cl');
-		if($path === null || empty($path)) {
-			return $this->invalid($site);
-		}
-
-		//
-		// Standard paths
-		//
-		switch($path[0]) {
-			case 'notauthorized':
-				$view = new \CL\Site\Views\NotAuthorizedView($site, $server, $path);
-				return $view->whole();
-
-			case 'setup':
-				return $this->setup($site, $server, $path, $time);
-		}
-
-		// Dispatch the route
-		return $this->routeDispatch($site, $server, $path, $time);
-	}
 
 	private function invalid(Site $site) {
 		$view = new \CL\Site\Views\InvalidPathView($site);

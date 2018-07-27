@@ -100,9 +100,20 @@ table {
       text-decoration:underline;
     }
 
+    a {
+      color:$link;
+    }
+
+    a:link {
+      color:$link;
+    }
+
+    a:visited {
+      color:$visited;
+    }
+
     a:hover {
-      color:#3366cc;
-      text-decoration:underline;
+      color:$hover;
     }
   }
 

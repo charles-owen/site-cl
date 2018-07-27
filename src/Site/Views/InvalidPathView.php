@@ -4,12 +4,12 @@
  * View presented by the router when an invalid path is selected.
  */
 
+
 namespace CL\Site\Views;
 
 use CL\Site\Site;
 use CL\Site\View;
 use CL\Site\System\Server;
-
 
 
 class InvalidPathView extends View {
@@ -20,6 +20,7 @@ class InvalidPathView extends View {
 	}
 
 	public function present() {
+
 		return <<<HTML
 <div class="content">
 <div class="full">

@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,QAAS;EACP,UAAU,EAAE,GAAG",
+"sources": ["lazy.scss"],
+"names": [],
+"file": "lazy.css"
+}

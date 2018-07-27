@@ -1,10 +1,10 @@
-.rightbox, .centerbox, .advice, .problem, .scenario, .blindblock, aside, iframe, textarea, div.toggleblock, pre.code, textarea.code, figure img, img.figure, p.figure img, p.borderfigure img, p.rightfigure img, figure.submitfigure, .shadow, table {
+.rightbox, .centerbox, .advice, .problem, .scenario, .blindblock, aside, div.cl-slideshow, iframe, textarea, div.toggleblock, pre.code, textarea.code, figure img, img.figure, p.figure img, p.borderfigure img, p.rightfigure img, figure.submitfigure, .shadow, table {
   -moz-box-shadow: 3px 3px 8px #ccc;
   -webkit-box-shadow: 3px 3px 8px #ccc;
   box-shadow: 3px 3px 8px #ccc;
   margin-bottom: 1em; }
 
-div.remote-exec .left textarea, div.remote-exec .right pre, div.play-area .left textarea, div.play-area .right pre, .noshadow, .noshadow img {
+.noshadow, .noshadow img, div.remote-exec .left textarea, div.remote-exec .right pre, div.play-area .left textarea, div.play-area .right pre {
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
   box-shadow: none; }
@@ -710,53 +710,6 @@ div.wide div.content {
     position: relative;
     padding: 0;
     margin: 0 auto; } }
-nav.cl-lti-admin {
-  width: 100%;
-  background: url("img/nav_pattern.png");
-  margin: 0;
-  padding: 0; }
-  nav.cl-lti-admin ul {
-    max-width: 56em;
-    margin: 0 auto;
-    padding: 0;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    list-style: none; }
-    nav.cl-lti-admin ul li {
-      display: inline-block;
-      border: 0;
-      border-right: 1px solid #c2d95d;
-      padding: 3px 14px;
-      margin: 0; }
-      nav.cl-lti-admin ul li a {
-        font-size: 16px;
-        line-height: 18px;
-        outline: none;
-        text-decoration: none;
-        color: white;
-        cursor: pointer; }
-        nav.cl-lti-admin ul li a span {
-          display: inline-block;
-          background: url(img/sprite-ico-home.png) center -45px no-repeat;
-          text-indent: -9999px;
-          width: 30px;
-          height: 13px; }
-      nav.cl-lti-admin ul li a:link, nav.cl-lti-admin ul li a:active, nav.cl-lti-admin ul li a:hover {
-        color: white; }
-      nav.cl-lti-admin ul li a:hover {
-        color: #ffcccc; }
-    nav.cl-lti-admin ul li:last-child {
-      border: 0; }
-
-div.cl-lti-admin div.adminhome {
-  max-width: 500px;
-  border: thin solid black;
-  padding: 1em;
-  margin: 1em auto; }
-  div.cl-lti-admin div.adminhome h2 {
-    font-family: "Trebuchet MS", Helvetica, sans-serif;
-    font-size: 1.5em;
-    text-align: center; }
-
 .rightbox, .centerbox, .advice, .problem, .scenario, .blindblock, aside {
   background: #00723f;
   /* Default color */
@@ -885,183 +838,55 @@ div.menu {
     font-size: 90%;
     font-style: italic; }
 
-div.content > p.slideshow {
+div.content > div.cl-slideshow {
   max-width: 100%;
   margin-right: 0; }
 
-p.slideshow {
+div.cl-slideshow {
   display: block;
-  width: 95%;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
-  background-color: #e0e0e0;
+  background-color: #1a483d;
   padding-top: 3pt;
   padding-left: 3pt;
   padding-right: 4pt;
   padding-bottom: 3pt;
-  text-align: center;
-  -moz-box-shadow: 6pt 6px 10pt #888;
-  -webkit-box-shadow: 6pt 6px 10pt #888;
-  box-shadow: 6pt 6px 10pt #888; }
-
-p.slideshow img {
-  width: 100%;
-  height: auto;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 3pt;
-  padding-bottom: 0pt;
-  border: 1px solid black; }
-
-p.slideshow img.transport {
-  width: 25px;
-  height: 25px;
-  border: 0pt; }
-
-div.remote-exec {
-  width: 100%;
-  margin: 1em 0 1em 0;
-  display: table;
-  table-layout: fixed;
-  position: relative; }
-  div.remote-exec .bar {
+  text-align: center; }
+  div.cl-slideshow img {
+    width: 100%;
+    height: auto;
     margin: 0;
     padding: 0;
-    background-color: #e8d9b5; }
-  div.remote-exec h2.menubar {
-    position: relative;
-    width: auto;
-    padding: 0;
+    border: 1px solid black; }
+  div.cl-slideshow button {
+    background-color: #1a483d;
     margin: 0;
-    background: #e8d9b5;
-    font-size: 1.3em;
-    border: 1px solid #aaa;
+    padding: 0;
+    border: 0; }
+  div.cl-slideshow div.cl-transport {
+    display: block;
     text-align: center;
-    height: 1.3em; }
-  div.remote-exec .left {
-    position: relative;
-    display: table-cell;
-    width: 50%;
-    margin: 0;
-    padding: 0 5px;
-    vertical-align: top; }
-    div.remote-exec .left .left > div {
-      position: absolute;
-      left: 5px;
-      right: 5px;
-      padding: 0 5px; }
-    div.remote-exec .left textarea {
-      height: 25em;
-      margin: 0;
-      width: 100%;
-      box-sizing: border-box;
-      border-top: 0;
-      border-left: thin solid #aaa;
-      border-right: thin solid #aaa; }
-    div.remote-exec .left textarea:focus {
-      outline: none; }
-  div.remote-exec .right {
-    display: table-cell;
-    width: 50%;
-    margin: 0;
-    padding: 0 5px;
-    vertical-align: top; }
-    div.remote-exec .right pre {
-      height: 25em;
-      margin: 0;
-      box-sizing: border-box;
-      border-top: 0;
-      border-left: thin solid #aaa;
-      border-right: thin solid #aaa; }
-
-form.remote-exec p {
-  margin: 0.25em 0; }
-form.remote-exec button {
-  width: 8em; }
-
-div.play-area {
-  width: 100%;
-  margin: 1em 0 1em 0;
-  display: table;
-  table-layout: fixed;
-  position: relative; }
-  div.play-area .bar {
-    margin: 0;
-    padding: 0;
-    background-color: #e8d9b5; }
-  div.play-area h2.menubar {
-    position: relative;
-    width: auto;
-    padding: 0 0.25em;
-    margin: 0;
-    background: #e8d9b5;
-    font-size: 1.3em;
-    border: 1px solid #aaa;
+    padding: 6px; }
+    div.cl-slideshow div.cl-transport img {
+      width: 80px;
+      height: 33px;
+      border: 0; }
+    div.cl-slideshow div.cl-transport button.cl-narrow img {
+      width: 39px; }
+  div.cl-slideshow div.cl-preview {
+    display: block;
     text-align: center;
-    height: 1.3em; }
-    div.play-area h2.menubar div.buttons {
-      position: absolute;
-      right: 0;
-      top: 0;
-      font-size: 0.77em;
-      font-weight: normal;
-      padding-right: 0.25em; }
-      div.play-area h2.menubar div.buttons button {
-        padding: 0 0.5em; }
-  div.play-area .left {
-    position: relative;
-    display: table-cell;
-    width: 50%;
-    margin: 0;
-    padding: 0 5px;
-    vertical-align: top; }
-    div.play-area .left .left > div {
-      position: absolute;
-      left: 5px;
-      right: 5px;
-      padding: 0 5px; }
-    div.play-area .left textarea {
-      height: 25em;
+    overflow-x: auto; }
+    div.cl-slideshow div.cl-preview button {
       margin: 0;
-      width: 100%;
-      box-sizing: border-box;
-      border-top: 0;
-      border-left: thin solid #aaa;
-      border-right: thin solid #aaa; }
-    div.play-area .left textarea:focus {
-      outline: none; }
-  div.play-area .right {
-    position: relative;
-    display: table-cell;
-    width: 50%;
-    margin: 0;
-    padding: 0 5px;
-    vertical-align: top; }
-    div.play-area .right div.msg {
-      position: absolute;
-      top: 4em;
-      left: 0;
-      right: 0;
-      text-align: center;
-      font-size: 1em;
-      font-weight: normal;
-      color: red;
-      font-style: italic;
-      padding-right: 0.5em;
-      z-index: 10;
-      display: none; }
-    div.play-area .right pre {
-      height: 25em;
-      margin: 0;
-      box-sizing: border-box;
-      border-top: 0;
-      border-left: thin solid #aaa;
-      border-right: thin solid #aaa; }
-
-form.remote-exec p {
-  margin: 0.25em 0; }
-form.remote-exec button {
-  width: 8em; }
+      padding: 0;
+      border: 2px solid transparent; }
+    div.cl-slideshow div.cl-preview button.cl-selected {
+      border: 2px solid #93060f; }
+    div.cl-slideshow div.cl-preview img {
+      width: 100px;
+      height: auto; }
 
 body {
   font-size: 0.875em;
@@ -1114,16 +939,16 @@ p.nojustify {
 
 a {
   font-family: Verdana, Geneva, sans-serif;
-  color: #8A8A8A;
+  color: #8a8a8a;
   text-decoration: underline;
   cursor: pointer; }
 
 a:link {
-  color: #8A8A8A;
+  color: #8a8a8a;
   text-decoration: underline; }
 
 a:visited {
-  color: #B09D5B;
+  color: #968443;
   text-decoration: underline; }
 
 a:hover {
@@ -1403,6 +1228,15 @@ div.cl-autoback a, div.cl-autoback a:visited, div.cl-autoback a:link {
 div.cl-autoback a:hover {
   color: #cc2222; }
 
+a.cl-backto {
+  display: inline-block;
+  background-image: url("./img/backarrow.png");
+  background-repeat: no-repeat;
+  background-size: auto 1.6em;
+  padding: 0.13em 0 0 2.6em;
+  height: 1.6em;
+  color: #882222; }
+
 /**
  * @file
  * Default style for tables for a CourseLib site
@@ -1468,9 +1302,14 @@ table {
     table td a:visited {
       color: #B09D5B;
       text-decoration: underline; }
+    table td a {
+      color: #8a8a8a; }
+    table td a:link {
+      color: #8a8a8a; }
+    table td a:visited {
+      color: #968443; }
     table td a:hover {
-      color: #3366cc;
-      text-decoration: underline; }
+      color: #3366cc; }
   table tr.vertical {
     height: 12em; }
     table tr.vertical th {
@@ -1725,6 +1564,151 @@ nav.cl-sticky {
   left: 0;
   right: 0;
   z-index: 100; }
+
+div.remote-exec {
+  width: 100%;
+  margin: 1em 0 1em 0;
+  display: table;
+  table-layout: fixed;
+  position: relative; }
+  div.remote-exec .bar {
+    margin: 0;
+    padding: 0;
+    background-color: #e8d9b5; }
+  div.remote-exec h2.menubar {
+    position: relative;
+    width: auto;
+    padding: 0;
+    margin: 0;
+    background: #e8d9b5;
+    font-size: 1.3em;
+    border: 1px solid #aaa;
+    text-align: center;
+    height: 1.3em; }
+  div.remote-exec .left {
+    position: relative;
+    display: table-cell;
+    width: 50%;
+    margin: 0;
+    padding: 0 5px;
+    vertical-align: top; }
+    div.remote-exec .left .left > div {
+      position: absolute;
+      left: 5px;
+      right: 5px;
+      padding: 0 5px; }
+    div.remote-exec .left textarea {
+      height: 25em;
+      margin: 0;
+      width: 100%;
+      box-sizing: border-box;
+      border-top: 0;
+      border-left: thin solid #aaa;
+      border-right: thin solid #aaa; }
+    div.remote-exec .left textarea:focus {
+      outline: none; }
+  div.remote-exec .right {
+    display: table-cell;
+    width: 50%;
+    margin: 0;
+    padding: 0 5px;
+    vertical-align: top; }
+    div.remote-exec .right pre {
+      height: 25em;
+      margin: 0;
+      box-sizing: border-box;
+      border-top: 0;
+      border-left: thin solid #aaa;
+      border-right: thin solid #aaa; }
+
+form.remote-exec p {
+  margin: 0.25em 0; }
+form.remote-exec button {
+  width: 8em; }
+
+div.play-area {
+  width: 100%;
+  margin: 1em 0 1em 0;
+  display: table;
+  table-layout: fixed;
+  position: relative; }
+  div.play-area .bar {
+    margin: 0;
+    padding: 0;
+    background-color: #e8d9b5; }
+  div.play-area h2.menubar {
+    position: relative;
+    width: auto;
+    padding: 0 0.25em;
+    margin: 0;
+    background: #e8d9b5;
+    font-size: 1.3em;
+    border: 1px solid #aaa;
+    text-align: center;
+    height: 1.3em; }
+    div.play-area h2.menubar div.buttons {
+      position: absolute;
+      right: 0;
+      top: 0;
+      font-size: 0.77em;
+      font-weight: normal;
+      padding-right: 0.25em; }
+      div.play-area h2.menubar div.buttons button {
+        padding: 0 0.5em; }
+  div.play-area .left {
+    position: relative;
+    display: table-cell;
+    width: 50%;
+    margin: 0;
+    padding: 0 5px;
+    vertical-align: top; }
+    div.play-area .left .left > div {
+      position: absolute;
+      left: 5px;
+      right: 5px;
+      padding: 0 5px; }
+    div.play-area .left textarea {
+      height: 25em;
+      margin: 0;
+      width: 100%;
+      box-sizing: border-box;
+      border-top: 0;
+      border-left: thin solid #aaa;
+      border-right: thin solid #aaa; }
+    div.play-area .left textarea:focus {
+      outline: none; }
+  div.play-area .right {
+    position: relative;
+    display: table-cell;
+    width: 50%;
+    margin: 0;
+    padding: 0 5px;
+    vertical-align: top; }
+    div.play-area .right div.msg {
+      position: absolute;
+      top: 4em;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 1em;
+      font-weight: normal;
+      color: red;
+      font-style: italic;
+      padding-right: 0.5em;
+      z-index: 10;
+      display: none; }
+    div.play-area .right pre {
+      height: 25em;
+      margin: 0;
+      box-sizing: border-box;
+      border-top: 0;
+      border-left: thin solid #aaa;
+      border-right: thin solid #aaa; }
+
+form.remote-exec p {
+  margin: 0.25em 0; }
+form.remote-exec button {
+  width: 8em; }
 
 .primary {
   background: #00723f;
