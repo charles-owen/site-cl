@@ -20,10 +20,12 @@
   },
   "dependencies": {
     "autoback-cl": "^2.0.0",
+    "axios": "^0.18.0",
     "buckets-js": "^1.98.2",
     "dialog-cl": "^0.2.1",
     "dompurify": "^1.0.5",
     "es6-promise": "^4.2.4",
+    "formdata-polyfill": "^3.0.11",
     "icons-cl": "^1.0.2",
     "resizer-cl": "^2.3.0",
     "toggler-cl": "^4.0.0",
@@ -31,7 +33,6 @@
     "vue": "^2.5.16",
     "vue-router": "^3.0.1",
     "vue-toasted": "^1.1.24",
-    "vuex": "^3.0.1",
-    "axios": "^0.18.0"
+    "vuex": "^3.0.1"
   }
 }

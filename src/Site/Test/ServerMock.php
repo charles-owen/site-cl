@@ -11,8 +11,10 @@ namespace CL\Site\Test;
  * Inject in place of Server for testing.
  */
 class ServerMock extends \CL\Site\System\Server {
-	public function __get($key) {
-		switch($key) {
+	/// \cond
+
+	public function __get($property) {
+		switch($property) {
 			case 'post':
 				return $this->post;
 
@@ -26,7 +28,7 @@ class ServerMock extends \CL\Site\System\Server {
 				return $this->cookie;
 
 			default:
-				return parent::__get($key);
+				return parent::__get($property);
 		}
 	}
 
@@ -73,4 +75,6 @@ class ServerMock extends \CL\Site\System\Server {
 		'SERVER_NAME' => 'www.cse.msu.edu'];
 
 	private $cookie = [];
+
+	/// \endcond
 }

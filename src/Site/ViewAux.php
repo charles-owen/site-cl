@@ -14,22 +14,20 @@ namespace CL\Site;
  * page.
  */
 abstract class ViewAux {
-
-
 	/**
 	 * Property get magic method
-	 * @param string $key Property name
-	 * @return null|string
+	 * @param string $property Property name
+	 * @return mixed
 	 */
-	public function __get($key) {
-		switch($key) {
+	public function __get($property) {
+		switch($property) {
 			case 'view':
 				return $this->view;
 
 			default:
 				$trace = debug_backtrace();
 				trigger_error(
-					'Undefined property ' . $key .
+					'Undefined property ' . $property .
 					' in ' . $trace[0]['file'] .
 					' on line ' . $trace[0]['line'],
 					E_USER_NOTICE);
@@ -39,11 +37,11 @@ abstract class ViewAux {
 
 	/**
 	 * Property set magic method
-	 * @param $key Property name
-	 * @param $value Value to set
+	 * @param string $property Property name
+	 * @param mixed $value Value to set
 	 */
-	public function __set($key, $value) {
-		switch($key) {
+	public function __set($property, $value) {
+		switch($property) {
 			case 'view':
 				$this->view = $value;
 				$this->install($this->view);
@@ -56,7 +54,7 @@ abstract class ViewAux {
 			default:
 				$trace = debug_backtrace();
 				trigger_error(
-					'Undefined property ' . $key .
+					'Undefined property ' . $property .
 					' in ' . $trace[0]['file'] .
 					' on line ' . $trace[0]['line'],
 					E_USER_NOTICE);
@@ -69,6 +67,25 @@ abstract class ViewAux {
 	 * @param View $view View we are installing into
 	 */
 	protected function install(View $view) {
+	}
+
+	/**
+	 * If a file exists, require it as a function and apply to
+	 * this auxiliary view.
+	 *
+	 * Example:
+	 *
+	 * @param Site $site Site object
+	 * @param string $file File relative to decor directory.
+	 */
+	public function decorApply(Site $site, $file) {
+		$path = $site->rootDir . '/' . $site->decor . '/' . $file;
+		if(file_exists($path)) {
+			$function = require($path);
+			if(is_callable($function)) {
+				$function($this);
+			}
+		}
 	}
 
     /**

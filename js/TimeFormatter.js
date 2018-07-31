@@ -58,6 +58,10 @@ TimeFormatter.relative = function(time, currentTime, short) {
         return "Today at " + hour + ':' + minute + am;
     }
 
-    return time.toLocaleDateString("en-US", {month:'numeric', day:'numeric', year:'numeric'});
+    return time.toLocaleDateString("en-US", {month:'numeric', day:'numeric', year:'numeric',
+        hour12:true, hour:'numeric', minute:'2-digit', second:'2-digit'})
+            .replace(/\//g, '-')
+            .replace(/ AM/, 'am')
+            .replace(/ PM/, 'pm');
 
 }

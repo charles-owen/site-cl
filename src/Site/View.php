@@ -87,19 +87,16 @@ HTML;
 	}
 
 	/**
-	 * Create contents for the head section of a page.
+	 * Get the buffered heading contents and
+	 * remove any use of already included CSS.
+	 *
+	 * If a user manually includes site.css,
+	 * it will be removed from the header by this
+	 * code if the system would include it with
+	 * the timestamp instead.
 	 * @return string HTML
 	 */
-	public function head() {
-		//
-		// Get the buffered heading contents and
-		// remove any use of already included CSS.
-		//
-		// If a user manually includes site.css,
-		// it will be removed from the header by this
-		// code if the system would include it with
-		// the timestamp instead.
-		//
+	public function flush() {
 		$html = ob_get_contents();
 		ob_end_clean();
 
@@ -115,19 +112,41 @@ HTML;
 
 		}
 		$regex .= ')[^>]*>\R*%';
-		$html = preg_replace($regex, '', $html);
+		return preg_replace($regex, '', $html);
+	}
 
+
+	/**
+	 * @page appearance-options
+	 *
+	 * @section site-image-tags Site image tags
+	 *
+	 * tag | usage
+	 * --- | -----
+	 * favicon | The HTML favicon that appears for every page
+	 */
+
+	/**
+	 * Create contents for the head section of a page.
+	 * @return string HTML
+	 */
+	public function head() {
+		$html = $this->flush();
 
 		if($this->appearance === null) {
 			$this->getAppearance();
 		}
 
 		$siteName = $this->site->siteName;
+		$root = $this->site->root;
+
+		$favicon = $root . $this->appearance->image('favicon', '/vendor/cl/site/img/cl-favicon.png');
 
 		$html .= <<<HTML
 <meta charset="UTF-8">
 <meta content="width=device-width, initial-scale=1.0, minimum-scale=1" name="viewport">
 <title>$siteName $this->title</title>
+<link rel="shortcut icon" href="$favicon" />
 HTML;
 
 
@@ -214,6 +233,7 @@ HTML;
 	/**
 	 * Present the page header.
 	 * @param bool $contentDiv If true, the opening tag for the content div is included.
+	 * @param string $nav Content to put in the 'nav' section of the header.
 	 * @return string HTML
 	 */
 	public function header($contentDiv = true, $nav='') {
@@ -276,25 +296,21 @@ HTML;
 
 	/**
 	 * Property get magic method
-	 * @param $key Property name
-	 * @property-read tablename The table name
-	 * @property-read prefix The table prefix
-	 * @return null|string
+	 *
+	 * <b>Properties</b>
+	 * Property | Type | Description
+	 * -------- | ---- | -----------
+	 * appearance | Appearance | The installed Appearance object.
+	 * autoback | bool | Page supports autoback
+	 * root | string | Root path for this site (with no trailing /)
+	 * site | Site | The Site object
+	 * title | string | The site title
+	 *
+	 * @param string $property Property name
+	 * @return mixed
 	 */
-	public function __get($key) {
-		switch($key) {
-			case 'site':
-				return $this->site;
-
-			case 'title':
-				return $this->title;
-
-			case 'root':
-				return $this->site->root;
-
-			case 'autoback':
-				return $this->autoback;
-
+	public function __get($property) {
+		switch($property) {
 			case 'appearance':
 				if($this->appearance === null) {
 					$this->getAppearance();
@@ -302,10 +318,22 @@ HTML;
 
 				return $this->appearance;
 
+			case 'autoback':
+				return $this->autoback;
+
+			case 'root':
+				return $this->site->root;
+
+			case 'site':
+				return $this->site;
+
+			case 'title':
+				return $this->title;
+
 			default:
 				$trace = debug_backtrace();
 				trigger_error(
-					'Undefined property ' . $key .
+					'Undefined property ' . $property .
 					' in ' . $trace[0]['file'] .
 					' on line ' . $trace[0]['line'],
 					E_USER_NOTICE);
@@ -315,27 +343,35 @@ HTML;
 
 	/**
 	 * Property set magic method
-	 * @param $key Property name
-	 * @param $value Value to set
+	 *
+	 * <b>Properties</b>
+	 * Property | Type | Description
+	 * -------- | ---- | -----------
+	 * autoback | bool | Page supports autoback
+	 * script | string | Add content to a page &lt;script&gt; tag
+	 * title | string | The site title
+	 *
+	 * @param string $property Property name
+	 * @param mixed $value Value to set
 	 */
-	public function __set($key, $value) {
-		switch($key) {
+	public function __set($property, $value) {
+		switch($property) {
 			case 'title':
 				$this->title = $value;
-				break;
-
-			case 'script':
-				$this->script .= $value;
 				break;
 
 			case 'autoback':
 				$this->autoback = $value;
 				break;
 
+			case 'script':
+				$this->script .= $value;
+				break;
+
 			default:
 				$trace = debug_backtrace();
 				trigger_error(
-					'Undefined property ' . $key .
+					'Undefined property ' . $property .
 					' in ' . $trace[0]['file'] .
 					' on line ' . $trace[0]['line'],
 					E_USER_NOTICE);
@@ -343,10 +379,20 @@ HTML;
 		}
 	}
 
+	/**
+	 * Set the page title
+	 * @param $title Title to set
+	 */
 	public function setTitle($title) {
 		$this->title = $title;
 	}
 
+	/**
+	 * Add CSS to the page.
+	 *
+	 * This will only add the CSS one time, ignoring additional calls.
+	 * @param string $css CSS file to add. File relative to the site root.
+	 */
 	public function addCSS($css) {
 		if(!in_array($css, $this->css)) {
 			$this->css[] = $css;
@@ -382,7 +428,7 @@ HTML;
 	/**
 	 * Add JSON data to include on the page.
 	 *
-	 * Data will be included in a <div id="$id" style="display:none"> tag.
+	 * Data will be included in a &lt;div id="$id" style="display:none"&gt; tag.
 	 *
 	 * @param $id
 	 * @param $json
@@ -405,16 +451,17 @@ HTML;
 	}
 
 	/**
-	 * If a file exists, require it as a function to apply to
+	 * If a file exists, require it as a function and apply to
 	 * this view.
 	 *
 	 * Example:
 	 *
-	 * @param $file File relative to root, like /site/login.inc.php
+	 * @param string $file File relative to decor directory.
 	 */
-	public function optionalFileApply($file) {
-		if(file_exists($this->site->rootDir . $file)) {
-			$function = require($this->site->rootDir . $file);
+	public function decorApply($file) {
+		$path = $this->site->rootDir . '/' . $this->site->decor . '/' . $file;
+		if(file_exists($path)) {
+			$function = require($path);
 			if(is_callable($function)) {
 				$function($this);
 			}

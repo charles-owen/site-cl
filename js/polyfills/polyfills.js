@@ -3,6 +3,7 @@
  */
 
 require('./Blob.js');
+require('formdata-polyfill')
 
 // String.trim
 if (!String.prototype.trim) {

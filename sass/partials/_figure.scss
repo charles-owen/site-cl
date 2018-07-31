@@ -8,6 +8,15 @@ figure {
   margin: 1em 0;
 }
 
+figure.float-right {
+  width: $aside-width;
+  float: right;
+  padding: 0;
+  right: 0;
+  margin: 0;
+  text-align: center;
+}
+
 figure.submitfigure {
   @extend %shadow;
   margin: 0 0.5em;

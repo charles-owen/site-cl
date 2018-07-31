@@ -10,6 +10,10 @@ namespace CL\Site\Api;
  * Support for the standard JSON API
  */
 class JsonAPI {
+	/**
+	 * JsonAPI constructor.
+	 * @param array $data Data to load from JSON
+	 */
     public function __construct($data = null) {
         if($data !== null) {
             if(isset($data['errors'])) {
@@ -36,6 +40,10 @@ class JsonAPI {
         $this->errors[] = $error;
     }
 
+	/**
+	 * Determine if an JsonAPI package has errors.
+	 * @return bool True if there are errors
+	 */
     public function hasErrors() {
     	return count($this->errors) > 0;
     }

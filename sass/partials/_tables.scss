@@ -4,8 +4,7 @@
  * @cond
  */
 table {
-  margin-left:auto;
-  margin-right:auto;
+  margin: 1em auto;
   @extend %shadow;
 
   border-collapse: separate;

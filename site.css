@@ -672,12 +672,11 @@ div.content {
   div.content > p.rightbox, div.content > p.rightboxprimary, div.content > p.rightboxcomp, div.content > p.rightboxseconda, div.content > p.rightboxsecondb, div.content > p.problemright, div.content > p.scenarioright {
     margin-right: 0; }
   div.content > .right, div.content > figure.right, div.content > figure.maybe-right {
-    box-sizing: border-box;
     width: 15.5em;
     position: absolute;
     padding: 0;
     right: 0;
-    margin-right: 0; }
+    margin: 0; }
   div.content > figure {
     overflow: visible;
     text-align: center; }
@@ -1041,6 +1040,14 @@ figure {
   box-sizing: border-box;
   margin: 1em 0; }
 
+figure.float-right {
+  width: 15.5em;
+  float: right;
+  padding: 0;
+  right: 0;
+  margin: 0;
+  text-align: center; }
+
 figure.submitfigure {
   margin: 0 0.5em;
   overflow: auto;
@@ -1243,8 +1250,7 @@ a.cl-backto {
  * @cond
  */
 table {
-  margin-left: auto;
-  margin-right: auto;
+  margin: 1em auto;
   border-collapse: separate;
   border-spacing: 0; }
   table tr th {
@@ -1398,26 +1404,6 @@ table.intermediate2 td:nth-last-child(3), table.intermediate2 th:nth-last-child(
   border-left: thin solid black; }
 
 /** @endcond */
-#quiz {
-  border: solid black 1pt;
-  padding: 3pt 3pt 3pt 3pt;
-  background: #e3fce7;
-  margin: 1em 16em 1em 0;
-  min-height: 25em; }
-  #quiz p.answer {
-    margin-left: 4.3rem;
-    text-align: left;
-    text-indent: -4rem; }
-    #quiz p.answer span {
-      font-weight: bold; }
-  #quiz .option {
-    width: 2em;
-    text-align: right;
-    display: inline-block; }
-
-@media only screen and (max-width: 750px) {
-  #quiz {
-    margin-right: 5px; } }
 /**
  * @file
  * Style items related to the use of IDE's

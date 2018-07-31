@@ -11,14 +11,25 @@ use CL\Site\Site;
 use CL\Site\View;
 use CL\Site\System\Server;
 
-
+/**
+ * View presented by the router when an invalid path is selected.
+ */
 class InvalidPathView extends View {
+	/**
+	 * InvalidPathView constructor.
+	 * @param Site $site Site object
+	 * @param Server $server Server object
+	 */
 	public function __construct(Site $site, Server $server=null) 	{
 		parent::__construct($site, ['open'=>true]);
 
 		$this->title = "Invalid URL";
 	}
 
+	/**
+	 * Present the page
+	 * @return string HTML
+	 */
 	public function present() {
 
 		return <<<HTML

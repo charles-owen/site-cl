@@ -50,7 +50,14 @@ HTML;
 	public static function end() {
 		return "</div></div>";
 	}
-	
+
+	/**
+	 * All of the toggle operations in one function call.
+	 * @param string $heading Heading passed to Toggle::begin
+	 * @param string $tag Tag passed to Toggle::begin
+	 * @param string $body Body displayed inside the toggle block
+	 * @return string HTML
+	 */
 	public static function all($heading, $tag, $body) {
 		$html = self::begin($heading, $tag);
 		$html .= $body;

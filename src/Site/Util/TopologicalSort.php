@@ -1,15 +1,26 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: charl
- * Date: 7/3/2018
- * Time: 6:57 PM
+ * @file
+ * Sort plugins into topological order.
  */
 
 namespace CL\Site\Util;
 
+use Exception;
 
+/**
+ * Sort plugins into topological order.
+ */
 class TopologicalSort {
+	/**
+	 * Sort plugins into topological order.
+	 *
+	 * This ensures all plugins that a plugin is dependent
+	 * on are initialized first.
+	 * @param array $plugins An array of Plugin objects
+	 * @return array Sorted array of plugin objects
+	 * @throws Exception If dependency graph has a cycle.
+	 */
 	public static function sort($plugins)
 	{
 
@@ -38,7 +49,7 @@ class TopologicalSort {
 			}
 
 			if (!$any) {
-				throw new \Exception('Plugin dependencies have a cycle');
+				throw new Exception('Plugin dependencies have a cycle');
 			}
 
 		}

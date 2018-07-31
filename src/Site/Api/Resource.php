@@ -30,7 +30,7 @@ abstract class Resource {
 	 * @param Server $server The Server object
 	 * @param array $path The path beyond the page that invoked this call
 	 * @param array $properties Properties determined from the page options like :id
-	 * @param $time The crurent time
+	 * @param int $time The current time
 	 * @return mixed Result of the API operation.
 	 */
 	public function apiDispatch(Site $site, Server $server, array $path, array $properties, $time) {

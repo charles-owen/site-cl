@@ -13,16 +13,15 @@
  * @endcode
  */
 class Video {
-	const FORMAT_LARGE = 'L';
-	const FORMAT_MEDIUM = 'M';
-	const FORMAT_SMALL = 'S';
-	const FORMAT_CUSTOM = 'C';
+	const FORMAT_LARGE = 'L';   ///< Large format constant
+	const FORMAT_MEDIUM = 'M';  ///< Medium format constant
+	const FORMAT_SMALL = 'S';   ///< Small format constant
+	const FORMAT_CUSTOM = 'C';  ///< Custom format/size constant
 
-	const PREFERENCE_VIDEO_SIZE = 'video-size';
+	const PREFERENCE_VIDEO_SIZE = 'video-size'; ///< User MetaData preference for video size
 
-	private static $inc = 0;	// Integer so each link is unique
-	
-	/** Constructor
+	/**
+	 * Constructor
 	 *
 	 * The video file path is a path to a basic file name omitting a size code.
 	 * The actual files may include a code. For example, if the path is
@@ -39,7 +38,10 @@ class Video {
 		$this->size = $size;
 	}
 	
-	/** The HTML for the video presentation */
+	/**
+	 * The HTML for the video presentation
+	 * @return string HTML
+	 */
 	public function present() {
     	$wid = 640;
         $hit = 360;
@@ -104,8 +106,13 @@ class Video {
 VID;
 
 		return $html;
-    }	
-	
+    }
+
+	/**
+	 * Set a custom presentation size
+	 * @param int $width In pixels
+	 * @param int $height In pixels
+	 */
 	public function set_custom_size($width, $height) {
 		$this->customWidth = $width;
 		$this->customHeight = $height;

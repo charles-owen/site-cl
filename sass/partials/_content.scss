@@ -62,12 +62,11 @@ div.content {
   }
 
   & > .right, & > figure.right, & > figure.maybe-right {
-    box-sizing: border-box;
     width: $aside-width;
     position: absolute;
     padding: 0;
     right: 0;
-    margin-right: 0;
+    margin: 0;
   }
 
   & > figure {

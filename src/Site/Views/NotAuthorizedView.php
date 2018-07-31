@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * View for the notauthorized path.
+ * View for the not authorized path.
  */
 
 namespace CL\Site\Views;
@@ -10,7 +10,16 @@ use CL\Site\View;
 use CL\Site\Site;
 use CL\Site\System\Server;
 
+/**
+ * View for the not authorized path.
+ */
 class NotAuthorizedView extends View {
+	/**
+	 * NotAuthorizedView constructor.
+	 * @param Site $site Site object
+	 * @param Server $server Server object
+	 * @param array $path Path from the router
+	 */
 	public function __construct(Site $site, Server $server, array $path) {
 		parent::__construct($site, ['open'=>true]);
 
@@ -31,6 +40,10 @@ class NotAuthorizedView extends View {
 		}
 	}
 
+	/**
+	 * Present the page
+	 * @return string HTML
+	 */
 	public function present() {
 
 		$html = <<<HTML

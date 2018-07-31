@@ -4,6 +4,7 @@
  * Master configuration object for a general purpose web site
  */
 
+/// Classes in the Site (core) subsystem
 namespace CL\Site;
 
 use CL\Site\Components\InstalledConfig;
@@ -83,6 +84,7 @@ class Site {
 	 * appearance | Appearance | Installed site appearance object
 	 * cookiePrefix | A prefix to attach to all cookie names (to ensure uniqueness)
 	 * db | \\CL\\Tables\\Config | Database configuration object
+	 * decor | string | Directory where decoration files are stored (default='site')
 	 * jsSuffix | Suffix to append to base Javascript (default is .min.js or .js (sandbox)
 	 * jsRoot | The root directory for the site Javascript (default is cl/dist
 	 * jsSuffix | Suffix to append to base Javascript (default is .min.js or .js (sandbox)
@@ -111,6 +113,9 @@ class Site {
 
 			case "db":
 				return $this->db;
+
+			case "decor":
+				return $this->decor;
 
 			case 'jsRoot':
 				return $this->jsRoot;
@@ -161,6 +166,7 @@ class Site {
 	 * -------- | ---- | -----------
 	 * appearance | Appearance | Installed site appearance object
 	 * cookiePrefix | A prefix to attach to all cookie names (to ensure uniqueness)
+	 * decor | string | Directory where decoration files are stored (default='site')
 	 * jsRoot | The root directory for the site Javascript (default is cl/dist
 	 * jsSuffix | Suffix to append to base Javascript (default is .min.js or .js (sandbox)
 	 * root | string | %Site root path
@@ -178,6 +184,10 @@ class Site {
 
 			case 'cookiePrefix':
 				$this->cookiePrefix = $value;
+				break;
+
+			case 'decor':
+				$this->decor = $value;
 				break;
 
 			case 'jsRoot':
@@ -292,11 +302,11 @@ class Site {
 	}
 
 	/**
-	 * @param $component Name of the component
-	 * @param $config
+	 * @param string $component Name of the component
+	 * @param Plugin $plugin
 	 */
-	public function install($component, $config) {
-		$this->components[$component] = $config;
+	public function install($component, Plugin $plugin) {
+		$this->components[$component] = $plugin;
 	}
 
 	/**
@@ -327,7 +337,10 @@ class Site {
 	}
 
 
-
+	/**
+	 * Export data suitable for sending to runtime client
+	 * @return array Data for client
+	 */
 	public function data() {
 		return [
 			'siteName'=> $this->siteName,
@@ -376,8 +389,10 @@ class Site {
 
 	private $sandbox = false;   ///< Are we running in a sandbox?
 
-	private $siteName = '';     ///< Name of the site
-	private $cookiePrefix = 'site';  ///< Prefix for cookie names
+	private $siteName = '';         ///< Name of the site
+	private $cookiePrefix = 'site'; ///< Prefix for cookie names
+	private $decor = 'site';       ///< The decorations directory
+
 
 	//
 	// The startup phases

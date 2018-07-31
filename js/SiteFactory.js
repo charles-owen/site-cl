@@ -35,6 +35,10 @@ SiteFactory.create = function() {
     Vue.use(Toasted);
     Vue.use(Vuex);
 
+    Site.Vue = Vue;
+    Site.VueRouter = VueRouter;
+    Site.Vuex = Vuex;
+
     // Information object
     Site.info = new SiteInfo();
 

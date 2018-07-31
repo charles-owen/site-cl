@@ -7,21 +7,31 @@
 
 namespace CL\Site\System;
 
-
+/**
+ * Abstraction of server. Designed to be easily overridden
+ * for testing purposes.
+ */
 class Server {
 	/**
 	 * Property get magic method
-	 * @param string $key Property name
+	 * @param string $property Property name
 	 *
-	 * Properties supported:
-	 *
+	 * <b>Properties</b>
+	 * Property | Type | Description
+	 * -------- | ---- | -----------
+	 * cookie | array | $_COOKIE
+	 * files | array | $_FILES
+	 * get | array | $_GET
+	 * post | array | $_POST
+	 * server | array | $_SERVER
+	 * session | array | $_SESSION
 	 *
 	 * Notice: These are read-only, they cannot be written.
 	 *
-	 * @return null|string
+	 * @return mixed
 	 */
-	public function __get($key) {
-		switch($key) {
+	public function __get($property) {
+		switch($property) {
 			case 'post':
 				if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 					if($_SERVER['CONTENT_TYPE'] === 'application/x-www-form-urlencoded' ||
@@ -52,7 +62,7 @@ class Server {
 			default:
 				$trace = debug_backtrace();
 				trigger_error(
-					'Undefined property ' . $key .
+					'Undefined property ' . $property .
 					' in ' . $trace[0]['file'] .
 					' on line ' . $trace[0]['line'],
 					E_USER_NOTICE);
@@ -85,29 +95,54 @@ class Server {
 		$_SESSION[$key] = $value;
 	}
 
+	/**
+	 * session_name()
+	 * @param $name Name to set
+	 */
 	public function session_name($name) {
 		session_name($name);
 	}
 
+	/**
+	 * session_start()
+	 */
 	public function session_start() {
 		session_start();
 	}
 
+	/**
+	 * Force an immediate redirection
+	 * @param $where Page to redirect to
+	 */
 	public function redirect($where) {
 		//echo "<a href=\"$where\">$where</a>";
 		header("location: " . $where);
 		exit;
 	}
 
+	/**
+	 * header()
+	 * @param $value
+	 */
 	public function header($value) {
 		header($value);
 	}
 
+	/**
+	 * Delete a cookie
+	 * @param $name Cookie to delete
+	 */
 	public function deleteCookie($name) {
 		setcookie ($name, "", 1, "/");
 		setcookie ($name, false);
 	}
 
+	/**
+	 * Set a cookie. These are HTTP-only
+	 * @param string $name Name of cookie
+	 * @param string $value Value to set
+	 * @param int $expire Expiration
+	 */
 	public function setcookie($name, $value, $expire) {
 		setcookie($name, $value, $expire, '/', '', false, true);
 	}
@@ -118,6 +153,7 @@ class Server {
 	 * Calling this function when the URI is /whatever/api/user/login and with
 	 * $parent set to 'api' will return the array: ['user', 'login'].
 	 * @param string $parent Parent directory
+	 * @param string $key $_SERVER key (default is REQUEST_URL)
 	 * @return array|null Array or null if failure.
 	 */
 	public function parseRequestURI($parent, $key='REQUEST_URI') {
