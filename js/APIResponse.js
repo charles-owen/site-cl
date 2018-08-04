@@ -3,7 +3,7 @@
  * Response from the API in an easy-to-use format
  */
 
-let APIResponse = function(json) {
+export let APIResponse = function(json) {
     this.json = json;
 
     this.hasError = function()  {
@@ -27,18 +27,21 @@ let APIResponse = function(json) {
         return null;
     }
 
-    // getAllData(type: string): any {
-    //     const result = [];
-    //     if (this.json.data !== undefined) {
-    //         for (const item of this.json.data) {
-    //             if (item.type === type) {
-    //                 result.push(item);
-    //             }
-    //         }
-    //     }
-    //
-    //     return result;
-    // }
+    this.getDataAll = function(type) {
+        if (this.json.data !== undefined) {
+            let ret = [];
+            for (const item of this.json.data) {
+                if (item.type === type) {
+                    ret.push(item);
+                }
+            }
+
+            return ret;
+        }
+
+        return null;
+    }
+
 
     this.errorCode = function() {
         return this.json.errors[0].code;

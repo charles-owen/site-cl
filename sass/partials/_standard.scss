@@ -21,3 +21,9 @@ p.shoutout {
   margin-top: 2em;
   margin-bottom: 2em;
 }
+
+input[type=checkbox] {
+  vertical-align: middle;
+  position: relative;
+  bottom: 1px;
+}

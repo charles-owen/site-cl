@@ -14,21 +14,13 @@ div.content {
 
   // Normal top level content with space for right column
   & > p,
-  & > div.centerbox,
-  & > div.centerboxprimary,
-  & > div.centerboxcomp,
-  & > div.centerboxseconda,
-  & > div.centerboxsecondb,
+  & > div,
   & > pre,
   & > div.toggleblock,
   & > ul,
   & > ol,
   & > form,
-  & > .advice,
-  & > .left,
-  & > div.problem,
-  & > div.scenario,
-  & > div.toggle,
+  & .left,
   & > figure {
     margin-left: 0;
     margin-right: $right-margin;
@@ -52,10 +44,6 @@ div.content {
 
   // Right side items
   & > p.rightbox,
-  & > p.rightboxprimary,
-  & > p.rightboxcomp,
-  & > p.rightboxseconda,
-  & > p.rightboxsecondb,
   & > p.problemright,
   & > p.scenarioright {
     margin-right: 0;
@@ -112,21 +100,12 @@ div.wide {
   div.content {
     // Normal top level content with space for right column
     & > p,
-    & > div.centerbox,
-    & > div.centerboxprimary,
-    & > div.centerboxcomp,
-    & > div.centerboxseconda,
-    & > div.centerboxsecondb,
+    & > div
     & > pre,
-    & > div.toggleblock,
-    & > div.toggle,
     & > ul,
     & > ol,
     & > form,
-    & > .advice,
     & > .left,
-    & > div.problem,
-    & > div.scenario,
     & > figure {
       margin-right: $right-margin-mobile;
     }

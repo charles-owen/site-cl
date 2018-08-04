@@ -10,10 +10,9 @@ div.cl-autoback {
   a:hover {
     color: $autoback-link-hover;
   }
-
 }
 
-a.cl-backto {
+a.cl-backto, p.cl-backto a {
   display: inline-block;
   background-image: url('./img/backarrow.png');
   background-repeat: no-repeat;
@@ -22,4 +21,13 @@ a.cl-backto {
   height: 1.6em;
 
   color: $autoback-link;
+}
+
+p.cl-backto {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+a.cl-backto:hover {
+  color: $autoback-link-hover;
 }

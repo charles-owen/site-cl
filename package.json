@@ -22,6 +22,7 @@
     "autoback-cl": "^2.0.0",
     "axios": "^0.18.0",
     "buckets-js": "^1.98.2",
+    "classlist-polyfill": "^1.2.0",
     "dialog-cl": "^0.2.1",
     "dompurify": "^1.0.5",
     "es6-promise": "^4.2.4",

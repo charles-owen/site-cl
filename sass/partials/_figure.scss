@@ -17,19 +17,7 @@ figure.float-right {
   text-align: center;
 }
 
-figure.submitfigure {
-  @extend %shadow;
-  margin: 0 0.5em;
-  overflow: auto;
-  border: 1px solid black;
-}
 
-figure.submitfigure img {
-  max-width: none;
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
 
 figure figcaption {
   text-align: center;

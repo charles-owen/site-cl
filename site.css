@@ -1,8 +1,7 @@
-.rightbox, .centerbox, .advice, .problem, .scenario, .blindblock, aside, div.cl-slideshow, iframe, textarea, div.toggleblock, pre.code, textarea.code, figure img, img.figure, p.figure img, p.borderfigure img, p.rightfigure img, figure.submitfigure, .shadow, table {
+.rightbox, .centerbox, .advice, .problem, .scenario, .blindblock, aside, div.cl-slideshow, iframe, textarea, div.toggleblock, pre.code, textarea.code, figure img, img.figure, p.figure img, p.borderfigure img, p.rightfigure img, .shadow, table, form.cl-checklist {
   -moz-box-shadow: 3px 3px 8px #ccc;
   -webkit-box-shadow: 3px 3px 8px #ccc;
-  box-shadow: 3px 3px 8px #ccc;
-  margin-bottom: 1em; }
+  box-shadow: 3px 3px 8px #ccc; }
 
 .noshadow, .noshadow img, div.remote-exec .left textarea, div.remote-exec .right pre, div.play-area .left textarea, div.play-area .right pre {
   -moz-box-shadow: none;
@@ -611,6 +610,11 @@ p.shoutout {
   margin-top: 2em;
   margin-bottom: 2em; }
 
+input[type=checkbox] {
+  vertical-align: middle;
+  position: relative;
+  bottom: 1px; }
+
 header.cl-site {
   color: #eeeeee;
   background-color: #535054;
@@ -657,7 +661,7 @@ div.content {
   padding: 0 10px;
   margin-left: auto;
   margin-right: auto; }
-  div.content > p, div.content > div.centerbox, div.content > div.centerboxprimary, div.content > div.centerboxcomp, div.content > div.centerboxseconda, div.content > div.centerboxsecondb, div.content > pre, div.content > div.toggleblock, div.content > ul, div.content > ol, div.content > form, div.content > .advice, div.content > .left, div.content > div.problem, div.content > div.scenario, div.content > div.toggle, div.content > figure {
+  div.content > p, div.content > div, div.content > pre, div.content > div.toggleblock, div.content > ul, div.content > ol, div.content > form, div.content .left, div.content > figure {
     margin-left: 0;
     margin-right: 16em; }
   div.content > h3 {
@@ -669,7 +673,7 @@ div.content {
     margin-left: 0;
     padding-right: 0;
     max-width: none; }
-  div.content > p.rightbox, div.content > p.rightboxprimary, div.content > p.rightboxcomp, div.content > p.rightboxseconda, div.content > p.rightboxsecondb, div.content > p.problemright, div.content > p.scenarioright {
+  div.content > p.rightbox, div.content > p.problemright, div.content > p.scenarioright {
     margin-right: 0; }
   div.content > .right, div.content > figure.right, div.content > figure.maybe-right {
     width: 15.5em;
@@ -702,7 +706,8 @@ div.wide div.content {
   max-width: none; }
 
 @media only screen and (max-width: 750px) {
-  div.content > p, div.content > div.centerbox, div.content > div.centerboxprimary, div.content > div.centerboxcomp, div.content > div.centerboxseconda, div.content > div.centerboxsecondb, div.content > pre, div.content > div.toggleblock, div.content > div.toggle, div.content > ul, div.content > ol, div.content > form, div.content > .advice, div.content > .left, div.content > div.problem, div.content > div.scenario, div.content > figure {
+  div.content > p, div.content > div
+  div.content > pre, div.content > ul, div.content > ol, div.content > form, div.content > .left, div.content > figure {
     margin-right: 5px; }
   div.content > .right, div.content > figure.right, div.content > figure.maybe-right {
     width: 15em;
@@ -788,16 +793,13 @@ div.dialog p.error {
   font-size: 0.85em;
   text-align: center; }
 
-div.menu {
-  position: relative;
-  float: right;
-  font-size: 0.75rem; }
-  div.menu .ui-menu-content, div.menu .ui-state-focus {
-    background-color: #008183;
-    color: black; }
-  div.menu > a {
-    text-decoration: none; }
-  div.menu ul {
+div.cl-menu {
+  position: relative; }
+  div.cl-menu > a.float-right {
+    display: inline-block;
+    float: right;
+    padding-left: 0.5em; }
+  div.cl-menu ul {
     display: none;
     position: absolute;
     right: 0;
@@ -809,7 +811,7 @@ div.menu {
     padding: 0.25em 0.5em;
     margin: 0;
     border: 1px solid #e8e8e8; }
-    div.menu ul > li {
+    div.cl-menu ul > li {
       display: table-row;
       list-style-type: none;
       list-style-image: none;
@@ -817,21 +819,21 @@ div.menu {
       margin-right: 10px;
       white-space: nowrap;
       line-height: 18px; }
-      div.menu ul > li > a {
+      div.cl-menu ul > li > a {
         display: table-cell;
         padding-right: 0.5em;
         text-decoration: none; }
-  div.menu li img {
+  div.cl-menu li img {
     width: 16px;
     height: 16px;
     vertical-align: top;
     max-width: none; }
-  div.menu li span.menusep {
+  div.cl-menu li span.menusep {
     display: table-cell;
     background: black;
     height: 1px;
     margin: 5px 0; }
-  div.menu .only {
+  div.cl-menu .only {
     width: 8em;
     padding-left: 5px;
     font-size: 90%;
@@ -886,6 +888,49 @@ div.cl-slideshow {
     div.cl-slideshow div.cl-preview img {
       width: 100px;
       height: auto; }
+
+/*
+ * A common form used for entering data
+ */
+form.cl-common {
+  max-width: 30em;
+  margin: 1em auto;
+  background-color: #eeeeee;
+  /*
+   * Radio button set with left label
+   * and buttons to right vertically above each other
+   */ }
+  form.cl-common p {
+    margin: 0.5em 0; }
+  form.cl-common fieldset {
+    padding: 0 2em; }
+  form.cl-common input {
+    width: 100%; }
+  form.cl-common label {
+    font-style: italic; }
+    form.cl-common label input {
+      font-style: normal; }
+  form.cl-common input.short {
+    width: 50%; }
+  form.cl-common input.medium {
+    width: 75%; }
+  form.cl-common button {
+    width: 7em; }
+  form.cl-common div.radio-set {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: nowrap;
+    margin: 0 auto; }
+    form.cl-common div.radio-set div.label {
+      flex: 0 1 auto;
+      padding: 0 1em 0 0; }
+    form.cl-common div.radio-set div.options {
+      flex: 0 1 auto; }
+      form.cl-common div.radio-set div.options label {
+        display: block; }
+      form.cl-common div.radio-set div.options input {
+        width: auto; }
 
 body {
   font-size: 0.875em;
@@ -1021,6 +1066,24 @@ textarea.code, pre.codeback {
   word-wrap: normal;
   overflow: auto; }
 
+textarea.yellow-pad, pre.yellow-pad {
+  display: block;
+  font-family: Arial, sans-serif;
+  font-size: 1em;
+  font-weight: normal;
+  color: #333333;
+  background: url("img/yellowpad.png") repeat;
+  border: 1px black solid;
+  tab-size: 4;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  white-space: pre;
+  word-wrap: normal;
+  padding: 6pt;
+  line-height: 16px;
+  clear: both;
+  overflow: auto; }
+
 pre.code1 {
   margin-bottom: 0; }
 
@@ -1047,17 +1110,6 @@ figure.float-right {
   right: 0;
   margin: 0;
   text-align: center; }
-
-figure.submitfigure {
-  margin: 0 0.5em;
-  overflow: auto;
-  border: 1px solid black; }
-
-figure.submitfigure img {
-  max-width: none;
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
-  box-shadow: none; }
 
 figure figcaption {
   text-align: center; }
@@ -1235,7 +1287,7 @@ div.cl-autoback a, div.cl-autoback a:visited, div.cl-autoback a:link {
 div.cl-autoback a:hover {
   color: #cc2222; }
 
-a.cl-backto {
+a.cl-backto, p.cl-backto a {
   display: inline-block;
   background-image: url("./img/backarrow.png");
   background-repeat: no-repeat;
@@ -1243,6 +1295,13 @@ a.cl-backto {
   padding: 0.13em 0 0 2.6em;
   height: 1.6em;
   color: #882222; }
+
+p.cl-backto {
+  margin-top: 0;
+  margin-bottom: 0; }
+
+a.cl-backto:hover {
+  color: #cc2222; }
 
 /**
  * @file
@@ -1300,8 +1359,7 @@ table {
     border-bottom: 1px solid #C1DAD7;
     background: #ffffff;
     padding: 0.25em 0.75em;
-    color: #4f6b72;
-    /* white-space: nowrap; */ }
+    color: #4f6b72; }
     table td a:link {
       color: #8A8A8A;
       text-decoration: underline; }
@@ -1550,6 +1608,49 @@ nav.cl-sticky {
   left: 0;
   right: 0;
   z-index: 100; }
+
+form.cl-checklist {
+  padding-left: 3em;
+  padding-right: 3em;
+  border: thin solid black;
+  background-color: #e8f7f3; }
+  form.cl-checklist p {
+    text-align: left;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    position: relative; }
+  form.cl-checklist input[type="checkbox"] {
+    position: absolute;
+    left: -1.5em;
+    top: 0.25em; }
+
+div.cl-prevnext {
+  margin: 0;
+  padding: 5px 0 0 0;
+  height: 30px;
+  display: flex;
+  flex-direction: row; }
+  div.cl-prevnext > div {
+    height: 25px;
+    flex: 0 1 auto; }
+    div.cl-prevnext > div a {
+      display: inline-block;
+      height: 25px; }
+  div.cl-prevnext > div:first-child {
+    width: 15em; }
+    div.cl-prevnext > div:first-child a {
+      background: no-repeat 0 -2px url(img/previcon.png);
+      padding: 0 0 0 45px;
+      overflow: visible; }
+  div.cl-prevnext > div:nth-child(2) {
+    flex: 1 1 auto;
+    text-align: center; }
+  div.cl-prevnext > div:last-child {
+    width: 15em; }
+    div.cl-prevnext > div:last-child a {
+      background: no-repeat right -2px url(img/nexticon.png);
+      padding: 0 45px 0 0;
+      overflow: visible; }
 
 div.remote-exec {
   width: 100%;

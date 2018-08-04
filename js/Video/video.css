@@ -5,8 +5,7 @@
 div.cl-video div.video-large, div.cl-video div.video-medium, div.cl-video div.video-low, div.cl-video div.video-custom {
   -moz-box-shadow: 3px 3px 8px #ccc;
   -webkit-box-shadow: 3px 3px 8px #ccc;
-  box-shadow: 3px 3px 8px #ccc;
-  margin-bottom: 1em; }
+  box-shadow: 3px 3px 8px #ccc; }
 
 div.cl-video .vjs-default-skin .vjs-play-progress,
 div.cl-video .vjs-default-skin .vjs-volume-level {

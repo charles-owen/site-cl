@@ -36,9 +36,95 @@ class View {
 		// Always included
 		$this->addCSS('vendor/cl/site/site.css');
 		$this->addJS('vendor');
-		$this->addJS('commons');
+	//	$this->addJS('commons');
 		$this->addJS('site');
 	}
+
+	/**
+	 * Property get magic method
+	 *
+	 * <b>Properties</b>
+	 * Property | Type | Description
+	 * -------- | ---- | -----------
+	 * appearance | Appearance | The installed Appearance object.
+	 * autoback | bool | Page supports autoback
+	 * root | string | Root path for this site (with no trailing /)
+	 * site | Site | The Site object
+	 * title | string | The site title
+	 *
+	 * @param string $property Property name
+	 * @return mixed
+	 */
+	public function __get($property) {
+		switch($property) {
+			case 'appearance':
+				if($this->appearance === null) {
+					$this->getAppearance();
+				}
+
+				return $this->appearance;
+
+			case 'autoback':
+				return $this->autoback;
+
+			case 'root':
+				return $this->site->root;
+
+			case 'site':
+				return $this->site;
+
+			case 'title':
+				return $this->title;
+
+			default:
+				$trace = debug_backtrace();
+				trigger_error(
+					'Undefined property ' . $property .
+					' in ' . $trace[0]['file'] .
+					' on line ' . $trace[0]['line'],
+					E_USER_NOTICE);
+				return null;
+		}
+	}
+
+	/**
+	 * Property set magic method
+	 *
+	 * <b>Properties</b>
+	 * Property | Type | Description
+	 * -------- | ---- | -----------
+	 * autoback | bool | Page supports autoback
+	 * script | string | Add content to a page &lt;script&gt; tag
+	 * title | string | The site title
+	 *
+	 * @param string $property Property name
+	 * @param mixed $value Value to set
+	 */
+	public function __set($property, $value) {
+		switch($property) {
+			case 'title':
+				$this->title = $value;
+				break;
+
+			case 'autoback':
+				$this->autoback = $value;
+				break;
+
+			case 'script':
+				$this->script .= $value;
+				break;
+
+			default:
+				$trace = debug_backtrace();
+				trigger_error(
+					'Undefined property ' . $property .
+					' in ' . $trace[0]['file'] .
+					' on line ' . $trace[0]['line'],
+					E_USER_NOTICE);
+				break;
+		}
+	}
+
 
 	/**
 	 * Presentation of a whole page
@@ -63,7 +149,7 @@ HTML;
 	 * Presentation of a page entirely used by Vue
 	 * @return string HTML for the page
 	 */
-	public function vue($cls, $js=[], $script=null) {
+	public function vue($cls=null, $js=[], $script=null) {
 		foreach($js as $j) {
 			$this->addJS($j);
 		}
@@ -73,13 +159,18 @@ HTML;
 		}
 
 		$head = $this->head();
+		$present = $this->present();
+		if($cls !==null) {
+			$present .= "<div class=\"$cls\"></div>";
+		}
+
 		$tail = $this->tail(true);
 
 		$html = <<<HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>$head</head>
-<body><div class="$this->body"><div class="$cls"></div></div>$tail</body>
+<body><div class="$this->body">$present</div>$tail</body>
 </html>
 HTML;
 
@@ -190,8 +281,6 @@ HTML;
 			$html .= '<div id="' . $id . '" style="display: none">' . $json . '</div>';
 		}
 
-
-
 		if($this->script !== '') {
 			$html .= '<script>' . $this->script . '</script>';
 		}
@@ -294,90 +383,6 @@ HTML;
 		return $this->header() . $this->present() . $this->footer();
 	}
 
-	/**
-	 * Property get magic method
-	 *
-	 * <b>Properties</b>
-	 * Property | Type | Description
-	 * -------- | ---- | -----------
-	 * appearance | Appearance | The installed Appearance object.
-	 * autoback | bool | Page supports autoback
-	 * root | string | Root path for this site (with no trailing /)
-	 * site | Site | The Site object
-	 * title | string | The site title
-	 *
-	 * @param string $property Property name
-	 * @return mixed
-	 */
-	public function __get($property) {
-		switch($property) {
-			case 'appearance':
-				if($this->appearance === null) {
-					$this->getAppearance();
-				}
-
-				return $this->appearance;
-
-			case 'autoback':
-				return $this->autoback;
-
-			case 'root':
-				return $this->site->root;
-
-			case 'site':
-				return $this->site;
-
-			case 'title':
-				return $this->title;
-
-			default:
-				$trace = debug_backtrace();
-				trigger_error(
-					'Undefined property ' . $property .
-					' in ' . $trace[0]['file'] .
-					' on line ' . $trace[0]['line'],
-					E_USER_NOTICE);
-				return null;
-		}
-	}
-
-	/**
-	 * Property set magic method
-	 *
-	 * <b>Properties</b>
-	 * Property | Type | Description
-	 * -------- | ---- | -----------
-	 * autoback | bool | Page supports autoback
-	 * script | string | Add content to a page &lt;script&gt; tag
-	 * title | string | The site title
-	 *
-	 * @param string $property Property name
-	 * @param mixed $value Value to set
-	 */
-	public function __set($property, $value) {
-		switch($property) {
-			case 'title':
-				$this->title = $value;
-				break;
-
-			case 'autoback':
-				$this->autoback = $value;
-				break;
-
-			case 'script':
-				$this->script .= $value;
-				break;
-
-			default:
-				$trace = debug_backtrace();
-				trigger_error(
-					'Undefined property ' . $property .
-					' in ' . $trace[0]['file'] .
-					' on line ' . $trace[0]['line'],
-					E_USER_NOTICE);
-				break;
-		}
-	}
 
 	/**
 	 * Set the page title

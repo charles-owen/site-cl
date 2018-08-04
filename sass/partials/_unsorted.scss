@@ -34,76 +34,6 @@ div.bdblock {
   color:black;
 }
 
-
-p.submitfigure {
-  text-align:center;
-  overflow:auto;
-  margin-left:5%;
-  margin-right:5%;
-  border: 1px solid black;
-  -moz-box-shadow: 8px 8px 8px #888;
-  -webkit-box-shadow: 8px 8px 8px #888;
-  box-shadow: 8px 8px 8px #888;
-  margin-bottom:1em;
-}
-
-p.submitfigure img {
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-
-form.checklist {
-  padding-left: 3em;
-  padding-right: 3em;
-  border: thin solid black;
-  background-color: #f0f8f0;
-
-  p {
-    text-align: left;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-    position: relative;
-  }
-
-  input[type="checkbox"] {
-    position: absolute;
-    left: -1.5em;
-    top: 0.25em;
-  }
-}
-
-form {
-  position: relative;
-  max-width: 100%;
-}
-
-form.border {
-  border: 1px solid silver;
-}
-
-form fieldset {
-  /*width: 100%; */
-  border: 1px solid #c0c0c0;
-  margin: 0 2px;
-  padding: 0.35em 0.625em 0.75em;
-}
-
-form.fileform {
-  margin-left:2em;
-  margin-right:2em;
-  border: 1px solid black;
-  padding-top:0.5em;
-  padding-bottom:0.5em;
-  text-align:center;
-  -moz-box-shadow: 8px 8px 8px #888;
-  -webkit-box-shadow: 8px 8px 8px #888;
-  box-shadow: 8px 8px 8px #888;
-}
-
-div.content > form.fileform {
-  margin-right: 18em;
-}
-
 p.reviewsappear {
   text-align:center;
   background: #00723f;
@@ -125,44 +55,12 @@ span.staffreview {
   color:red;
 }
 
-input.file, input.upload {
-  font: 9pt helvetica,sans-serif;
-  margin-left:5px;
-}
-
-input.file {
-  width: 20em;
-}
-
-input.submit {
-  font-weight:bold;
-}
-
-
-
-
 div.selectors {
   margin-top: 4pt;
 }
 
 div.selectors p, div.selectors form {
   display: inline;
-}
-
-textarea {
-  width: 100%;
-  background-color: #e2fff7;
-}
-
-p.test {
-  text-align:center;
-  color:green;
-}
-
-.error {
-  color: #ff0000;
-  font-style: italic;
-  font-size: 0.9em;
 }
 
 .disabled {

@@ -58,10 +58,33 @@ TimeFormatter.relative = function(time, currentTime, short) {
         return "Today at " + hour + ':' + minute + am;
     }
 
-    return time.toLocaleDateString("en-US", {month:'numeric', day:'numeric', year:'numeric',
+    return time.toLocaleDateString("en-US", {month:'numeric', day:'2-digit', year:'numeric',
         hour12:true, hour:'numeric', minute:'2-digit', second:'2-digit'})
             .replace(/\//g, '-')
             .replace(/ AM/, 'am')
             .replace(/ PM/, 'pm');
 
+}
+
+/**
+ *
+ * @param time
+ * @param weekday "narrow", "short", "long"
+ * @returns {string}
+ */
+TimeFormatter.absolute = function(time, weekday) {
+    let options = {month:'numeric', day:'2-digit', year:'numeric',
+        hour12:true, hour:'numeric', minute:'2-digit', second:'2-digit'};
+    if(weekday) {
+        options.weekday = weekday;
+    }
+
+    return time.toLocaleDateString("en-US", options)
+        .replace(/\//g, '-')
+        .replace(/ AM/, 'am')
+        .replace(/ PM/, 'pm');
+}
+
+TimeFormatter.absoluteUNIX = function(time, weekday) {
+    return TimeFormatter.absolute(new Date(time * 1000), weekday);
 }

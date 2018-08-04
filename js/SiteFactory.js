@@ -10,13 +10,14 @@ import Vuex from 'vuex';
 
 const url = require('url');
 
-import ApiService from './ApiService.js';
-import Header from './Header/Header.js';
-import Footer from './Footer/Footer.js';
-import {Ready} from './Util/Ready.js';
-import {Clock} from './Util/Clock.js';
-import {SlideShow} from './SlideShow/SlideShow.js';
-import {SiteInfo} from './SiteInfo.js';
+import ApiService from './ApiService';
+import Header from './Header/Header';
+import Footer from './Footer/Footer';
+import {Ready} from './Util/Ready';
+import {Clock} from './Util/Clock';
+import {SlideShow} from './SlideShow/SlideShow';
+import {SiteInfo} from './SiteInfo';
+import {Editor} from './UI/Editor';
 
 export let SiteFactory = function() {
 }
@@ -128,16 +129,6 @@ SiteFactory.create = function() {
 
     }
 
-    // function lazy() {
-    //     import(/* webpackChunkName: 'site.lazy' */ './Lazy/Lazy.js').then((bundle) => {
-    //         let Lazy = bundle.default;
-    //         console.log(Lazy);
-    //         Lazy();
-    //     });
-    // }
-
-
-
     Ready.go(() => {
         // Optional header and footer JSON
         let en;
@@ -158,6 +149,10 @@ SiteFactory.create = function() {
             new SlideShow(element);
         }
 
+        elements = document.querySelectorAll('div.cl-editor');
+        for(let element of elements) {
+            new Editor(element);
+        }
 
         elements = document.querySelectorAll('div.cl-video');
         if(elements.length > 0) {
@@ -169,8 +164,9 @@ SiteFactory.create = function() {
                     new VideoPresenter(element);
                 }
             });
-
         }
+
+
 
         Site.readyList.forEach((fun) => {
             fun();

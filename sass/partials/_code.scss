@@ -29,7 +29,7 @@ pre.code, pre.code1, textarea.code, textarea.code1,
   -o-tab-size: 4;
   white-space:pre;
   word-wrap: normal;
-  padding:6pt;
+  padding: 6pt;
   line-height: 16px;
   clear:both;
   overflow:auto;
@@ -43,6 +43,25 @@ textarea.code, pre.codeback {
   white-space: pre;
   word-wrap: normal;
   overflow: auto;
+}
+
+textarea.yellow-pad, pre.yellow-pad {
+  display: block;
+  font-family: Arial, sans-serif;
+  font-size: 1em;
+  font-weight: normal;
+  color:#333333;
+  background: url("img/yellowpad.png") repeat;
+  border:1px black solid;
+  tab-size: 4;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  white-space:pre;
+  word-wrap: normal;
+  padding:6pt;
+  line-height: 16px;
+  clear:both;
+  overflow:auto;
 }
 
 pre.code1 {

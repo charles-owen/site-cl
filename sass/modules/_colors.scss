@@ -12,6 +12,7 @@ $header-text: #eeeeee;
 // We have a primary color, two secondary colors, and a complementary color.
 $primary: #00723f;
 $light-primary: #44a26b;
+$very-light-primary: #e8f7f3;
 $dark-primary: #005223;
 $primary-text: #212121;
 
@@ -62,7 +63,6 @@ $toggle-link-hover-color: #006600;
   -moz-box-shadow: $shadow-x $shadow-y $shadow-radius $shadow-color;
   -webkit-box-shadow: $shadow-x $shadow-y $shadow-radius $shadow-color;
   box-shadow: $shadow-x $shadow-y $shadow-radius $shadow-color;
-  margin-bottom: 1em;
 }
 
 %noshadow {

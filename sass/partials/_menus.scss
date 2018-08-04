@@ -1,16 +1,13 @@
-
-div.menu {
+div.cl-menu {
   position: relative;
-  float: right;
-  font-size: 0.75rem;
-
-  .ui-menu-content, .ui-state-focus {
-    background-color: $focus;
-    color: $menu-color;
-  }
 
   > a {
-    text-decoration: none;
+  }
+
+  > a.float-right {
+    display: inline-block;
+    float: right;
+    padding-left: 0.5em;
   }
 
   ul {

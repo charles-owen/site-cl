@@ -1,0 +1,20 @@
+form.cl-checklist {
+  @extend %shadow;
+  padding-left: 3em;
+  padding-right: 3em;
+  border: thin solid black;
+  background-color: $very-light-primary;
+
+  p {
+    text-align: left;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    position: relative;
+  }
+
+  input[type="checkbox"] {
+    position: absolute;
+    left: -1.5em;
+    top: 0.25em;
+  }
+}

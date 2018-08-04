@@ -1,0 +1,52 @@
+div.cl-prevnext {
+  $padding: 5px;
+  $imghit: 25px;
+  $imgwid: 45px;
+
+  margin: 0;
+  padding: $padding 0 0 0;
+  height: $imghit + $padding;
+  display: flex;
+  flex-direction: row;
+
+
+
+  >div {
+    height: $imghit;
+    flex: 0 1 auto;
+
+    a {
+      display: inline-block;
+      height: $imghit;
+    }
+  }
+
+
+  >div:first-child {
+    width: 15em;
+
+    a {
+      background: no-repeat 0 -2px url(img/previcon.png);
+      padding: 0 0 0 $imgwid;
+      overflow: visible;
+
+    }
+  }
+
+  >div:nth-child(2) {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+
+  >div:last-child {
+    width: 15em;
+
+    a {
+      background: no-repeat right -2px url(img/nexticon.png);
+      padding: 0 $imgwid 0 0;
+      overflow: visible;
+
+    }
+  }
+}
+

@@ -1,0 +1,72 @@
+/*
+ * A common form used for entering data
+ */
+
+form.cl-common {
+
+  max-width: 30em;
+  margin: 1em auto;
+  background-color: #eeeeee;
+
+  p {
+    margin: 0.5em 0;
+  }
+
+  fieldset {
+    padding: 0 2em;
+  }
+
+  input {
+    width: 100%;
+  }
+
+  label {
+    font-style: italic;
+
+    input {
+      font-style: normal;
+    }
+  }
+
+  input.short {
+    width: 50%;
+  }
+
+  input.medium {
+    width: 75%;
+  }
+
+  button {
+    width: 7em;
+  }
+
+  /*
+   * Radio button set with left label
+   * and buttons to right vertically above each other
+   */
+  div.radio-set {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: nowrap;
+    margin: 0 auto;
+
+    div.label {
+      flex: 0 1 auto;
+      padding: 0 1em 0 0;
+    }
+
+    div.options {
+      flex: 0 1 auto;
+
+      label {
+        display: block;
+      }
+
+      input {
+        width: auto;
+      }
+    }
+  }
+
+}
