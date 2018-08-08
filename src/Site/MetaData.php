@@ -55,9 +55,9 @@ class MetaData {
 
     /**
      * Set a key value
-     * @param $category Category for this key
-     * @param $key Key  to set
-     * @param $value Value to set it to
+     * @param string $category Category for this key
+     * @param string $key Key  to set
+     * @param mixed $value Value to set it to
      */
     public function set($category, $key, $value) {
         if(!isset($this->data[$category])) {

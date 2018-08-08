@@ -1557,32 +1557,37 @@ div.hot {
   div.hot p {
     margin: 0; }
 
-nav {
+nav.cl-nav {
   width: 100%;
   margin: 0 auto;
   padding: 0;
-  max-width: 1000px; }
-  nav > div {
+  max-width: 1000px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  nav.cl-nav > div:first-child {
     background: url("img/nav_pattern.png"); }
-  nav ul {
-    max-width: 56em;
-    margin: 0 auto;
-    padding: 0;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  nav.cl-nav > div:nth-child(2) {
+    background: url("img/nav_pattern-2.png"); }
+  nav.cl-nav ul {
     list-style: none; }
-    nav ul li {
+  nav.cl-nav ul {
+    max-width: 56em;
+    height: 25px;
+    margin: 0 auto;
+    padding: 0; }
+    nav.cl-nav ul li {
       display: inline-block;
       border: 0;
       padding: 3px 14px;
-      margin: 0; }
-      nav ul li a {
-        font-size: 16px;
-        line-height: 18px;
+      margin: 0;
+      font-size: 16px;
+      line-height: 18px;
+      color: white; }
+      nav.cl-nav ul li a {
         outline: none;
         text-decoration: none;
-        color: white;
-        cursor: pointer; }
-        nav ul li a span.home {
+        cursor: pointer;
+        color: white; }
+        nav.cl-nav ul li a span.home {
           display: inline-block;
           background-image: url(img/white-home.png);
           background-repeat: no-repeat;
@@ -1590,17 +1595,59 @@ nav {
           text-indent: -9999px;
           width: 30px;
           height: 100%; }
-      nav ul li a:link, nav ul li a:active, nav ul li a:hover, nav ul li a:visited {
+      nav.cl-nav ul li a:link, nav.cl-nav ul li a:active, nav.cl-nav ul li a:hover, nav.cl-nav ul li a:visited {
         color: white;
         text-decoration: none; }
-      nav ul li a:hover {
+      nav.cl-nav ul li a:hover {
         color: #ffcccc; }
-    nav ul li:hover {
+    nav.cl-nav ul li:hover {
       background: rgba(0, 0, 0, 0.3); }
-  nav ul.dividers li {
+  nav.cl-nav ul.dividers li {
     border-right: 1px solid #c2d95d; }
-  nav ul.dividers li:last-child {
+  nav.cl-nav ul.dividers li:last-child {
     border: 0; }
+  nav.cl-nav div.nav2 {
+    max-width: 56em;
+    height: 25px;
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    flex-direction: row; }
+    nav.cl-nav div.nav2 div.left, nav.cl-nav div.nav2 div.center, nav.cl-nav div.nav2 div.right {
+      display: inline-block;
+      flex: 1 1 auto;
+      font-size: 14px; }
+      nav.cl-nav div.nav2 div.left > div, nav.cl-nav div.nav2 div.center > div, nav.cl-nav div.nav2 div.right > div {
+        vertical-align: top;
+        display: inline-block;
+        border: 0;
+        padding: 3px 14px;
+        margin: 0;
+        line-height: 18px;
+        color: #ffff99; }
+        nav.cl-nav div.nav2 div.left > div a, nav.cl-nav div.nav2 div.center > div a, nav.cl-nav div.nav2 div.right > div a {
+          outline: none;
+          text-decoration: none;
+          cursor: pointer;
+          color: #ffff99; }
+        nav.cl-nav div.nav2 div.left > div a:link, nav.cl-nav div.nav2 div.left > div a:active, nav.cl-nav div.nav2 div.left > div a:hover, nav.cl-nav div.nav2 div.left > div a:visited, nav.cl-nav div.nav2 div.center > div a:link, nav.cl-nav div.nav2 div.center > div a:active, nav.cl-nav div.nav2 div.center > div a:hover, nav.cl-nav div.nav2 div.center > div a:visited, nav.cl-nav div.nav2 div.right > div a:link, nav.cl-nav div.nav2 div.right > div a:active, nav.cl-nav div.nav2 div.right > div a:hover, nav.cl-nav div.nav2 div.right > div a:visited {
+          color: #ffff99;
+          text-decoration: none; }
+        nav.cl-nav div.nav2 div.left > div a:hover, nav.cl-nav div.nav2 div.center > div a:hover, nav.cl-nav div.nav2 div.right > div a:hover {
+          color: #ffcccc; }
+      nav.cl-nav div.nav2 div.left > div:hover, nav.cl-nav div.nav2 div.center > div:hover, nav.cl-nav div.nav2 div.right > div:hover {
+        background: rgba(0, 0, 0, 0.3); }
+      nav.cl-nav div.nav2 div.left > div, nav.cl-nav div.nav2 div.center > div, nav.cl-nav div.nav2 div.right > div {
+        border-right: 1px solid #c2d95d; }
+      nav.cl-nav div.nav2 div.left > div:last-child, nav.cl-nav div.nav2 div.center > div:last-child, nav.cl-nav div.nav2 div.right > div:last-child {
+        border: 0; }
+    nav.cl-nav div.nav2 div.left, nav.cl-nav div.nav2 div.right {
+      flex: 0 0 auto;
+      width: 3em; }
+    nav.cl-nav div.nav2 div.left {
+      text-align: left; }
+    nav.cl-nav div.nav2 div.right {
+      text-align: right; }
 
 nav.cl-sticky {
   position: fixed;
@@ -1623,34 +1670,6 @@ form.cl-checklist {
     position: absolute;
     left: -1.5em;
     top: 0.25em; }
-
-div.cl-prevnext {
-  margin: 0;
-  padding: 5px 0 0 0;
-  height: 30px;
-  display: flex;
-  flex-direction: row; }
-  div.cl-prevnext > div {
-    height: 25px;
-    flex: 0 1 auto; }
-    div.cl-prevnext > div a {
-      display: inline-block;
-      height: 25px; }
-  div.cl-prevnext > div:first-child {
-    width: 15em; }
-    div.cl-prevnext > div:first-child a {
-      background: no-repeat 0 -2px url(img/previcon.png);
-      padding: 0 0 0 45px;
-      overflow: visible; }
-  div.cl-prevnext > div:nth-child(2) {
-    flex: 1 1 auto;
-    text-align: center; }
-  div.cl-prevnext > div:last-child {
-    width: 15em; }
-    div.cl-prevnext > div:last-child a {
-      background: no-repeat right -2px url(img/nexticon.png);
-      padding: 0 45px 0 0;
-      overflow: visible; }
 
 div.remote-exec {
   width: 100%;
@@ -1813,10 +1832,6 @@ form.remote-exec button {
   background: #c41425;
   color: white; }
 
-.blindblock {
-  background: #efc6ff;
-  color: black; }
-
 .comp a:link,
 .primary a:link,
 .seconda a:link {
@@ -1844,5 +1859,8 @@ form.remote-exec button {
 
 .grn {
   color: #008800; }
+
+.notice {
+  color: #c41425; }
 
 /*# sourceMappingURL=site.css.map */

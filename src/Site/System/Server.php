@@ -112,7 +112,7 @@ class Server {
 
 	/**
 	 * Force an immediate redirection
-	 * @param $where Page to redirect to
+	 * @param string $where Page to redirect to
 	 */
 	public function redirect($where) {
 		//echo "<a href=\"$where\">$where</a>";

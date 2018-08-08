@@ -8,6 +8,10 @@ namespace CL\Site;
 
 /**
  * Base class for Views for pages.
+ *
+ * @cond
+ * @property boolean autoback
+ * @endcond
  */
 class View {
 	/**
@@ -25,6 +29,10 @@ class View {
 		}
 
 		$GLOBALS['view'] = $this;
+
+		if(!empty($options['autoback']) && $options['autoback']) {
+			$this->autoback = true;
+		}
 
 		//
 		// Enable output buffering during the processing of all content prior to
@@ -162,6 +170,11 @@ HTML;
 		$present = $this->present();
 		if($cls !==null) {
 			$present .= "<div class=\"$cls\"></div>";
+		}
+
+		foreach($this->cls as $cls => $json) {
+			$json = htmlspecialchars($json, ENT_NOQUOTES);
+			$present .= '<div class="' . $cls . '" style="display: none">' . $json . '</div>';
 		}
 
 		$tail = $this->tail(true);
@@ -357,7 +370,7 @@ HTML;
 		$html = $this->appearance->footer($this) . '</div>' . $this->tail();
 		if($contentDiv) {
 			if($this->autoback) {
-				$html .= '</div><div class="cl-autoback cl-strip"></div>' . $html;
+				$html = '<div class="cl-autoback cl-strip"></div></div>' . $html;
 			} else {
 				$html = '</div>' . $html;
 			}
@@ -386,7 +399,7 @@ HTML;
 
 	/**
 	 * Set the page title
-	 * @param $title Title to set
+	 * @param string $title Title to set
 	 */
 	public function setTitle($title) {
 		$this->title = $title;
@@ -434,12 +447,26 @@ HTML;
 	 * Add JSON data to include on the page.
 	 *
 	 * Data will be included in a &lt;div id="$id" style="display:none"&gt; tag.
+	 * This content is added to the page tail for all document presentations.
 	 *
-	 * @param $id
-	 * @param $json
+	 * @param string $id ID to use
+	 * @param string $json JSON to add
 	 */
 	public function addJSON($id, $json) {
 		$this->json[$id] = $json;
+	}
+
+	/**
+	 * Add JSON data to include on the page.
+	 *
+	 * Data will be included in a &lt;div class="$cls" style="display:none"&gt; tag.
+	 * This content is added to the page body only for VUE presentations
+	 *
+	 * @param string $cls Class to use
+	 * @param string $json JSON to add
+	 */
+	public function addCLS($cls, $json='{}') {
+		$this->cls[$cls] = $json;
 	}
 
 	/**
@@ -486,7 +513,7 @@ HTML;
 
 	/**
 	 * Find any auxiliary view of a given type.
-	 * @param $type PHP class we are looking for
+	 * @param string $type PHP class we are looking for
 	 * @return mixed|null
 	 */
 	public function find_aux($type) {
@@ -512,11 +539,12 @@ HTML;
 	private $site;
 	private $title = 'Title';   ///< Page title
 
-	private $json = [];     ///< JSON content to include
-	private $css = [];      ///< CSS to include
-	private $js = [];       ///< Javascript to include
-	private $script = '';   ///< Any additional script content
-	private $aux = [];      ///< Auxiliary views (attached to view)
-	private $body = 'body'; ///< Classes to put in the top level div
-	private $autoback = false;  ///< The autoback option
+	private $json = [];         // JSON content to include
+	private $css = [];          // CSS to include
+	private $js = [];           // Javascript to include
+	private $cls = [];          // Any div classes to include
+	private $script = '';       // Any additional script content
+	private $aux = [];          // Auxiliary views (attached to view)
+	private $body = 'body';     // Classes to put in the top level div
+	private $autoback = false;  // The autoback option
 }

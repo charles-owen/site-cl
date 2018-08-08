@@ -1,35 +1,43 @@
-nav {
+nav.cl-nav {
   width: 100%;
   margin: 0 auto;
   padding: 0;
   max-width: $max-body;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 
-  >div {
-    background: url('img/nav_pattern.png');
+  >div:first-child {
+    background: $nav-background;
+  }
+
+  >div:nth-child(2) {
+    background: $nav-2-background;
   }
 
   ul {
+    list-style: none;
+  }
 
+  // nav1: First line of navigation bar
+  ul {
     max-width: $max-width;
+    height: 25px;
     margin: 0 auto;
     padding: 0;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-
-    list-style: none;
 
     li {
       display: inline-block;
       border: 0;
       padding: 3px 14px;
       margin: 0;
+      font-size: 16px;
+      line-height: 18px;
+      color: $nav-color;
 
       a {
-        font-size: 16px;
-        line-height: 18px;
         outline: none;
         text-decoration: none;
-        color: white;
         cursor: pointer;
+        color: $nav-color;
 
         span.home {
           display: inline-block;
@@ -43,7 +51,7 @@ nav {
       }
 
       a:link, a:active, a:hover, a:visited {
-        color: white;
+        color: $nav-color;
         text-decoration: none;
       }
 
@@ -51,8 +59,6 @@ nav {
         color: #ffcccc;
       }
     }
-
-
 
     li:hover {
       background: rgba(0, 0, 0, 0.3);
@@ -68,6 +74,75 @@ nav {
       border: 0;
     }
   }
+
+  // nav2 - Second line of navigation bar
+  div.nav2 {
+    max-width: $max-width;
+    height: 25px;
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+
+    div.left, div.center, div.right {
+      display: inline-block;
+      flex: 1 1 auto;
+      font-size: 14px;
+
+      >div {
+        vertical-align: top;
+        display: inline-block;
+        border: 0;
+        padding: 3px 14px;
+        margin: 0;
+        line-height: 18px;
+        color: $nav-2-color;
+
+        a {
+          outline: none;
+          text-decoration: none;
+          cursor: pointer;
+          color: $nav-2-color;
+        }
+
+        a:link, a:active, a:hover, a:visited {
+          color: $nav-2-color;
+          text-decoration: none;
+        }
+
+        a:hover {
+          color: #ffcccc;
+        }
+      }
+
+      >div:hover {
+        background: rgba(0, 0, 0, 0.3);
+      }
+
+      >div {
+        border-right: 1px solid #c2d95d;
+      }
+
+      >div:last-child {
+        border: 0;
+      }
+    }
+
+    div.left, div.right {
+      flex: 0 0 auto;
+      width: 3em;
+    }
+
+    div.left {
+      text-align: left;
+    }
+
+    div.right {
+      text-align: right;
+    }
+  }
+
+
 
 }
 

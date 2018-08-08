@@ -25,6 +25,27 @@ use CL\Site\Util\TopologicalSort;
  * require __DIR__ . '/vendor/autoload.php';
  * $site = new CL\Site\Site(__DIR__);
  * \endcode
+ *
+ *
+ * @cond
+ * @property Appearance appearance
+ * @property string cookiePrefix
+ * @property CL::Tables::Config db
+ * @property string decore
+ * @property string jsSuffix
+ * @property string jsRoot
+ * @property array options
+ * @property array plugins
+ * @property string root
+ * @property string rootDir
+ * @property bool sandbox
+ * @property string siteName
+ * @property bool started
+ *
+ * There are cheating a bit to help with the type hinting
+ * @property \CL\Course\Course course
+ *
+ * @endcond
  */
 class Site {
 	/**
@@ -85,7 +106,6 @@ class Site {
 	 * cookiePrefix | A prefix to attach to all cookie names (to ensure uniqueness)
 	 * db | \\CL\\Tables\\Config | Database configuration object
 	 * decor | string | Directory where decoration files are stored (default='site')
-	 * jsSuffix | Suffix to append to base Javascript (default is .min.js or .js (sandbox)
 	 * jsRoot | The root directory for the site Javascript (default is cl/dist
 	 * jsSuffix | Suffix to append to base Javascript (default is .min.js or .js (sandbox)
 	 * options | array | Options passed to the start function.
@@ -95,7 +115,6 @@ class Site {
 	 * sandbox | boolean | True if running in the sandbox
 	 * siteName | A name for the website.
 	 * started | boolean | True if the system has been started
-	 *
 	 *
 	 * @return null|string
 	 */

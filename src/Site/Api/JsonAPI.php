@@ -52,13 +52,13 @@ class JsonAPI {
      * Add standard database select error message
      */
     public function databaseSelectError() {
-        $this->add_error("Unable to select database", APIException::UNABLE_TO_SELECT_DATABASE);
+        $this->addError("Unable to select database", APIException::UNABLE_TO_SELECT_DATABASE);
     }
 
     /**
      * Add data to an API response
-     * @param $type Name of the data type
-     * @param $id Optional ID associated with data
+     * @param string $type Name of the data type
+     * @param string $id Optional ID associated with data
      * @param mixed $attributes Contents for the data item section
      */
     public function addData($type, $id, $attributes=null) {
@@ -72,7 +72,7 @@ class JsonAPI {
 
     /**
      * Get all data of a given type.
-     * @param $type Type to search for (like "post")
+     * @param string $type Type to search for (like "post")
      * @return array Array of items.
      */
     public function getData($type) {

@@ -3,6 +3,8 @@
  * Utility functions to format times.
  */
 
+import moment from 'moment';
+
 export let TimeFormatter = function() {
 }
 
@@ -86,5 +88,7 @@ TimeFormatter.absolute = function(time, weekday) {
 }
 
 TimeFormatter.absoluteUNIX = function(time, weekday) {
-    return TimeFormatter.absolute(new Date(time * 1000), weekday);
+    let t = moment.unix(time);
+    let format = 'M-DD-YYYY h:mm:ssa';
+    return t.format(weekday === 'short' ? 'ddd, ' + format : format);
 }
