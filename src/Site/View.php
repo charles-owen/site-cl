@@ -11,6 +11,11 @@ namespace CL\Site;
  *
  * @cond
  * @property boolean autoback
+ * @property Appearance appearance
+ * @property string root
+ * @property Site site
+ * @property string title
+ *
  * @endcond
  */
 class View {
