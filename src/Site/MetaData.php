@@ -67,6 +67,15 @@ class MetaData {
         $this->data[$category][$key] = $value;
     }
 
+	/**
+	 * Set an entire category at one time
+	 * @param string $category Category to set
+	 * @param mixed $value Value to set it to
+	 */
+	public function setCategory($category, $value) {
+		$this->data[$category] = $value;
+	}
+
 
     /**
      * Get all data as JSON encoding

@@ -1,4 +1,4 @@
-.rightbox, .centerbox, .advice, .problem, .scenario, .blindblock, aside, div.cl-slideshow, iframe, textarea, div.toggleblock, pre.code, textarea.code, figure img, img.figure, p.figure img, p.borderfigure img, p.rightfigure img, .shadow, table, form.cl-checklist {
+.rightbox, .centerbox, .advice, .problem, .scenario, .blindblock, aside, div.cl-slideshow, iframe, textarea, div.toggleblock, pre.code, textarea.code, figure img, img.figure, p.figure img, p.borderfigure img, p.rightfigure img, .shadow, table, div.cl-toggleblock, form.cl-checklist {
   -moz-box-shadow: 3px 3px 8px #ccc;
   -webkit-box-shadow: 3px 3px 8px #ccc;
   box-shadow: 3px 3px 8px #ccc; }
@@ -1327,7 +1327,7 @@ table {
       margin-top: 3px; }
   table tr th.center {
     text-align: center; }
-  table tr:first-child th {
+  table tr:first-child th, table tr.cl-internal th {
     color: white;
     background: #204c42;
     background: linear-gradient(#204c42, #389b54);
@@ -1340,13 +1340,13 @@ table {
     padding: 2px 6px;
     font-family: Helvetica, Arial, sans-serif;
     text-decoration: none; }
-    table tr:first-child th a:link {
+    table tr:first-child th a:link, table tr.cl-internal th a:link {
       color: #F5F3EB; }
-    table tr:first-child th a:visited {
+    table tr:first-child th a:visited, table tr.cl-internal th a:visited {
       color: #E3DCC5; }
-    table tr:first-child th a:hover {
+    table tr:first-child th a:hover, table tr.cl-internal th a:hover {
       color: #ffffff; }
-  table tr:first-child th.center {
+  table tr:first-child th.center, table tr.cl-internal th.center {
     text-align: center; }
   table th.width40 {
     width: 20%; }
@@ -1510,7 +1510,7 @@ div.xtoggle > div {
   display: none;
   overflow-y: hidden; }
 
-div.toggleblock {
+div.toggleblock, div.cl-toggleblock {
   position: relative;
   overflow: auto;
   background: #f0f0f0;
@@ -1574,7 +1574,7 @@ nav.cl-nav {
     list-style: none; }
   nav.cl-nav ul {
     max-width: 56em;
-    height: 25px;
+    min-height: 25px;
     margin: 0 auto;
     padding: 0; }
     nav.cl-nav ul li {

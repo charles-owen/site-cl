@@ -20,7 +20,7 @@ nav.cl-nav {
   // nav1: First line of navigation bar
   ul {
     max-width: $max-width;
-    height: 25px;
+    min-height: 25px;
     margin: 0 auto;
     padding: 0;
 

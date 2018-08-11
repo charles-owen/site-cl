@@ -314,7 +314,7 @@ export let Editor = function(element, options) {
             var scrollTop = dSel.scrollTop;
             var before = dSel.value.substring(0, startPos);
             var spaceStr = '';
-            for(i=0; i<options.tabSize; i++) {
+            for(let i=0; i<options.tabSize; i++) {
                 spaceStr += ' ';
             }
             if(before.length >= options.tabSize &&

@@ -39,7 +39,7 @@ export let APIResponse = function(json) {
             return ret;
         }
 
-        return null;
+        return [];
     }
 
 

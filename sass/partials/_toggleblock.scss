@@ -33,7 +33,7 @@ div.xtoggle {
   }
 }
 
-div.toggleblock {
+div.toggleblock, div.cl-toggleblock {
   @extend %shadow;
   position: relative;
   overflow:auto;

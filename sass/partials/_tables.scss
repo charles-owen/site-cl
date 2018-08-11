@@ -34,7 +34,7 @@ table {
     }
   }
 
-  tr:first-child {
+  tr:first-child, tr.cl-internal {
     th {
       color: white;
       background: $table-gradient-from;
