@@ -27,6 +27,9 @@ class ServerMock extends \CL\Site\System\Server {
 			case 'cookie':
 				return $this->cookie;
 
+			case 'email':
+				return new DummyEmail();
+
 			default:
 				return parent::__get($property);
 		}

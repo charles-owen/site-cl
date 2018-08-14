@@ -21,8 +21,8 @@ class TopologicalSort {
 	 * @return array Sorted array of plugin objects
 	 * @throws Exception If dependency graph has a cycle.
 	 */
-	public static function sort($plugins)
-	{
+	public static function sort($plugins) {
+
 
 		// Topological sort
 		$sorted = [];
@@ -30,7 +30,7 @@ class TopologicalSort {
 			$temp = [];
 			$any = false;
 
-			// Find all plugins that has no dependency
+			// Find all plugins that have no dependency
 			foreach ($plugins as $plugin => $depends) {
 				if (count($depends) === 0) {
 					$sorted[] = $plugin;
@@ -49,6 +49,18 @@ class TopologicalSort {
 			}
 
 			if (!$any) {
+				// We did not remove anything from plugins
+				// We either have a non-existent dependency or a cycle.
+
+				// Ensure all remaining dependencies exist
+				foreach($plugins as $key => $depends) {
+					foreach($depends as $depend) {
+						if(!isset($plugins[$depend])) {
+							throw new Exception("Plugin dependency on $depend, which is not installed");
+						}
+					}
+				}
+
 				throw new Exception('Plugin dependencies have a cycle');
 			}
 

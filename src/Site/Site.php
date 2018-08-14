@@ -41,6 +41,7 @@ use CL\Site\Util\TopologicalSort;
  * @property bool sandbox
  * @property string siteName
  * @property bool started
+ * @property string config
  *
  * There are cheating a bit to help with the type hinting
  * @property \CL\Course\Course course
@@ -103,6 +104,7 @@ class Site {
 	 * Property | Type | Description
 	 * -------- | ---- | -----------
 	 * appearance | Appearance | Installed site appearance object
+	 * config | string | Configuration file directory relative to root (default is 'site')
 	 * cookiePrefix | A prefix to attach to all cookie names (to ensure uniqueness)
 	 * db | \\CL\\Tables\\Config | Database configuration object
 	 * decor | string | Directory where decoration files are stored (default='site')
@@ -116,7 +118,7 @@ class Site {
 	 * siteName | A name for the website.
 	 * started | boolean | True if the system has been started
 	 *
-	 * @return null|string
+	 * @return mixed
 	 */
 	public function __get($key) {
 		if(isset($this->components[$key])) {
@@ -126,6 +128,9 @@ class Site {
 		switch($key) {
 			case "appearance":
 				return $this->appearance;
+
+			case 'config':
+				return $this->config;
 
 			case 'cookiePrefix':
 				return $this->cookiePrefix;
@@ -184,6 +189,7 @@ class Site {
 	 * Property | Type | Description
 	 * -------- | ---- | -----------
 	 * appearance | Appearance | Installed site appearance object
+	 * config | string | Configuration file directory relative to root (default is 'site')
 	 * cookiePrefix | A prefix to attach to all cookie names (to ensure uniqueness)
 	 * decor | string | Directory where decoration files are stored (default='site')
 	 * jsRoot | The root directory for the site Javascript (default is cl/dist
@@ -192,13 +198,17 @@ class Site {
 	 * sandbox | boolean | True if running in the sandbox
 	 * siteName | A name for the website.
 	 *
-	 * @param $key Property name
-	 * @param $value Value to set
+	 * @param string $key Property name
+	 * @param string $value Value to set
 	 */
 	public function __set($key, $value) {
 		switch($key) {
 			case 'appearance':
 				$this->appearance = $value;
+				break;
+
+			case 'config':
+				$this->config = $value;
 				break;
 
 			case 'cookiePrefix':
@@ -408,9 +418,10 @@ class Site {
 
 	private $sandbox = false;   ///< Are we running in a sandbox?
 
-	private $siteName = '';         ///< Name of the site
-	private $cookiePrefix = 'site'; ///< Prefix for cookie names
-	private $decor = 'site';       ///< The decorations directory
+	private $siteName = '';         // Name of the site
+	private $cookiePrefix = 'site'; // Prefix for cookie names
+	private $config = 'site';       // The configuration files directory
+	private $decor = 'site';        // The decorations directory
 
 
 	//

@@ -7,9 +7,16 @@
 
 namespace CL\Site\System;
 
+use CL\Site\Email;
+
 /**
  * Abstraction of server. Designed to be easily overridden
  * for testing purposes.
+ *
+ * @cond
+ * @property array post
+ * @property string requestMethod
+ * @endcond
  */
 class Server {
 	/**
@@ -58,6 +65,12 @@ class Server {
 
 			case 'files':
 				return $_FILES;
+
+			case 'requestMethod':
+				return $this->__get('server')['REQUEST_METHOD'];
+
+			case 'email':
+				return new Email();
 
 			default:
 				$trace = debug_backtrace();

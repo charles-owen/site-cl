@@ -539,6 +539,35 @@ HTML;
 		$this->body .= ' ' . $cls;
 	}
 
+	/**
+	 * __call() is triggered when invoking inaccessible methods in an object context.
+	 * @param string $name Name of non-existent function
+	 * @param array $arguments Arguments to the function call
+	 */
+	public function __call($name, $arguments) {
+		if (isset($this->extensions[$name])) {
+			return $this->extensions[$name]($this, $arguments);
+		} else {
+			$trace = debug_backtrace();
+			trigger_error(
+				'Fatal error: Call to undefined method CL\Site\View::' .
+				$name . '() in ' . $trace[0]['file'] .
+				' on line ' . $trace[0]['line'],
+				E_USER_NOTICE);
+		}
+	}
+
+	/**
+	 * Extend this class by adding a new function.
+	 * This is used by the Step system to add "add_step"
+	 * to the assignment category.
+	 * @param string $name Name of the function
+	 * @param \Closure $closure Closure to call.
+	 */
+	public function extend($name, $closure) {
+		$this->extensions[$name] = $closure;
+	}
+
 	private $appearance = null; ///< Installed appearance
 
 	private $site;
@@ -552,4 +581,5 @@ HTML;
 	private $aux = [];          // Auxiliary views (attached to view)
 	private $body = 'body';     // Classes to put in the top level div
 	private $autoback = false;  // The autoback option
+	private $extensions = [];       // Extensions to this object
 }
