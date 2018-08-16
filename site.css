@@ -793,13 +793,13 @@ div.dialog p.error {
   font-size: 0.85em;
   text-align: center; }
 
-div.cl-menu {
+div.cl-menu, span.cl-menu {
   position: relative; }
-  div.cl-menu > a.float-right {
+  div.cl-menu > a.float-right, span.cl-menu > a.float-right {
     display: inline-block;
     float: right;
     padding-left: 0.5em; }
-  div.cl-menu ul {
+  div.cl-menu ul, span.cl-menu ul {
     display: none;
     position: absolute;
     right: 0;
@@ -811,7 +811,7 @@ div.cl-menu {
     padding: 0.25em 0.5em;
     margin: 0;
     border: 1px solid #e8e8e8; }
-    div.cl-menu ul > li {
+    div.cl-menu ul > li, span.cl-menu ul > li {
       display: table-row;
       list-style-type: none;
       list-style-image: none;
@@ -819,21 +819,21 @@ div.cl-menu {
       margin-right: 10px;
       white-space: nowrap;
       line-height: 18px; }
-      div.cl-menu ul > li > a {
+      div.cl-menu ul > li > a, span.cl-menu ul > li > a {
         display: table-cell;
         padding-right: 0.5em;
         text-decoration: none; }
-  div.cl-menu li img {
+  div.cl-menu li img, span.cl-menu li img {
     width: 16px;
     height: 16px;
     vertical-align: top;
     max-width: none; }
-  div.cl-menu li span.menusep {
+  div.cl-menu li span.menusep, span.cl-menu li span.menusep {
     display: table-cell;
     background: black;
     height: 1px;
     margin: 5px 0; }
-  div.cl-menu .only {
+  div.cl-menu .only, span.cl-menu .only {
     width: 8em;
     padding-left: 5px;
     font-size: 90%;

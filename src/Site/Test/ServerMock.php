@@ -28,7 +28,11 @@ class ServerMock extends \CL\Site\System\Server {
 				return $this->cookie;
 
 			case 'email':
-				return new DummyEmail();
+				if($this->email === null) {
+					$this->email = new DummyEmail();
+				}
+
+				return $this->email;
 
 			default:
 				return parent::__get($property);
@@ -78,6 +82,7 @@ class ServerMock extends \CL\Site\System\Server {
 		'SERVER_NAME' => 'www.cse.msu.edu'];
 
 	private $cookie = [];
+	private $email = null;
 
 	/// \endcond
 }

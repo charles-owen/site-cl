@@ -91,6 +91,15 @@ class Email {
 			if(file_exists($file)) {
 				$func = require $file;
 				$func($this);
+
+				if($this->fromEmail === null) {
+					$this->fromEmail = 'no-reply@wherever.edu';
+				}
+
+				if($this->fromName === null) {
+					$siteName = $site->siteName;
+					$this->fromName = "$siteName Email";
+				}
 			}
 
 			$this->loaded = true;
@@ -108,19 +117,7 @@ class Email {
 	public function send(Site $site, $email, $name, $subject, $message) {
 		$this->load($site);
 
-		if($this->from === null) {
-			$siteName = $site->siteName;
-			$this->from = "\"$siteName Email\" <no-reply@wherever.edu>";
-		}
-
-		$headers = "MIME-Version: 1.0\r\nContent-type: text/html; charset=iso=8859-1\r\nFrom: $this->from\r\n";
-		
-		$body = <<<MAIL
-<html>
-$message
-</html>
-MAIL;
-		$this->mail($site, $email, $name, $subject, $body, $headers);
+		$this->mail($site, $email, $name, $subject, $message);
 	}
 	
 	/** Send an email message
@@ -132,8 +129,8 @@ MAIL;
 	 * @param string $name Name of the recipient
 	 * @param string $subject Email subject
 	 * @param string $body The email body
-	 * @param string $headers Email message headers */
-	public function mail(Site $site, $email, $name, $subject, $body, $headers) {
+	 */
+	public function mail(Site $site, $email, $name, $subject, $body) {
 	    if($email === '') {
 	        return;
         }
@@ -145,7 +142,7 @@ MAIL;
 
             $mail = new PHPMailer();
 
-            $mail->setFrom('no-reply@cse.msu.edu', "$siteName Email");
+            $mail->setFrom($this->fromEmail, $this->fromName);
             $mail->addAddress($email, $name);
             $mail->Subject = $subject;
             $mail->msgHTML($body);
@@ -164,7 +161,6 @@ MAIL;
 				$line = <<<LINE
 To: $email
 Subject: $subject
-Headers: $headers
 Message: $body
 
 
@@ -176,8 +172,20 @@ LINE;
 		}
 	}
 
+	/**
+	 * Magic function to disable displaying recursive content (Site)
+	 * @return array Properties to dump
+	 */
+	public function __debugInfo()
+	{
+		$properties = get_object_vars($this);
+		unset($properties['site']);
+		return $properties;
+	}
+
 	private $site = null;
 	private $loaded = false;
-	private $from = null;
+	private $fromName = null;
+	private $fromEmail = null;
 }
 

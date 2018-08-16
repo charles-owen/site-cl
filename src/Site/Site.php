@@ -115,6 +115,7 @@ class Site {
 	 * root | string | %Site root path
 	 * rootDir | string | %Site root directory
 	 * sandbox | boolean | True if running in the sandbox
+	 * server | string | Server URL, like 'https://www.server.edu'
 	 * siteName | A name for the website.
 	 * started | boolean | True if the system has been started
 	 *
@@ -171,6 +172,9 @@ class Site {
 			case 'started':
 				return $this->started;
 
+			case 'server':
+				return $this->server;
+
 			default:
 				$trace = debug_backtrace();
 				trigger_error(
@@ -196,6 +200,7 @@ class Site {
 	 * jsSuffix | Suffix to append to base Javascript (default is .min.js or .js (sandbox)
 	 * root | string | %Site root path
 	 * sandbox | boolean | True if running in the sandbox
+	 * server | string | Server URL, like 'https://www.server.edu'
 	 * siteName | A name for the website.
 	 *
 	 * @param string $key Property name
@@ -233,6 +238,10 @@ class Site {
 
 			case 'sandbox':
 				$this->sandbox = $value;
+				break;
+
+			case 'server':
+				$this->server = $value;
 				break;
 
 			case 'siteName':
@@ -422,7 +431,7 @@ class Site {
 	private $cookiePrefix = 'site'; // Prefix for cookie names
 	private $config = 'site';       // The configuration files directory
 	private $decor = 'site';        // The decorations directory
-
+	private $server = null;         // Server URL (like https://www.server.edu)
 
 	//
 	// The startup phases

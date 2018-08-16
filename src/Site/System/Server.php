@@ -70,7 +70,11 @@ class Server {
 				return $this->__get('server')['REQUEST_METHOD'];
 
 			case 'email':
-				return new Email();
+				if($this->email === null) {
+					$this->email = new Email();
+				}
+
+				return $this->email;
 
 			default:
 				$trace = debug_backtrace();
@@ -143,7 +147,7 @@ class Server {
 
 	/**
 	 * Delete a cookie
-	 * @param $name Cookie to delete
+	 * @param string $name Cookie to delete
 	 */
 	public function deleteCookie($name) {
 		setcookie ($name, "", 1, "/");
@@ -187,4 +191,6 @@ class Server {
 
 		return array_slice($path, $i);
 	}
+
+	private $email = null;
 }

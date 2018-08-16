@@ -6,5 +6,6 @@
 
 return function(\CL\Site\Email $email) {
 	$siteName = $email->site->siteName;
-	$email->from = "\"$siteName Course Email\" <no-reply@cse.msu.edu>";
+	$email->fromName = "$siteName Course Email";
+	$email->fromEmail = "no-reply@cse.msu.edu";
 };

@@ -72,17 +72,25 @@ class DummyEmail extends Email {
 	 * @param string $name Name of the recipient
 	 * @param string $subject Email subject
 	 * @param string $body The email body
-	 * @param string $headers Email message headers
 	 */
-    public function mail(Site $site, $email, $name, $subject, $body, $headers) {
+    public function mail(Site $site, $email, $name, $subject, $body) {
         $this->log[] = array(
             'email' => $email,
             'name' => $name,
             'subject' => $subject,
-            'body' => $body,
-            'headers' => $headers
+            'body' => $body
         );
     }
+
+	/**
+	 * Magic function to disable displaying recursive content (Site)
+	 * @return array Properties to dump
+	 */
+	public function __debugInfo() {
+		$properties = array_merge(parent::__debugInfo(), get_object_vars($this));
+		unset($properties['site']);
+		return $properties;
+	}
 
     private $log = [];
 }

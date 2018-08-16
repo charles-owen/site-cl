@@ -7,7 +7,6 @@
 require_once __DIR__ . '/init.php';
 
 use CL\Site\Test\DummyEmail;
-use CL\Site\Email;
 use CL\Site\Site;
 
 
@@ -30,7 +29,6 @@ class EmailTest extends \PHPUnit_Framework_TestCase {
 		$this->assertEquals('Bob Minion', $log0['name']);
 		$this->assertContains('Test Message', $log0['subject']);
 		$this->assertContains('Message Body', $log0['body']);
-		$this->assertContains('From: "Test Site Course Email" <no-reply@cse.msu.edu>', $log0['headers']);
 	}
 	
 }
