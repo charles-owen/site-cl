@@ -1,4 +1,4 @@
-.rightbox, .centerbox, .advice, .problem, .scenario, .blindblock, aside, div.cl-slideshow, iframe, textarea, div.toggleblock, pre.code, textarea.code, figure img, img.figure, p.figure img, p.borderfigure img, p.rightfigure img, .shadow, table, div.cl-toggleblock, form.cl-checklist {
+.rightbox, .centerbox, .advice, .problem, .scenario, .blindblock, aside, div.cl-slideshow, iframe, textarea, div.toggleblock, pre.code, textarea.code, figure img, img.figure, p.figure img, p.borderfigure img, p.rightfigure img, .shadow, table, div.cl-toggleblock, form.cl-checklist, div.cl-bar {
   -moz-box-shadow: 3px 3px 8px #ccc;
   -webkit-box-shadow: 3px 3px 8px #ccc;
   box-shadow: 3px 3px 8px #ccc; }
@@ -1678,6 +1678,16 @@ div.cl-mask {
 
 div.cl-mask.mask {
   display: block; }
+
+div.cl-bar {
+  background-color: #0c5645;
+  font-size: 0.85em;
+  font-weight: bold;
+  color: white;
+  height: 1.4em;
+  width: 100%;
+  text-align: center;
+  margin: 1em 0; }
 
 div.remote-exec {
   width: 100%;

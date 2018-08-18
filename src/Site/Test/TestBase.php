@@ -15,6 +15,29 @@ abstract class TestBase extends \PHPUnit_Framework_TestCase {
 	private $dir;
 
 	public function __construct($dir) {
+		parent::__construct();
 		$this->dir = $dir;
+	}
+
+	/**
+	 * Create a valid Site object, loading the database configuration.
+	 *
+	 * Override to load additional configurations.
+	 * @return \CL\Site\Site
+	 * @throws \Exception
+	 */
+	protected function createSite() {
+		$site = new \CL\Site\Site($this->dir);
+		$filename = $this->dir . '/site.php';
+		if(!file_exists($filename)) {
+			throw new \Exception('Database configuration file tests/site.php does not exist.');
+		}
+		$configure = require($filename);
+		if(!is_callable($configure)) {
+			throw new \Exception('Database configuration file tests/site.php does not contain a configuration function.');
+		}
+
+		$configure($site);
+		return $site;
 	}
 }

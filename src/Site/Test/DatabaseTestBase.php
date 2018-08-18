@@ -14,6 +14,7 @@ abstract class DatabaseTestBase extends \PHPUnit_Extensions_Database_TestCase {
 	private $dir;
 
 	public function __construct($dir) {
+		parent::__construct();
 		$this->dir = $dir;
 	}
 
