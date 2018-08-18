@@ -1,6 +1,6 @@
 // The site-path module must be imported first!
-import './site-path.js';
-import './polyfills/polyfills.js';
+import './js/site-path.js';
+import './js/polyfills/polyfills.js';
 
 import Vue from 'vue';
 import VueRouter from 'vue-router';
@@ -10,10 +10,10 @@ export {Vue};
 export {VueRouter};
 export {Vuex};
 
-import NotFoundComponent from './Vue/NotFoundComponent.vue';
+import NotFoundComponent from './js/Vue/NotFoundComponent.vue';
 export {NotFoundComponent};
 
-import {SiteFactory} from './SiteFactory.js';
+import {SiteFactory} from './js/SiteFactory.js';
 
 const Site = SiteFactory.create();
 export {Site};

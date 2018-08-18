@@ -20,14 +20,20 @@ class CreditsView extends \CL\Site\View {
 		parent::__construct($site);
 	}
 
+	/**
+	 * Present the site credits.
+	 * @return string HTML
+	 */
 	public function present_site() {
 		$img = $this->site->root . '/vendor/cl/site/img';
 
 		$html = <<<HTML
-<h2>Dr. Owen Web Site Library</h2>
+<h2>Dr. Owen CourseLib Web Site Library</h2>
 
-<p>This web site utilizes the Dr. Owen Web Site Library, a collection of components that support high-performance course web sites. 
-<p>Some of the tools, components, and resources used in the creation of the library and general web development that I do:
+<p>This web site utilizes CourseLib, the Dr. Owen Web Site Library, a collection of 
+components that support high-performance educational web sites. </p>
+<p>Some of the tools, components, and resources used in the creation of the library 
+and general web development that I do:</p>
 <figure>
 <a href="http://www.adobe.com/creativecloud.html" target="_blank"><img src="$img/adobe-creative-cloud.png" width="400" height="151" alt="Adobe Creative Cloud"/>
 </a>
@@ -61,11 +67,11 @@ HTML;
 <ul>
 HTML;
 
-		$list = array(
+		$list = [
 			array("link" => "http://www.autodesk.com/", "name" => "Autodesk 3D Studio Max"),
 			array("link" => "http://my.smithmicro.com/poser-pro-11.html", "name" => "Poser Pro"),
 			array("link" => "http://www.3dconnexion.com/", "name" => "3D Connexion SpaceNavigator")
-		);
+		];
 
 		foreach($list as $item) {
 			$html .= $this->item($item['name'], $item['link']);

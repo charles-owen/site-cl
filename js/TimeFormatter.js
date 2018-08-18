@@ -69,6 +69,8 @@ TimeFormatter.absoluteUNIX = function(time, format) {
     let t = moment.unix(time);
     if(format === undefined) {
         format = 'M-DD-YYYY h:mm:ssa';
+    } else if(format === 'short') {
+	    format = 'ddd, M-DD-YYYY h:mm:ssa';
     }
     return t.format(format);
 }

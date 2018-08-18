@@ -10,6 +10,8 @@ import Vuex from 'vuex';
 
 const url = require('url');
 
+import {Autoback} from 'autoback-cl';
+
 import ApiService from './ApiService';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
@@ -29,7 +31,6 @@ SiteFactory.create = function() {
     console.log('SiteFactory');
 
     require('toggler-cl');
-    require('autoback-cl');
     require('icons-cl');
 
     Vue.use(VueRouter);
@@ -175,9 +176,9 @@ SiteFactory.create = function() {
         Site.startList.forEach((fun) => {
             fun();
         })
-    });
 
-    // lazy();
+	    Autoback.install();
+    });
 
     return Site;
 }

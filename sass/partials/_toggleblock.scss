@@ -1,39 +1,7 @@
-div.xtoggle {
-
-  >:first-child {
-    background-image: url('img/plus.png');
-    background-repeat: no-repeat;
-    padding-left: 1.4em;
-    background-position: left 0.15em;
-    background-size: 1.0em;
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    a:link {
-
-    }
-
-    a:hover {
-      text-decoration: none;
-      color: $toggle-link-hover-color;
-    }
-  }
-
-  > .visible {
-    background-image: url('img/minus.png');
-  }
-
-  >div {
-    transform-origin: top left;
-    display: none;
-    overflow-y: hidden;
-  }
-}
-
-div.toggleblock, div.cl-toggleblock {
+/*
+ * Custom styling for toggle blocks, mostly to add the shadow.
+ */
+div.cl-toggleblock {
   @extend %shadow;
   position: relative;
   overflow:auto;

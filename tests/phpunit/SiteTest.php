@@ -1,6 +1,6 @@
 <?php
 /** @file
- * Unit tests for the class Site\Config
+ * Unit tests for the class Site
  * @cond 
  */
 

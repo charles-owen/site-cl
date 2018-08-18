@@ -658,9 +658,8 @@ footer.cl-site {
 div.content {
   position: relative;
   max-width: 56em;
-  padding: 0 10px;
-  margin-left: auto;
-  margin-right: auto; }
+  padding: 0;
+  margin: 0 auto; }
   div.content > p, div.content > div, div.content > pre, div.content > div.toggleblock, div.content > ul, div.content > ol, div.content > form, div.content .left, div.content > figure {
     margin-left: 0;
     margin-right: 16em; }
@@ -793,13 +792,13 @@ div.dialog p.error {
   font-size: 0.85em;
   text-align: center; }
 
-div.cl-menu, span.cl-menu {
+div.cl-menu {
   position: relative; }
-  div.cl-menu > a.float-right, span.cl-menu > a.float-right {
+  div.cl-menu > a.float-right {
     display: inline-block;
     float: right;
     padding-left: 0.5em; }
-  div.cl-menu ul, span.cl-menu ul {
+  div.cl-menu ul {
     display: none;
     position: absolute;
     right: 0;
@@ -811,7 +810,7 @@ div.cl-menu, span.cl-menu {
     padding: 0.25em 0.5em;
     margin: 0;
     border: 1px solid #e8e8e8; }
-    div.cl-menu ul > li, span.cl-menu ul > li {
+    div.cl-menu ul > li {
       display: table-row;
       list-style-type: none;
       list-style-image: none;
@@ -819,21 +818,21 @@ div.cl-menu, span.cl-menu {
       margin-right: 10px;
       white-space: nowrap;
       line-height: 18px; }
-      div.cl-menu ul > li > a, span.cl-menu ul > li > a {
+      div.cl-menu ul > li > a {
         display: table-cell;
         padding-right: 0.5em;
         text-decoration: none; }
-  div.cl-menu li img, span.cl-menu li img {
+  div.cl-menu li img {
     width: 16px;
     height: 16px;
     vertical-align: top;
     max-width: none; }
-  div.cl-menu li span.menusep, span.cl-menu li span.menusep {
+  div.cl-menu li span.menusep {
     display: table-cell;
     background: black;
     height: 1px;
     margin: 5px 0; }
-  div.cl-menu .only, span.cl-menu .only {
+  div.cl-menu .only {
     width: 8em;
     padding-left: 5px;
     font-size: 90%;
@@ -1491,26 +1490,10 @@ p.run, p.compile, p.vsrun, p.vsbuild {
   background-color: #ddffdd;
   padding: 5px 5px 5px 25px; }
 
-div.xtoggle > :first-child {
-  background-image: url("img/plus.png");
-  background-repeat: no-repeat;
-  padding-left: 1.4em;
-  background-position: left 0.15em;
-  background-size: 1.0em; }
-  div.xtoggle > :first-child a {
-    text-decoration: none;
-    color: inherit; }
-  div.xtoggle > :first-child a:hover {
-    text-decoration: none;
-    color: #006600; }
-div.xtoggle > .visible {
-  background-image: url("img/minus.png"); }
-div.xtoggle > div {
-  transform-origin: top left;
-  display: none;
-  overflow-y: hidden; }
-
-div.toggleblock, div.cl-toggleblock {
+/*
+ * Custom styling for toggle blocks, mostly to add the shadow.
+ */
+div.cl-toggleblock {
   position: relative;
   overflow: auto;
   background: #f0f0f0;

@@ -5,6 +5,10 @@
 
 @import '../../sass/modules/colors';
 
+div.content > div.cl-video {
+	margin: 0;
+}
+
 div.cl-video {
 
 	.vjs-default-skin .vjs-play-progress,

@@ -31,7 +31,7 @@ class Toggle {
 	 * \endcode
 	 * @returns HTML code
 	 */
-	public static function begin($heading, $tag="h2", $class=null, $classBlock="toggleblock") {
+	public static function begin($heading, $tag="h2", $class=null, $classBlock="cl-toggleblock") {
 		$c = $class !== null ? " class=\"$class\"" : '';
 		$html = <<<HTML
 <div class="cl-toggle">

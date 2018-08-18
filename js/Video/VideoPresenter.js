@@ -1,5 +1,5 @@
 import 'video.js/dist/video-js.css';
-import './video.scss';
+import './_video.scss';
 
 let videojs = require("video.js");
 

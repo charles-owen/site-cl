@@ -10,6 +10,7 @@ namespace CL\Site;
 use CL\Site\Components\InstalledConfig;
 use CL\Site\System\Server;
 use CL\Site\Util\TopologicalSort;
+use CL\Tables\Config;
 
 /**
  * Site configuration object for a general purpose web site.
@@ -30,7 +31,7 @@ use CL\Site\Util\TopologicalSort;
  * @cond
  * @property Appearance appearance
  * @property string cookiePrefix
- * @property CL::Tables::Config db
+ * @property Config db
  * @property string decore
  * @property string jsSuffix
  * @property string jsRoot
@@ -45,6 +46,7 @@ use CL\Site\Util\TopologicalSort;
  *
  * There are cheating a bit to help with the type hinting
  * @property \CL\Course\Course course
+ * @property \CL\Users\UsersPlugin users
  *
  * @endcond
  */
@@ -345,6 +347,15 @@ class Site {
 	 */
 	public function install($component, Plugin $plugin) {
 		$this->components[$component] = $plugin;
+	}
+
+	/**
+	 * Determine if a plugin component is installed.
+	 * @param string $component Component tag (like 'grades')
+	 * @return bool True if component is installed
+	 */
+	public function installed($component) {
+		return isset($this->components[$component]);
 	}
 
 	/**

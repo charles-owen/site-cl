@@ -51,6 +51,11 @@ class View {
 		$this->addJS('vendor');
 	//	$this->addJS('commons');
 		$this->addJS('site');
+
+		// Call amend if this object is not subclassed.
+		if(get_class($this) === self::class) {
+			$site->amend($this);
+		}
 	}
 
 	/**
@@ -107,6 +112,8 @@ class View {
 	 * Property | Type | Description
 	 * -------- | ---- | -----------
 	 * autoback | bool | Page supports autoback
+	 * beforeContent | string | Adds HTML to present at the beginning of the first content div
+	 * beforeFooter | string | Adds HTML to present right before the page footer
 	 * script | string | Add content to a page &lt;script&gt; tag
 	 * title | string | The site title
 	 *
@@ -125,6 +132,14 @@ class View {
 
 			case 'script':
 				$this->script .= $value;
+				break;
+
+			case 'beforeFooter':
+				$this->beforeFooter .= $value;
+				break;
+
+			case 'beforeContent':
+				$this->beforeContent .= $value;
 				break;
 
 			default:
@@ -352,15 +367,43 @@ HTML;
 		$root = $this->site->root;
 		$title = "<a href=\"$root/\">$siteName</a> $this->title";
 		$html = '<div class="' . $this->body . '">' . $this->appearance->header($this, $title, $nav);
-		if($contentDiv) {
-			$html .= '<div class="content">';
+		if($this->autoback) {
+			$this->beforeContent .= '<div class="cl-autoback cl-strip"></div>';
+		}
 
-			if($this->autoback) {
-				$html .= '<div class="cl-autoback cl-strip"></div>';
-			}
+		if($contentDiv) {
+			$html .= $this->enterContent();
 		}
 
 		return $html;
+	}
+
+	/**
+	 * Enter a content DIV
+	 * @return string HTML
+	 */
+	public function enterContent() {
+		$this->contentDepth++;
+		if($this->contentDepth > 1) {
+			return '';
+		}
+
+		$html = '<div class="content">' . $this->beforeContent;
+		$this->beforeContent = '';
+		return $html;
+	}
+
+	/**
+	 * Exit the content DIV
+	 * @return string HTML
+	 */
+	public function exitContent() {
+		$this->contentDepth--;
+		if($this->contentDepth > 0) {
+			return '';
+		}
+
+		return '</div>';
 	}
 
 	/**
@@ -372,7 +415,7 @@ HTML;
 			$this->getAppearance();
 		}
 
-		$html = $this->appearance->footer($this) . '</div>' . $this->tail();
+		$html = $this->beforeFooter . $this->appearance->footer($this) . '</div>' . $this->tail();
 		if($contentDiv) {
 			if($this->autoback) {
 				$html = '<div class="cl-autoback cl-strip"></div></div>' . $html;
@@ -581,5 +624,9 @@ HTML;
 	private $aux = [];          // Auxiliary views (attached to view)
 	private $body = 'body';     // Classes to put in the top level div
 	private $autoback = false;  // The autoback option
-	private $extensions = [];       // Extensions to this object
+	private $extensions = [];   // Extensions to this object
+
+	private $contentDepth = 0;  // How many nestings of the call to enterContent have we?
+	private $beforeContent = ''; // Extra HTML before the first content div
+	private $beforeFooter = '';  // Extra content to add before footer
 }
