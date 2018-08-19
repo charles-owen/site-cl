@@ -1,9 +1,9 @@
 
 /**
- * Header manipulation component
+ * Header presentation and manipulation component
+ * @constructor
  */
-
-let Header = function(html) {
+export const Header = function(html) {
     this.html = html;
 
     this.component = function() {
@@ -22,6 +22,4 @@ let Header = function(html) {
     }
 
 }
-
-export default Header;
 

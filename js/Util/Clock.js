@@ -1,8 +1,9 @@
 /**
- * @file
  * Javascript clock object
+ *
+ * Replaces an element's textContent with a running clock.
+ * @constructor
  */
-
 export let Clock = function(entity) {
     function show() {
         let now = new Date();

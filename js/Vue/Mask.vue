@@ -4,12 +4,15 @@
 
 <script>
   /**
-   * @file
-   * Masking vue.
+   * Masking Vue component.
+   *
+   * When enabled, a translucent mask with an optional message
+   * is displayed and controls are disabled.
    *
    * Must be a child of an element with a position setting
    * in CSS. When mask is true, the interface is disabled by
    * an overlay mask.
+   * @constructor MaskVue
    */
   export default {
       props: ['mask'],

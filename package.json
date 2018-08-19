@@ -1,12 +1,15 @@
 {
   "name": "site-cl",
-  "version": "0.0.1",
+  "version": "2.0.0",
   "description": "CourseLib Website base Site components",
   "main": "index.js",
   "keywords": [
     "Education",
     "LTI"
   ],
+  "scripts": {
+    "build:docs": "documentation build index.js js/**/*.vue  -f html -o doc/js"
+  },
   "author": "Charles B. Owen",
   "license": "MIT",
   "devDependencies": {

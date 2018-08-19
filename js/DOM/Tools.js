@@ -1,9 +1,8 @@
 /**
- * @file
  * Convenience functions for the DOM.
  * Tools that avoid having to have jQuery installed.
+ * @constructor
  */
-
 export let Tools = function() {
 
 }
@@ -71,10 +70,20 @@ Tools.addContent = function(element, content) {
     }
 }
 
+/**
+ * Is the passed value a string?
+ * @param val
+ * @returns {boolean}
+ */
 Tools.isString = function(val) {
     return typeof val === 'string' || ((!!val && typeof val === 'object') && Object.prototype.toString.call(val) === '[object String]');
 }
 
+/**
+ * Is the passed value an HTMLElement?
+ * @param val
+ * @returns {boolean}
+ */
 Tools.isElement = function(val) {
     return val !== undefined && val !== null && val.nodeValue !== undefined;
 }

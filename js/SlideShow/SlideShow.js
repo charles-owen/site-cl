@@ -1,14 +1,11 @@
-/**
- * @file
+/*
  * Javascript Object that manages a slide show
  */
 
 /**
  * Object that manages a slide show
- * @param path Path to the first slide
- * @param first Index to first slide
- * @param last Index to last slide
- * @param id ID for the slide display img tag
+ * @constructor
+ * @param {element} element Element to place the slide show into.
  * @return void
  */
 export let SlideShow = function(element) {
@@ -142,56 +139,10 @@ export let SlideShow = function(element) {
 
 
     start();
-
-
-
-
-
-    //		$dot = strrpos($path, '.');
-//		$path1 = substr($path, 0, $dot);
-//		$ext = substr($path, $dot, strlen($path) - $dot);
-//		$slide1 = $path1 . $first . $ext;
-//		$libroot = Course::get()->get_libroot();
-
-    let html = `<br>
-<a class="first"><img src="/vendor/cl/site/img/trans-start.png" width="25" height="25" alt="First Slide" class="transport"></a>
-<a class="prev"><img src="/vendor/cl/site/img/trans-prev.png" width="25" height="25" alt="Previous Slide" class="transport"></a>
-<a class="next"><img src="/vendor/cl/site/img/trans-next.png" width="25" height="25" alt="Next Slide" class="transport"></a>
-<a class="last"><img src="/vendor/cl/site/img/trans-end.png" width="25" height="25" alt="Last Slide" class="transport"></a>`;
-
-  //  element.innerHTML = html;
-
-    // var that = this;
-    //
-    // var sel = '#' + id;
-    // var dot = path.lastIndexOf('.');
-    // this.path = path.substr(0, dot);
-    // this.ext = path.substr(dot + 1, path.length - dot - 1);
-    // this.first = first;
-    // this.last = last;
-    // this.id = id;
-    // this.current = first;
-    //
-    // $(document).ready(function() {
-    //     $(sel + ' .first').click(function(event) {
-    //         that.moveTo(event, first);
-    //     });
-    //
-    //     $(sel + ' .prev').click(function(event) {
-    //         that.move(event, -1);
-    //     });
-    //
-    //     $(sel + ' .next').click(function(event) {
-    //         that.move(event, 1);
-    //     });
-    //     $(sel + ' .last').click(function(event) {
-    //         that.moveTo(event, last);
-    //     });
-    //
-    // });
 }
 
-/** @brief Move to another slide
+/**
+ * Move to another slide
  * @param event HTML event
  * @param dist Positive or negative distance to move */
 SlideShow.prototype.move = function(event, dist) {
@@ -206,7 +157,8 @@ SlideShow.prototype.move = function(event, dist) {
     $("#" + this.id + ">img").attr('src', this.path + this.current + '.' + this.ext);
 };
 
-/** @brief Move to a slide
+/**
+ * Move to a slide
  * @param event HTML event
  * @param slide Slide to move to
  */

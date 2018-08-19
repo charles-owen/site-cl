@@ -1,19 +1,22 @@
-/**
- * @file
+/*
  * Utility functions to format times.
  */
 
 import moment from 'moment';
 
+/**
+ * Utility functions to format times.
+ * @constructor
+ */
 export let TimeFormatter = function() {
 }
 
 /**
  * Convert a time to the format we display
  * Time is relative to a specified time (or current time)
- * @param time
- * @param currentTime
- * @param short
+ * @param time Time to convert (moment)
+ * @param currentTime Current time (moment)
+ * @param format Moment format
  * @returns {string}
  */
 TimeFormatter.relative = function(time, currentTime, format) {
@@ -64,7 +67,11 @@ TimeFormatter.relative = function(time, currentTime, format) {
     return time.format(format);
 }
 
-
+/**
+ * Display a Unix time as an absolute time.
+ * @param time Unix time (seconds)
+ * @param format Moment format or 'long' or 'short' for days inclusion.
+ */
 TimeFormatter.absoluteUNIX = function(time, format) {
     let t = moment.unix(time);
     if(format === undefined) {

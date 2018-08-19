@@ -6,6 +6,7 @@
 
 namespace CL\Site;
 
+use CL\Site\Api\JsonAPI;
 use CL\Site\System\Server;
 
 /**
@@ -69,6 +70,14 @@ class Router {
 
 			case 'setup':
 				return $this->setup($site, $server, $path, $time);
+
+			case 'api':
+				if(count($path) > 1) {
+					if($path[1] === 'poll') {
+						return $this->poll($site, $server, $time);
+					}
+				}
+				break;
 		}
 
 		// Dispatch the route
@@ -131,6 +140,22 @@ class Router {
 		return $view->whole();
 	}
 
+	/**
+	 * Handle poll requests
+	 * @param Site $site The Site object
+	 * @param Server $server Abstraction of the server
+	 * @param int $time Current time
+	 * @return string Json API result
+	 */
+	private function poll(Site $site, Server $server, $time) {
+		$site->start(['open'=>true]);
+
+		sleep(5);
+
+		$json = new JsonAPI();
+
+		return $json->encode();
+	}
 
 	private function invalid(Site $site) {
 		$view = new \CL\Site\Views\InvalidPathView($site);

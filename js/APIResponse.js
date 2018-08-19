@@ -1,19 +1,15 @@
 /**
- * @file
  * Response from the API in an easy-to-use format
+ * @constructor
  */
-
-export let APIResponse = function(json) {
+export const APIResponse = function(json) {
     this.json = json;
 
-    this.hasError = function()  {
-       return (this.json.errors !== undefined && this.json.errors.length > 0);
-    }
 
     /**
      * Get data by type
      * @param type Name of the type, like 'token'
-     * @returns {null} Array of data or null if not found
+     * @returns {object} Object of data or null if not found
      */
     this.getData = function(type) {
         if (this.json.data !== undefined) {
@@ -27,7 +23,12 @@ export let APIResponse = function(json) {
         return null;
     }
 
-    this.getDataAll = function(type) {
+	/**
+	 * Get all instances of data by tye
+	 * @param type Name of the type, like 'token'
+	 * @returns {Array} Array of objects representing the data elements.
+	 */
+	this.getDataAll = function(type) {
         if (this.json.data !== undefined) {
             let ret = [];
             for (const item of this.json.data) {
@@ -43,15 +44,30 @@ export let APIResponse = function(json) {
     }
 
 
+	/**
+	 * Does this response have an error?
+	 * @returns {boolean} True if there is an error
+	 */
+	this.hasError = function()  {
+		return (this.json.errors !== undefined && this.json.errors.length > 0);
+	}
+
+	/**
+	 * Return the error code if there is an error
+	 * @return {int} Error code
+	 */
     this.errorCode = function() {
         return this.json.errors[0].code;
     }
 
-    this.errorTitle = function() {
+	/**
+	 * Return the error title if there is an error
+	 * @return {string} Error title
+	 */
+	this.errorTitle = function() {
         return this.json.errors[0].title;
     }
 
 }
 
-export default APIResponse;
-
+//export default APIResponse;

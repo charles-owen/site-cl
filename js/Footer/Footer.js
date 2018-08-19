@@ -1,15 +1,11 @@
 /**
- * @file
- * Footer presentation and manipulation
+ * Footer presentation and manipulation component
+ * @constructor
  */
-
-let Footer = function(html) {
+export const Footer = function(html) {
     this.html = html;
 
     this.component = function() {
         return {template: this.html}
     }
 }
-
-export default Footer;
-

@@ -7,10 +7,10 @@
 /// Classes in the Site (core) subsystem
 namespace CL\Site;
 
-use CL\Site\Components\InstalledConfig;
 use CL\Site\System\Server;
 use CL\Site\Util\TopologicalSort;
 use CL\Tables\Config;
+use CL\Site\Examples\ExampleVueView;
 
 /**
  * Site configuration object for a general purpose web site.
@@ -405,6 +405,16 @@ class Site {
 	 * @param mixed $object
 	 */
 	public function amend($object) {
+		if($object instanceof Router) {
+			$router = $object;
+
+			$router->addRoute(['example', 'vue'], function(Site $site, Server $server, array $params, array $properties, $time) {
+				$view = new ExampleVueView($site, $server, $time);
+				return $view->vue();
+			});
+
+		}
+
 		foreach($this->plugins as $plugin) {
 			$plugin->amend($object);
 		}

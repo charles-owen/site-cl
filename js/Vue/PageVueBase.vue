@@ -1,23 +1,37 @@
-<!--
-@file
-Base component for pages.
-
-Provides:
-setTitle
-this.root
--->
-
 <script>
-    export default {
+	/**
+   * Base component for pages.
+   * @constructor PageVueBase
+   */
+  export default {
         data: function() {
             return {
-                root: Site.root
+	            /**
+               * Site object
+               * @memberof PageVueBase
+               * @instance
+               * @member {Site} site
+               */
+              site: Site,
+	            /**
+               * Site root path (Site.root)
+               * @memberof PageVueBase
+               * @instance
+               * @member {string} root
+               */
+              root: Site.root
             }
         },
         methods: {
-            setTitle(title) {
+	        /**
+           * Set the page title
+           * @memberof PageVueBase
+           * @instance
+	         * @param {string} title
+	         */
+           setTitle(title) {
                 this.$parent.setTitle(title);
-            }
+           }
         }
     }
 </script>

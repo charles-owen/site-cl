@@ -241,7 +241,7 @@ HTML;
 
 
 	/**
-	 * @page appearance-options
+	 * @page appearance-options Appearance options
 	 *
 	 * @section site-image-tags Site image tags
 	 *
@@ -496,6 +496,10 @@ HTML;
 	 *
 	 * Data will be included in a &lt;div id="$id" style="display:none"&gt; tag.
 	 * This content is added to the page tail for all document presentations.
+	 *
+	 * @code
+	 * $this->addJSON('cl-permissions', json_encode($site->users->permissions));
+	 * @endcode
 	 *
 	 * @param string $id ID to use
 	 * @param string $json JSON to add

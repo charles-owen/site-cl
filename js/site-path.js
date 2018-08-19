@@ -1,9 +1,8 @@
-/**
+/*
  * Set the Webpack public path so it knows where to load
  * CSS relative to. This must be imported before any other
  * imports.
  */
-
 function getScriptDir() {
     var scriptElements = document.getElementsByTagName('script');
     for (var i = 0; i < scriptElements.length; i++) {

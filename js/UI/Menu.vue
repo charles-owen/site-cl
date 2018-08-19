@@ -6,8 +6,26 @@
 
 <script>
     /**
-     * @file
-     * General-purpose menu system.
+     * General-purpose menu system Vue component.
+     *
+     * Supports simple menus where a click opens and closes a pull-down menu.
+     * @example
+     * // Include this component
+     * import MenuVue from 'site-cl/js/UI/Menu.vue';
+     * @example
+     * // Add as a component to the Vue:
+     * components: {
+     *   menuVue: MenuVue
+     * },
+     * @example
+     * // Use in the template
+     * <menu-vue v-on:open="select"><a class="float-right"><img :src="root + '/vendor/cl/site/img/menubars.png'" alt="Menu"></a>
+     *   <ul>
+     *     <li><a>First option</a></li>
+     *     <li><a>Second option</a></li>
+     *   </ul>
+     * </menu-vue>
+     * @constructor MenuVue
      */
     export default {
         data: function () {
@@ -50,7 +68,9 @@
                 closeAll();
             }
 
-            /** Close all menus */
+            //
+            // Close all menus
+            //
             let closeAll = function () {
                 // This timeout ensures the click on
                 // the menu is processed before the menu

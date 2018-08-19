@@ -1,5 +1,4 @@
 /**
- * @file
  * Basic Sanitize operations to protect from XSS.
  */
 

@@ -1,9 +1,12 @@
-/**
+/*
  * Various interface options we can select
  */
 
 /**
- * Interface options.
+ * Editor interface options.
+ *
+ * This is used by Editor to provide default values for the editor options.
+ *
  * @param options User provided options that override the default values.
  * @constructor
  */

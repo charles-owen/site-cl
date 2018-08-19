@@ -1,5 +1,4 @@
-/**
- * @file
+/*
  * Javascript support for the Editor
  */
 
@@ -13,7 +12,9 @@ import {EditorOptions} from './EditorOptions';
  * If editor has the code style, line numbers are displayed.
  * Set member .tab to support smart tabs
  * Set member .autoIndent to support automatic indentation
- * @param Element element The element for the textbox we are turning into an editor
+ * @param {HTMLElement} element The element for the textarea we are turning into an editor
+ * @param {Object} options Options to pass to the editor
+ * @constructor
  */
 export let Editor = function(element, options) {
     if(options !== undefined) {
@@ -113,7 +114,7 @@ export let Editor = function(element, options) {
         ta.style.backgroundPosition = -left + 'px ' + -top + 'px';
     });
 
-    /**
+    /*
      * Insert a tab at the current edit location in the textarea
      */
     function tabAtCaret() {
@@ -187,7 +188,7 @@ export let Editor = function(element, options) {
         }
     }
 
-    /**
+    /*
      * Handle the Shift-TAB combination (untabbing)
      */
     function unTab() {
@@ -333,7 +334,7 @@ export let Editor = function(element, options) {
     }
 
 
-    /**
+    /*
      * Insert text in a textarea at the current selection.
      *
      * This is provided to allow for fallback to a non-undoable version
@@ -358,7 +359,7 @@ export let Editor = function(element, options) {
         }
     }
 
-    /**
+    /*
      * Delete text in a textarea at the current selection.
      *
      * This is provided to allow for fallback to a non-undoable version
