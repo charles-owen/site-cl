@@ -1,5 +1,5 @@
 <template>
-  <div :class="maskClass"><p><slot></slot></p></div>
+  <div :class="maskClass"><p v-if="slotDelay"><slot></slot></p></div>
 </template>
 
 <script>
@@ -16,6 +16,25 @@
    */
   export default {
       props: ['mask'],
+      data: function() {
+      	return {
+      		slotDelay: true,
+          timer: null
+        }
+      },
+      watch: {
+      	mask: function() {
+      		if(this.timer !== null) {
+      			clearTimeout(this.timer);
+      			this.timer = null;
+          }
+
+          this.slotDelay = false;
+          this.timer = setTimeout(() => {
+          	this.slotDelay = true;
+          }, 1000);
+        }
+      },
       computed: {
           maskClass: function() {
               return this.mask ? 'cl-mask mask' : 'cl-mask'

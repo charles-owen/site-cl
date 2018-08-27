@@ -1,16 +1,16 @@
 /**
- * @file
  * Basic Vue-based site page starter
  *
  * How to use:
  * @code
- site.ready(() => {
-    PageVue.create('div.cl-grade-assignment', 'Assignment Grade', GradeAssignmentVue);
-    PageVue.create('div.cl-grades', 'Grades', GradesVue);
- });
+ * site.ready(() => {
+ *    PageVue.create('div.cl-grade-assignment', 'Assignment Grade', GradeAssignmentVue);
+ *    PageVue.create('div.cl-grades', 'Grades', GradesVue);
+ * });
  * @endcode
+ *
+ * @constructor
  */
-
 export const PageVue = function() {
 }
 
@@ -22,6 +22,7 @@ export const PageVue = function() {
  * @param sel Selector for a div to replace with the view.
  * @param title Initial title to apply to the page
  * @param component Component to display (Vue)
+ * @param nav Optional navigation component, like PageNav
  */
 PageVue.create = function(sel, title, component, nav) {
     const element = document.querySelector(sel);

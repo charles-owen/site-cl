@@ -147,7 +147,6 @@ export const Site = function() {
 	 * @param {APIResponse|string} response Response to use to make the toast.
 	 */
 	this.toast = function (vueobj, response) {
-		console.log(response);
 		if (typeof(response) === 'string') {
 			Vue.toasted.show(response, {
 				theme: "primary",
@@ -209,7 +208,6 @@ export const Site = function() {
 					let VideoPresenter = bundle.default;
 
 					for(let element of elements) {
-						console.log(element);
 						new VideoPresenter(element);
 					}
 				});

@@ -41,7 +41,12 @@ abstract class Resource {
 		} catch(APIException $exception) {
 			$json = new JsonAPI();
 			$json->addError($exception->getMessage(), $exception->getCode());
-			return $json->encode();
+			$enc = $json->encode();
+			if($enc === '[]') {
+				return '{}';
+			}
+			return $enc;
+//			return $json->encode();
 		}
 	}
 
@@ -55,7 +60,13 @@ abstract class Resource {
 		}
 
 		if($ret instanceof JsonAPI) {
-			return $ret->encode();
+			$enc = $ret->encode();
+			if($enc === '[]') {
+				// PHP always thinks of JSON as an array, so switch
+				// the empty case to be the standard empty object.
+				return '{}';
+			}
+			return $enc;
 		}
 
 		return $ret;

@@ -658,7 +658,7 @@ footer.cl-site {
 div.content {
   position: relative;
   max-width: 56em;
-  padding: 0;
+  padding: 0 10px;
   margin: 0 auto; }
   div.content > p, div.content > div, div.content > pre, div.content > div.toggleblock, div.content > ul, div.content > ol, div.content > form, div.content .left, div.content > figure {
     margin-left: 0;
@@ -739,6 +739,9 @@ div.wide div.content {
   border: 1px ridge black;
   text-align: left;
   z-index: 100; }
+
+div.content > div.rightbox, div.content > div.problemright, div.content > div.scenarioright {
+  margin: 0 0 1em 0; }
 
 @media only screen and (max-width: 750px) {
   .rightbox, .problemright, .scenarioright, aside {
@@ -845,13 +848,9 @@ div.content > div.cl-slideshow {
 div.cl-slideshow {
   display: block;
   width: 100%;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 1em auto;
   background-color: #1a483d;
-  padding-top: 3pt;
-  padding-left: 3pt;
-  padding-right: 4pt;
-  padding-bottom: 3pt;
+  padding: 3px 3px 4px 3px;
   text-align: center; }
   div.cl-slideshow img {
     width: 100%;
@@ -987,16 +986,13 @@ a {
   cursor: pointer; }
 
 a:link {
-  color: #8a8a8a;
-  text-decoration: underline; }
+  color: #8a8a8a; }
 
 a:visited {
-  color: #968443;
-  text-decoration: underline; }
+  color: #968443; }
 
 a:hover {
-  color: #3366cc;
-  text-decoration: underline; }
+  color: #3366cc; }
 
 ul.top {
   list-style-type: none; }
@@ -1640,7 +1636,7 @@ nav.cl-sticky {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 100; }
+  z-index: 150; }
 
 form.cl-checklist {
   padding-left: 3em;

@@ -22,4 +22,10 @@
  * $view = new CL\Site\View($site, ['open'=>true]);
  * \endcode
  *
+ * @subsection site-nojs nojs
+ *
+ * This nojs option is recognized by the view classes and will prevent JavaScript from
+ * being included in the generated page. This is used mainly to prevent sending JavaScript
+ * to browsers that can't handle modern JavaScript, like the one in Visual Studio.
+ *
  */

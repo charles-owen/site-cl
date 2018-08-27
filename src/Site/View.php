@@ -28,6 +28,7 @@ class View {
 	 */
 	public function __construct(Site $site, $options=[]) {
 		$this->site = $site;
+		$this->options = $options;
 
 		if(!$site->started) {
 			$site->start($options);
@@ -273,9 +274,10 @@ HTML;
 <link rel="shortcut icon" href="$favicon" />
 HTML;
 
-
-		foreach($this->js as $js) {
-			$html .= $this->tsjs($js);
+		if(empty($this->options['nojs']) || !$this->options['nojs']) {
+			foreach($this->js as $js) {
+				$html .= $this->tsjs($js);
+			}
 		}
 
 		foreach($this->css as $css) {
@@ -302,7 +304,7 @@ HTML;
 
 		if($addHeaderFooter) {
 			$root = $this->site->root;
-			$siteInfo['header'] = $this->appearance->header($this, "<a href=\"/$root\">$siteName</a> {{title}}", '<slot></slot>');
+			$siteInfo['header'] = $this->appearance->header($this, "<a href=\"$root\">$siteName</a> {{title}}", '<slot></slot>');
 			$siteInfo['footer'] = $this->appearance->footer($this);
 		}
 
@@ -451,6 +453,22 @@ HTML;
 	 */
 	public function setTitle($title) {
 		$this->title = $title;
+	}
+
+	/**
+	 * Set the page title
+	 * @param string $title Title to set
+	 */
+	public function set_title($title) {
+		$this->title = $title;
+	}
+
+	/**
+	 * Set the autoback option
+	 * @param bool $set Option to set (default=true)
+	 */
+	public function set_autoback($set = true) {
+		$this->autoback = $set;
 	}
 
 	/**
@@ -618,6 +636,7 @@ HTML;
 	private $appearance = null; ///< Installed appearance
 
 	private $site;
+	private $options;           // Options passed to start
 	private $title = 'Title';   ///< Page title
 
 	private $json = [];         // JSON content to include

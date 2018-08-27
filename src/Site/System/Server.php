@@ -159,8 +159,9 @@ class Server {
 	 * @param string $name Name of cookie
 	 * @param string $value Value to set
 	 * @param int $expire Expiration
+	 * @param string $path Path for the cookie
 	 */
-	public function setcookie($name, $value, $expire) {
+	public function setcookie($name, $value, $expire, $path='/') {
 		setcookie($name, $value, $expire, '/', '', false, true);
 	}
 

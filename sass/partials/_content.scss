@@ -8,7 +8,7 @@
 div.content {
   position: relative;
   max-width: $max-width;
-  padding: 0; //  $margin;
+  padding: 0 $margin; //  $margin;
   margin: 0 auto;
 
   // Normal top level content with space for right column

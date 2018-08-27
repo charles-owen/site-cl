@@ -2,9 +2,14 @@
  * Any site polyfills
  */
 
+import 'promise-polyfill/src/polyfill';
 require('./Blob.js');
 require('formdata-polyfill');
 require('classlist-polyfill');
+require('url-polyfill');
+
+require('weakmap-polyfill');
+const weakMap = new WeakMap();
 
 // String.trim
 if (!String.prototype.trim) {
@@ -15,6 +20,16 @@ if (!String.prototype.trim) {
             return this.replace(rtrim, '');
         };
     })();
+}
+
+// String endsWith
+if (!String.prototype.endsWith) {
+	String.prototype.endsWith = function(search, this_len) {
+		if (this_len === undefined || this_len > this.length) {
+			this_len = this.length;
+		}
+		return this.substring(this_len - search.length, this_len) === search;
+	};
 }
 
 // Object.assign

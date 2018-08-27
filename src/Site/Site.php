@@ -405,16 +405,6 @@ class Site {
 	 * @param mixed $object
 	 */
 	public function amend($object) {
-		if($object instanceof Router) {
-			$router = $object;
-
-			$router->addRoute(['example', 'vue'], function(Site $site, Server $server, array $params, array $properties, $time) {
-				$view = new ExampleVueView($site, $server, $time);
-				return $view->vue();
-			});
-
-		}
-
 		foreach($this->plugins as $plugin) {
 			$plugin->amend($object);
 		}
