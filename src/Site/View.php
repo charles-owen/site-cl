@@ -304,7 +304,7 @@ HTML;
 
 		if($addHeaderFooter) {
 			$root = $this->site->root;
-			$siteInfo['header'] = $this->appearance->header($this, "<a href=\"$root\">$siteName</a> {{title}}", '<slot></slot>');
+			$siteInfo['header'] = $this->appearance->header($this, "<a href=\"$root/\">$siteName</a> {{title}}", '<slot></slot>');
 			$siteInfo['footer'] = $this->appearance->footer($this);
 		}
 

@@ -6,6 +6,8 @@
  */
 namespace CL\Site\Api;
 
+use \Exception;
+
 /**
  * General purpose exception class used to generate API exceptions.
  * These can then be easily added to the JsonAPI response
@@ -22,11 +24,11 @@ class APIException extends \Exception {
 
     /**
      * APIException constructor.
-     * @param $message Message to include
+     * @param string $message Message to include
      * @param int $code API Error code
-     * @param Exception|null $previous
+     * @param Exception $previous
      */
-    public function __construct($message, $code = 0, \Exception $previous = null) {
+    public function __construct($message, $code = 0, Exception $previous = null) {
         parent::__construct($message, $code, $previous);
     }
 

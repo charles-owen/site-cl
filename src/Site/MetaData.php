@@ -31,6 +31,33 @@ class MetaData {
     }
 
     /**
+     * Property get magic method
+     *
+     * <b>Properties</b>
+     * Property | Type | Description
+     * -------- | ---- | -----------
+     * data | array | All of the data contained in this metadata
+     *
+     * @param string $property Property name
+     * @return mixed
+     */
+    public function __get($property) {
+    	switch($property) {
+		    case 'data':
+		    	return $this->data;
+
+    		default:
+    			$trace = debug_backtrace();
+    			trigger_error(
+    				'Undefined property ' . $property .
+    				' in ' . $trace[0]['file'] .
+    				' on line ' . $trace[0]['line'],
+    				E_USER_NOTICE);
+    			return null;
+    	}
+    }
+
+    /**
      * Get meta-data content.
      * @param string $category Category for this key
      * @param string $key Optional key value to return

@@ -43,6 +43,7 @@ use CL\Site\Examples\ExampleVueView;
  * @property string siteName
  * @property bool started
  * @property string config
+ * @property string server
  *
  * There are cheating a bit to help with the type hinting
  * @property \CL\Course\Course course
