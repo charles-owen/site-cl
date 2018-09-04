@@ -17,17 +17,22 @@ header.cl-site {
     font-family: "Trebuchet MS", Helvetica, sans-serif;
     font-size: 2em;
     margin: 0;
-    padding: $padding;
+    padding: 0;
     width: 100%;
+    white-space: nowrap;
 
     a {
       text-decoration: none;
       color: $header-text;
     }
   }
+}
 
-
-
-
+@media only screen and (max-width: $narrow-width) {
+  div.heading {
+    h1 {
+      font-size: 1.3em;
+    }
+  }
 }
 

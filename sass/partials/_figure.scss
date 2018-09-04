@@ -1,3 +1,7 @@
+img {
+  max-width: 100%;
+  height: auto;
+}
 
 figure img, img.figure, p.figure img, p.borderfigure img, p.rightfigure img {
   @extend %shadow;
@@ -6,6 +10,7 @@ figure img, img.figure, p.figure img, p.borderfigure img, p.rightfigure img {
 figure {
   box-sizing: border-box;
   margin: 1em 0;
+  text-align: center;
 }
 
 figure.float-right {
@@ -15,47 +20,29 @@ figure.float-right {
   right: 0;
   margin: 0;
   text-align: center;
-}
 
-
-
-figure figcaption {
-  text-align: center;
+  figcaption {
+    font-size: 0.9em;
+    font-style:italic;
+    margin-top: 0;
+  }
 }
 
 figure.border img {
   border: 1px solid black;
 }
 
-.scroll {
+figure.scroll {
   overflow-x: scroll;
-}
 
-figure.scroll img {
-  max-width: none;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
+  img {
+    max-width: none;
+  }
 }
 
 .right figure img {
   max-width: 15em;
   height: auto;
-}
-
-p.rightfigure img {
-  width: 15em;
-  position: absolute;
-  padding: 0;
-  right: 0;
-}
-
-figure figcaption {
-  font-size: 0.9em;
-  font-style:italic;
-  margin-top: 0;
 }
 
 img.inline-image {

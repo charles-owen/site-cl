@@ -9,7 +9,7 @@
  * });
  * @endcode
  *
- * @constructor
+ * @constructor PageVue
  */
 export const PageVue = function() {
 }
@@ -65,7 +65,9 @@ PageVue.create = function(sel, title, component, nav) {
             /**
              * Set the site title. This can be used from
              * the child Vue's using this.$parent.setTitle('')
-             * @param title Title to set
+             * @memberof PageVue
+             * @instance
+             * @param {string} title Title to set
              */
             setTitle: function(title) {
                 this.title = title;

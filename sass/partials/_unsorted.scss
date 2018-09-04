@@ -1,82 +1,8 @@
-
-
-.clicktoexpand {
-  font-weight:normal;
-  font-size:10pt;
-}
-
-div.editor {
-  margin-left: auto;
-  margin-right: auto;
-  width: 80%;
-}
-
-div.editor textarea {
-  border-top: 5pt solid #cccccc
-}
-
-div.editor_small {
-  margin-left: auto;
-  margin-right: auto;
-  width: 80%;
-}
-
-
-div.bdblock {
-  margin-left:1%;
-  margin-right:1%;
-  background:#FFCfF9;
-  padding: 6px;
-  margin-top: 6px;
-  margin-bottom: 6px;
-  border: 1px gray solid;
-  overflow:auto;
-  color:black;
-}
-
-div.selectors {
-  margin-top: 4pt;
-}
-
-div.selectors p, div.selectors form {
-  display: inline;
-}
-
-.disabled {
-  opacity: 0.5;
-}
-
 .skype_hours {
   font-size: 0.9em;
   padding-left: 2em;
   font-style: italic;
 }
-
-div.twocolumn {
-  position: relative;
-  display: table-row;
-
-  .left30 {
-    display: table-cell;
-    width: 30%;
-  }
-
-  .left35 {
-    display: table-cell;
-    width: 35%;
-  }
-
-
-  .left {
-    display: table-cell;
-    width: 50%;
-  }
-
-  .right {
-    display: table-cell;
-  }
-}
-
 
 .staff {
   display: table;

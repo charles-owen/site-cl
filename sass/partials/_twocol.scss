@@ -1,0 +1,57 @@
+/**
+ * Standard two-column support
+ */
+
+div.cl-twocol {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  padding: $margin $margin 0 $margin;
+  margin: 0;
+
+  > div {
+    padding: 0;
+    width: 50%;
+    margin: 0;
+
+    p {
+      padding: $margin;
+    }
+  }
+
+  div:first-child {
+    margin-right: 5px;
+  }
+
+  div:last-child {
+    margin-left: 5px;
+  }
+}
+
+@media only screen and (max-width: $medium-width) {
+  div.cl-twocol {
+    display: block;
+    position: relative;
+    width: 100%;
+    clear: both;
+    border: 0;
+    padding: $margin-mobile 0 0 0;
+
+    >div {
+      box-shadow: none;
+
+      display: block;
+      width: 100%;
+      float: none;
+      margin: 0;
+      border: 0;
+      padding: 0 0 2px 0;
+    }
+
+    h2 {
+      padding: $margin-mobile;
+      margin-top: 1px;
+      margin-bottom: 1px;
+    }
+  }
+}

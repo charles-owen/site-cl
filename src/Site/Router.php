@@ -6,6 +6,7 @@
 
 namespace CL\Site;
 
+use CL\Site\Api\APIException;
 use CL\Site\Api\JsonAPI;
 use CL\Site\System\Server;
 
@@ -146,13 +147,25 @@ class Router {
 	 * @param Server $server Abstraction of the server
 	 * @param int $time Current time
 	 * @return string Json API result
+	 * @throws APIException
 	 */
 	private function poll(Site $site, Server $server, $time) {
 		$site->start(['open'=>true]);
+		if($server->requestMethod === 'GET') {
+			$json = new JsonAPI();
+			return $json->encode();
+		}
 
-		sleep(5);
+		if($server->requestMethod !== 'POST') {
+			throw new APIException("Invalid API Usage", APIException::INVALID_API_USAGE);
+		}
 
+		$post = $server->post;
 		$json = new JsonAPI();
+
+		foreach($this->polling as $polling) {
+			$polling($site, $server, $post, $json, $time);
+		}
 
 		return $json->encode();
 	}
@@ -176,6 +189,18 @@ class Router {
 		return $this->invalid($site);
 	}
 
+	/**
+	 * Add a polling user.
+	 * @param \Closure $closure Function to call
+	 *
+	 */
+	public function addPolling($closure) {
+		$this->polling[] = $closure;
+	}
+
 	/// Installed top-level routes
 	private $routes = [];
+
+	/// Installed polling users
+	private $polling = [];
 }

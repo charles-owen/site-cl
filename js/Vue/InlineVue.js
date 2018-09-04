@@ -1,17 +1,19 @@
 /**
  * Basic Vue-based site inline content starter
- *
- * How to use:
- * @code
- * site.ready(() => {
- *    InlineVue.create('div.cl-reviews', ReviewsVue);
- * });
- * @endcode
- *
- * @constructor
+ * @constructor InlineVue
  */
 export const InlineVue = function() {
 }
+
+/*
+ *
+ * How to use:
+
+ * site.ready(() => {
+ *    InlineVue.create('div.cl-reviews', ReviewsVue);
+ * });
+ *
+ */
 
 /**
  * Create an inline VUE component, replacing the provided

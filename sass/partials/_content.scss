@@ -58,7 +58,6 @@ div.content {
 
   & > figure {
     overflow: visible;
-    text-align: center;
   }
 
   & > figure img {
@@ -99,7 +98,7 @@ div.wide {
   div.content {
     // Normal top level content with space for right column
     & > p,
-    & > div
+    & > div,
     & > pre,
     & > ul,
     & > ol,

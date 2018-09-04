@@ -14,7 +14,15 @@ p.shoutout {
 }
 
 .small {
+  font-size: 0.9em;
+}
+
+.smaller {
   font-size: 0.85em;
+}
+
+.tiny {
+  font-size: 0.7em;
 }
 
 .setoff {
@@ -26,4 +34,16 @@ input[type=checkbox] {
   vertical-align: middle;
   position: relative;
   bottom: 1px;
+}
+
+.center {
+  text-align:center;
+}
+
+div.center p {
+  text-align: center;
+}
+
+.underline {
+  text-decoration: underline;
 }

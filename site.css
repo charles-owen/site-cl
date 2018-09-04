@@ -1,9 +1,9 @@
-.rightbox, .centerbox, .advice, .problem, .scenario, .blindblock, aside, div.cl-slideshow, iframe, textarea, div.toggleblock, pre.code, textarea.code, figure img, img.figure, p.figure img, p.borderfigure img, p.rightfigure img, .shadow, table, div.cl-toggleblock, form.cl-checklist, div.cl-bar {
+.rightbox, .centerbox, .advice, .problem, .scenario, .blindblock, aside, div.cl-slideshow, iframe, textarea, div.toggleblock, pre.code, textarea.code, figure img, img.figure, p.figure img, p.borderfigure img, p.rightfigure img, .shadow, table, div.cl-toggleblock, form.cl-checklist, div.cl-bar, div.cl-card {
   -moz-box-shadow: 3px 3px 8px #ccc;
   -webkit-box-shadow: 3px 3px 8px #ccc;
   box-shadow: 3px 3px 8px #ccc; }
 
-.noshadow, .noshadow img, div.remote-exec .left textarea, div.remote-exec .right pre, div.play-area .left textarea, div.play-area .right pre {
+.noshadow, .noshadow img {
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
   box-shadow: none; }
@@ -604,7 +604,13 @@ p.shoutout {
   font-size: 1.5em; }
 
 .small {
+  font-size: 0.9em; }
+
+.smaller {
   font-size: 0.85em; }
+
+.tiny {
+  font-size: 0.7em; }
 
 .setoff {
   margin-top: 2em;
@@ -614,6 +620,15 @@ input[type=checkbox] {
   vertical-align: middle;
   position: relative;
   bottom: 1px; }
+
+.center {
+  text-align: center; }
+
+div.center p {
+  text-align: center; }
+
+.underline {
+  text-decoration: underline; }
 
 header.cl-site {
   color: #eeeeee;
@@ -631,12 +646,16 @@ header.cl-site {
     font-family: "Trebuchet MS", Helvetica, sans-serif;
     font-size: 2em;
     margin: 0;
-    padding: 8px;
-    width: 100%; }
+    padding: 0;
+    width: 100%;
+    white-space: nowrap; }
     header.cl-site h1 a {
       text-decoration: none;
       color: #eeeeee; }
 
+@media only screen and (max-width: 500px) {
+  div.heading h1 {
+    font-size: 1.3em; } }
 footer.cl-site {
   margin: 0 auto;
   padding: 8px;
@@ -681,8 +700,7 @@ div.content {
     right: 0;
     margin: 0; }
   div.content > figure {
-    overflow: visible;
-    text-align: center; }
+    overflow: visible; }
   div.content > figure img {
     margin: 0.5em auto; }
   div.content > .scroll {
@@ -705,8 +723,7 @@ div.wide div.content {
   max-width: none; }
 
 @media only screen and (max-width: 750px) {
-  div.content > p, div.content > div
-  div.content > pre, div.content > ul, div.content > ol, div.content > form, div.content > .left, div.content > figure {
+  div.content > p, div.content > div, div.content > pre, div.content > ul, div.content > ol, div.content > form, div.content > .left, div.content > figure {
     margin-right: 5px; }
   div.content > .right, div.content > figure.right, div.content > figure.maybe-right {
     width: 15em;
@@ -717,14 +734,16 @@ div.wide div.content {
   background: #00723f;
   /* Default color */
   color: white; }
-  .rightbox p:first-child, .centerbox p:first-child, .advice p:first-child, .problem p:first-child, .scenario p:first-child, .blindblock p:first-child, aside p:first-child {
+  .rightbox p:first-child, .rightbox h2:first-child, .rightbox h3:first-child, .centerbox p:first-child, .centerbox h2:first-child, .centerbox h3:first-child, .advice p:first-child, .advice h2:first-child, .advice h3:first-child, .problem p:first-child, .problem h2:first-child, .problem h3:first-child, .scenario p:first-child, .scenario h2:first-child, .scenario h3:first-child, .blindblock p:first-child, .blindblock h2:first-child, .blindblock h3:first-child, aside p:first-child, aside h2:first-child, aside h3:first-child {
     margin-top: 0; }
   .rightbox p:last-child, .centerbox p:last-child, .advice p:last-child, .problem p:last-child, .scenario p:last-child, .blindblock p:last-child, aside p:last-child {
     margin-bottom: 0; }
 
+.centerbox, .advice, .problem, .scenario, .blindblock, .rightbox, .problemright, .scenarioright, aside {
+  border: 1px outset #666666; }
+
 .centerbox, .advice, .problem, .scenario, .blindblock {
   padding: 8px;
-  border: 1px ridge black;
   overflow: auto;
   max-width: 40em;
   margin: 1em auto; }
@@ -736,7 +755,6 @@ div.wide div.content {
   right: 0;
   padding: 10px;
   margin: 0 0 1em 0;
-  border: 1px ridge black;
   text-align: left;
   z-index: 100; }
 
@@ -1094,9 +1112,14 @@ pre.tiny {
 @media only screen and (max-width: 750px) {
   div.content > pre.code {
     margin-right: 0; } }
+img {
+  max-width: 100%;
+  height: auto; }
+
 figure {
   box-sizing: border-box;
-  margin: 1em 0; }
+  margin: 1em 0;
+  text-align: center; }
 
 figure.float-right {
   width: 15.5em;
@@ -1105,37 +1128,22 @@ figure.float-right {
   right: 0;
   margin: 0;
   text-align: center; }
-
-figure figcaption {
-  text-align: center; }
+  figure.float-right figcaption {
+    font-size: 0.9em;
+    font-style: italic;
+    margin-top: 0; }
 
 figure.border img {
   border: 1px solid black; }
 
-.scroll {
+figure.scroll {
   overflow-x: scroll; }
-
-figure.scroll img {
-  max-width: none; }
-
-img {
-  max-width: 100%;
-  height: auto; }
+  figure.scroll img {
+    max-width: none; }
 
 .right figure img {
   max-width: 15em;
   height: auto; }
-
-p.rightfigure img {
-  width: 15em;
-  position: absolute;
-  padding: 0;
-  right: 0; }
-
-figure figcaption {
-  font-size: 0.9em;
-  font-style: italic;
-  margin-top: 0; }
 
 img.inline-image {
   vertical-align: baseline; }
@@ -1155,12 +1163,6 @@ p.figure, p.borderfigure {
   margin-top: 0;
   margin-bottom: 0; }
 
-.small {
-  font-size: 0.9em; }
-
-.large {
-  font-size: 1.5em; }
-
 .pdf, .smallred {
   color: #cc0000;
   font-size: 0.85em;
@@ -1176,23 +1178,11 @@ p.figure, p.borderfigure {
   font-size: 0.9em;
   font-style: italic; }
 
-.underline {
-  text-decoration: underline; }
-
 .strikethrough {
   text-decoration: line-through; }
 
-.tiny {
-  font-size: 0.7em; }
-
 .noborder {
   border-width: 0px; }
-
-.center {
-  text-align: center; }
-
-div.center p {
-  text-align: center; }
 
 p.right {
   text-align: right; }
@@ -1353,7 +1343,7 @@ table {
     border-right: 1px solid #C1DAD7;
     border-bottom: 1px solid #C1DAD7;
     background: #ffffff;
-    padding: 0.25em 0.75em;
+    padding: 0.25em 0.5em;
     color: #4f6b72; }
     table td a:link {
       color: #8A8A8A;
@@ -1372,17 +1362,19 @@ table {
   table tr.vertical {
     height: 13em; }
     table tr.vertical th {
-      width: 1em;
+      min-width: 3em;
       white-space: nowrap;
       position: relative;
       vertical-align: bottom; }
       table tr.vertical th div {
         position: absolute;
-        transform: translate(-6em, -6em) rotate(-90deg);
-        width: 12em;
+        transform: translate(-6.5em, -6.5em) rotate(-90deg);
+        width: 13em;
         z-index: 10;
         left: 50%;
-        bottom: 0; }
+        bottom: 0;
+        overflow: hidden;
+        text-overflow: ellipsis; }
   table td.colhead {
     border-top: 1px solid #E6F0EF;
     border-left: 1px solid #E6F0EF;
@@ -1530,13 +1522,13 @@ p.powerpoint {
     padding-left: 57px;
     padding-top: 15px; }
 
-div.hot {
+div.cl-hot {
   width: 25em;
   min-height: 45px;
   margin: 0 auto;
-  background: #ffffff url("img/hot.gif") no-repeat;
+  background: #ffffff url("img/hot.gif") no-repeat left center;
   padding-left: 85px; }
-  div.hot p {
+  div.cl-hot p {
     margin: 0; }
 
 nav.cl-nav {
@@ -1642,7 +1634,9 @@ form.cl-checklist {
   padding-left: 3em;
   padding-right: 3em;
   border: thin solid black;
-  background-color: #e8f7f3; }
+  background-color: #e8f7f3;
+  margin-top: 1em;
+  margin-bottom: 1em; }
   form.cl-checklist p {
     text-align: left;
     margin-top: 0.5em;
@@ -1685,151 +1679,69 @@ div.cl-bar {
   text-align: center;
   margin: 1em 0; }
 
-div.remote-exec {
-  width: 100%;
-  margin: 1em 0 1em 0;
-  display: table;
-  table-layout: fixed;
-  position: relative; }
-  div.remote-exec .bar {
-    margin: 0;
-    padding: 0;
-    background-color: #e8d9b5; }
-  div.remote-exec h2.menubar {
-    position: relative;
-    width: auto;
-    padding: 0;
-    margin: 0;
-    background: #e8d9b5;
+/*
+ * Standard site cards.
+ */
+div.cl-card {
+  border: 1px #cccccc solid; }
+  div.cl-card h2 {
+    font-family: sans-serif;
     font-size: 1.3em;
-    border: 1px solid #aaa;
-    text-align: center;
-    height: 1.3em; }
-  div.remote-exec .left {
-    position: relative;
-    display: table-cell;
-    width: 50%;
-    margin: 0;
-    padding: 0 5px;
-    vertical-align: top; }
-    div.remote-exec .left .left > div {
-      position: absolute;
-      left: 5px;
-      right: 5px;
-      padding: 0 5px; }
-    div.remote-exec .left textarea {
-      height: 25em;
-      margin: 0;
-      width: 100%;
-      box-sizing: border-box;
-      border-top: 0;
-      border-left: thin solid #aaa;
-      border-right: thin solid #aaa; }
-    div.remote-exec .left textarea:focus {
-      outline: none; }
-  div.remote-exec .right {
-    display: table-cell;
-    width: 50%;
-    margin: 0;
-    padding: 0 5px;
-    vertical-align: top; }
-    div.remote-exec .right pre {
-      height: 25em;
-      margin: 0;
-      box-sizing: border-box;
-      border-top: 0;
-      border-left: thin solid #aaa;
-      border-right: thin solid #aaa; }
+    border-bottom: none;
+    background: #f2f2f2;
+    padding: 10px;
+    margin: 0; }
+    div.cl-card h2 img {
+      display: none;
+      vertical-align: middle; }
+  div.cl-card li {
+    font-size: 1em;
+    margin-right: 10pt; }
+  div.cl-card span.staff-note {
+    font-size: 0.7em;
+    font-style: italic;
+    white-space: nowrap; }
 
-form.remote-exec p {
-  margin: 0.25em 0; }
-form.remote-exec button {
-  width: 8em; }
-
-div.play-area {
+/**
+ * Standard two-column support
+ */
+div.cl-twocol {
   width: 100%;
-  margin: 1em 0 1em 0;
-  display: table;
-  table-layout: fixed;
-  position: relative; }
-  div.play-area .bar {
-    margin: 0;
+  display: flex;
+  flex-direction: row;
+  padding: 10px 10px 0 10px;
+  margin: 0; }
+  div.cl-twocol > div {
     padding: 0;
-    background-color: #e8d9b5; }
-  div.play-area h2.menubar {
-    position: relative;
-    width: auto;
-    padding: 0 0.25em;
-    margin: 0;
-    background: #e8d9b5;
-    font-size: 1.3em;
-    border: 1px solid #aaa;
-    text-align: center;
-    height: 1.3em; }
-    div.play-area h2.menubar div.buttons {
-      position: absolute;
-      right: 0;
-      top: 0;
-      font-size: 0.77em;
-      font-weight: normal;
-      padding-right: 0.25em; }
-      div.play-area h2.menubar div.buttons button {
-        padding: 0 0.5em; }
-  div.play-area .left {
-    position: relative;
-    display: table-cell;
     width: 50%;
-    margin: 0;
-    padding: 0 5px;
-    vertical-align: top; }
-    div.play-area .left .left > div {
-      position: absolute;
-      left: 5px;
-      right: 5px;
-      padding: 0 5px; }
-    div.play-area .left textarea {
-      height: 25em;
-      margin: 0;
+    margin: 0; }
+    div.cl-twocol > div p {
+      padding: 10px; }
+  div.cl-twocol div:first-child {
+    margin-right: 5px; }
+  div.cl-twocol div:last-child {
+    margin-left: 5px; }
+
+@media only screen and (max-width: 750px) {
+  div.cl-twocol {
+    display: block;
+    position: relative;
+    width: 100%;
+    clear: both;
+    border: 0;
+    padding: 5px 0 0 0; }
+    div.cl-twocol > div {
+      box-shadow: none;
+      display: block;
       width: 100%;
-      box-sizing: border-box;
-      border-top: 0;
-      border-left: thin solid #aaa;
-      border-right: thin solid #aaa; }
-    div.play-area .left textarea:focus {
-      outline: none; }
-  div.play-area .right {
-    position: relative;
-    display: table-cell;
-    width: 50%;
-    margin: 0;
-    padding: 0 5px;
-    vertical-align: top; }
-    div.play-area .right div.msg {
-      position: absolute;
-      top: 4em;
-      left: 0;
-      right: 0;
-      text-align: center;
-      font-size: 1em;
-      font-weight: normal;
-      color: red;
-      font-style: italic;
-      padding-right: 0.5em;
-      z-index: 10;
-      display: none; }
-    div.play-area .right pre {
-      height: 25em;
+      float: none;
       margin: 0;
-      box-sizing: border-box;
-      border-top: 0;
-      border-left: thin solid #aaa;
-      border-right: thin solid #aaa; }
-
-form.remote-exec p {
-  margin: 0.25em 0; }
-form.remote-exec button {
-  width: 8em; }
-
+      border: 0;
+      padding: 0 0 2px 0; }
+    div.cl-twocol h2 {
+      padding: 5px;
+      margin-top: 1px;
+      margin-bottom: 1px; } }
 .primary {
   background: #00723f;
   color: white; }

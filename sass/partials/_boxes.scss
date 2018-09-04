@@ -3,7 +3,7 @@
   background: $primary; /* Default color */
   color:white;
 
-  p:first-child {
+  p:first-child, h2:first-child, h3:first-child {
     margin-top: 0;
   }
 
@@ -12,9 +12,12 @@
   }
 }
 
+.centerbox, .advice, .problem, .scenario, .blindblock, .rightbox, .problemright, .scenarioright, aside {
+  border: 1px outset $box-border-color;
+}
+
 .centerbox, .advice, .problem, .scenario, .blindblock {
-  padding:8px;
-  border: 1px ridge black;
+  padding: $box-padding;
   overflow:auto;
   max-width: 40em;
   margin: 1em auto;
@@ -27,7 +30,6 @@
   right: 0;
   padding: $aside-padding;
   margin: 0 0 1em 0;
-  border: 1px ridge black;
   text-align: left;
   z-index: 100;
 }

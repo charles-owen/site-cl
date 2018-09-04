@@ -5,10 +5,10 @@
   "main": "index.js",
   "keywords": [
     "Education",
-    "LTI"
+    "Course Web Sites"
   ],
   "scripts": {
-    "build:docs": "documentation build index.js js/**/*.vue  -f html -o doc/js"
+    "build:docs": "documentation build js/**/*.vue js/**/*.js --sort-order alpha -f html -o doc/js"
   },
   "author": "Charles B. Owen",
   "license": "MIT",

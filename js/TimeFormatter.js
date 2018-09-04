@@ -14,9 +14,9 @@ export let TimeFormatter = function() {
 /**
  * Convert a time to the format we display
  * Time is relative to a specified time (or current time)
- * @param time Time to convert (moment)
- * @param currentTime Current time (moment)
- * @param format Moment format
+ * @param {moment} time Time to convert (moment)
+ * @param {moment} currentTime Current time (moment)
+ * @param {string} format Moment format
  * @returns {string}
  */
 TimeFormatter.relative = function(time, currentTime, format) {
@@ -69,8 +69,8 @@ TimeFormatter.relative = function(time, currentTime, format) {
 
 /**
  * Display a Unix time as an absolute time.
- * @param time Unix time (seconds)
- * @param format Moment format or 'long' or 'short' for days inclusion.
+ * @param {int} time Unix time (seconds)
+ * @param {string} format Moment format or 'long' or 'short' for days inclusion.
  */
 TimeFormatter.absoluteUNIX = function(time, format) {
     let t = moment.unix(time);
@@ -85,6 +85,12 @@ TimeFormatter.absoluteUNIX = function(time, format) {
     return t.format(format);
 }
 
+/**
+ * Display a Unix time as a relative time.
+ * @param {int} time Unix time (seconds)
+ * @param {int} currentTime Current time as UNIX time (optional)
+ * @param {string} format Moment format or 'long' or 'short' for days inclusion.
+ */
 TimeFormatter.relativeUNIX = function(time, currentTime, format) {
     let t = moment.unix(time);
     let c = currentTime !== null ? moment.unix(currentTime) : moment();

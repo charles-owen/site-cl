@@ -51,6 +51,19 @@ export const Site = function() {
 		startList.push(fn);
 	}
 
+	//
+	// This Vue mixin will allow the Site object to be available
+	// as $site in Vue objects
+	//
+	Vue.mixin( {
+		beforeCreate() {
+			const options = this.$options;
+			if ( options.site )
+				this.$site = options.site;
+			else if ( options.parent && options.parent.$site )
+				this.$site = options.parent.$site;
+		}
+	} );
 
 	//
 	// Configure Vue

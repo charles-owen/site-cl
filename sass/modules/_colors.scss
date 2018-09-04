@@ -68,6 +68,13 @@ $shadow-color: #ccc;
 
 $toggle-link-hover-color: #006600;
 
+// Boxes
+$box-border-color: #666666;
+
+// Cards
+$card-heading-background: #f2f2f2;
+$card-border-color: #cccccc;
+
 %shadow {
   -moz-box-shadow: $shadow-x $shadow-y $shadow-radius $shadow-color;
   -webkit-box-shadow: $shadow-x $shadow-y $shadow-radius $shadow-color;

@@ -49,6 +49,7 @@ class View {
 
 		// Always included
 		$this->addCSS('vendor/cl/site/site.css');
+		$this->addJS('runtime');
 		$this->addJS('vendor');
 	//	$this->addJS('commons');
 		$this->addJS('site');
@@ -215,9 +216,9 @@ HTML;
 	 * Get the buffered heading contents and
 	 * remove any use of already included CSS.
 	 *
-	 * If a user manually includes site.css,
+	 * If a user manually includes cl/site.css or cl/course.css,
 	 * it will be removed from the header by this
-	 * code if the system would include it with
+	 * code since the system would include it with
 	 * the timestamp instead.
 	 * @return string HTML
 	 */
@@ -225,16 +226,9 @@ HTML;
 		$html = ob_get_contents();
 		ob_end_clean();
 
-		$regex = '%<link[^>]*href=[^>]*(';
-		$first = true;
+		$regex = '%<link[^>]*href=[^>]*(cl/site.css|cl/course.css';
 		foreach($this->css as $css) {
-			if($first) {
-				$first = false;
-			} else {
-				$regex .= '|';
-			}
-			$regex .= $css;
-
+			$regex .= '|' . $css;
 		}
 		$regex .= ')[^>]*>\R*%';
 		return preg_replace($regex, '', $html);

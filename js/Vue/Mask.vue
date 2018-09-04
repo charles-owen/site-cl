@@ -13,6 +13,23 @@
    * in CSS. When mask is true, the interface is disabled by
    * an overlay mask.
    * @constructor MaskVue
+   * @example
+   * // Include this component
+   * import MaskVue from 'site-cl/js/Vue/Mask.vue';
+   * @example
+   *      data: function() {
+   *        return {
+   *            mask: false
+   *        }
+   *     },
+   *     components: {
+   *      maskVue: MaskVue
+   *     }
+   * @example
+   * <mask-vue :mask="mask">Sending Email...</mask-vue>
+   * @example
+   * this.mask = true;  // Enable the mask
+   * this.mask = false; // Disable the mask
    */
   export default {
       props: ['mask'],
