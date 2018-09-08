@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
 	entry: {
@@ -18,7 +18,7 @@ module.exports = {
 		}),
 		new VueLoaderPlugin(),
 		new CopyWebpackPlugin([
-			{from: path.resolve(__dirname, 'cl'), to: '..'}
+			{from: path.resolve(__dirname, 'cl'), to: path.resolve(__dirname, '../../../cl')}
 		])
 	],
 	resolve: {
@@ -42,7 +42,11 @@ module.exports = {
 				use: {
 					loader: 'babel-loader',
 					options: {
-						presets: ['@babel/preset-env'],
+						"presets": [
+							["@babel/env", {
+								"useBuiltIns": 'entry',
+							}]
+						],
 						plugins: ['@babel/plugin-transform-runtime', '@babel/plugin-syntax-dynamic-import']
 					}
 				}

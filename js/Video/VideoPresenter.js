@@ -1,10 +1,9 @@
 import 'video.js/dist/video-js.css';
 import './_video.scss';
 
-let videojs = require("video.js");
+import videojs from 'video.js';
 
 let VideoPresenter = function(element) {
-    console.log(element);
 
     // Keep track of all active video presenters on the page
     VideoPresenter.all.push(this);
@@ -42,8 +41,8 @@ let VideoPresenter = function(element) {
         let video = document.createElement('VIDEO');
         video.classList.add('video-js');
         video.classList.add('vjs-default-skin');
-        video.setAttribute('controls', true);
         video.setAttribute('preload', 'auto');
+	    video.setAttribute('controls', true);
         video.setAttribute('width', data.wid);
         video.setAttribute('height', data.hit);
         div.appendChild(video);

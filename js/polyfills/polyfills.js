@@ -2,6 +2,7 @@
  * Any site polyfills
  */
 
+import "@babel/polyfill";
 import 'promise-polyfill/src/polyfill';
 require('./Blob.js');
 require('formdata-polyfill');
