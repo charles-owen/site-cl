@@ -4,6 +4,8 @@
  * Site installer component
  */
 
+namespace CL\Site\Install;
+
 class Installer {
 
 	public static function install() {
