@@ -9,6 +9,10 @@ p.shoutout {
   text-align: center;
 }
 
+.right-justify {
+  text-align: right;
+}
+
 .large {
   font-size: 1.5em;
 }
@@ -44,6 +48,19 @@ div.center p {
   text-align: center;
 }
 
+div.cl-center-in {
+  text-align: center;
+}
+
 .underline {
   text-decoration: underline;
+}
+
+.cl-inline {
+  display: inline-block;
+}
+
+.cl-inline-padded {
+  display: inline-block;
+  padding: 1.5em 0 2em 0;
 }

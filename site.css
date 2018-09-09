@@ -600,6 +600,9 @@ p.shoutout {
 .center {
   text-align: center; }
 
+.right-justify {
+  text-align: right; }
+
 .large {
   font-size: 1.5em; }
 
@@ -627,8 +630,18 @@ input[type=checkbox] {
 div.center p {
   text-align: center; }
 
+div.cl-center-in {
+  text-align: center; }
+
 .underline {
   text-decoration: underline; }
+
+.cl-inline {
+  display: inline-block; }
+
+.cl-inline-padded {
+  display: inline-block;
+  padding: 1.5em 0 2em 0; }
 
 header.cl-site {
   color: #eeeeee;
@@ -842,7 +855,17 @@ div.cl-menu {
       div.cl-menu ul > li > a {
         display: table-cell;
         padding-right: 0.5em;
-        text-decoration: none; }
+        text-decoration: none;
+        color: #808080;
+        font-style: normal;
+        text-shadow: none;
+        font-weight: normal; }
+      div.cl-menu ul > li > a:link {
+        color: #808080; }
+      div.cl-menu ul > li > a:visited {
+        color: #968443; }
+      div.cl-menu ul > li > a:hover {
+        color: #3366cc; }
   div.cl-menu li img {
     width: 16px;
     height: 16px;
@@ -999,12 +1022,12 @@ p.nojustify {
 
 a {
   font-family: Verdana, Geneva, sans-serif;
-  color: #8a8a8a;
+  color: #808080;
   text-decoration: underline;
   cursor: pointer; }
 
 a:link {
-  color: #8a8a8a; }
+  color: #808080; }
 
 a:visited {
   color: #968443; }
@@ -1325,14 +1348,16 @@ table {
     padding: 2px 6px;
     font-family: Helvetica, Arial, sans-serif;
     text-decoration: none; }
-    table tr:first-child th a:link, table tr.cl-internal th a:link {
+    table tr:first-child th > a:link, table tr.cl-internal th > a:link {
       color: #F5F3EB; }
-    table tr:first-child th a:visited, table tr.cl-internal th a:visited {
+    table tr:first-child th > a:visited, table tr.cl-internal th > a:visited {
       color: #E3DCC5; }
-    table tr:first-child th a:hover, table tr.cl-internal th a:hover {
+    table tr:first-child th > a:hover, table tr.cl-internal th > a:hover {
       color: #ffffff; }
   table tr:first-child th.center, table tr.cl-internal th.center {
     text-align: center; }
+  table tr:first-child th.right, table tr.cl-internal th.right {
+    text-align: right; }
   table th.width40 {
     width: 20%; }
   table th.width40em {
@@ -1345,20 +1370,18 @@ table {
     background: #ffffff;
     padding: 0.25em 0.5em;
     color: #4f6b72; }
-    table td a:link {
-      color: #8A8A8A;
-      text-decoration: underline; }
-    table td a:visited {
-      color: #B09D5B;
-      text-decoration: underline; }
     table td a {
-      color: #8a8a8a; }
+      color: #808080; }
     table td a:link {
-      color: #8a8a8a; }
+      color: #808080;
+      text-decoration: underline; }
     table td a:visited {
-      color: #968443; }
+      color: #968443;
+      text-decoration: underline; }
     table td a:hover {
       color: #3366cc; }
+  table td.right {
+    text-align: right; }
   table tr.vertical {
     height: 13em; }
     table tr.vertical th {

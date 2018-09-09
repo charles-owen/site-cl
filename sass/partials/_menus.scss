@@ -36,6 +36,26 @@ div.cl-menu {
         display: table-cell;
         padding-right: 0.5em;
         text-decoration: none;
+        color:$link;
+        font-style: normal;
+        text-shadow: none;
+        font-weight: normal;
+      }
+
+      > a {
+
+      }
+
+      > a:link {
+        color: $link;
+      }
+
+      > a:visited {
+        color: $visited;
+      }
+
+      > a:hover {
+        color: $hover;
       }
     }
 

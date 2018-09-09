@@ -23,13 +23,5 @@
   ],
   "require": {
     "phpmailer/phpmailer": "^6.0"
-  },
-  "scripts": {
-    "post-install-cmd": [
-      "CL\\Site\\Install\\Installer::install"
-    ],
-    "post-update-cmd": [
-      "CL\\Site\\Install\\Installer::install"
-    ]
   }
 }

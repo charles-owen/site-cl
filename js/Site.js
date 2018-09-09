@@ -66,6 +66,20 @@ export const Site = function() {
 	} );
 
 	//
+	// This Vue mixin will allow any Dialog object to be available
+	// as $dialog in Vue objects
+	//
+	Vue.mixin( {
+		beforeCreate() {
+			const options = this.$options;
+			if ( options.dialog )
+				this.$dialog = options.dialog;
+			else if ( options.parent && options.parent.$dialog )
+				this.$dialog = options.parent.$dialog;
+		}
+	} );
+
+	//
 	// Configure Vue
 	//
 	Vue.use(VueRouter);

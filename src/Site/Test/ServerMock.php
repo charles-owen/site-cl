@@ -63,7 +63,7 @@ class ServerMock extends \CL\Site\System\Server {
 		$this->cookie[$name] = '';
 	}
 
-	public function setcookie($name, $value, $expire) {
+	public function setcookie($name, $value, $expire, $path='/') {
 		$this->cookie[$name] = $value;
 	}
 

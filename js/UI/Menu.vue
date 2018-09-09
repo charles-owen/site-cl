@@ -1,5 +1,5 @@
 <template>
-  <div ref="menu" class="cl-menu">
+  <div ref="menu" :class="useClass">
     <slot></slot>
   </div>
 </template>
@@ -28,10 +28,17 @@
      * @constructor MenuVue
      */
     export default {
+    	  props: ['addClass'],
         data: function () {
-            return {}
+            return {
+            	useClass: 'cl-menu'
+            }
         },
         mounted() {
+    	  	  if(this.addClass !== undefined) {
+    	  		  this.useClass += ' ' + this.addClass;
+            }
+
             //
             // Collect up the elements
             //
