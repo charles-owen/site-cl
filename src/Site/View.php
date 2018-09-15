@@ -34,6 +34,7 @@ class View {
 			$site->start($options);
 		}
 
+		$GLOBALS['site'] = $site;
 		$GLOBALS['view'] = $this;
 
 		if(!empty($options['autoback']) && $options['autoback']) {

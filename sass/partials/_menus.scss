@@ -19,7 +19,7 @@ div.cl-menu {
     list-style-type: none;
     list-style-image: none;
     z-index: 120;
-    padding: 0.25em 0.5em;
+    padding: 0; // 0.25em 0.5em;
     margin: 0;
     border: 1px solid $menu-background;
 
@@ -27,14 +27,12 @@ div.cl-menu {
       display: table-row;
       list-style-type: none;
       list-style-image: none;
-      margin-left: 5px;
-      margin-right: 10px;
       white-space: nowrap;
       line-height: 18px;
 
       > a {
         display: table-cell;
-        padding-right: 0.5em;
+        padding: 2px 0.5em;
         text-decoration: none;
         color:$link;
         font-style: normal;
@@ -57,6 +55,10 @@ div.cl-menu {
       > a:hover {
         color: $hover;
       }
+    }
+
+    >li:hover {
+      background-color: $menu-hover;
     }
 
   }

@@ -11,4 +11,12 @@ div.cl-toggleblock {
   margin-bottom:6pt;
   border: 1pt gray solid;
   word-wrap:normal;
+
+  h3:first-child, p:first-child {
+    margin-top: 0;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
 }

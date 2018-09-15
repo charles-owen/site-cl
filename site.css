@@ -633,7 +633,7 @@ div.center p {
 div.cl-center-in {
   text-align: center; }
 
-.underline {
+span.underline {
   text-decoration: underline; }
 
 .cl-inline {
@@ -841,20 +841,18 @@ div.cl-menu {
     list-style-type: none;
     list-style-image: none;
     z-index: 120;
-    padding: 0.25em 0.5em;
+    padding: 0;
     margin: 0;
     border: 1px solid #e8e8e8; }
     div.cl-menu ul > li {
       display: table-row;
       list-style-type: none;
       list-style-image: none;
-      margin-left: 5px;
-      margin-right: 10px;
       white-space: nowrap;
       line-height: 18px; }
       div.cl-menu ul > li > a {
         display: table-cell;
-        padding-right: 0.5em;
+        padding: 2px 0.5em;
         text-decoration: none;
         color: #808080;
         font-style: normal;
@@ -866,6 +864,8 @@ div.cl-menu {
         color: #968443; }
       div.cl-menu ul > li > a:hover {
         color: #3366cc; }
+    div.cl-menu ul > li:hover {
+      background-color: #d0d0d0; }
   div.cl-menu li img {
     width: 16px;
     height: 16px;
@@ -1160,7 +1160,7 @@ figure.border img {
   border: 1px solid black; }
 
 figure.scroll {
-  overflow-x: scroll; }
+  overflow-x: auto; }
   figure.scroll img {
     max-width: none; }
 
@@ -1182,7 +1182,7 @@ p.figure, p.borderfigure {
   padding-bottom: 10pt;
   margin-bottom: -10pt; }
 
-.singlespace {
+div.cl-single-space, p.cl-single-space {
   margin-top: 0;
   margin-bottom: 0; }
 
@@ -1513,6 +1513,10 @@ div.cl-toggleblock {
   margin-bottom: 6pt;
   border: 1pt gray solid;
   word-wrap: normal; }
+  div.cl-toggleblock h3:first-child, div.cl-toggleblock p:first-child {
+    margin-top: 0; }
+  div.cl-toggleblock p:last-child {
+    margin-bottom: 0; }
 
 /**
  * @file

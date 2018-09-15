@@ -131,6 +131,11 @@ class Email {
 	 * @param string $body The email body
 	 */
 	public function mail(Site $site, $email, $name, $subject, $body) {
+		if($email === null) {
+			return;
+		}
+
+		$email = trim($email);
 	    if($email === '') {
 	        return;
         }
