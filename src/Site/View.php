@@ -340,11 +340,11 @@ HTML;
 
 		if($jsTs !== false) {
 			return <<<HTML
-<script type="text/javascript" src="$root/$file?t=$jsTs"></script>
+<script src="$root/$file?t=$jsTs"></script>
 HTML;
 		} else {
 				return <<<HTML
-<script type="text/javascript" src="$root/$file"></script>
+<script src="$root/$file"></script>
 HTML;
 		}
 	}

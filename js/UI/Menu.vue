@@ -86,7 +86,7 @@
                     for (let ul of uls) {
                         ul.style.display = 'none';
                     }
-                }, 100);
+                }, 200);
 
                 open = false;
 
