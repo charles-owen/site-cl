@@ -332,7 +332,7 @@ HTML;
 
 	private function tsjs($file) {
 		$rootDir = $this->site->rootDir;
-		$jsFile = $rootDir . '/' . $file;
+		$jsFile = $rootDir . $file;
 		$jsTs = @filemtime($jsFile);
 
 		$root = $this->site->root;
@@ -340,11 +340,11 @@ HTML;
 
 		if($jsTs !== false) {
 			return <<<HTML
-<script src="$root/$file?t=$jsTs"></script>
+<script src="$root$file?t=$jsTs"></script>
 HTML;
 		} else {
 				return <<<HTML
-<script src="$root/$file"></script>
+<script src="$root$file"></script>
 HTML;
 		}
 	}

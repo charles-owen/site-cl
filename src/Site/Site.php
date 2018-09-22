@@ -97,6 +97,9 @@ class Site {
 			}
 		}
 
+		if(isset($_SERVER['HTTP_HOST'])) {
+			$this->server = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'];
+		}
 	}
 
 	/**
@@ -426,18 +429,18 @@ class Site {
 	/// with named sub-objects like: $site->course
 	private $components = [];
 
-	private $appearance = null; ///< Installed appearance
+	private $appearance = null; // Installed appearance
 
-	private $db;                ///< Database configuration
+	private $db;                // Database configuration
 
-	private $root = '/';        ///< Site root path
-	private $rootDir;           ///< Site root directory
-	private $started = false;   ///< Has site been started?
+	private $root = '';         // Site root path, default is server root
+	private $rootDir;           // Site root directory
+	private $started = false;   // Has site been started?
 
-	private $jsRoot = 'cl/dist';   ///< Javascript root directory
-	private $jsSuffix = null;   ///< Javascript suffix: .js or .min.js
+	private $jsRoot = '/cl/dist';  // Javascript root directory
+	private $jsSuffix = null;   // Javascript suffix: .js or .min.js
 
-	private $sandbox = false;   ///< Are we running in a sandbox?
+	private $sandbox = false;   // Are we running in a sandbox?
 
 	private $siteName = '';         // Name of the site
 	private $cookiePrefix = 'site'; // Prefix for cookie names
