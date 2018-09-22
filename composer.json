@@ -26,8 +26,8 @@
     "cl/tables": "^1.0"
   },
   "extra": {
-  "branch-alias": {
-    "dev-master": "2.0.x-dev"
+    "branch-alias": {
+      "dev-master": "2.0.2"
+    }
   }
-}
 }
