@@ -1398,6 +1398,8 @@ table {
         bottom: 0;
         overflow: hidden;
         text-overflow: ellipsis; }
+  table tr.vertical.narrow th {
+    min-width: 0; }
   table td.colhead {
     border-top: 1px solid #E6F0EF;
     border-left: 1px solid #E6F0EF;
@@ -1415,6 +1417,9 @@ table {
 
 table.wide {
   width: 80%; }
+
+table.widest {
+  width: 100%; }
 
 table.truth-table, table.truth-table-1 {
   border: 0; }

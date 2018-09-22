@@ -40,6 +40,7 @@ class Router {
 	 * @param Server $server
 	 * @param $time
 	 * @return string Page response
+	 * @throws APIException
 	 */
 	public function dispatch(Site $site, Server $server, $time) {
 		// Allow for added routes as specified by plugin

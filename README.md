@@ -14,7 +14,7 @@ it into components that can be installed as needed.
 
 Copyright 2016-2018 Michigan State University
 
-Cirsim is released under the MIT license.
+CourseLib is released under the MIT license.
 
 * * *
 

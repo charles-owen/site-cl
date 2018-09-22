@@ -135,6 +135,12 @@ table {
     height: 13em;
   }
 
+  tr.vertical.narrow {
+    th {
+      min-width: 0;
+    }
+  }
+
   td.colhead {
     border-top:1px solid #E6F0EF;
     border-left:1px solid #E6F0EF;
@@ -161,6 +167,10 @@ table {
 
 table.wide {
   width:80%;
+}
+
+table.widest {
+  width: 100%;
 }
 
 table.truth-table, table.truth-table-1 {

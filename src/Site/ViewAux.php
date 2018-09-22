@@ -67,6 +67,7 @@ abstract class ViewAux {
 	 * @param View $view View we are installing into
 	 */
 	protected function install(View $view) {
+		$this->view = $view;
 	}
 
 	/**
