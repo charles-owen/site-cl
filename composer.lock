@@ -4,8 +4,41 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "923295a4a69e49dcdf4ae3f0334c8096",
+    "content-hash": "13cd55851cea6f6f89409572c3343071",
     "packages": [
+        {
+            "name": "cl/tables",
+            "version": "v1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/charles-owen/tables-cl.git",
+                "reference": "d98c3804b8a4030b23a7cd4c41c7618f95ad7898"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/charles-owen/tables-cl/zipball/d98c3804b8a4030b23a7cd4c41c7618f95ad7898",
+                "reference": "d98c3804b8a4030b23a7cd4c41c7618f95ad7898",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "CL\\Tables\\": "src/Tables"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Charles B. Owen",
+                    "email": "cbowen@msu.edu"
+                }
+            ],
+            "description": "Convenient classes for managing tables in PHP",
+            "time": "2018-06-27T20:21:30+00:00"
+        },
         {
             "name": "phpmailer/phpmailer",
             "version": "v6.0.5",
