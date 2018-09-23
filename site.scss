@@ -24,7 +24,6 @@
 @import 'sass/partials/body';
 @import 'sass/partials/code';
 @import 'sass/partials/figure';
-@import 'sass/partials/utility';
 @import 'sass/partials/autoback';
 @import 'sass/partials/shadow';
 @import 'sass/partials/tables';
@@ -40,12 +39,12 @@
 @import 'sass/partials/card';
 @import 'sass/partials/twocol';
 
+@import 'sass/partials/utility';
+@import 'sass/partials/overrides';
 
 //@import 'sass/partials/remoteexec';
 //@import 'sass/partials/playarea';
 
 @import 'sass/partials/colors';
-
-
 
 //@import 'sass/partials/unsorted';

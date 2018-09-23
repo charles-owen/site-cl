@@ -1,0 +1,18 @@
+/**
+ * @file
+ * Styles meant to override other settings
+ */
+
+div.cl-single-space, p.cl-single-space {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+div.cl-nopadding-lr {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.noborder {
+  border-width:0px;
+}
