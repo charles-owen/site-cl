@@ -13,10 +13,12 @@ class Package {
 	 * Package constructor.
 	 * @param string $plugin Plugin to add to installed.php or null if none.
 	 * @param string $dist Directory containing files to copy into /cl/dist
+	 * @param string $cl Directory containing files to copy into /cl
 	 */
-	public function __construct(string $plugin=null, $dist=null) {
+	public function __construct(string $plugin=null, $dist=null, $cl=null) {
 		$this->installed = $plugin;
 		$this->dist = $dist;
+		$this->cl = $cl;
 	}
 
 
@@ -43,6 +45,9 @@ class Package {
 
 			case 'installed':
 				return $this->installed;
+
+			case 'cl':
+				return $this->cl;
 
 			default:
 				$trace = debug_backtrace();
@@ -86,9 +91,17 @@ class Package {
 		}
 	}
 
+	/**
+	 * Allow local version of the installer to do custom configurations.
+	 * @param string $rootDir Path to the root directory of the site.
+	 */
+	public function custom($rootDir) {
+	}
+
 
 	private $name = null;
 	private $path = null;
 	private $installed;
 	private $dist;
+	private $cl;
 }

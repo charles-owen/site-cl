@@ -45,12 +45,21 @@ class Installer {
 		// Ensure the dist directory exists and has base JS in it
 		$this->installJS($rootDir);
 
+		// Copy over any files into cl directories
+		$this->installCL($rootDir);
+
 		// Create the cl/installed.php file
 		$this->createInstalled($rootDir);
+
+		// Perform any package custom installations
+		$this->custom($rootDir);
+
+
+
 	}
 
 	private function loadPackages($name, $path) {
-		if($name === 'cl/site') {
+		if($name === 'cl/site' || isset($this->packages[$name])) {
 			// We handle ourselves just fine
 			return;
 		}
@@ -59,7 +68,7 @@ class Installer {
 			$package = require($path . './install.php');
 			$package->name = $name;
 			$package->path = $path;
-			$this->packages[] = $package;
+			$this->packages[$name] = $package;
 		}
 	}
 
@@ -93,6 +102,32 @@ class Installer {
 		}
 	}
 
+
+	/**
+	 * Copy package files into the /cl directory.
+	 * @param string $rootDir Site root directory
+	 */
+	private function installCL($rootDir) {
+		$cl = $rootDir . '/cl';
+
+		// Copy files into cl directory
+		// And copy all installed packages dist content
+		foreach($this->packages as $package) {
+			if ($package->cl !== null) {
+				$packageCl = $package->path . $package->cl;
+				foreach(scandir($packageCl) as $file) {
+					if(is_file($packageCl . '/' . $file)) {
+						if(!file_exists($cl . '/' . $file)) {
+							copy($packageCl . '/' . $file, $cl . '/' . $file);
+						}
+					}
+				}
+
+			}
+		}
+
+
+	}
 	/**
 	 * Ensure the minimum root directory files exist for the site.
 	 * @param string $rootDir Site root directory
@@ -135,7 +170,7 @@ class Installer {
 			}
 		}
 
-		// Any copy all installed packages dist content
+		// And copy all installed packages dist content
 		foreach($this->packages as $package) {
 			if($package->dist !== null) {
 				$distCl = $package->path . $package->dist;
@@ -150,6 +185,17 @@ class Installer {
 
 	}
 
+	/**
+	 * Perform any package custom installations.
+	 * @param string $rootDir Site root directory path
+	 */
+	private function custom($rootDir) {
+		// And copy all installed packages dist content
+		foreach($this->packages as $package) {
+			$package->custom($rootDir);
+		}
+	}
+
 	private function createInstalled($rootDir) {
 		$file = $rootDir . '/cl/installed.php';
 
@@ -160,7 +206,7 @@ class Installer {
 			}
 
 			if($list !== '') {
-				$list .= ",\n";
+				$list .= ",\n  ";
 			}
 
 			$list .= 'new ' . $package->installed . '()';
