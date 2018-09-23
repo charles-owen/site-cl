@@ -481,11 +481,8 @@ HTML;
 	/**
 	 * Add a JavaScript file to be loaded by this page.
 	 *
-	 * If file does not begin with /, the JavaScript root
-	 * is prepended.
-	 *
-	 * If the file does not end with .js, the JavaScript suffix
-	 * is appended.
+	 * Paths begin with '/' and are considered relative
+	 * to the site root directory.
 	 *
 	 * @param $js
 	 */
