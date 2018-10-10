@@ -51,8 +51,11 @@ PageVue.create = function(sel, title, component, nav) {
         components['page-nav'] = nav;
     }
 
+    let site = Site.Site;
+
     new Site.Vue({
         el: element,
+        site,
         store,
         data: {
             title: title,

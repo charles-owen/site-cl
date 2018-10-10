@@ -3,7 +3,7 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const path = require('path');
 const WebpackChunkRenamerPlugin = require('webpack-chunk-renamer-plugin');
 const FileManagerPlugin = require('filemanager-webpack-plugin');
-
+var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
     mode: 'production',
@@ -34,6 +34,7 @@ module.exports = {
         }
     },
     plugins: [
+	    // new BundleAnalyzerPlugin(),
         new WebpackChunkRenamerPlugin({
             'vendor': 'vendor.min.js',
 	        initialChunksWithEntry: true

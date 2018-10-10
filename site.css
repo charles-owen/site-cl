@@ -1761,6 +1761,9 @@ a.tip:hover span {
   text-align: center;
   font-size: 11px; }
 
+div.cl-border {
+  border: 1px solid #666666; }
+
 @media only screen and (max-width: 750px) {
   .nomobile {
     display: none; }
