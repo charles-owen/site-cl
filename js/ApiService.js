@@ -16,7 +16,7 @@ import {APIResponse} from './APIResponse.js';
  */
 export const ApiService = function(root) {
 	//
-	// Install response intercepter
+	// Install response interceptor
 	//
 	axios.interceptors.response.use((response) => {
 		if (typeof(response.data) === 'string') {

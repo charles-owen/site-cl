@@ -643,6 +643,9 @@ span.underline {
   display: inline-block;
   padding: 1.5em 0 2em 0; }
 
+.cl-double-space {
+  line-height: 2; }
+
 header.cl-site {
   color: #eeeeee;
   background-color: #535054;
@@ -794,6 +797,9 @@ div.cl-dialog {
         text-align: right; }
       div.cl-dialog div.tabular p span {
         display: table-cell; }
+
+div.cl-dialog-narrow {
+  width: 250px; }
 
 div.dialog-cl-top {
   background-color: #00723f !important;
@@ -1774,7 +1780,7 @@ div.cl-border {
  * @file
  * Styles meant to override other settings
  */
-div.cl-single-space, p.cl-single-space {
+.cl-single-space {
   margin-top: 0;
   margin-bottom: 0; }
 

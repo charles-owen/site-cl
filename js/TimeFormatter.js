@@ -80,6 +80,10 @@ TimeFormatter.absoluteUNIX = function(time, format) {
 	    format = 'ddd, M-DD-YYYY h:mm:ssa';
     } else if(format === 'long') {
 	    format = 'dddd, M-DD-YYYY h:mm:ssa';
+    } else if(format === 'long-date') {
+	    format = 'dddd, M-DD-YYYY';
+    } else if(format === 'short-time') {
+	    format = 'h:mma';
     }
 
     return t.format(format);

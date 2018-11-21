@@ -21,9 +21,11 @@ div.cl-dialog {
 
 
   }
-
 }
 
+div.cl-dialog-narrow {
+  width: 250px;
+}
 
 div.dialog-cl-top {
   background-color: $primary !important;

@@ -17,6 +17,8 @@ import {SlideShow} from './SlideShow/SlideShow';
 import {Editor} from './UI/Editor';
 import {Polling} from './Polling/Polling';
 
+import {Tags} from './Util/Tags';
+
 /**
  * The main Site object.
  *
@@ -252,4 +254,9 @@ export const Site = function() {
 			this.polling.start();
 		});
 	}
+
+	//
+	// Install common library components
+	//
+	this.Tags = Tags;
 }

@@ -78,6 +78,9 @@ PageVue.create = function(sel, title, component, nav) {
             },
             setMenu: function(menu) {
                 this.menu = menu;
+            },
+            getMenu: function() {
+                return this.menu;
             }
         }
     })
