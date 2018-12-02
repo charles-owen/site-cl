@@ -37,8 +37,8 @@ $site->db->configure('',
 	'',
 	'');
 
-$site->siteName = 'CourseLib';
+$site->siteName = '';
 
 // Prefix to add to cookie names. Recommended if site has more than
 // one course on it.
-$site->cookiePrefix = 'cse999_';
+$site->cookiePrefix = 'cookie_';

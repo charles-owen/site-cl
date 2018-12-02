@@ -23,7 +23,8 @@
   ],
   "require": {
     "phpmailer/phpmailer": "^6.0",
-    "cl/tables": "^1.0"
+    "cl/tables": "^1.0",
+    "ext-db": "*"
   },
   "extra": {
     "branch-alias": {
