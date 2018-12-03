@@ -11,9 +11,7 @@ export const Tags = function() {
 Tags.MaxLength = 32;
 
 Tags.validate = function(tag) {
-	tag = tag.trim();
-
-	if(tag === '') {
+	if(tag.trim() === '') {
 		new Dialog.MessageBox('Must enter valid tag', 'You must provide a valid non-empty tag',
 			Dialog.MessageBox.OK);
 		return false;
@@ -25,7 +23,7 @@ Tags.validate = function(tag) {
 		return false;
 	}
 
-	const re = /^[a-zA-Z0-9]*$/;
+	const re = /^[a-zA-Z0-9\-_]*$/;
 	if(!re.test(tag)) {
 		new Dialog.MessageBox('Must enter valid tag', 'Tags are case sensitive and consist of the letters a-z, 0-9, -, and _ ' +
 			'Tags cannot have spaces in them.',

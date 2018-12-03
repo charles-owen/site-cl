@@ -16,6 +16,7 @@ import {Clock} from './Util/Clock';
 import {SlideShow} from './SlideShow/SlideShow';
 import {Editor} from './UI/Editor';
 import {Polling} from './Polling/Polling';
+import {Submitter} from './Forms/Submitter';
 
 import {Tags} from './Util/Tags';
 
@@ -240,6 +241,11 @@ export const Site = function() {
 						new VideoPresenter(element);
 					}
 				});
+			}
+
+			elements = document.querySelectorAll('form.cl-submitter');
+			for(let element of elements) {
+				new Submitter(element);
 			}
 
 			readyList.forEach((fun) => {

@@ -101,7 +101,11 @@ export const ApiService = function(root) {
 	 */
 	this.post = function (path, args) {
 		//console.log('post: ' + path);
-		return axios.post(root + '/cl' + path, args);
+		if(path.match(/^http/)) {
+			return axios.post(path, args);
+		} else {
+			return axios.post(root + '/cl' + path, args);
+		}
 	}
 
 	/**

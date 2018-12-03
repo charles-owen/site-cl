@@ -40,6 +40,10 @@ input[type=checkbox] {
   bottom: 1px;
 }
 
+input[type="submit"]:disabled {
+  color: #808080;
+}
+
 .center {
   text-align:center;
 }

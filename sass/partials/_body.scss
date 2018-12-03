@@ -95,7 +95,14 @@ li {
 }
 
 ul li {
-  list-style-image:url('img/bullet2.png');
+  list-style-image:url('img/bullet.png');
+  margin-top:0px;
+  margin-bottom:0px;
+}
+
+
+ul li.star {
+  list-style-image:url('img/star.png');
   margin-top:0px;
   margin-bottom:0px;
 }

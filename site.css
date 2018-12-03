@@ -624,6 +624,9 @@ input[type=checkbox] {
   position: relative;
   bottom: 1px; }
 
+input[type="submit"]:disabled {
+  color: #808080; }
+
 .center {
   text-align: center; }
 
@@ -702,6 +705,8 @@ div.content {
     margin-right: 13.33em; }
   div.content > p.shoutout {
     margin-right: 12.3em; }
+  div.content > p.shoutout.full {
+    margin-right: 0; }
   div.content > .full, div.content > div.full {
     margin-right: 0;
     margin-left: 0;
@@ -1052,7 +1057,12 @@ li {
   text-align: left; }
 
 ul li {
-  list-style-image: url("img/bullet2.png");
+  list-style-image: url("img/bullet.png");
+  margin-top: 0px;
+  margin-bottom: 0px; }
+
+ul li.star {
+  list-style-image: url("img/star.png");
   margin-top: 0px;
   margin-bottom: 0px; }
 

@@ -6,7 +6,9 @@
 
 namespace CL\Site\Install;
 
-
+/**
+ * Represents a package we can install during the site install process.
+ */
 class Package {
 
 	/**

@@ -48,14 +48,14 @@ class Installer {
 		// Copy over any files into cl directories
 		$this->installCL($rootDir);
 
+		// Copy over any image file to /cl/img
+		$this->installImg($rootDir);
+
 		// Create the cl/installed.php file
 		$this->createInstalled($rootDir);
 
 		// Perform any package custom installations
 		$this->custom($rootDir);
-
-
-
 	}
 
 	private function loadPackages($name, $path) {
@@ -102,6 +102,28 @@ class Installer {
 		}
 	}
 
+
+	/**
+	 * Copy files into /cl/img
+	 * @param string $rootDir Site root directory
+	 */
+	private function installImg($rootDir) {
+		$img = $rootDir . '/cl/img';
+
+		if (!file_exists($img)) {
+			mkdir($img);
+		}
+
+		// Copy files into cl/img directory
+		$siteImg = $rootDir . '/vendor/cl/site/img';
+		foreach(scandir($siteImg) as $file) {
+			if(is_file($siteImg . '/' . $file)) {
+				if(!file_exists($img . '/' . $file)) {
+					copy($siteImg . '/' . $file, $img . '/' . $file);
+				}
+			}
+		}
+	}
 
 	/**
 	 * Copy package files into the /cl directory.
