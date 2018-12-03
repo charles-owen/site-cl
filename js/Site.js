@@ -232,20 +232,19 @@ export const Site = function() {
 				new Editor(element);
 			}
 
-			elements = document.querySelectorAll('div.cl-video');
-			if(elements.length > 0) {
-				import(/* webpackChunkName: "site.video" */ './Video/VideoPresenter.js').then((bundle) => {
-					let VideoPresenter = bundle.default;
-
-					for(let element of elements) {
-						new VideoPresenter(element);
-					}
-				});
-			}
-
 			elements = document.querySelectorAll('form.cl-submitter');
 			for(let element of elements) {
 				new Submitter(element);
+			}
+
+			let videoElements = document.querySelectorAll('div.cl-video');
+			if(videoElements.length > 0) {
+				import(/* webpackChunkName: "site.video" */ './Video/VideoPresenter.js').then((bundle) => {
+					let VideoPresenter = bundle.default;
+					for(let element of videoElements) {
+						new VideoPresenter(element);
+					}
+				});
 			}
 
 			readyList.forEach((fun) => {
