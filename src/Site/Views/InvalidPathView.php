@@ -33,12 +33,11 @@ class InvalidPathView extends View {
 	public function present() {
 
 		return <<<HTML
-<div class="content">
 <div class="full">
 <div class="centerbox comp">
 <p class="shoutout">Invalid URL</p>		
 <p>The requested URL was not found on this server. If you entered the URL manually please check your spelling and try again.</p>
-</div></div></div>
+</div></div>
 HTML;
 	}
 }

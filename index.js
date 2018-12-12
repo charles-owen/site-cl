@@ -18,6 +18,9 @@ import {SiteFactory} from './js/SiteFactory.js';
 const Site = SiteFactory.create();
 export {Site};
 
+let site = Site;
+export {site};
+
 const root = Site.root;
 const api = Site.api;
 const toast = Site.toast;

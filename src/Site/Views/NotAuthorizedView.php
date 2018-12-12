@@ -47,11 +47,10 @@ class NotAuthorizedView extends View {
 	public function present() {
 
 		$html = <<<HTML
-<div class="content">
 <div class="full">
 <div class="centerbox comp">
 <p class="shoutout">$this->msg</p>		
-</div></div></div>
+</div></div>
 HTML;
 
 		return $html;

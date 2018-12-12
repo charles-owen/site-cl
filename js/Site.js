@@ -17,6 +17,7 @@ import {SlideShow} from './SlideShow/SlideShow';
 import {Editor} from './UI/Editor';
 import {Polling} from './Polling/Polling';
 import {Submitter} from './Forms/Submitter';
+import {TimeFormatter} from './TimeFormatter'
 
 import {Tags} from './Util/Tags';
 
@@ -264,4 +265,5 @@ export const Site = function() {
 	// Install common library components
 	//
 	this.Tags = Tags;
+	this.TimeFormatter = TimeFormatter;
 }
