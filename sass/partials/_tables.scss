@@ -113,6 +113,13 @@ table {
     text-align: right;
   }
 
+  tr.divider {
+    td {
+      border-top: 2px solid #444;
+
+    }
+  }
+
   tr.vertical {
     th {
       min-width: 3em;
@@ -173,110 +180,11 @@ table.widest {
   width: 100%;
 }
 
-table.truth-table, table.truth-table-1 {
-  border: 0;
-
-  tr:first-child {
-    border-bottom: thin solid black;
-
-    td {
-      color: black;
-      background: white;
-      text-align: center;
-      border: 0;
-      text-shadow: none;
-      font-weight: bold;
-    }
-  }
-
-  tr.split {
-    border-bottom: thin dotted #888888;
-  }
-
-  th {
-    color: black;
-    background: white;
-    text-align: center;
-    border: 0;
-    text-shadow: none;
-    font-weight: bold;
-  }
-
-  td {
-    text-align: center;
-    border: 0;
-
-    input {
-      width: 3em;
-      text-align: center;
-    }
-  }
-
-  th.border, td.border {
-    border-left: thin solid black;
-  }
-}
-
 table tr.highlight td {
   background-color: #FFFF00;
 }
 
-// Truth table with one output
-table.truth-table-1 {
-  td:last-child, th:last-child {
-    border-left: thin solid black;
-  }
-}
 
-table.border-right-column-1 {
-  td:nth-child(1), th:nth-child(1) {
-    border-right: thin solid black;
-  }
-}
-
-
-table.border-right-column-2 {
-  td:nth-child(2), th:nth-child(2) {
-    border-right: thin solid black;
-  }
-}
-
-
-table.border-right-column-3 {
-  td:nth-child(3), th:nth-child(3) {
-    border-right: thin solid black;
-  }
-}
-
-
-table.border-right-column-4 {
-  td:nth-child(4), th:nth-child(4) {
-    border-right: thin solid black;
-  }
-}
-
-
-table.intermediate1 {
-  td:nth-last-child(2), th:nth-last-child(2) {
-    border-left: thin solid black;
-  }
-}
-
-table.intermediate2 {
-  td:nth-last-child(2), th:nth-last-child(2) {
-    border-left: thin solid black;
-  }
-
-  td:nth-last-child(3), th:nth-last-child(3) {
-    border-left: thin solid black;
-  }
-}
-
-tr.ignore {
-  td {
-    background-color: $very-light-primary;
-  }
-}
 
 
 /** @endcond */

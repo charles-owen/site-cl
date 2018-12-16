@@ -1292,6 +1292,8 @@ table {
       color: #3366cc; }
   table td.right {
     text-align: right; }
+  table tr.divider td {
+    border-top: 2px solid #444; }
   table tr.vertical {
     height: 13em; }
     table tr.vertical th {
@@ -1331,6 +1333,10 @@ table.wide {
 table.widest {
   width: 100%; }
 
+table tr.highlight td {
+  background-color: #FFFF00; }
+
+/** @endcond */
 table.truth-table, table.truth-table-1 {
   border: 0; }
   table.truth-table tr:first-child, table.truth-table-1 tr:first-child {
@@ -1360,9 +1366,6 @@ table.truth-table, table.truth-table-1 {
   table.truth-table th.border, table.truth-table td.border, table.truth-table-1 th.border, table.truth-table-1 td.border {
     border-left: thin solid black; }
 
-table tr.highlight td {
-  background-color: #FFFF00; }
-
 table.truth-table-1 td:last-child, table.truth-table-1 th:last-child {
   border-left: thin solid black; }
 
@@ -1389,7 +1392,6 @@ table.intermediate2 td:nth-last-child(3), table.intermediate2 th:nth-last-child(
 tr.ignore td {
   background-color: #e8f7f3; }
 
-/** @endcond */
 /**
  * @file
  * Style items related to the use of IDE's
