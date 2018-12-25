@@ -55,6 +55,28 @@ export const Site = function() {
 		startList.push(fn);
 	}
 
+	// Array of function to be called when a new message arrives
+	const messageListeners = []
+
+	/**
+	 * Send a message to all installed message listeners
+	 * @param msg Message to send (string)
+	 * @param data Data that accompanies message
+	 */
+	this.message = function(msg, data) {
+		for(const fn of messageListeners) {
+			fn(msg, data);
+		}
+	}
+
+	/**
+	 * Add a message listener
+	 * @param fn Function, accepts parameters (msg, data)
+	 */
+	this.messageListener = function(fn) {
+		messageListeners.push(fn);
+	}
+
 	//
 	// This Vue mixin will allow the Site object to be available
 	// as $site in Vue objects
@@ -240,7 +262,7 @@ export const Site = function() {
 
 			let videoElements = document.querySelectorAll('div.cl-video');
 			if(videoElements.length > 0) {
-				import(/* webpackChunkName: "site.video" */ './Video/VideoPresenter.js').then((bundle) => {
+				import(/* webpackChunkName: "site.video" */ './Video/VideoPresenter').then((bundle) => {
 					let VideoPresenter = bundle.default;
 					for(let element of videoElements) {
 						new VideoPresenter(element);

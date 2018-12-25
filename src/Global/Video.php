@@ -1,8 +1,10 @@
 <?php
-/** @file
+/**
+ * @file
  * Class that represents a video to be displayed in a page
  */
 
+use \CL\Users\User;
 
 /** Represents a video to be displayed in a page
  * 
@@ -28,11 +30,11 @@ class Video {
 	 * sample.mp4, the large file is sample.mp4, medium file is sampleM.mp4
 	 * and the low bandwidth version is sampleL.mp4.
 	 *
-	 * @param $path Path to the video file. May omit codes for different sizes.
-	 * @param $user User we are displaying the video for (optional)
-	 * @param $size Optional size specifier. If specified, only that size will be used.
+	 * @param string $path Path to the video file. May omit codes for different sizes.
+	 * @param User $user User we are displaying the video for (optional)
+	 * @param string $size Optional size specifier. If specified, only that size will be used.
 	 */
-	public function __construct($path, \CL\Users\User $user=null, $size=null) {
+	public function __construct($path, User $user=null, $size=null) {
 		$this->user = $user;
 		$this->path = $path;
 		$this->size = $size;
@@ -98,7 +100,8 @@ class Video {
 	        'wid'=>$wid,
 	        'hit'=>$hit,
 	        'size'=>$usesize,
-	        'controls'=>$this->user !== null && $this->size === null && $this->customWidth === null
+	        'controls'=>$this->user !== null && $this->size === null && $this->customWidth === null,
+	        'captions'=>$this->captions
         ]), ENT_NOQUOTES);
 		
 		$html = <<<VID
@@ -118,9 +121,19 @@ VID;
 		$this->customHeight = $height;
 	}
 
+	/**
+	 * Add a caption file to this video
+	 * @param string $path Path to the caption file
+	 * @param string $language Language (defaults to 'en');
+	 */
+	public function caption($path, $language='en') {
+		$this->captions[] = ['path'=>$path, 'lang'=>$language];
+	}
+
 	private $user;
     private $path;
     private $size;		///< Optional size specification
+	private $captions = [];
 	
 	private $customWidth = null;
 	private $customHeight = null;

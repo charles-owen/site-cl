@@ -3,7 +3,7 @@ import './_video.scss';
 
 import videojs from 'video.js';
 
-let VideoPresenter = function(element) {
+const VideoPresenter = function(element) {
 
     // Keep track of all active video presenters on the page
     VideoPresenter.all.push(this);
@@ -47,13 +47,19 @@ let VideoPresenter = function(element) {
         video.setAttribute('height', data.hit);
         div.appendChild(video);
 
-        let html = `<source src="${data.src}" type='video/mp4'>
-<p class="vjs-no-js">To view this video you must enable JavaScript, and be 
+        let html = `<source src="${data.src}" type='video/mp4'>`;
+
+        for(const caption of data.captions) {
+            let language = 'English';
+            html += `<track kind="captions" src="${caption.path}" srclang="${caption.lang}" label="${language}" default>`;
+        }
+
+        html += `<p class="vjs-no-js">To view this video you must enable JavaScript, and be 
 using a web browser that supports HTML5 video</p>`;
 
-        video.innerHTML = html;
+	    video.innerHTML = html;
 
-// <p class="buttons"><a href="javascript:void(0)" onClick="video_format(0, '/')">large</a> <a href="javascript:void(0)" onClick="video_format(1, '/')">medium</a> <a href="javascript:void(0)" onClick="video_format(2, '/')">low bandwidth</a></p></div>
+        // <p class="buttons"><a href="javascript:void(0)" onClick="video_format(0, '/')">large</a> <a href="javascript:void(0)" onClick="video_format(1, '/')">medium</a> <a href="javascript:void(0)" onClick="video_format(2, '/')">low bandwidth</a></p></div>
 
         if(data.controls) {
             let p = document.createElement('P');

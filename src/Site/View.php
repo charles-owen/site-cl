@@ -404,6 +404,25 @@ HTML;
 	}
 
 	/**
+	 * The page is enclosed in div tags with class body and
+	 * class content that restrict page size to a maximum and
+	 * minimum. This function can be used to exist those
+	 * at any time. Use reenter_body() to resume the page nesting.
+	 * @return string HTML
+	 */
+	public function exitBody() {
+		return '</div></div>';
+	}
+
+	/**
+	 * Render the content and body divs.
+	 * @return string
+	 */
+	public function reenterBody() {
+		return '<div class="body"><div class="content">';
+	}
+
+	/**
 	 * Present the page footer
 	 * @return string HTML
 	 */

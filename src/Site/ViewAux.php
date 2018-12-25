@@ -12,6 +12,10 @@ namespace CL\Site;
  * An auxiliary view class is a view that is used by another page view class.
  * A view is for a page. An auxiliary view is for some component used by the
  * page.
+ *
+ * @cond
+ * @property \CL\Site\View view
+ * @endcond
  */
 abstract class ViewAux {
 	/**

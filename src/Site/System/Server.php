@@ -41,8 +41,8 @@ class Server {
 		switch($property) {
 			case 'post':
 				if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-					if($_SERVER['CONTENT_TYPE'] === 'application/x-www-form-urlencoded' ||
-						substr($_SERVER['CONTENT_TYPE'], 0, 19) === 'multipart/form-data') {
+					if(strpos($_SERVER['CONTENT_TYPE'], 'application/x-www-form-urlencoded') === 0 ||
+						strpos($_SERVER['CONTENT_TYPE'], 'multipart/form-data') === 0) {
 						return $_POST;
 					} else {
 						return json_decode(file_get_contents("php://input"), true);
