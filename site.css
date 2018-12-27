@@ -649,6 +649,9 @@ span.underline {
 .cl-double-space {
   line-height: 2; }
 
+div.cl-border {
+  border: 1px solid black; }
+
 header.cl-site {
   color: #eeeeee;
   background-color: #535054;
@@ -1172,8 +1175,10 @@ figure.float-right {
     font-style: italic;
     margin-top: 0; }
 
-figure.border img {
-  border: 1px solid black; }
+figure.border {
+  border: 0; }
+  figure.border img {
+    border: 1px solid black; }
 
 figure.scroll {
   overflow-x: auto; }
@@ -1313,10 +1318,9 @@ table {
   table tr.vertical.narrow th {
     min-width: 0; }
   table td.colhead {
-    border-top: 1px solid #E6F0EF;
-    border-left: 1px solid #E6F0EF;
-    border-right: 1px solid #A8CCC8;
-    border-bottom: 1px solid #A8CCC8;
+    border: 1px solid #E6F0EF;
+    border-right-color: #A8CCC8;
+    border-bottom-color: #A8CCC8;
     padding-right: 10px;
     padding-left: 10px; }
   table td.indent {
@@ -1336,18 +1340,20 @@ table.widest {
 table tr.highlight td {
   background-color: #FFFF00; }
 
+table.cl-expand {
+  border: 1em solid white; }
+
 /** @endcond */
 table.truth-table, table.truth-table-1 {
   border: 0; }
-  table.truth-table tr:first-child, table.truth-table-1 tr:first-child {
-    border-bottom: thin solid black; }
-    table.truth-table tr:first-child td, table.truth-table-1 tr:first-child td {
-      color: black;
-      background: white;
-      text-align: center;
-      border: 0;
-      text-shadow: none;
-      font-weight: bold; }
+  table.truth-table tr:first-child td, table.truth-table tr:first-child th, table.truth-table-1 tr:first-child td, table.truth-table-1 tr:first-child th {
+    color: black;
+    background: white;
+    text-align: center;
+    border: 0;
+    text-shadow: none;
+    font-weight: bold;
+    border-bottom: 1px solid black; }
   table.truth-table tr.split, table.truth-table-1 tr.split {
     border-bottom: thin dotted #888888; }
   table.truth-table th, table.truth-table-1 th {
@@ -1366,27 +1372,27 @@ table.truth-table, table.truth-table-1 {
   table.truth-table th.border, table.truth-table td.border, table.truth-table-1 th.border, table.truth-table-1 td.border {
     border-left: thin solid black; }
 
-table.truth-table-1 td:last-child, table.truth-table-1 th:last-child {
+table.truth-table-1 td:last-child, table.truth-table-1 tr th:last-child {
   border-left: thin solid black; }
 
-table.border-right-column-1 td:nth-child(1), table.border-right-column-1 th:nth-child(1) {
+table.border-right-column-1 td:nth-child(1), table.border-right-column-1 tr th:nth-child(1) {
   border-right: thin solid black; }
 
-table.border-right-column-2 td:nth-child(2), table.border-right-column-2 th:nth-child(2) {
+table.border-right-column-2 td:nth-child(2), table.border-right-column-2 tr th:nth-child(2) {
   border-right: thin solid black; }
 
-table.border-right-column-3 td:nth-child(3), table.border-right-column-3 th:nth-child(3) {
+table.border-right-column-3 td:nth-child(3), table.border-right-column-3 tr th:nth-child(3) {
   border-right: thin solid black; }
 
-table.border-right-column-4 td:nth-child(4), table.border-right-column-4 th:nth-child(4) {
+table.border-right-column-4 td:nth-child(4), table.border-right-column-4 tr th:nth-child(4) {
   border-right: thin solid black; }
 
-table.intermediate1 td:nth-last-child(2), table.intermediate1 th:nth-last-child(2) {
+table.intermediate1 td:nth-last-child(2), table.intermediate1 tr th:nth-last-child(2) {
   border-left: thin solid black; }
 
-table.intermediate2 td:nth-last-child(2), table.intermediate2 th:nth-last-child(2) {
+table.intermediate2 td:nth-last-child(2), table.intermediate2 tr th:nth-last-child(2) {
   border-left: thin solid black; }
-table.intermediate2 td:nth-last-child(3), table.intermediate2 th:nth-last-child(3) {
+table.intermediate2 td:nth-last-child(3), table.intermediate2 tr th:nth-last-child(3) {
   border-left: thin solid black; }
 
 tr.ignore td {
@@ -1781,6 +1787,11 @@ a.tip:hover span {
 
 div.cl-border {
   border: 1px solid #666666; }
+
+div.cl-fat {
+  position: relative;
+  width: 96vw;
+  left: calc(-48vw + 50%); }
 
 @media only screen and (max-width: 750px) {
   .nomobile {

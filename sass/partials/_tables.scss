@@ -149,10 +149,9 @@ table {
   }
 
   td.colhead {
-    border-top:1px solid #E6F0EF;
-    border-left:1px solid #E6F0EF;
-    border-right: 1px solid #A8CCC8;
-    border-bottom: 1px solid #A8CCC8;
+    border: 1px solid #E6F0EF;
+    border-right-color: #A8CCC8;
+    border-bottom-color: #A8CCC8;
     padding-right:10px;
     padding-left:10px;
   }
@@ -184,6 +183,9 @@ table tr.highlight td {
   background-color: #FFFF00;
 }
 
+table.cl-expand {
+  border: 1em solid white;
+}
 
 
 
