@@ -4,7 +4,7 @@
  * @param sel Selector to find the nav bar.
  * @constructor
  */
-export let StickyNav = function(sel) {
+export const StickyNav = function(sel) {
     let navs = [];
     let spacer = document.createElement('div');
     let installed = false;

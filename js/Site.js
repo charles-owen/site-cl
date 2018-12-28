@@ -18,8 +18,13 @@ import {Editor} from './UI/Editor';
 import {Polling} from './Polling/Polling';
 import {Submitter} from './Forms/Submitter';
 import {TimeFormatter} from './TimeFormatter'
-
+import {PageVue} from './Vue/PageVue';
 import {Tags} from './Util/Tags';
+import {StickyNav} from './Util/StickyNav';
+
+import PageNav from './Vue/PageNav.vue';
+import MaskVue from './Vue/Mask.vue';
+import MenuVue from './UI/Menu.vue';
 
 /**
  * The main Site object.
@@ -288,4 +293,10 @@ export const Site = function() {
 	//
 	this.Tags = Tags;
 	this.TimeFormatter = TimeFormatter;
+	this.PageVue = PageVue;
+	this.MaskVue = MaskVue;
+	this.PageNav = PageNav;
+	this.Editor = Editor;
+	this.MenuVue = MenuVue;
+	this.StickyNav = StickyNav;
 }
