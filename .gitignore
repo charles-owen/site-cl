@@ -6,6 +6,13 @@ tests/config.php
 _notes
 yarn-error.log
 
+dev/doc/html
+dev/doc/latex
+dev/design/*.vux
+dev/design/*.bak*
+dev/design/*.lck
+
+
 # compiled output
 /dist-server
 /tmp
