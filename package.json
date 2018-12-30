@@ -52,7 +52,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
-    "autoback-cl": "^2.0.0",
+    "autoback-cl": "~2.0.5",
     "axios": "^0.18.0",
     "buckets-js": "^1.98.2",
     "classlist-polyfill": "^1.2.0",
@@ -64,7 +64,7 @@
     "icons-cl": "^1.0.2",
     "moment": "^2.22.2",
     "promise-polyfill": "^8.1.0",
-    "resizer-cl": "^2.3.0",
+    "resizer-cl": "~2.3.4",
     "toggler-cl": "^4.0.0",
     "url-polyfill": "^1.0.14",
     "video.js": "^7.0.5",

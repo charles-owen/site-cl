@@ -51,7 +51,7 @@ const VideoPresenter = function(element) {
 
         for(const caption of data.captions) {
             let language = 'English';
-            html += `<track kind="captions" src="${caption.path}" srclang="${caption.lang}" label="${language}" default>`;
+            html += `<track kind="captions" src="${caption.path}" srclang="${caption.lang}" label="${language}">`;
         }
 
         html += `<p class="vjs-no-js">To view this video you must enable JavaScript, and be 
