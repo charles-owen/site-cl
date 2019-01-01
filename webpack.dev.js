@@ -1,6 +1,7 @@
 const path = require('path');
 const WebpackChunkRenamerPlugin = require('webpack-chunk-renamer-plugin');
 const FileManagerPlugin = require('filemanager-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
 
 module.exports = {
     mode: 'development',
@@ -27,7 +28,8 @@ module.exports = {
         new WebpackChunkRenamerPlugin({
             'vendor': 'vendor.js',
 	        initialChunksWithEntry: true
-        })
+        }),
+	    new ManifestPlugin()
     ],
     output: {
         filename: '[lc-name].js',

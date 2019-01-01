@@ -3,7 +3,7 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const path = require('path');
 const WebpackChunkRenamerPlugin = require('webpack-chunk-renamer-plugin');
 const FileManagerPlugin = require('filemanager-webpack-plugin');
-var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const ManifestPlugin = require('webpack-manifest-plugin');
 
 module.exports = {
     mode: 'production',
@@ -54,6 +54,9 @@ module.exports = {
 				    {source: path.resolve(__dirname, '../../../cl/dist/site.min.js'), destination: path.resolve(__dirname, 'dist') }
 			    ]
 		    }
+	    }),
+	    new ManifestPlugin({
+		    fileName: 'manifest.min.json'
 	    })
     ],
     performance: {

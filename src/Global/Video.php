@@ -10,7 +10,7 @@ use \CL\Users\User;
  * 
  * Minimum basic solution to display a video:
  * @code
- * $video = new Video('video/sample.mp4');
+ * $video = new Video('video/sample.mp4', $user);
  * echo $video->present();
  * @endcode
  */
