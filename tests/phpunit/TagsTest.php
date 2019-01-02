@@ -8,7 +8,7 @@ require_once __DIR__ . '/init.php';
 
 use CL\Site\Util\Tags;
 
-class SiteTest extends \PHPUnit_Framework_TestCase
+class SiteTest extends \PHPUnit\Framework\TestCase
 {
 	public function test1() {
 		$this->assertSame(true, Tags::validate('abc-_'));

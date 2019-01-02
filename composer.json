@@ -29,5 +29,9 @@
     "branch-alias": {
       "dev-master": "2.0.x-dev"
     }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^6",
+    "phpunit/dbunit": "^3"
   }
 }

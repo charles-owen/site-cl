@@ -10,7 +10,7 @@ namespace CL\Site\Test;
  *
  * Mainly abstracts away the PHPUnit base class for now.
  */
-abstract class TestBase extends \PHPUnit_Framework_TestCase {
+abstract class TestBase extends \PHPUnit\Framework\TestCase {
 
 	private $dir;
 

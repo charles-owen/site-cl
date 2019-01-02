@@ -10,7 +10,7 @@ use CL\Site\Test\DummyEmail;
 use CL\Site\Site;
 
 
-class EmailTest extends \PHPUnit_Framework_TestCase {
+class EmailTest extends \PHPUnit\Framework\TestCase {
 
 	public function test_send() {
 		$site = new Site(__DIR__);

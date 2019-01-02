@@ -8,7 +8,7 @@ require_once __DIR__ . '/init.php';
 
 use CL\Site\Site;
 
-class SiteTest extends \PHPUnit_Framework_TestCase
+class SiteTest extends \PHPUnit\Framework\TestCase
 {
 	public function test1() {
 		$site = new Site(__DIR__ . '/..');

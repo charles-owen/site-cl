@@ -9,7 +9,8 @@ namespace CL\Site\Test;
  *
  * Adds some assertions I find useful and a more useful way to add tables
  */
-abstract class DatabaseTestBase extends \PHPUnit_Extensions_Database_TestCase {
+abstract class DatabaseTestBase extends \PHPUnit\Framework\TestCase {
+	use \PHPUnit\DbUnit\TestCaseTrait;
 
 	private $dir;
 
@@ -39,7 +40,7 @@ abstract class DatabaseTestBase extends \PHPUnit_Extensions_Database_TestCase {
      * @return \PHPUnit_Extensions_Database_DataSet_CompositeDataSet
      */
     protected function dataSets(array $list) {
-        $data = new \PHPUnit_Extensions_Database_DataSet_CompositeDataSet();
+        $data = new \PHPUnit\DbUnit\DataSet\CompositeDataSet();
 
         foreach($list as $item) {
             $u = $this->createFlatXMLDataSet($this->dir . '/db/' . $item);

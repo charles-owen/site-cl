@@ -13,8 +13,12 @@ export {Vuex};
 import NotFoundComponent from './js/Vue/NotFoundComponent.vue';
 export {NotFoundComponent};
 
+import MaskVue from './js/Vue/Mask.vue';
+import Dialog from 'dialog-cl';
+
 import {SiteFactory} from './js/SiteFactory.js';
 
+// I export as both Site.Site and Site.site
 const Site = SiteFactory.create();
 export {Site};
 
@@ -32,3 +36,6 @@ export {api};
 export {toast};
 export {info};
 export {store};
+
+export {MaskVue}
+export {Dialog}

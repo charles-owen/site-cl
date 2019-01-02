@@ -7,6 +7,7 @@ import Vuex from 'vuex';
 
 import {SiteInfo} from './SiteInfo';
 import {ApiService} from './ApiService';
+import {APIResponse} from './APIResponse';
 
 import {Autoback} from 'autoback-cl';
 import {Header} from './Header/Header';
@@ -299,4 +300,5 @@ export const Site = function() {
 	this.Editor = Editor;
 	this.MenuVue = MenuVue;
 	this.StickyNav = StickyNav;
+	this.APIResponse = APIResponse;
 }

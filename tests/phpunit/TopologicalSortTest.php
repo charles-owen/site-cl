@@ -8,7 +8,7 @@ require_once __DIR__ . '/init.php';
 
 use CL\Site\Util\TopologicalSort;
 
-class TopologicalSortTest extends \PHPUnit_Framework_TestCase
+class TopologicalSortTest extends \PHPUnit\Framework\TestCase
 {
 	public function test() {
 		$data = ['a' => [], 'b' => ['a']];
