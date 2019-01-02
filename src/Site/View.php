@@ -52,7 +52,7 @@ class View {
 		$this->addCSS('vendor/cl/site/site.css');
 		$this->addJS('runtime');
 		$this->addJS('vendor');
-	//	$this->addJS('commons');
+		$this->addJS('common');
 		$this->addJS('site');
 
 		// Call amend if this object is not subclassed.

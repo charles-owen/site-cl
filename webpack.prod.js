@@ -21,14 +21,22 @@ module.exports = {
 	    },
         splitChunks: {
             chunks: 'all',
-            minChunks: 20,
+            minChunks: 50,
             minSize: 1000000,
             cacheGroups: {
-                vendors: {
+	            common: {
+		            test: /[\\/](dialog-cl)|(resizer-cl)|(icons-cl)|(dompurify)[\\/]/,
+		            name: 'common',
+		            minChunks: 1,
+		            priority: 0,
+		            minSize: 0
+	            },
+	            vendors: {
                     test: /[\\/](node_modules)|(packages)[\\/]/,
                     name: 'vendor',
                     minChunks: 2,
                     priority: -5,
+		            minSize: 0
                 }
             }
         }
@@ -36,7 +44,8 @@ module.exports = {
     plugins: [
 	    // new BundleAnalyzerPlugin(),
         new WebpackChunkRenamerPlugin({
-            'vendor': 'vendor.min.js',
+	        'vendor': 'vendor.min.js',
+	        'common': 'common.min.js',
 	        initialChunksWithEntry: true
         }),
 	    new FileManagerPlugin({
@@ -49,6 +58,7 @@ module.exports = {
 		    onEnd: {
 			    copy: [
 				    {source: path.resolve(__dirname, '../../../cl/dist/vendor.min.js'), destination: path.resolve(__dirname, 'dist') },
+				    {source: path.resolve(__dirname, '../../../cl/dist/common.min.js'), destination: path.resolve(__dirname, 'dist') },
 				    {source: path.resolve(__dirname, '../../../cl/dist/runtime.min.js'), destination: path.resolve(__dirname, 'dist') },
 				    {source: path.resolve(__dirname, '../../../cl/dist/site.video.*.min.js'), destination: path.resolve(__dirname, 'dist') },
 				    {source: path.resolve(__dirname, '../../../cl/dist/site.min.js'), destination: path.resolve(__dirname, 'dist') }

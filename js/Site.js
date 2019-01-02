@@ -271,7 +271,7 @@ export const Site = function() {
 				import(/* webpackChunkName: "site.video" */ './Video/VideoPresenter').then((bundle) => {
 					let VideoPresenter = bundle.default;
 					for(let element of videoElements) {
-						new VideoPresenter(element);
+						new VideoPresenter(this, element);
 					}
 				});
 			}

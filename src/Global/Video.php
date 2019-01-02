@@ -22,6 +22,9 @@ class Video {
 
 	const PREFERENCE_VIDEO_SIZE = 'video-size'; ///< User MetaData preference for video size
 
+	/// User MetaData preference for video caption language
+	const PREFERENCE_VIDEO_CAPTION = 'video-caption';
+
 	/**
 	 * Constructor
 	 *
@@ -94,14 +97,17 @@ class Video {
 			}
 		}
 
-        $json = htmlspecialchars(json_encode([
+		$language = $this->user->metaData->get(\CL\Users\User::METADATA_PREFERENCES, self::PREFERENCE_VIDEO_CAPTION, null);
+
+		$json = htmlspecialchars(json_encode([
             'src'=>$path,
 	        'style'=>$style,
 	        'wid'=>$wid,
 	        'hit'=>$hit,
 	        'size'=>$usesize,
 	        'controls'=>$this->user !== null && $this->size === null && $this->customWidth === null,
-	        'captions'=>$this->captions
+	        'captions'=>$this->captions,
+			'language'=>$language
         ]), ENT_NOQUOTES);
 		
 		$html = <<<VID

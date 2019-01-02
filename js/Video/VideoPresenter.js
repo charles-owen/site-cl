@@ -3,7 +3,7 @@ import './_video.scss';
 
 import videojs from 'video.js';
 
-const VideoPresenter = function(element) {
+const VideoPresenter = function(site, element) {
 
     // Keep track of all active video presenters on the page
     VideoPresenter.all.push(this);
@@ -17,8 +17,9 @@ const VideoPresenter = function(element) {
     const FORMAT_CUSTOM = 'C';
 
     const PREFERENCE_VIDEO_SIZE = 'video-size';
+	const PREFERENCE_VIDEO_CAPTION = 'video-caption';
 
-    const SIZES = {
+	const SIZES = {
         'L': {wid: 1280, hit: 720, style: 'video-large'},
         'M': {wid: 854, hit: 480, style: 'video-medium'},
         'S': {wid: 640, hit: 360, style: 'video-low'}
@@ -31,7 +32,7 @@ const VideoPresenter = function(element) {
         create(data);
     }
 
-    let create = function(data) {
+    const create = (data) => {
         let div = document.createElement('DIV');
         div.classList.add(data.style);
 
@@ -51,7 +52,11 @@ const VideoPresenter = function(element) {
 
         for(const caption of data.captions) {
             let language = 'English';
-            html += `<track kind="captions" src="${caption.path}" srclang="${caption.lang}" label="${language}">`;
+
+            // If the currently selected language matches the user's desired
+            // caption language, make that default to enabled.
+            const def = data.language === caption.lang ? ' default' : '';
+            html += `<track kind="captions" src="${caption.path}" srclang="${caption.lang}" label="${language}"${def}>`;
         }
 
         html += `<p class="vjs-no-js">To view this video you must enable JavaScript, and be 
@@ -77,7 +82,24 @@ using a web browser that supports HTML5 video</p>`;
         }
 
         element.style.display = 'block';
-        videojs(video);
+        this.player = videojs(video);
+
+        //
+        // Detect changes in the captions state
+        //
+	    this.player.textTracks().on("change", (event) => {
+	        const tracks = this.player.textTracks();
+	        let language = 'none';
+	        for(let i=0; i<tracks.length; i++) {
+	            const track = tracks[i];
+	            if(track.kind === 'captions' && track.mode === 'showing') {
+		            language = track.language;
+		            break;
+                }
+            }
+
+            caption(language);
+	    });
     }
 
     let formatButton = (size, data) => {
@@ -111,10 +133,10 @@ using a web browser that supports HTML5 video</p>`;
     }
 
     let requestSize = (size, data) => {
-        Site.api.post('/api/users/preference/' + PREFERENCE_VIDEO_SIZE, {value: size})
+        site.api.post('/api/users/preference/' + PREFERENCE_VIDEO_SIZE, {value: size})
             .then((response) => {
                 if(response.hasError()) {
-                    Site.toast(this, response);
+                    site.toast(this, response);
                 } else {
                     for(let presenter of VideoPresenter.all) {
                         presenter.resize(size);
@@ -124,9 +146,21 @@ using a web browser that supports HTML5 video</p>`;
 
             })
             .catch((error) => {
-                Site.toast(this, error);
+                site.toast(this, error);
             });
 
+    }
+
+    const caption = (language) => {
+	    site.api.post('/api/users/preference/' + PREFERENCE_VIDEO_CAPTION, {value: language})
+		    .then((response) => {
+			    if(response.hasError()) {
+				    site.toast(this, response);
+			    }
+		    })
+		    .catch((error) => {
+			    site.toast(this, error);
+		    });
     }
 
     this.resize = function(size) {
