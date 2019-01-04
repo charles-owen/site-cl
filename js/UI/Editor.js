@@ -24,12 +24,22 @@ export let Editor = function(element, options) {
     }
 
     element.classList.add('cl-editor');
-    element.style.display = 'block';
-    const resizer = new Resizer(element, {
-       resize: options.resize,
-       handle: options.handle,
-       grabSize: options.grabSize
-    });
+
+    if(options.styles !== null) {
+	    for(let property in options.styles) {
+		    if(options.styles.hasOwnProperty(property)) {
+			    element.style[property] = options.styles[property];
+		    }
+	    }
+    }
+
+    if(options.resize !== 'none') {
+	    new Resizer(element, {
+		    resize: options.resize,
+		    handle: options.handle,
+		    grabSize: options.grabSize
+	    });
+    }
 
     const ta = document.createElement('textarea');
     this.textarea = ta;

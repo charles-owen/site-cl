@@ -26,7 +26,6 @@ class Installer {
 		// Ensure any root directory files exist
 		$this->ensureRoot($rootDir);
 
-
 		//
 		// Load the installed packages
 		//
@@ -54,6 +53,12 @@ class Installer {
 		// Create the cl/installed.php file
 		$this->createInstalled($rootDir);
 
+		// Create webpack.common.js in the root directory
+		$this->createWebpackCommon($rootDir);
+
+		// Create the package.json file in the root directory
+		$this->createPackageJson($rootDir);
+
 		// Perform any package custom installations
 		$this->custom($rootDir);
 	}
@@ -69,6 +74,13 @@ class Installer {
 			$package->name = $name;
 			$package->path = $path;
 			$this->packages[$name] = $package;
+		}
+
+		if(file_exists($path . '/webpack.common.js')) {
+			$package = explode('/', $name)[1];
+			$json = json_decode(file_get_contents($path . '/package.json'), true);
+			$version = $json['version'];
+			$this->webpack[] = ['name'=>$package, 'version'=>$version];
 		}
 	}
 
@@ -240,6 +252,48 @@ class Installer {
 		file_put_contents($file, $contents);
 	}
 
+	private function createWebpackCommon($rootDir) {
+		$data = <<<DATA
+// This file is created automatically by cl-installer
+// Do not edit!		
+const merge = require('webpack-merge');
+const site = require('./vendor/cl/site/webpack.common');
+
+
+DATA;
+
+		foreach($this->webpack as $package) {
+			$name = $package['name'];
+			$data .= "const $name = require('./vendor/cl/$name/webpack.common');\n";
+		}
+
+		$data .= "\nmodule.exports = merge(site";
+		foreach($this->webpack as $package) {
+			$name = $package['name'];
+			$data .= ",\n    $name";
+		}
+
+		$data .= "\n);\n";
+
+		file_put_contents($rootDir . '/webpack.common.js', $data);
+	}
+
+	private function createPackageJson($rootDir) {
+		$initial = file_exists($rootDir . '/package.json') ? $rootDir . '/package.json' :
+			$rootDir . '/vendor/cl/site/root/package.json';
+
+		// Load the initial package.json file
+		$json = json_decode(file_get_contents($initial), true);
+
+		// Add/set the dependencies
+		foreach($this->webpack as $package) {
+			$json['dependencies'][$package['name'] . '-cl'] = '~' . $package['version'];
+		}
+
+		$data = json_encode($json, JSON_PRETTY_PRINT);
+		file_put_contents($rootDir . '/package.json', $data);
+	}
+
 	/**
 	 * Copy a file, or recursively copy a folder and its contents
 	 *
@@ -285,4 +339,5 @@ class Installer {
 	}
 
 	private $packages = [];
+	private $webpack = [];
 }

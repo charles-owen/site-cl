@@ -376,21 +376,6 @@ HTML;
 	}
 
 	/**
-	 * Enter a content DIV
-	 * @return string HTML
-	 */
-	public function enterContent() {
-		$this->contentDepth++;
-		if($this->contentDepth > 1) {
-			return '';
-		}
-
-		$html = '<div class="content">' . $this->beforeContent;
-		$this->beforeContent = '';
-		return $html;
-	}
-
-	/**
 	 * Exit the content DIV
 	 * @return string HTML
 	 */
@@ -402,6 +387,31 @@ HTML;
 
 		return '</div>';
 	}
+
+	/**
+	 * Enter a content DIV
+	 * @return string HTML
+	 * @deprecated Use reenterContent instead
+	 */
+	public function enterContent() {
+		return $this->reenterContent();
+	}
+
+	/**
+	 * Reenter a content DIV
+	 * @return string HTML
+	 */
+	public function reenterContent() {
+		$this->contentDepth++;
+		if($this->contentDepth > 1) {
+			return '';
+		}
+
+		$html = '<div class="content">' . $this->beforeContent;
+		$this->beforeContent = '';
+		return $html;
+	}
+
 
 	/**
 	 * The page is enclosed in div tags with class body and

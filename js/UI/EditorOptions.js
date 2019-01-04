@@ -13,7 +13,7 @@
 export let EditorOptions = function(options) {
     options = options ? options : {};
 
-    /// Options: vertical, horizontal, both
+    /// Options: none, vertical, horizontal, both
     this.resize = 'vertical';
 
     /// The resizing handle
@@ -51,6 +51,9 @@ export let EditorOptions = function(options) {
 
     /// Classes to add to the textarea
     this.classes = [];
+
+    /// Styles to add to the enclosing element
+    this.styles = {display: 'block'};
 
     for(var property in options) {
         if(options.hasOwnProperty(property)) {
