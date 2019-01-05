@@ -190,6 +190,12 @@ class Installer {
 
 		// Delete all existing files in dist
 		foreach(scandir($dist) as $file) {
+			// We ignore any file names that begin with _
+			// Those are considered local bundles.
+			if(substr($file, 0, 1) === '_') {
+				continue;
+			}
+
 			if(is_file($dist . '/' . $file)) {
 				unlink($dist . '/' . $file);
 			}
