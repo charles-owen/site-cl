@@ -54,15 +54,6 @@ module.exports = {
 				    path.resolve(__dirname, '../../../cl/dist/site.video.*.min.js'),
 				    path.resolve(__dirname, 'dist/site.video.*.min.js')
 			    ]
-		    },
-		    onEnd: {
-			    copy: [
-				    {source: path.resolve(__dirname, '../../../cl/dist/vendor.min.js'), destination: path.resolve(__dirname, 'dist') },
-				    {source: path.resolve(__dirname, '../../../cl/dist/common.min.js'), destination: path.resolve(__dirname, 'dist') },
-				    {source: path.resolve(__dirname, '../../../cl/dist/runtime.min.js'), destination: path.resolve(__dirname, 'dist') },
-				    {source: path.resolve(__dirname, '../../../cl/dist/site.video.*.min.js'), destination: path.resolve(__dirname, 'dist') },
-				    {source: path.resolve(__dirname, '../../../cl/dist/site.min.js'), destination: path.resolve(__dirname, 'dist') }
-			    ]
 		    }
 	    }),
 	    new ManifestPlugin({

@@ -44,6 +44,10 @@ class Installer {
 		// Ensure the dist directory exists and has base JS in it
 		$this->installJS($rootDir);
 
+		// Create the manifest files in the dist directory
+		$this->createManifest($rootDir, 'manifest.json');
+		$this->createManifest($rootDir, 'manifest.min.json');
+
 		// Copy over any files into cl directories
 		$this->installCL($rootDir);
 
@@ -61,6 +65,9 @@ class Installer {
 
 		// Perform any package custom installations
 		$this->custom($rootDir);
+
+		// Create publish.js in the root directory
+		$this->createPublish($rootDir);
 	}
 
 	private function loadPackages($name, $path) {
@@ -201,30 +208,40 @@ class Installer {
 			}
 		}
 
-		// Copy call files from the source dist directory
+		// Copy all files from the source dist directory
 		$distCl = $rootDir . '/vendor/cl/site/dist';
-
-		foreach(scandir($distCl) as $file) {
-			if(is_file($distCl . '/' . $file)) {
-				copy($distCl . '/' . $file, $dist . '/' . $file);
-			}
-		}
+		$this->copyr($distCl, $dist, '%dist[\\/]manifest\.%');
 
 		// And copy all installed packages dist content
 		foreach($this->packages as $package) {
 			if($package->dist !== null) {
 				$distCl = $package->path . $package->dist;
 
-				$this->copyr($distCl, $dist);
-
-//				foreach(scandir($distCl) as $file) {
-//					if(is_file($distCl . '/' . $file)) {
-//						copy($distCl . '/' . $file, $dist . '/' . $file);
-//					}
-//				}
+				$this->copyr($distCl, $dist, '%dist[\\/]manifest\.%');
 			}
 		}
 
+	}
+
+	private function createManifest($rootDir, $file) {
+		$path = $rootDir . '/vendor/cl/site/dist/' . $file;
+		$manifest = json_decode(file_get_contents($path), true);
+
+		// And copy all installed packages dist content
+		foreach($this->packages as $package) {
+			if($package->dist !== null) {
+				$path = $package->path . $package->dist . '/' . $file;
+
+				$manifest = array_merge($manifest,
+					json_decode(file_get_contents($path), true)
+				);
+
+			}
+		}
+
+		$dest = $rootDir . '/cl/dist/' . $file;
+		file_put_contents($dest,
+			json_encode($manifest, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES ));
 	}
 
 	/**
@@ -258,6 +275,10 @@ class Installer {
 		file_put_contents($file, $contents);
 	}
 
+	/**
+	 * Create the file webpack.common.js in the root directory
+	 * @param $rootDir Root directory
+	 */
 	private function createWebpackCommon($rootDir) {
 		$data = <<<DATA
 // This file is created automatically by cl-installer
@@ -284,6 +305,40 @@ DATA;
 		file_put_contents($rootDir . '/webpack.common.js', $data);
 	}
 
+	/**
+	 * Create the file publish.js in the root directory
+	 * @param $rootDir Root directory
+	 */
+	private function createPublish($rootDir) {
+		$data = <<<DATA
+// This file is created automatically by cl-installer
+// Do not edit!		
+const path = require('path');
+
+module.exports = {
+	root: path.resolve(__dirname),
+	components: {
+        site: require('./vendor/cl/site/publish'),
+
+DATA;
+
+		$first = true;
+		foreach($this->webpack as $package) {
+			if($first) {
+				$first = false;
+			} else {
+				$data .= ",\n";
+			}
+
+			$name = $package['name'];
+			$data .= "        $name: require('./vendor/cl/$name/publish')";
+		}
+
+		$data .= "\n    }\n}\n";
+
+		file_put_contents($rootDir . '/publish.js', $data);
+	}
+
 	private function createPackageJson($rootDir) {
 		$initial = file_exists($rootDir . '/package.json') ? $rootDir . '/package.json' :
 			$rootDir . '/vendor/cl/site/root/package.json';
@@ -300,18 +355,26 @@ DATA;
 		file_put_contents($rootDir . '/package.json', $data);
 	}
 
+
 	/**
 	 * Copy a file, or recursively copy a folder and its contents
+	 *
+	 * CBO: Modified to include the ability to ignore certain files
 	 *
 	 * @author      Aidan Lister <aidan@php.net>
 	 * @version     1.0.1
 	 * @link        http://aidanlister.com/2004/04/recursively-copying-directories-in-php/
 	 * @param       string   $source    Source path
 	 * @param       string   $dest      Destination path
+	 * @param string $ignore Regular expression for files or directories that should be ignored
 	 * @return      bool     Returns TRUE on success, FALSE on failure
 	 */
-	private function copyr($source, $dest)
+	private function copyr($source, $dest, $ignore)
 	{
+		if(preg_match($ignore, $source) === 1) {
+			return true;
+		}
+
 		// Check for symlinks
 		if (is_link($source)) {
 			return symlink(readlink($source), $dest);
@@ -336,7 +399,7 @@ DATA;
 			}
 
 			// Deep copy directories
-			$this->copyr("$source/$entry", "$dest/$entry");
+			$this->copyr("$source/$entry", "$dest/$entry", $ignore);
 		}
 
 		// Clean up
