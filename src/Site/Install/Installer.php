@@ -83,7 +83,7 @@ class Installer {
 			$this->packages[$name] = $package;
 		}
 
-		if(file_exists($path . '/webpack.common.js')) {
+		if(file_exists($path . '/webpack.common.js') && file_exists($path . '/package.json')) {
 			$package = explode('/', $name)[1];
 			$json = json_decode(file_get_contents($path . '/package.json'), true);
 			$version = $json['version'];
