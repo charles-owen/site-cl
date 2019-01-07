@@ -16,9 +16,9 @@ module.exports = {
             }),
             new OptimizeCSSAssetsPlugin({})
         ],
-	    runtimeChunk: {
+/* 	    runtimeChunk: {
 		    name: 'runtime'
-	    },
+	    }, */
         splitChunks: {
             chunks: 'all',
             minChunks: 50,

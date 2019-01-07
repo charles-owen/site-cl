@@ -7,9 +7,9 @@ module.exports = {
     mode: 'development',
     devtool: 'inline-source-map',
     optimization: {
-        runtimeChunk: {
+ /*       runtimeChunk: {
             name: 'runtime'
-        },
+        }, */
         splitChunks: {
             chunks: 'all',
             minChunks: 50,

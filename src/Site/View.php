@@ -50,7 +50,7 @@ class View {
 
 		// Always included
 		$this->addCSS('vendor/cl/site/site.css');
-		$this->addJS('runtime');
+		//$this->addJS('runtime');
 		$this->addJS('vendor');
 		$this->addJS('common');
 		$this->addJS('site');

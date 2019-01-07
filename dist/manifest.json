@@ -1,7 +1,6 @@
 {
   "Site.js": "/cl/dist/site.js",
   "common.js": "/cl/dist/common.js",
-  "runtime.js": "/cl/dist/runtime.js",
   "site.video.js": "/cl/dist/site.video.5fbfb65c7c7b80048352.js",
   "vendor.js": "/cl/dist/vendor.js"
 }
