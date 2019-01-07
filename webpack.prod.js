@@ -51,7 +51,6 @@ module.exports = {
 	    new FileManagerPlugin({
 		    onStart: {
 			    delete: [
-				    path.resolve(__dirname, '../../../cl/dist/site.video.*.min.js'),
 				    path.resolve(__dirname, 'dist/site.video.*.min.js')
 			    ]
 		    }
