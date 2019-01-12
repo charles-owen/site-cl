@@ -50,7 +50,7 @@ Publisher.publish = async function(publish) {
  *
  * This is called after the component's dist direction has been cleaned.
  * @param root Path to the site root
- * @param manifest The manifest file we are processing
+ * @param manifestFile The manifest file we are processing
  * @param component Component name, like 'site', 'users', etc.
  * @param files Array of file regular expressions to copy
  * @param dist Component dist directory path
