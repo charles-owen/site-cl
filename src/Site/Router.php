@@ -8,6 +8,7 @@ namespace CL\Site;
 
 use CL\Site\Api\APIException;
 use CL\Site\Api\JsonAPI;
+use CL\Site\Api\SiteApi;
 use CL\Site\System\Server;
 
 /**
@@ -43,6 +44,12 @@ class Router {
 	 * @throws APIException
 	 */
 	public function dispatch(Site $site, Server $server, $time) {
+		// Add route for the Site API
+		$this->addRoute(['api', 'site', '*'], function(Site $site, Server $server, array $params, array $properties, $time) {
+			$resource = new SiteApi();
+			return $resource->apiDispatch($site, $server, $params, $properties, $time);
+		});
+
 		// Allow for added routes as specified by plugin
 		$site->amend($this);
 
@@ -67,7 +74,7 @@ class Router {
 		//
 		switch($path[0]) {
 			case 'notauthorized':
-				$view = new \CL\Site\Views\NotAuthorizedView($site, $server, $path);
+				$view = new Views\NotAuthorizedView($site, $server, $path);
 				return $view->whole();
 
 			case 'setup':
@@ -75,8 +82,9 @@ class Router {
 
 			case 'api':
 				if(count($path) > 1) {
-					if($path[1] === 'poll') {
-						return $this->poll($site, $server, $time);
+					switch($path[1]) {
+						case 'poll':
+							return $this->poll($site, $server, $time);
 					}
 				}
 				break;
@@ -84,6 +92,17 @@ class Router {
 
 		// Dispatch the route
 		return $this->routeDispatch($site, $server, $path, $time);
+	}
+
+	private function apiSite(Site $site, Server $server, array $path, $time) {
+		if(count($path) < 3) {
+			throw new APIException('Invalid API Usage', APIException::INVALID_API_USAGE);
+		}
+
+		switch($path[2]) {
+			case 'tables':
+				break;
+		}
 	}
 
 	private function routeDispatch(Site $site, Server $server, array $path, $time) {
@@ -138,7 +157,7 @@ class Router {
 			}
 		}
 
-		$view = new \CL\Site\Views\InvalidPathView($site);
+		$view = new Views\InvalidPathView($site);
 		return $view->whole();
 	}
 
@@ -172,7 +191,7 @@ class Router {
 	}
 
 	private function invalid(Site $site) {
-		$view = new \CL\Site\Views\InvalidPathView($site);
+		$view = new Views\InvalidPathView($site);
 		return $view->whole();
 	}
 

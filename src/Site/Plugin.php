@@ -7,12 +7,16 @@
 
 namespace CL\Site;
 
-use CL\Site\Site;
-use CL\Site\System\Server;
+use CL\Site\Logger\Logger;
 
 /**
  * Installable CL/Site components have a plugin class derived from
  * this abstract base class.
+ *
+ * @cond
+ * @property Logger logger
+ * @property Site site
+ * @endcond
  */
 abstract class Plugin {
 	/**
@@ -23,7 +27,9 @@ abstract class Plugin {
 	 *
 	 * @param Site $site The site configuration component
 	 */
-	public function install(Site $site) {}
+	public function install(Site $site) {
+		$this->site = $site;
+	}
 
 	/**
 	 * A tag that represents this plugin
@@ -67,6 +73,12 @@ abstract class Plugin {
 	 */
 	public function __get($property) {
 		switch($property) {
+			case 'logger':
+				return $this->site->logger($this->tag());
+
+			case 'site':
+				return $this->site;
+
 			default:
 				$trace = debug_backtrace();
 				trigger_error(
@@ -97,4 +109,6 @@ abstract class Plugin {
 
 	}
 
+	/* @var Site */
+	private $site = null;
 }

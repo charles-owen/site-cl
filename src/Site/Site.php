@@ -7,10 +7,13 @@
 /// Classes in the Site (core) subsystem
 namespace CL\Site;
 
+use CL\Site\Logger\SiteLogger;
+use CL\Site\Logger\Logger;
 use CL\Site\System\Server;
 use CL\Site\Util\TopologicalSort;
 use CL\Tables\Config;
-use CL\Site\Examples\ExampleVueView;
+use \Exception;
+
 
 /**
  * Site configuration object for a general purpose web site.
@@ -30,9 +33,11 @@ use CL\Site\Examples\ExampleVueView;
  *
  * @cond
  * @property Appearance appearance
+ * @property string config
  * @property string cookiePrefix
  * @property Config db
- * @property string decore
+ * @property string decor
+ * @property string img
  * @property string jsSuffix
  * @property string jsRoot
  * @property array options
@@ -40,10 +45,9 @@ use CL\Site\Examples\ExampleVueView;
  * @property string root
  * @property string rootDir
  * @property bool sandbox
+ * @property string server
  * @property string siteName
  * @property bool started
- * @property string config
- * @property string server
  *
  * There are cheating a bit to help with the type hinting
  * @property \CL\Course\Course course
@@ -64,7 +68,7 @@ class Site {
 		$this->rootDir = $rootDir;
 
 		// Install the database component
-		$this->db = new \CL\Tables\Config();
+		$this->db = new Config();
 
 		if($rootDir !== null) {
 			//
@@ -85,7 +89,12 @@ class Site {
 				}
 
 				// Topological sort the list and save in that order
-				$pluginsOrder = TopologicalSort::sort($pluginsDeps);
+				try {
+					$pluginsOrder = TopologicalSort::sort($pluginsDeps);
+				} catch(Exception $ex) {
+					echo $ex->getMessage();
+					exit;
+				}
 
 				// We install the plugins in order into the configuration
 				// now so they are available for settings.
@@ -114,8 +123,10 @@ class Site {
 	 * cookiePrefix | A prefix to attach to all cookie names (to ensure uniqueness)
 	 * db | \\CL\\Tables\\Config | Database configuration object
 	 * decor | string | Directory where decoration files are stored (default='site')
-	 * jsRoot | The root directory for the site Javascript (default is cl/dist
-	 * jsSuffix | Suffix to append to base Javascript (default is .min.js or .js (sandbox)
+	 * img | string | Gets path to /cl/img directory
+	 * jsRoot | string | The root directory for the site Javascript (default is cl/dist
+	 * jsSuffix | string | Suffix to append to base Javascript (default is .min.js or .js (sandbox)
+	 * logger | SiteLogger | The site logging object
 	 * options | array | Options passed to the start function.
 	 * plugins | array | Collection of installed plugins
 	 * root | string | %Site root path
@@ -148,6 +159,9 @@ class Site {
 			case "decor":
 				return $this->decor;
 
+			case 'img':
+				return $this->root . '/vendor/cl/site/img';
+
 			case 'jsRoot':
 				return $this->jsRoot;
 
@@ -157,14 +171,11 @@ class Site {
 			case 'options':
 				return $this->options;
 
-			case 'root':
-				return $this->root;
-
-			case 'img':
-				return $this->root . '/vendor/cl/site/img';
-
 			case 'plugins':
 				return $this->plugins;
+
+			case 'root':
+				return $this->root;
 
 			case "rootDir":
 				return $this->rootDir;
@@ -172,14 +183,14 @@ class Site {
 			case 'sandbox':
 				return $this->sandbox;
 
+			case 'server':
+				return $this->server;
+
 			case 'siteName':
 				return $this->siteName;
 
 			case 'started':
 				return $this->started;
-
-			case 'server':
-				return $this->server;
 
 			default:
 				$trace = debug_backtrace();
@@ -271,11 +282,12 @@ class Site {
 	 * Start the system
 	 * @param array $options Options for system operation
 	 * @param Server|null $server Optional dependency injection of Server
-	 * @param int $time Optional time to pass in.
-	 * @return True if success, false if we redirected.
+	 * @param int $time Optional dependency injection of the current time
+	 * @return boolean true on success, false if we redirected.
 	 */
 	public function start(array $options=[], Server $server = null, $time=null) {
 		if($this->started) {
+			// Already started
 			true;
 		}
 
@@ -311,6 +323,11 @@ class Site {
 	 * @return null|string Returns a redirect address if redirect is necessary.
 	 */
 	private function _start(array $options, Server $server, $time) {
+		//
+		// Configure the logger
+		//
+		$this->siteLogger = new SiteLogger($this);
+
 		//
 		// Activities that must occur before the system has started.
 		//
@@ -414,33 +431,44 @@ class Site {
 		}
 	}
 
+	/**
+	 * Get the logger for a subsystem.
+	 * @param string $pluginName The plugin name of the subsystem
+	 * @return Logger
+	 */
+	public function logger($pluginName) {
+		return $this->siteLogger->get($pluginName);
+	}
+
 	/// Array of options passed to start
 	private $options;
 
-	/// The installed plugins.
-	/// A plugin is an object derived from the class Plugin
-	/// that adds features to the system.
-	/// Plugins are in topological sorted order
-	/// by dependencies.
+	// The installed plugins.
+	// A plugin is an object derived from the class Plugin
+	// that adds features to the system.
+	// Plugins are in topological sorted order
+	// by dependencies.
 	private $plugins = [];
 
-	/// Installed site components
-	/// The allows plugins to add to the Site object
-	/// with named sub-objects like: $site->course
+	// Installed site components
+	// The allows plugins to add to the Site object
+	// with named sub-objects like: $site->course
 	private $components = [];
 
-	private $appearance = null; // Installed appearance
+	private $siteLogger = null;     // The site master logging component
 
-	private $db;                // Database configuration
+	private $appearance = null;     // Installed appearance
 
-	private $root = '';         // Site root path, default is server root
-	private $rootDir;           // Site root directory
-	private $started = false;   // Has site been started?
+	private $db;                    // Database configuration
 
-	private $jsRoot = '/cl/dist';  // Javascript root directory
-	private $jsSuffix = null;   // Javascript suffix: .js or .min.js
+	private $root = '';             // Site root path, default is server root
+	private $rootDir;               // Site root directory
+	private $started = false;       // Has site been started?
 
-	private $sandbox = false;   // Are we running in a sandbox?
+	private $jsRoot = '/cl/dist';   // Javascript root directory
+	private $jsSuffix = null;       // Javascript suffix: .js or .min.js
+
+	private $sandbox = false;       // Are we running in a sandbox?
 
 	private $siteName = '';         // Name of the site
 	private $cookiePrefix = 'site'; // Prefix for cookie names
