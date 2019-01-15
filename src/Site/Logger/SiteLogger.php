@@ -23,7 +23,7 @@ class SiteLogger {
 	public function __construct(Site $site) {
 		$this->site = $site;
 
-		if($site->db->dbname === null) {
+		if($site->db->dbname === null || $site->db->dbname === '') {
 			// Database is not configured, so no logging support
 			return;
 		}
