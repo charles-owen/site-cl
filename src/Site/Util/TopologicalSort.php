@@ -22,7 +22,27 @@ class TopologicalSort {
 	 * @throws Exception If dependency graph has a cycle.
 	 */
 	public static function sort($plugins) {
+		//
+		// Remove any dependencies that are not installed.
+		//
+		// We allow dependencies on plugins that may not be
+		// installed. The main purpose of this component is
+		// loading order for Javascript and this allows an
+		// optional dependency.
+		//
+		$plugins2 = [];
+		foreach($plugins as $plugin => $depends) {
+			$depends2 = [];
+			foreach($depends as $depend) {
+				if(isset($plugins[$depend])) {
+					$depends2[] = $depend;
+				}
+			}
 
+			$plugins2[$plugin] = $depends2;
+		}
+
+		$plugins = $plugins2;
 
 		// Topological sort
 		$sorted = [];
