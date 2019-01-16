@@ -46,6 +46,18 @@ class LoggerTable extends \CL\Tables\Table {
 			$where->append('time>?', +$params['after'], \PDO::PARAM_INT);
 		}
 
+		if(isset($params['level'])) {
+			$where->append('level=?', +$params['level'], \PDO::PARAM_INT);
+		}
+
+		if(isset($params['name'])) {
+			$where->append('name like ?', '%' . $params['name'] . '%');
+		}
+
+		if(isset($params['message'])) {
+			$where->append('message like ?', '%' . $params['message'] . '%');
+		}
+
 		$sql = <<<SQL
 select * from $this->tablename
 $where->where
@@ -57,7 +69,7 @@ SQL;
 			$where->append(null, intval($params['limit']), \PDO::PARAM_INT);
 		}
 
-		// echo "\n" . $where->sub_sql($sql) . "\n";
+		// charecho "\n" . $where->sub_sql($sql) . "\n";
 		$result = $where->execute($sql);
 		$items = [];
 		foreach($result->fetchAll(\PDO::FETCH_ASSOC) as $row) {

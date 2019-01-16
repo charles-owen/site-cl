@@ -62,11 +62,19 @@ class SiteApi extends Resource {
 
 		$logger = new LoggerTable($site->db);
 		$get = $server->get;
+		$params = [];
 
 		$limit = isset($get['limit']) ? +$get['limit'] : self::LOG_LIMIT;
-		$get['limit'] = $limit + 1;
+		$params['limit'] = $limit + 1;
 
-		$results = $logger->query($get);
+		// Copy over only valid keys
+		foreach(['id', 'before', 'after', 'channel', 'level', 'name', 'message'] as $key) {
+			if(isset($get[$key])) {
+				$params[$key] = $get[$key];
+			}
+		}
+
+		$results = $logger->query($params);
 
 		$more = false;
 		if(count($results) > $limit) {

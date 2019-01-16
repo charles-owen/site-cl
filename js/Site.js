@@ -22,6 +22,7 @@ import {TimeFormatter} from './TimeFormatter'
 import {PageVue} from './Vue/PageVue';
 import {Tags} from './Util/Tags';
 import {StickyNav} from './Util/StickyNav';
+import {LogLevels} from './LogLevels';
 
 import PageNav from './Vue/PageNav.vue';
 import MaskVue from './Vue/Mask.vue';
@@ -301,4 +302,5 @@ export const Site = function() {
 	this.MenuVue = MenuVue;
 	this.StickyNav = StickyNav;
 	this.APIResponse = APIResponse;
+	this.LogLevels = LogLevels;
 }
