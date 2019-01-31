@@ -23,6 +23,7 @@ import {PageVue} from './Vue/PageVue';
 import {Tags} from './Util/Tags';
 import {StickyNav} from './Util/StickyNav';
 import {LogLevels} from './LogLevels';
+import {Sanitize} from './Util/Sanitize';
 
 import PageNav from './Vue/PageNav.vue';
 import MaskVue from './Vue/Mask.vue';
@@ -303,4 +304,5 @@ export const Site = function() {
 	this.StickyNav = StickyNav;
 	this.APIResponse = APIResponse;
 	this.LogLevels = LogLevels;
+	this.Sanitize = Sanitize;
 }

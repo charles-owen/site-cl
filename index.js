@@ -11,9 +11,11 @@ export {VueRouter};
 export {Vuex};
 
 import NotFoundComponent from './js/Vue/NotFoundComponent.vue';
-export {NotFoundComponent};
-
 import MaskVue from './js/Vue/Mask.vue';
+
+export {NotFoundComponent};
+export {MaskVue}
+
 
 import {SiteFactory} from './js/SiteFactory.js';
 
@@ -36,4 +38,3 @@ export {toast};
 export {info};
 export {store};
 
-export {MaskVue}
