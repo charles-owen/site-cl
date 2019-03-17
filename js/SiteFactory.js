@@ -19,8 +19,6 @@ export let SiteFactory = function() {
 SiteFactory.create = function() {
     const site = new Site();
 
-    console.log('SiteFactory');
-
     require('toggler-cl');
     require('icons-cl');
 

@@ -118,6 +118,7 @@ class View {
 	 * beforeContent | string | Adds HTML to present at the beginning of the first content div
 	 * beforeFooter | string | Adds HTML to present right before the page footer
 	 * script | string | Add content to a page &lt;script&gt; tag
+	 * style | string | Add extra style content to the page
 	 * title | string | The site title
 	 *
 	 * @param string $property Property name
@@ -143,6 +144,10 @@ class View {
 
 			case 'beforeContent':
 				$this->beforeContent .= $value;
+				break;
+
+			case 'style':
+				$this->style .= $value;
 				break;
 
 			default:
@@ -281,6 +286,10 @@ HTML;
 
 		foreach($this->aux as $aux) {
 			$html .= $aux->head();
+		}
+
+		if($this->style !== '') {
+			$html .= '<style>' . $this->style . '</style>';
 		}
 
 		return $html;
@@ -669,6 +678,7 @@ HTML;
 	private $body = 'body';     // Classes to put in the top level div
 	private $autoback = false;  // The autoback option
 	private $extensions = [];   // Extensions to this object
+	private $style = '';        // Extra style content for the page
 
 	private $contentDepth = 0;  // How many nestings of the call to enterContent have we?
 	private $beforeContent = ''; // Extra HTML before the first content div
