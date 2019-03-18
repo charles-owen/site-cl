@@ -77,7 +77,7 @@ class Installer {
 		}
 
 		if(file_exists($path . '/install.php')) {
-			$package = require($path . './install.php');
+			$package = require($path . '/install.php');
 			$package->name = $name;
 			$package->path = $path;
 			$this->packages[$name] = $package;
