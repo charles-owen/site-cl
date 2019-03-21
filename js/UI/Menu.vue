@@ -110,7 +110,7 @@
                         }
 
                         document.addEventListener('click', closeListener);
-                        document.addEventListener('mousedown', closeListener);
+                        //document.addEventListener('mousedown', closeListener);
 
                         this.$emit('open');
                     } else {

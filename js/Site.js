@@ -24,7 +24,7 @@ import {Tags} from './Util/Tags';
 import {StickyNav} from './Util/StickyNav';
 import {LogLevels} from './LogLevels';
 import {Sanitize} from './Util/Sanitize';
-
+import {VueDialog} from './Vue/VueDialog';
 import PageNav from './Vue/PageNav.vue';
 import MaskVue from './Vue/Mask.vue';
 import MenuVue from './UI/Menu.vue';
@@ -305,4 +305,5 @@ export const Site = function() {
 	this.APIResponse = APIResponse;
 	this.LogLevels = LogLevels;
 	this.Sanitize = Sanitize;
+	this.VueDialog = VueDialog;
 }
