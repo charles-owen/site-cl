@@ -1,0 +1,19 @@
+div.cl-columns {
+  display: flex;
+  position: relative;
+
+  div.cl-left, div.cl-right {
+    flex: 1 1 0;
+
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  div.cl-left {
+    padding-right: 1em;
+  }
+
+  div.cl-right {
+    padding-left: 1em;
+  }
+}

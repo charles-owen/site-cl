@@ -50,9 +50,12 @@ nav.cl-nav {
         }
       }
 
+      a:link {
+        text-decoration: none;
+      }
+
       a:link, a:active, a:hover, a:visited {
         color: $nav-color;
-        text-decoration: none;
       }
 
       a:hover {
@@ -103,11 +106,6 @@ nav.cl-nav {
           text-decoration: none;
           cursor: pointer;
           color: $nav-2-color;
-        }
-
-        a:link, a:active, a:hover, a:visited {
-          color: $nav-2-color;
-          text-decoration: none;
         }
 
         a:hover {

@@ -91,17 +91,16 @@ table {
     color: #4f6b72;
 
     a {
+      text-decoration:underline;
       color:$link;
     }
 
     a:link {
       color: $link;
-      text-decoration:underline;
     }
 
     a:visited {
       color: $visited;
-      text-decoration:underline;
     }
 
     a:hover {
