@@ -25,7 +25,6 @@ TimeFormatter.relative = function(time, currentTime, format) {
     }
 
     const elapsed = currentTime.diff(time);
-
     if(elapsed < 60000) {
         return '<1 min ago';
     }
@@ -97,7 +96,8 @@ TimeFormatter.absoluteUNIX = function(time, format) {
  */
 TimeFormatter.relativeUNIX = function(time, currentTime, format) {
     let t = moment.unix(time);
-    let c = currentTime !== null ? moment.unix(currentTime) : moment();
+    let c = currentTime !== undefined && currentTime !== null ?
+        moment.unix(currentTime) : moment();
 
     return this.relative(t, c, format);
 }
