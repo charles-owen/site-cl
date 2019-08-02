@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "cl-installer": "CL\\Site\\Install\\Installer::install"
+  }
+}
