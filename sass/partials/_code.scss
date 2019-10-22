@@ -56,12 +56,16 @@ textarea.yellow-pad, pre.yellow-pad {
   tab-size: 4;
   -moz-tab-size: 4;
   -o-tab-size: 4;
-  white-space:pre;
+  white-space:pre-wrap;
   word-wrap: normal;
   padding:6pt;
   line-height: 16px;
   clear:both;
   overflow:auto;
+}
+
+textarea.yellow-pad {
+  white-space:pre;
 }
 
 pre.code1 {

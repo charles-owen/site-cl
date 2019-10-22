@@ -43,9 +43,7 @@ module.exports = {
 					loader: 'babel-loader',
 					options: {
 						"presets": [
-							["@babel/env", {
-								"useBuiltIns": 'entry',
-							}]
+							["@babel/env"]
 						],
 						plugins: ['@babel/plugin-transform-runtime', '@babel/plugin-syntax-dynamic-import']
 					}

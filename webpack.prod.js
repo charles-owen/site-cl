@@ -1,19 +1,20 @@
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const path = require('path');
 const WebpackChunkRenamerPlugin = require('webpack-chunk-renamer-plugin');
 const FileManagerPlugin = require('filemanager-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
     mode: 'production',
     optimization: {
         minimizer: [
-            new UglifyJSPlugin({
+            new TerserPlugin({
                 cache: true,
                 parallel: true,
-                sourceMap: false // set to true if you want JS source maps
+                sourceMap: true  // Must be set to true if using source-maps in production
             }),
+
             new OptimizeCSSAssetsPlugin({})
         ],
 /* 	    runtimeChunk: {

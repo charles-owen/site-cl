@@ -2,9 +2,9 @@ const url = require('url');
 
 import Vue from 'vue';
 import Toasted from 'vue-toasted';
+// import Toasted from 'vue-toasted/dist/vue-toasted';
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';
-
 import {SiteInfo} from './SiteInfo';
 import {ApiService} from './ApiService';
 import {APIResponse} from './APIResponse';
@@ -117,7 +117,6 @@ export const Site = function() {
 	// Configure Vue
 	//
 	Vue.use(VueRouter);
-	Vue.use(Toasted);
 	Vue.use(Vuex);
 
 	/**
@@ -239,6 +238,10 @@ export const Site = function() {
 	 */
 	this.startSite = function() {
 		Ready.go(() => {
+			// Toasted tries to add to the document body when it is initialized,
+			// so it has be be loaded after the document is ready.
+			Vue.use(Toasted);
+
 			// Optional header and footer JSON
 			let en;
 			if( (en = document.getElementById('cl-site')) !== null) {

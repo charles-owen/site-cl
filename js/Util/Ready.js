@@ -6,7 +6,7 @@ export let Ready = function() {
 }
 
 /**
- * Call a function when the document is readon.
+ * Call a function when the document is ready.
  * @param fn Function to be called on document ready
  */
 Ready.go = function(fn) {

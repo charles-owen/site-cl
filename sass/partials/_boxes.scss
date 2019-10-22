@@ -40,6 +40,14 @@ div.content {
   }
 }
 
+.centerbox.comp {
+  background-image: linear-gradient(#570102, #960606, #570102); // 2d0100
+  border: 4px outset #c7bdbb;
+  border-radius: 4px;
+  font-size: 1.1em;
+  color: yellow;
+}
+
 @media only screen and (max-width: $medium-width) {
 
   .rightbox, .problemright, .scenarioright, aside {
