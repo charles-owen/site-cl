@@ -7,11 +7,15 @@
 namespace CL\Site\Logger;
 
 use CL\Site\Site;
-use MySQLHandler\MySQLHandler;
+// use MySQLHandler\MySQLHandler;
 
 /**
  * The Site logging component
  *
+ * FIXME: Logger is disabled because the package wazaari/monolog-mysql was not maintained
+ *
+ * A new solution will be needed for this.
+ * 
  * The Site object owns one object of this type that
  * provides the handlers for all loggers.
  */
@@ -29,14 +33,15 @@ class SiteLogger {
 		}
 
 		//Create MysqlHandler
-		$this->handler = new MySQLHandler($site->db->pdo,
-			$site->db->prefix . "logger", [
-				'name',
-				'userid',
-				'memberid',
-				'jwtdata'
-			]
-		);
+//		$this->handler = new MySQLHandler($site->db->pdo,
+//			$site->db->prefix . "logger", [
+//				'name',
+//				'userid',
+//				'memberid',
+//				'jwtdata'
+//			]
+//		);
+
 	}
 
 	/**
@@ -82,7 +87,7 @@ class SiteLogger {
 			$monoLogger->pushHandler($this->handler);
 		} else {
 			// Create a dummy logger that does nothing
-			$logger = new Logger(null, $pluginName);
+			$logger = new Logger($this, $pluginName);
 		}
 
 		$this->loggers[$pluginName] = $logger;
