@@ -4,6 +4,7 @@
  * Site definition file.
  *
  * Required by all pages on the site.
+ * @cond
  */
 
 // Uncomment for increased error reporting
@@ -42,3 +43,5 @@ $site->siteName = 'CourseLib';
 // Prefix to add to cookie names. Recommended if site has more than
 // one course on it.
 $site->cookiePrefix = 'courselib_';
+
+/// @endcond

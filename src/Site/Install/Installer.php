@@ -334,7 +334,9 @@ DATA;
 			$data .= "        $name: require('./vendor/cl/$name/publish')";
 		}
 
+		/// cond
 		$data .= "\n    }\n}\n";
+        /// endcond
 
 		file_put_contents($rootDir . '/publish.js', $data);
 	}

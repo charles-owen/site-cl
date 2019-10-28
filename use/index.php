@@ -25,7 +25,8 @@ a page-by-page basis using conventional tools like DreamWeaver rather than autho
 into a database. Sites can still be dynamic and responsive.</p>
 
 <ul>
-  <li><a href="start">Getting Started</a></li>
+    <li><a class="cl-autoback" href="start">Getting Started</a></li>
+    <li><a class="cl-autoback" href="config-dir.php">Site configuration directory</a></li>
 </ul>
 <h2>Components</h2>
 

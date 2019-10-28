@@ -11,6 +11,8 @@ dev/doc/latex
 dev/design/*.vux
 dev/design/*.bak*
 dev/design/*.lck
+*.vbak
+
 
 
 # compiled output
