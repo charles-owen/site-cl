@@ -15,7 +15,7 @@ use CL\Site\Site;
  * FIXME: Logger is disabled because the package wazaari/monolog-mysql was not maintained
  *
  * A new solution will be needed for this.
- * 
+ *
  * The Site object owns one object of this type that
  * provides the handlers for all loggers.
  */
