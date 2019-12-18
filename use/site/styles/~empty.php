@@ -5,7 +5,7 @@ $view->title = 'site.css: ';
 $view->set_autoback();
 ?>
 <!doctype html>
-<html lang=en-US>
+<html lang="en-US">
 <head>
 <link href="../../../cl/site.css" type="text/css" rel="stylesheet" />
 <?php echo $view->head(); ?>

@@ -119,6 +119,14 @@ class MetaData {
         $this->owner->writeMetaData($site);
     }
 
+    /**
+     * Copy all metadata from some other MetaData object
+     * @param MetaData $other Other object we are copying from
+     */
+    public function copyFrom(MetaData $other) {
+        $this->data = $other->data;
+    }
+
     private $owner;
     private $data;
 }
