@@ -32,16 +32,8 @@ class SiteLogger {
 			return;
 		}
 
-		//Create MysqlHandler
-//		$this->handler = new MySQLHandler($site->db->pdo,
-//			$site->db->prefix . "logger", [
-//				'name',
-//				'userid',
-//				'memberid',
-//				'jwtdata'
-//			]
-//		);
-
+		// Create the logging handler
+		$this->handler = new LoggerHandler($site);
 	}
 
 	/**

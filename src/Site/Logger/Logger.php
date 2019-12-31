@@ -158,7 +158,7 @@ class Logger implements LoggerInterface {
 				if($user !== null) {
 					$data = ['name'=>$user->name,
 						'userid'=>$user->id,
-						'jwtdata'=>json_encode($user->dataJWT)];
+						'jwtdata'=>$user->dataJWT];
 					if($user->member !== null) {
 						$data['memberid'] = $user->member->id;
 					}
