@@ -25,7 +25,7 @@ class LoggerHandler extends AbstractProcessingHandler {
     /**
      * Writes the record down to the log of the implementing handler
      */
-    protected function write(array $record): void {
+    protected function write(array $record) { // : void {
         // TODO: Implement write() method.
         // print_r($record);
 
