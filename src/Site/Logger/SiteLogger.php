@@ -33,9 +33,7 @@ class SiteLogger {
 		}
 
 		// Create the logging handler
-		if(!$site->sandbox) {
-           // $this->handler = new LoggerHandler($site);
-        }
+		$this->handler = new LoggerHandler($site);
 	}
 
 	/**
