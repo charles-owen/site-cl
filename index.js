@@ -12,9 +12,11 @@ export {Vuex};
 
 import NotFoundComponent from './js/Vue/NotFoundComponent.vue';
 import MaskVue from './js/Vue/Mask.vue';
+import MenuVue from './js/UI/Menu.vue';
 
 export {NotFoundComponent};
 export {MaskVue}
+export {MenuVue}
 
 
 import {SiteFactory} from './js/SiteFactory.js';
