@@ -70,4 +70,4 @@ export const APIResponse = function(json) {
 
 }
 
-//export default APIResponse;
+APIResponse.UNAVAILABLE = 6;

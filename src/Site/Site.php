@@ -48,8 +48,8 @@ use \Exception;
  * @property string server
  * @property string siteName
  * @property bool started
- *
- * There are cheating a bit to help with the type hinting
+ * @property string unavailable String indicating why site is unavailable
+ * These are cheating a bit to help with the type hinting
  * @property \CL\Course\Course course
  * @property \CL\Users\UsersPlugin users
  *
@@ -135,6 +135,7 @@ class Site {
 	 * server | string | Server URL, like 'https://www.server.edu'
 	 * siteName | A name for the website.
 	 * started | boolean | True if the system has been started
+     * unavailable | string | String indicating why site is unavailable
 	 *
 	 * @return mixed
 	 */
@@ -192,6 +193,9 @@ class Site {
 			case 'started':
 				return $this->started;
 
+            case 'unavailable':
+                return $this->unavailable;
+
 			default:
 				$trace = debug_backtrace();
 				trigger_error(
@@ -218,7 +222,8 @@ class Site {
 	 * root | string | %Site root path
 	 * sandbox | boolean | True if running in the sandbox
 	 * server | string | Server URL, like 'https://www.server.edu'
-	 * siteName | A name for the website.
+	 * siteName | string | A name for the website.
+     * unavailable | string | String indicating why site is unavailable
 	 *
 	 * @param string $key Property name
 	 * @param string $value Value to set
@@ -264,6 +269,10 @@ class Site {
 			case 'siteName':
 				$this->siteName = $value;
 				break;
+
+            case 'unavailable':
+                $this->unavailable = $value;
+                break;
 
 			default:
 				$trace = debug_backtrace();
@@ -476,6 +485,7 @@ class Site {
 	private $decor = 'site';        // The decorations directory
 	private $server = null;         // Server URL (like https://www.server.edu)
 
+    private $unavailable = null;    // Indication of site unavailability
 	//
 	// The startup phases
 	//

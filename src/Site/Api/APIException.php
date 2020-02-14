@@ -20,6 +20,7 @@ class APIException extends \Exception {
 	const INVALID_API_PATH = 3;
 	const NOT_AUTHORIZED = 4;
 	const INVALID_API_USAGE = 5;
+	const UNAVAILABLE=6;
     /// \endcond
 
     /**

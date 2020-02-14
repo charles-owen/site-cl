@@ -31,7 +31,14 @@ export const ApiService = function(root) {
 			});
 		}
 
-		return new APIResponse(response.data);
+		const json = new APIResponse(response.data);
+		if(json.hasError() && json.errorCode() == APIResponse.UNAVAILABLE) {
+			if(!window.location.href.endsWith('/cl/unavailable')) {
+				window.location.href = root + '/cl/unavailable';
+			}
+		}
+
+		return json;
 	}, (error) => {
 
 		let response;

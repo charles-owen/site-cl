@@ -37,7 +37,6 @@ class SiteApi extends Resource {
 	 * @throws APIException
 	 */
 	protected function dispatch(Site $site, Server $server, array $params, array $properties, $time) {
-
 		switch($params[0]) {
 			case 'logs':
 				return $this->logs($site, $server);

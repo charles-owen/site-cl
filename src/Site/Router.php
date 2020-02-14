@@ -11,6 +11,7 @@ use CL\Site\Api\JsonAPI;
 use CL\Site\Api\SiteApi;
 use CL\Site\System\Server;
 
+
 /**
  * The router for the /cl root site path.
  */
@@ -77,7 +78,11 @@ class Router {
 				$view = new Views\NotAuthorizedView($site, $server, $path);
 				return $view->whole();
 
-			case 'setup':
+            case 'unavailable':
+                $view = new Views\SiteUnavailableView($site, $server, $path);
+                return $view->whole();
+
+            case 'setup':
 				return $this->setup($site, $server, $path, $time);
 
 			case 'api':
@@ -171,17 +176,23 @@ class Router {
 	 */
 	private function poll(Site $site, Server $server, $time) {
 		$site->start(['open'=>true]);
+        $json = new JsonAPI();
+
+        if($site->unavailable !== null) {
+            $json->addError($site->unavailable, APIException::UNAVAILABLE);
+            return $json->encode();
+        }
+
 		if($server->requestMethod === 'GET') {
-			$json = new JsonAPI();
 			return $json->encode();
 		}
 
 		if($server->requestMethod !== 'POST') {
-			throw new APIException("Invalid API Usage", APIException::INVALID_API_USAGE);
+             $json->addError("Invalid API Usage", APIException::INVALID_API_USAGE);
+            return $json->encode();
 		}
 
 		$post = $server->post;
-		$json = new JsonAPI();
 
 		foreach($this->polling as $polling) {
 			$polling($site, $server, $post, $json, $time);

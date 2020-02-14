@@ -39,44 +39,44 @@ class Server {
 	 */
 	public function __get($property) {
 		switch($property) {
-			case 'post':
-				if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-					if(strpos($_SERVER['CONTENT_TYPE'], 'application/x-www-form-urlencoded') === 0 ||
-						strpos($_SERVER['CONTENT_TYPE'], 'multipart/form-data') === 0) {
-						return $_POST;
-					} else {
-						return json_decode(file_get_contents("php://input"), true);
-					}
-				}
+            case 'post':
+                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                    if (strpos($_SERVER['CONTENT_TYPE'], 'application/x-www-form-urlencoded') === 0 ||
+                        strpos($_SERVER['CONTENT_TYPE'], 'multipart/form-data') === 0) {
+                        return $_POST;
+                    } else {
+                        return json_decode(file_get_contents("php://input"), true);
+                    }
+                }
 
-				return [];
+                return [];
 
-			case 'get':
-				return $_GET;
+            case 'get':
+                return $_GET;
 
-			case 'server':
-				return $_SERVER;
+            case 'server':
+                return $_SERVER;
 
-			case 'session':
-				return $_SESSION;
+            case 'session':
+                return $_SESSION;
 
-			case 'cookie':
-				return $_COOKIE;
+            case 'cookie':
+                return $_COOKIE;
 
-			case 'files':
-				return $_FILES;
+            case 'files':
+                return $_FILES;
 
-			case 'requestMethod':
-				return $this->__get('server')['REQUEST_METHOD'];
+            case 'requestMethod':
+                return $this->__get('server')['REQUEST_METHOD'];
 
-			case 'email':
-				if($this->email === null) {
-					$this->email = new Email();
-				}
+            case 'email':
+                if ($this->email === null) {
+                    $this->email = new Email();
+                }
 
-				return $this->email;
+                return $this->email;
 
-			default:
+            default:
 				$trace = debug_backtrace();
 				trigger_error(
 					'Undefined property ' . $property .
@@ -193,5 +193,20 @@ class Server {
 		return array_slice($path, $i);
 	}
 
+	public function apiURI($parent="cl", $api="api", $key='REQUEST_URI') {
+        $uri = $this->__get('server')[$key];
+        $path = explode('/', parse_url($uri, PHP_URL_PATH));
+        $found = false;
+        for($i=0; $i<(count($path) - 2); $i++) {
+            if($path[$i] === $parent && $path[$i+1] === $api) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
 	private $email = null;
+	private $api = false;
 }

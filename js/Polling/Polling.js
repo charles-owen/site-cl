@@ -9,7 +9,6 @@ export const Polling = function(site) {
 
 	let poll = () => {
 		setTimeout(() => {
-			//console.log('poll');
 			let params = {}
 			for(let client in clients) {
 				if(clients.hasOwnProperty(client)) {
@@ -20,7 +19,6 @@ export const Polling = function(site) {
 			site.api.post('/api/poll', params)
 			    .then((response) => {
 			        if (!response.hasError()) {
-		//	console.log(response);
 
 				        for(let client in clients) {
 					        if(clients.hasOwnProperty(client)) {
