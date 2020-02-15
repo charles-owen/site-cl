@@ -41,6 +41,7 @@ PageVue.create = function(sel, title, component, nav) {
     const json = JSON.parse(element.textContent);
 
     const store = Site.store;
+    const site = Site.Site;
 
     const components = {
             'site-header': Header,
@@ -50,8 +51,6 @@ PageVue.create = function(sel, title, component, nav) {
     if(nav !== undefined) {
         components['page-nav'] = nav;
     }
-
-    let site = Site.Site;
 
     new Site.Vue({
         el: element,

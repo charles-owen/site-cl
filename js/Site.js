@@ -8,6 +8,7 @@ import Vuex from 'vuex';
 import {SiteInfo} from './SiteInfo';
 import {ApiService} from './ApiService';
 import {APIResponse} from './APIResponse';
+import Dialog from 'dialog-cl';
 
 import {Autoback} from 'autoback-cl';
 import {Header} from './Header/Header';
@@ -20,11 +21,13 @@ import {Polling} from './Polling/Polling';
 import {Submitter} from './Forms/Submitter';
 import {TimeFormatter} from './TimeFormatter'
 import {PageVue} from './Vue/PageVue';
+import {InlineVue} from './Vue/InlineVue';
 import {Tags} from './Util/Tags';
 import {StickyNav} from './Util/StickyNav';
 import {LogLevels} from './LogLevels';
 import {Sanitize} from './Util/Sanitize';
 import {VueDialog} from './Vue/VueDialog';
+import PageVueBase from './Vue/PageVueBase.vue';
 import PageNav from './Vue/PageNav.vue';
 import MaskVue from './Vue/Mask.vue';
 import MenuVue from './UI/Menu.vue';
@@ -300,6 +303,8 @@ export const Site = function() {
 	this.Tags = Tags;
 	this.TimeFormatter = TimeFormatter;
 	this.PageVue = PageVue;
+	this.PageVueBase = PageVueBase;
+	this.InlineVue = InlineVue;
 	this.MaskVue = MaskVue;
 	this.PageNav = PageNav;
 	this.Editor = Editor;
@@ -309,4 +314,5 @@ export const Site = function() {
 	this.LogLevels = LogLevels;
 	this.Sanitize = Sanitize;
 	this.VueDialog = VueDialog;
+	this.Dialog = Dialog;
 }

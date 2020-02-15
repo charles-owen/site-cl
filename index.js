@@ -18,7 +18,6 @@ export {NotFoundComponent};
 export {MaskVue}
 export {MenuVue}
 
-
 import {SiteFactory} from './js/SiteFactory.js';
 
 // I export as both Site.Site and Site.site

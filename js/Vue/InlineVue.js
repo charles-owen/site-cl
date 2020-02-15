@@ -23,9 +23,9 @@ export const InlineVue = function() {
  * @param sel Selector for a div to replace with the view.
  * @param component Component to display (Vue)
  */
-InlineVue.create = function(sel, component) {
+InlineVue.create = function (sel, component) {
     const element = document.querySelector(sel);
-    if(element === null) {
+    if (element === null) {
         return;
     }
 
@@ -36,20 +36,21 @@ InlineVue.create = function(sel, component) {
     const json = JSON.parse(element.textContent);
 
     const store = Site.store;
+    const site = Site.Site;
 
     const components = {
-            'page-vue': component
-        };
+        'page-vue': component
+    };
 
     new Site.Vue({
         el: element,
+        site,
         store,
         data: {
             json: json
         },
         template: template,
         components: components,
-        methods: {
-        }
+        methods: {}
     })
 }
