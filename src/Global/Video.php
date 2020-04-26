@@ -42,6 +42,67 @@ class Video {
 		$this->path = $path;
 		$this->size = $size;
 	}
+
+
+    /**
+     * Property get magic method
+     * @param string $key Property name
+     *
+     * <b>Properties</b>
+     * Property | Type | Description
+     * -------- | ---- | -----------
+     *
+     * @return mixed
+     */
+    public function __get($key) {
+        switch($key) {
+
+            default:
+                $trace = debug_backtrace();
+                trigger_error(
+                    'Undefined property ' . $key .
+                    ' in ' . $trace[0]['file'] .
+                    ' on line ' . $trace[0]['line'],
+                    E_USER_NOTICE);
+                return null;
+        }
+    }
+
+    /**
+     * Property set magic method
+     *
+     * <b>Properties</b>
+     * Property | Type | Description
+     * -------- | ---- | -----------
+     *
+     * @param string $key Property name
+     * @param string $value Value to set
+     */
+    public function __set($key, $value) {
+        switch($key) {
+            case 'suffixMedium':
+                $this->suffixMedium = $value;
+                break;
+
+            case 'suffixLow':
+                $this->suffixLow = $value;
+                break;
+
+            case 'suffixLarge':
+                $this->suffixLarge = $value;
+                break;
+
+            default:
+                $trace = debug_backtrace();
+                trigger_error(
+                    'Undefined property ' . $key .
+                    ' in ' . $trace[0]['file'] .
+                    ' on line ' . $trace[0]['line'],
+                    E_USER_NOTICE);
+                break;
+        }
+
+    }
 	
 	/**
 	 * The HTML for the video presentation
@@ -76,7 +137,7 @@ class Video {
 					$wid = 1280;
 					$hit = 720;
 					$style = 'video-large';
-					$path = $this->path . '.mp4';
+					$path = $this->path . '.' . $this->extension;
 					break;
 
 				case Video::FORMAT_MEDIUM:
@@ -84,14 +145,14 @@ class Video {
 					$wid = 854;
 					$hit = 480;
 					$style = 'video-medium';
-					$path = $this->path . 'M.mp4';
+					$path = $this->path . $this->suffixMedium . '.' . $this->extension;
 					break;
 
 				case Video::FORMAT_SMALL:
 					$style = 'video-low';
 					$wid = 640;
 					$hit = 360;
-					$path = $this->path . 'L.mp4';
+					$path = $this->path . $this->suffixLow . '.' . $this->extension;
 					break;
 
 			}
@@ -140,7 +201,12 @@ VID;
     private $path;
     private $size;		///< Optional size specification
 	private $captions = [];
-	
+
+	private $suffixLarge = '';
+	private $suffixMedium = 'M';
+	private $suffixLow = 'L';
+	private $extension = 'mp4';
+
 	private $customWidth = null;
 	private $customHeight = null;
 }
