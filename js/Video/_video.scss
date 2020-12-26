@@ -18,6 +18,7 @@ div.cl-video {
 
 	.video-js {
 		position:relative;
+		margin: auto;
 	}
 
 	div.video-large, div.video-medium, div.video-low, div.video-custom {
@@ -28,7 +29,7 @@ div.cl-video {
 		background-color:#e0e0e0;
 	}
 
-	div.video-low {
+/*	div.video-low {
 		left: calc(50% - 320px);
 		width:640px;
 	}
@@ -46,7 +47,7 @@ div.cl-video {
 	div.video-custom {
 	  left: calc(50% - 640px);
 	  width:1280px;
-	}
+	} */
 
 	p.buttons {
 		text-align:right;

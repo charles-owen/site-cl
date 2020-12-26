@@ -36,6 +36,10 @@ const VideoPresenter = function(site, element) {
         let div = document.createElement('DIV');
         div.classList.add(data.style);
 
+        div.style.width = data.wid + 'px';
+        div.style.height = data.hit + 'px';
+        div.style.left = 'calc(50% - ' + data.wid/2 + 'px)';
+
         element.innerHTML = '';
         element.appendChild(div);
 
