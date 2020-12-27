@@ -57,10 +57,13 @@ abstract class ViewAux {
 
 			default:
 				$trace = debug_backtrace();
+				$stack = '';
+				foreach($trace as $t) {
+				    $stack .= "\n" . $t['file'] . ' on line ' . $t['line'];
+                }
 				trigger_error(
 					'Undefined property ' . $property .
-					' in ' . $trace[0]['file'] .
-					' on line ' . $trace[0]['line'],
+					' in ' . $stack,
 					E_USER_NOTICE);
 				break;
 		}
