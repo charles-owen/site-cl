@@ -85,8 +85,14 @@ class View {
 
 				return $this->appearance;
 
+            case 'after':
+                return $this->beforeFooter;
+
 			case 'autoback':
 				return $this->autoback;
+
+            case 'before':
+                return $this->beforeContent;
 
 			case 'root':
 				return $this->site->root;
@@ -138,9 +144,17 @@ class View {
 				$this->script .= $value;
 				break;
 
+            case 'after':
+                $this->beforeFooter .= $value;
+                break;
+
 			case 'beforeFooter':
-				$this->beforeFooter .= $value;
-				break;
+                $this->beforeFooter .= $value;
+                break;
+
+            case 'before':
+                $this->beforeContent .= $value;
+                break;
 
 			case 'beforeContent':
 				$this->beforeContent .= $value;
