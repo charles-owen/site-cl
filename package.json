@@ -68,7 +68,7 @@
     "formdata-polyfill": "^3.0.19",
     "icons-cl": "^1.1.2",
     "moment": "^2.24.0",
-    "promise-polyfill": "^8.1.3",
+    "promise-polyfill": "^8.2.0",
     "resizer-cl": "~2.4.0",
     "toggler-cl": "^4.1.7",
     "url-polyfill": "^1.1.9",
