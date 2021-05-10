@@ -7,19 +7,20 @@ module.exports = {
 	entry: {
 		Site: path.resolve(__dirname, 'index.js')
 	},
-	devServer: {
-		contentBase: './dist',
-		hot: true
-	},
 	plugins: [
-		new webpack.NamedModulesPlugin(),
+		//new webpack.NamedModulesPlugin(),
 		new webpack.HotModuleReplacementPlugin({
 			multiStep: false
 		}),
 		new VueLoaderPlugin(),
-		new CopyWebpackPlugin([
-			{from: path.resolve(__dirname, 'cl'), to: path.resolve(__dirname, '../../../cl')}
-		])
+		new CopyWebpackPlugin({
+			patterns: [
+				{
+					from: path.resolve(__dirname, 'cl'),
+					to: path.resolve(__dirname, '../../../cl')
+				}
+			]
+		})
 	],
 	resolve: {
 		alias: {
@@ -52,19 +53,24 @@ module.exports = {
 			{
 				test: /\.(jpe?g|png|gif)$/i,
 				loader:"url-loader",
-				query:{
+				options:{
 					limit: 8000,
 					name:'[name].[ext]',
-					outputPath:'/img/'
+					outputPath:'img/'
 				}
 			},
 			{
 				test: /\.scss$/,
 				use: [
-					'vue-style-loader',
+					'style-loader',
 					'css-loader',
 					'resolve-url-loader',
-					'sass-loader?sourceMap'
+					{
+						loader: "sass-loader",
+						options: {
+							sourceMap: true,
+						},
+					}
 				]
 			},
 			{

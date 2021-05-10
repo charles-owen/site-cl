@@ -2,24 +2,17 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const path = require('path');
 const WebpackChunkRenamerPlugin = require('webpack-chunk-renamer-plugin');
 const FileManagerPlugin = require('filemanager-webpack-plugin');
-const ManifestPlugin = require('webpack-manifest-plugin');
+const {WebpackManifestPlugin} = require('webpack-manifest-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
     mode: 'production',
     optimization: {
         minimizer: [
-            new TerserPlugin({
-                cache: true,
-                parallel: true,
-                sourceMap: true  // Must be set to true if using source-maps in production
-            }),
+            new TerserPlugin(),
 
             new OptimizeCSSAssetsPlugin({})
         ],
-/* 	    runtimeChunk: {
-		    name: 'runtime'
-	    }, */
         splitChunks: {
             chunks: 'all',
             minChunks: 50,
@@ -50,13 +43,15 @@ module.exports = {
 	        initialChunksWithEntry: true
         }),
 	    new FileManagerPlugin({
-		    onStart: {
-			    delete: [
-				    path.resolve(__dirname, '../../cl/dist/site.video.*.min.js')
-			    ]
-		    }
+            events: {
+                onStart: {
+                    delete: [
+                        path.resolve(__dirname, '../../cl/dist/site.video.*.min.js')
+                    ]
+                }
+            }
 	    }),
-	    new ManifestPlugin({
+	    new WebpackManifestPlugin({
 		    fileName: 'manifest.min.json'
 	    })
     ],

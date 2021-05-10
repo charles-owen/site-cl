@@ -1,15 +1,12 @@
 const path = require('path');
 const WebpackChunkRenamerPlugin = require('webpack-chunk-renamer-plugin');
 const FileManagerPlugin = require('filemanager-webpack-plugin');
-const ManifestPlugin = require('webpack-manifest-plugin');
+const {WebpackManifestPlugin} = require('webpack-manifest-plugin');
 
 module.exports = {
     mode: 'development',
     devtool: 'inline-source-map',
     optimization: {
- /*       runtimeChunk: {
-            name: 'runtime'
-        }, */
         splitChunks: {
             chunks: 'all',
             minChunks: 50,
@@ -39,26 +36,21 @@ module.exports = {
 	        initialChunksWithEntry: true
         }),
 	    new FileManagerPlugin({
-		    onStart: {
-			    delete: [
-				    path.resolve(__dirname, '../../cl/dist/site.video.*.js')
-			    ]
-		    }
+            events: {
+                onStart: {
+                    delete: [
+                        path.resolve(__dirname, '../../cl/dist/site.video.*.js')
+                    ]
+                }
+            }
 	    }),
-	    new ManifestPlugin()
+	    new WebpackManifestPlugin()
     ],
     output: {
         filename: '[lc-name].js',
         chunkFilename: '[name].[chunkhash].js',
         library: '[name]',
         libraryTarget: 'umd',
-	    publicPath: '/cl/dist/'
-    },
-    devServer: {
-        compress: true,
-        port: 9000,
-        hot: true,
-        index: '',
 	    publicPath: '/cl/dist/'
     }
 }

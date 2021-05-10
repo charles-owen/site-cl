@@ -283,7 +283,7 @@ class Installer {
 		$data = <<<DATA
 // This file is created automatically by cl-installer
 // Do not edit!		
-const merge = require('webpack-merge');
+const {merge} = require('webpack-merge');
 const site = require('./vendor/cl/site/webpack.common');
 
 
