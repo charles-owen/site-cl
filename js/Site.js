@@ -31,6 +31,8 @@ import PageVueBase from './Vue/PageVueBase.vue';
 import PageNav from './Vue/PageNav.vue';
 import MaskVue from './Vue/Mask.vue';
 import MenuVue from './UI/Menu.vue';
+import NotFoundComponent from './Vue/NotFoundComponent.vue';
+
 
 /**
  * The main Site object.
@@ -315,4 +317,5 @@ export const Site = function() {
 	this.Sanitize = Sanitize;
 	this.VueDialog = VueDialog;
 	this.Dialog = Dialog;
+	this.NotFoundComponent = NotFoundComponent;
 }

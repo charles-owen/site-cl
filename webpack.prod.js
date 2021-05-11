@@ -62,8 +62,6 @@ module.exports = {
     output: {
         filename: '[lc-name].min.js',
         chunkFilename: '[name].[chunkhash].min.js',
-        library: '[name]',
-        libraryTarget: 'umd',
         publicPath: '/cl/dist/'
     },
 }
