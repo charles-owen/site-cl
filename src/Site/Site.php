@@ -309,7 +309,7 @@ class Site {
 		}
 
 		if($this->jsSuffix === null) {
-			$this->jsSuffix = $this->sandbox ? '.js' : '.min.js';
+			$this->jsSuffix = $this->sandbox ? '.dev.js' : '.min.js';
 		}
 
 		// Save the options

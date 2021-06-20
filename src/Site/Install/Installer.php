@@ -45,7 +45,7 @@ class Installer {
 		$this->installJS($rootDir);
 
 		// Create the manifest files in the dist directory
-		$this->createManifest($rootDir, 'manifest.json');
+		$this->createManifest($rootDir, 'manifest.dev.json');
 		$this->createManifest($rootDir, 'manifest.min.json');
 
 		// Copy over any files into cl directories
@@ -177,6 +177,10 @@ class Installer {
 		// Copy files into cl directory
 		$siteRoot = $rootDir . '/vendor/cl/site/root';
 		foreach(scandir($siteRoot) as $file) {
+		    if($file === "package-start.json") {
+		        continue;
+            }
+
 			if(is_file($siteRoot . '/' . $file)) {
 				if(!file_exists($rootDir . '/' . $file)) {
 					copy($siteRoot . '/' . $file, $rootDir . '/' . $file);
@@ -284,7 +288,7 @@ class Installer {
 // This file is created automatically by cl-installer
 // Do not edit!		
 const {merge} = require('webpack-merge');
-const site = require('./vendor/cl/site/webpack.common');
+const site = require('./vendor/cl/site/webpack.site.common');
 
 
 DATA;
@@ -341,9 +345,15 @@ DATA;
 		file_put_contents($rootDir . '/publish.js', $data);
 	}
 
+    /**
+     * Create the package.json file
+     * @param $rootDir
+     */
 	private function createPackageJson($rootDir) {
+	    // If a file already exists, load it. If not,
+        // load a starter file from the root files directory
 		$initial = file_exists($rootDir . '/package.json') ? $rootDir . '/package.json' :
-			$rootDir . '/vendor/cl/site/root/package.json';
+			$rootDir . '/vendor/cl/site/root/package-start.json';
 
 		// Load the initial package.json file
 		$json = json_decode(file_get_contents($initial), true);
@@ -352,6 +362,15 @@ DATA;
 		foreach($this->webpack as $package) {
 			$json['dependencies'][$package['name'] . '-cl'] = '~' . $package['version'];
 		}
+
+		// Load the package.json file for the site
+        $siteAutoback = $rootDir . '/vendor/cl/site/package.json';
+        $site = json_decode(file_get_contents($siteAutoback), true);
+
+        // Copy over all devDependencies
+        foreach($site['devDependencies'] as $depend => $version) {
+            $json['devDependencies'][$depend] = $version;
+        }
 
 		$data = json_encode($json, JSON_PRETTY_PRINT);
 		file_put_contents($rootDir . '/package.json', $data);

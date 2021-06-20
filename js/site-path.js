@@ -7,7 +7,7 @@ function getScriptDir() {
     var scriptElements = document.getElementsByTagName('script');
     for (var i = 0; i < scriptElements.length; i++) {
         var source = scriptElements[i].src;
-        var ndx = source.indexOf('/site.js');
+        var ndx = source.indexOf('/site.dev.js');
         if (ndx > -1) {
             return source.substring(0, ndx);
         }

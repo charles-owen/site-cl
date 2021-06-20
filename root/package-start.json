@@ -1,0 +1,24 @@
+{
+  "name": "courselib",
+  "version": "0.0.1",
+  "description": "Development package for a CourseLib site",
+  "private": true,
+  "workspaces": [
+    "vendor/cl/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build:dev": "webpack --config webpack.dev.js",
+    "build:prod": "webpack --config webpack.prod.js",
+    "build:all": "$npm_execpath run build:dev && $npm_execpath run build:prod",
+    "profile:dev": "webpack --config webpack.dev.js --profile --json > stats.json",
+    "profile:prod": "webpack --config webpack.prod.js --json > stats.json",
+    "test": "karma start karma.conf.js",
+    "serve": "webpack-dev-server  --config webpack.serve.js --open",
+    "build:docs:course": "cd vendor/cl/course && npm run build:docs",
+    "build:docs:site": "cd vendor/cl/site && npm run build:docs",
+    "build:docs:interact": "cd vendor/cl/interact && npm run build:docs",
+    "build:docs": "npm run build:docs:site && npm run build:docs:course && npm run build:docs:interact",
+    "cl-publish": "yarn node vendor/cl/site/publisher.js"
+  }
+}

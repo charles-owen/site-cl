@@ -40,7 +40,7 @@ Publisher.publish = async function(publish) {
 			});
 		});
 
-		await Publisher.process(root, 'manifest.json', component, files, dist);
+		await Publisher.process(root, 'manifest.dev.json', component, files, dist);
 		await Publisher.process(root, 'manifest.min.json', component, files, dist);
 	}
 }
