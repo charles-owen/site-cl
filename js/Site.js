@@ -168,7 +168,6 @@ export const Site = function() {
 	//
 	// Compute the path to the library
 	//
-	console.log(__webpack_public_path__)
 	let rootURL = new URL(__webpack_public_path__);
 	let pathList = rootURL.pathname.split('/');
 	let pathList2 = [];
