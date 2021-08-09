@@ -19,7 +19,15 @@ p.vsbuild {
   background: url(img/vsbuildicon16.png);
 }
 
-p.run, p.compile, p.vsrun, p.vsbuild {
+p.jbbuild {
+  background: url(img/jbbuildicon16.png);
+}
+
+p.jbrun {
+  background: url(img/jbrunicon16.png);
+}
+
+p.run, p.compile, p.vsrun, p.vsbuild, p.jbbuild, p.jbrun {
    vertical-align:middle;
    margin-left: 1em;
    margin-right: 1em;

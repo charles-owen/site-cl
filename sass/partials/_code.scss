@@ -12,6 +12,11 @@ code, .code {
   font-family: 'Inconsolata', monospace, sans-serif;
   font-weight: bold;
   color: #0014e5;
+  font-size: 1.1em;
+}
+
+.primary code {
+  color: #00e7ff;
 }
 
 /* Place where we can present and enter code */

@@ -1,0 +1,31 @@
+/**
+ * @file
+ * Style items related to the use of IDE's
+ */
+
+p.run {
+  background: url(img/runicon.png);
+}
+
+p.compile {
+  background: url(img/compicon16.png);
+}
+
+p.vsrun {
+  background: url(img/vsrunicon16.png);
+}
+
+p.vsbuild {
+  background: url(img/vsbuildicon16.png);
+}
+
+p.run, p.compile, p.vsrun, p.vsbuild {
+   vertical-align:middle;
+   margin-left: 1em;
+   margin-right: 1em;
+   min-height:16px;
+   background-repeat:no-repeat;
+   background-position:5px 6px;
+   background-color: #ddffdd;
+   padding:5px 5px 5px 25px;
+ }
