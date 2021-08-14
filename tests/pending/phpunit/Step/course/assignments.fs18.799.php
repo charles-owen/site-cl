@@ -155,10 +155,10 @@ return function(Assignments $assignments) {
 //	//
 //	// Step 7
 //	//
-//	$step = $steps->add_step("step7", "Step 7");
+//	$step = $steps->add_step("step8", "Step 7");
 //	$step->set_due('12/9/2017 11:55pm', true);
 //	$step->set_release('-21 days');
-//	$step->set_solving('step7solving');
+//	$step->set_solving('step8solving');
 
 	//
 	// Project 1
