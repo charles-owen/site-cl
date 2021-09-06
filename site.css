@@ -720,7 +720,6 @@ div.content {
   div.content > .full, div.content > div.full {
     margin-right: 0;
     margin-left: 0;
-    padding-right: 0;
     max-width: none; }
   div.content > p.rightbox, div.content > p.problemright, div.content > p.scenarioright {
     margin-right: 0; }

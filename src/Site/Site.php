@@ -41,6 +41,7 @@ use \Exception;
  * @property string jsSuffix
  * @property string jsRoot
  * @property array options
+ * @property string os Detected browser OS, "Win", "Mac", or "Other"
  * @property array plugins
  * @property string root
  * @property string rootDir
@@ -56,6 +57,18 @@ use \Exception;
  * @endcond
  */
 class Site {
+    /// Windows identification string
+    const Win = 'Win';
+
+    /// Mac identification string
+    const Mac = 'Mac';
+
+    /// Other identification string
+    const Other = 'Other';
+
+    /// Generic OS identification string
+    const Generic = 'Generic';
+
 	/**
 	 * Site constructor.
 	 *
@@ -109,6 +122,16 @@ class Site {
 		if(isset($_SERVER['HTTP_HOST'])) {
 			$this->server = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'];
 		}
+
+        $user_agent = getenv("HTTP_USER_AGENT");
+
+        if(strpos($user_agent, "Win") !== FALSE) {
+            $this->os = Site::Win;
+        } elseif(strpos($user_agent, "Mac") !== FALSE) {
+            $this->os = Site::Mac;
+        } else {
+            $this->os = Site::Other;
+        }
 	}
 
 	/**
@@ -172,6 +195,9 @@ class Site {
 			case 'options':
 				return $this->options;
 
+            case 'os':
+                return $this->os;
+
 			case 'plugins':
 				return $this->plugins;
 
@@ -203,6 +229,10 @@ class Site {
 					' in ' . $trace[0]['file'] .
 					' on line ' . $trace[0]['line'],
 					E_USER_NOTICE);
+
+                foreach($trace as $t) {
+                    echo $t['file'] . ':' . $t['line'];
+                }
 				return null;
 		}
 	}
@@ -320,6 +350,17 @@ class Site {
 			$server->redirect($ret);
 			return false;
 		}
+
+        // Test for a site-specific file to load from config
+        $file = $this->rootDir . '/' .
+            $this->config .
+            '/site.inc.php';
+        if(file_exists($file)) {
+            $function = require($file);
+            if(is_callable($function)) {
+                $function($this);
+            }
+        }
 
 		return true;
 	}
@@ -484,6 +525,7 @@ class Site {
 	private $config = 'site';       // The configuration files directory
 	private $decor = 'site';        // The decorations directory
 	private $server = null;         // Server URL (like https://www.server.edu)
+    private $os;                    // Detected browser operating system
 
     private $unavailable = null;    // Indication of site unavailability
 	//
