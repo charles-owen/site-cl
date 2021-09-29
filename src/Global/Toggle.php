@@ -19,10 +19,10 @@ class Toggle {
 	 * Wraps content that can be expanded for viewing. The content
 	 * will always be initially hidden. This functionc an be nested.
 	 *
-	 * @param $heading The heading or paragraph text
-	 * @param $tag The tag for the heading (or p for a paragraph)
-	 * @param $class Optional class for the toggle tag
-	 * @param $classBlock Optional class to add to the toggle block
+	 * @param string $heading The heading or paragraph text
+	 * @param string $tag The tag for the heading (or p for a paragraph)
+	 * @param string|null $class Optional class for the toggle tag
+	 * @param string $classBlock Optional class to add to the toggle block
 	 *
 	 * \code{.html}
 	< ?php echo Toggle::begin("This is the heading", "h2"); ? >
