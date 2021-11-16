@@ -5,25 +5,34 @@
 
 namespace CL\Site\Test;
 
+
 /** Base class for database tests.
  *
  * Adds some assertions I find useful and a more useful way to add tables
  */
 abstract class DatabaseTestBase extends \PHPUnit\Framework\TestCase {
-	use \PHPUnit\DbUnit\TestCaseTrait;
 
 	private $dir;
 
 	public function __construct($dir) {
 		parent::__construct();
 		$this->dir = $dir;
+        $this->site = $this->createSite();
 	}
 
+    /**
+     * Ensure the table is creates and is empty
+     * @param \CL\Tables\Table $table Table class to create the table for
+     */
 	public function ensureTable(\CL\Tables\Table $table) {
     	// Drop table if it exists and recreate
 	    $pdo = $this->site->db->pdo;
     	$pdo->query($table->dropSQL());
     	$pdo->query($table->createSQL());
+
+        // Create a table name whitelist
+        $this->tables[$table->tablename] = $table;
+
     }
 
     /**
@@ -37,34 +46,69 @@ abstract class DatabaseTestBase extends \PHPUnit\Framework\TestCase {
      * @endcode
      *
      * @param array $list An array of data set names
-     * @return \PHPUnit_Extensions_Database_DataSet_CompositeDataSet
      */
     protected function dataSets(array $list) {
-        $data = new \PHPUnit\DbUnit\DataSet\CompositeDataSet();
+        foreach($list as $file) {
+            $path = $this->dir . '/' . $file;
+            $xml = new \DOMDocument();
+            $xmlData = file_get_contents($path);
+            $xml->loadXML($xmlData);
 
-        foreach($list as $item) {
-            $u = $this->createFlatXMLDataSet($this->dir . '/db/' . $item);
-            $data->addDataSet($u);
+            $pdo = $this->site->db->pdo;
+
+            foreach($xml->childNodes as $node) {
+                if($node->nodeType !== XML_ELEMENT_NODE) {
+                    continue;
+                }
+
+                if($node->nodeName === 'dataset') {
+                    $this->datasetXML($pdo, $node);
+                }
+
+            }
+
         }
 
-        return $data;
     }
 
-    /**
-     * @return \PHPUnit_Extensions_Database_DB_IDatabaseConnection
-     */
-    public function getConnection() {
-    	if($this->site === null) {
-    		$this->site = $this->createSite();
+    private function datasetXML($pdo, $parent) {
+        foreach($parent->childNodes as $node) {
+            if($node->nodeType !== XML_ELEMENT_NODE) {
+                continue;
+            }
 
-		    $db = $this->site->db;
-	        $this->connection = $this->createDefaultDBConnection($db->pdo, $db->dbname);
+            $tableName = $node->nodeName;
+            if(!key_exists($tableName, $this->tables)) {
+                echo "Table name '" . strip_tags($tableName) . "' is not a valid table name\n";
+            }
 
-	        $this->ensureTables();
-	    }
+            $table = $this->tables[$tableName];
 
-	    return $this->connection;
+            $fields = '';
+            $value = '';
+            $values = [];
+
+            foreach($node->attributes as $attribute) {
+                if($fields !== '') {
+                    $fields .= ",";
+                    $value .= ",";
+                }
+
+                $fields .= $attribute->nodeName;
+                $value .= "?";
+                $values[] = $attribute->nodeValue;
+            }
+
+
+            $sql = "insert into $tableName ($fields) values ($value)";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute($values);
+
+            // echo $table->sub_sql($sql, $values) . "\n";
+        }
     }
+
+
 
 	/**
 	 * Create a valid Site object, loading the database configuration.
@@ -88,11 +132,9 @@ abstract class DatabaseTestBase extends \PHPUnit\Framework\TestCase {
 	    return $site;
     }
 
-    public function ensureTables() {
 
-    }
-
-	/* @var \CL\Site\Site */
+	// @var \CL\Site\Site
     protected $site = null;
-    private $connection = null;
+
+    private $tables = [];
 }
