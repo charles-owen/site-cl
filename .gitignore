@@ -5,6 +5,7 @@ tests/config.php
 /node_modules
 _notes
 yarn-error.log
+tests/.phpunit.result.cache
 
 dev/doc/html
 dev/doc/latex
