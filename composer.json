@@ -25,9 +25,7 @@
     "phpmailer/phpmailer": "^6.2",
     "cl/tables": "^1.1",
     "psr/log": "~1.1.0",
-    "monolog/monolog": "^1.0"
-  },
-  "require-dev": {
+    "monolog/monolog": "^1.0",
     "phpunit/phpunit": "^8"
   },
   "extra": {
