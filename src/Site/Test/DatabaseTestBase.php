@@ -9,6 +9,8 @@ namespace CL\Site\Test;
 /** Base class for database tests.
  *
  * Adds some assertions I find useful and a more useful way to add tables
+ *
+ * @property boolean showInserts Set true to display all table insert operations
  */
 abstract class DatabaseTestBase extends \PHPUnit\Framework\TestCase {
 
@@ -19,6 +21,43 @@ abstract class DatabaseTestBase extends \PHPUnit\Framework\TestCase {
 		$this->dir = $dir;
         $this->site = $this->createSite();
 	}
+
+
+    /**
+     * Get properties for this class.
+     *
+     * @param string $property Property name
+     * @return mixed Property value
+     */
+    public function __get($property) {
+        switch($property) {
+            case 'showInserts':
+                return $this->showInserts;
+
+            default:
+                return \CL\Site\PropertyHelper::Error($property);
+        }
+    }
+
+
+    /**
+     * Property set magic method
+     *
+     * @param string $property Property name
+     * @param mixed $value Value to set
+     */
+    public function __set($property, $value) {
+        switch($property) {
+            case 'showInserts':
+                $this->showInserts = $value;
+                break;
+
+            default:
+                \CL\Site\PropertyHelper::Error($property);
+                break;
+        }
+
+    }
 
     /**
      * Ensure the table is creates and is empty
@@ -41,7 +80,7 @@ abstract class DatabaseTestBase extends \PHPUnit\Framework\TestCase {
      * @code
      *   public function getDataSet()
      *   {
-     *   return $this->dataSets(array("users.xml", "grades.xml"));
+     *   return $this->dataSets(["users.xml", "grades.xml"]);
      *   }
      * @endcode
      *
@@ -101,10 +140,14 @@ abstract class DatabaseTestBase extends \PHPUnit\Framework\TestCase {
 
 
             $sql = "insert into $tableName ($fields) values ($value)";
+            if($this->showInserts) {
+                echo $table->sub_sql($sql, $values) . "\n";
+            }
+
             $stmt = $pdo->prepare($sql);
             $stmt->execute($values);
 
-            // echo $table->sub_sql($sql, $values) . "\n";
+
         }
     }
 
@@ -135,6 +178,6 @@ abstract class DatabaseTestBase extends \PHPUnit\Framework\TestCase {
 
 	// @var \CL\Site\Site
     protected $site = null;
-
     private $tables = [];
+    private $showInserts = false;
 }

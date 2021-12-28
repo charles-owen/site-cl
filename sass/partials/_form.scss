@@ -2,11 +2,24 @@
  * A common form used for entering data
  */
 
-form.cl-common {
+form.cl-common, div.cl-form-common {
 
   max-width: 30em;
   margin: 1em auto;
   background-color: #eeeeee;
+
+  div.cl-form-border {
+    border: 1px solid #c0c0c0;
+    padding: 0.5em 28px;
+  }
+
+  div.cl-form-legend {
+    position: absolute;
+    left: 26px;
+    top: 0;
+    padding: 0 4px;
+    background-color: #eeeeee;
+  }
 
   p {
     margin: 0.5em 0;
@@ -40,11 +53,17 @@ form.cl-common {
     width: 7em;
   }
 
+  span.cl-no-expand {
+    input {
+      width: auto;
+    }
+  }
+
   /*
    * Radio button set with left label
    * and buttons to right vertically above each other
    */
-  div.radio-set {
+  div.cl-radio-set {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -69,4 +88,9 @@ form.cl-common {
     }
   }
 
+}
+
+div.cl-form-common {
+  padding: 10px 2px 2px 2px;
+  position: relative;
 }

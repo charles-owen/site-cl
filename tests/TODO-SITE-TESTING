@@ -1,1 +1,3 @@
-TODO: Move tests from pending into the appropriate subsystems.
+TODO: Move tests from pending into the appropriate subsystems. See tests/pending
+
+FIXME: Many test broken due to dependence on DBUnit. Tests need to be transitioned

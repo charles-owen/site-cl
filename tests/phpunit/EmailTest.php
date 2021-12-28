@@ -25,10 +25,10 @@ class EmailTest extends \PHPUnit\Framework\TestCase {
 		$this->assertEquals(1, count($log));
 		$log0 = $log[0];
 
-		$this->assertContains('bob@wherever.com', $log0['email']);
+		$this->assertStringContainsString('bob@wherever.com', $log0['email']);
 		$this->assertEquals('Bob Minion', $log0['name']);
-		$this->assertContains('Test Message', $log0['subject']);
-		$this->assertContains('Message Body', $log0['body']);
+		$this->assertStringContainsString('Test Message', $log0['subject']);
+		$this->assertStringContainsString('Message Body', $log0['body']);
 	}
 	
 }
