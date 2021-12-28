@@ -1,3 +1,5 @@
+@use "sass:math";
+
 .rightbox, .centerbox, .advice, .problem, .scenario, .blindblock, aside {
   @extend %shadow;
   background: $primary; /* Default color */
@@ -53,7 +55,7 @@ div.content {
   }
 
   > .centerbox.comp {
-    margin-right: $right-margin / 1.1;
+    margin-right: math.div($right-margin, 1.1);
   }
 }
 

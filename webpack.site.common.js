@@ -17,6 +17,14 @@ module.exports = {
 				{
 					from: path.resolve(__dirname, 'img'),
 					to: path.resolve(__dirname, '../../../cl/img')
+				},
+				{
+					from: path.resolve(__dirname, 'site.css'),
+					to: path.resolve(__dirname, '../../../cl')
+				},
+				{
+					from: path.resolve(__dirname, 'site.css.map'),
+					to: path.resolve(__dirname, '../../../cl')
 				}
 			]
 		})
@@ -50,13 +58,8 @@ module.exports = {
 				}
 			},
 			{
-				test: /\.(jpe?g|png|gif)$/i,
-				loader:"url-loader",
-				options:{
-					limit: 8000,
-					name:'[name].[ext]',
-					outputPath:'img/'
-				}
+				test: /\.png/,
+				type: 'asset/inline'
 			},
 			{
 				test: /\.scss$/,

@@ -44,7 +44,8 @@ module.exports = {
             events: {
                 onStart: {
                     delete: [
-                        path.resolve(__dirname, '../../cl/dist/site.video.*.min.js')
+                        path.resolve(__dirname, '../../../cl/dist/*.min.js'),
+                        path.resolve(__dirname, '../../../cl/dist/*.min.js.LICENSE.txt'),
                     ]
                 }
             }

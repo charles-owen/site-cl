@@ -38,7 +38,7 @@ module.exports = {
             events: {
                 onStart: {
                     delete: [
-                        path.resolve(__dirname, '../../cl/dist/*.dev.js')
+                        path.resolve(__dirname, '../../../cl/dist/*.dev.js')
                     ]
                 }
             }
