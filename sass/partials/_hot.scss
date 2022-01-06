@@ -1,10 +1,15 @@
 
 div.cl-hot {
-  width: 25em;
+  display: inline-block;
+  max-width: 65%;
   min-height: 45px;
-  margin: 0 auto;
+ // margin: 0 auto;
   background: #ffffff url('img/hot.gif') no-repeat left center;
   padding-left: 85px;
+
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
 
   p {
     margin: 0;
