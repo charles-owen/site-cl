@@ -6,6 +6,7 @@
 
 namespace CL\Site;
 
+
 /**
  * Abstract base class for auxiliary views.
  *
@@ -29,13 +30,7 @@ abstract class ViewAux {
 				return $this->view;
 
 			default:
-				$trace = debug_backtrace();
-				trigger_error(
-					'Undefined property ' . $property .
-					' in ' . $trace[0]['file'] .
-					' on line ' . $trace[0]['line'],
-					E_USER_NOTICE);
-				return null;
+                return PropertyHelper::Error($property);
 		}
 	}
 
@@ -56,15 +51,7 @@ abstract class ViewAux {
 				break;
 
 			default:
-				$trace = debug_backtrace();
-				$stack = '';
-				foreach($trace as $t) {
-				    $stack .= "\n" . $t['file'] . ' on line ' . $t['line'];
-                }
-				trigger_error(
-					'Undefined property ' . $property .
-					' in ' . $stack,
-					E_USER_NOTICE);
+                PropertyHelper::Error($property);
 				break;
 		}
 	}

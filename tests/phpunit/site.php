@@ -11,17 +11,17 @@ return function(Site $site) {
 	if(strpos($host, 'localhost') !== false) {
 		$site->sandbox = true;
 		$site->root = '';
-		$site->db->configure('mysql:host=127.0.0.1;dbname=test',
-			'test',
-			'test',
+		$site->db->configure('mysql:host=127.0.0.1;dbname=cl_test',
+			'cl_test',
+			'cl_test',
 			'vEascHx9VHKuwevA',
-			'test_cl_site_');
+			'test_cl_');
 	} else {
 		$site->root = '/~cbowen/cirsim-lti';
 		$site->db->configure('mysql:host=mysql-user.cse.msu.edu;dbname=cbowen',
 			'cbowen',
 			'cbowen',
-			'99rtshib',
+			'',
 			'test_cl_site_');
 	}
 
