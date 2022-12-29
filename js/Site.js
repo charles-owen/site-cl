@@ -1,6 +1,5 @@
-import Vue from 'vue';
+import Vue from '@vue/compat';
 import Toasted from 'vue-toasted';
-import VueRouter from 'vue-router';
 import Vuex from 'vuex';
 import {SiteInfo} from './SiteInfo';
 import {ApiService} from './ApiService';
@@ -115,10 +114,11 @@ export const Site = function() {
 		}
 	} );
 
+
+
 	//
 	// Configure Vue
 	//
-	Vue.use(VueRouter);
 	Vue.use(Vuex);
 
 	/**
@@ -127,12 +127,6 @@ export const Site = function() {
 	 * @type {Vue}
 	 */
 	this.Vue = Vue;
-
-	/**
-	 * The global VueRouter component.
-	 * @type {VueRouter}
-	 */
-	this.VueRouter = VueRouter;
 
 	/**
 	 * The global Vuex component

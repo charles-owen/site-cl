@@ -1,5 +1,6 @@
 const path = require('path');
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const webpack = require('webpack');
+const { VueLoaderPlugin } = require('vue-loader')
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
@@ -27,11 +28,18 @@ module.exports = {
 					to: path.resolve(__dirname, '../../../cl')
 				}
 			]
+		}),
+		// Define Bundler Build Feature Flags
+		new webpack.DefinePlugin({
+			__VUE_OPTIONS_API__:  true,
+			__VUE_PROD_DEVTOOLS__: 'false'
 		})
 	],
 	resolve: {
 		alias: {
-			'vue$': 'vue/dist/vue.esm.js' // 'vue/dist/vue.common.js' for webpack 1
+			// 'vue$': 'vue/dist/vue.esm.js', // 'vue/dist/vue.common.js' for webpack 1
+			'vue': 'vue/dist/vue.esm-bundler.js',
+			//"vue": '@vue/compat'
 		}
 	},
 	module: {

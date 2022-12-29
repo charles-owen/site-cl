@@ -11,6 +11,9 @@
  *
  * @constructor PageVue
  */
+
+import {createApp } from 'vue'
+
 export const PageVue = function() {
 }
 
@@ -22,15 +25,21 @@ export const PageVue = function() {
  * @param sel Selector for a div to replace with the view.
  * @param title Initial title to apply to the page
  * @param component Component to display (Vue)
- * @param nav Optional navigation component, like PageNav
+ * @param options Page options
+ * @return The Vue application component
+ *
+ * Possible options:
+ * nav Optional navigation component, like PageNav
+ * router Optional router to install
  */
-PageVue.create = function(sel, title, component, nav) {
+PageVue.create = function(sel, title, component, options) {
     const element = document.querySelector(sel);
     if(element === null) {
         return;
     }
 
-    let navtag = nav !== undefined ? '<page-nav :menu="menu"></page-nav>' : '';
+    const nav = options.nav
+    let navtag = nav !== undefined ? 'xx<page-nav :menu="menu"></page-nav>' : '';
     let template = `<div><site-header :title="title">${navtag}</site-header>
 <page-vue :json="json"></page-vue><site-footer></site-footer>
 </div>`;
@@ -52,15 +61,24 @@ PageVue.create = function(sel, title, component, nav) {
         components['page-nav'] = nav;
     }
 
-    new Site.Vue({
-        el: element,
-        site,
-        store,
-        data: {
-            title: title,
-            json: json,
-            menu: []
+    const app = createApp({
+        data() {
+            return {
+                title: title,
+                json: json,
+                menu: []
+            }
         },
+        provide() {
+            return {
+                site: 'hello'
+            }
+
+        },
+        //el: element,
+        //site,
+        //store,
+
         template: template,
         components: components,
         methods: {
@@ -83,4 +101,26 @@ PageVue.create = function(sel, title, component, nav) {
             }
         }
     })
+
+    app.config.globalProperties.$site = site
+    app.use(store)
+
+    const router = options.router
+    if(router) {
+        // If we are using a router, install it
+        // and wait to mount the page until the
+        // router is ready
+        app.use(router)
+
+        router.isReady().then(() => {
+            app.mount(element)
+        })
+    }
+    else {
+        app.mount(element)
+    }
+
+    element.style.display = 'block'
+
+    return app
 }
