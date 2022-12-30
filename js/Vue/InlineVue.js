@@ -2,6 +2,11 @@
  * Basic Vue-based site inline content starter
  * @constructor InlineVue
  */
+
+
+import {VueHelper} from './VueHelper'
+
+
 export const InlineVue = function() {
 }
 
@@ -14,6 +19,7 @@ export const InlineVue = function() {
  * });
  *
  */
+
 
 /**
  * Create an inline VUE component, replacing the provided
@@ -42,10 +48,7 @@ InlineVue.create = function (sel, component) {
         'page-vue': component
     };
 
-    new Site.Vue({
-        el: element,
-        site,
-        store,
+    const app = VueHelper.createApp({
         data: {
             json: json
         },
@@ -53,4 +56,9 @@ InlineVue.create = function (sel, component) {
         components: components,
         methods: {}
     })
+
+    app.config.globalProperties.$site = site
+    app.use(store)
+
+    VueHelper.mount(app, element)
 }

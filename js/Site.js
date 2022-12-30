@@ -203,6 +203,8 @@ export const Site = function() {
 	 * @param {APIResponse|string} response Response to use to make the toast.
 	 */
 	this.toast = function (vueobj, response) {
+		// console.log(response)
+		// console.trace()
 		if (typeof(response) === 'string') {
 			Vue.toasted.show(response, {
 				theme: "primary",
