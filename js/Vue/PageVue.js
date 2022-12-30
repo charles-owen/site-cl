@@ -12,7 +12,7 @@
  * @constructor PageVue
  */
 
-import {createApp } from 'vue'
+import {VueHelper} from './VueHelper'
 
 export const PageVue = function() {
 }
@@ -39,7 +39,7 @@ PageVue.create = function(sel, title, component, options) {
     }
 
     const nav = options.nav
-    let navtag = nav !== undefined ? 'xx<page-nav :menu="menu"></page-nav>' : '';
+    let navtag = nav !== undefined ? '<page-nav :menu="menu"></page-nav>' : '';
     let template = `<div><site-header :title="title">${navtag}</site-header>
 <page-vue :json="json"></page-vue><site-footer></site-footer>
 </div>`;
@@ -61,7 +61,7 @@ PageVue.create = function(sel, title, component, options) {
         components['page-nav'] = nav;
     }
 
-    const app = createApp({
+    const app = VueHelper.createApp({
         data() {
             return {
                 title: title,
@@ -75,16 +75,12 @@ PageVue.create = function(sel, title, component, options) {
             }
 
         },
-        //el: element,
-        //site,
-        //store,
-
         template: template,
         components: components,
         methods: {
             /**
              * Set the site title. This can be used from
-             * the child Vue's using this.$parent.setTitle('')
+             * the child Vue's using this.$root.setTitle('')
              * @memberof PageVue
              * @instance
              * @param {string} title Title to set
@@ -113,14 +109,12 @@ PageVue.create = function(sel, title, component, options) {
         app.use(router)
 
         router.isReady().then(() => {
-            app.mount(element)
+            VueHelper.mount(app, element)
         })
     }
     else {
-        app.mount(element)
+        VueHelper.mount(app, element)
     }
-
-    element.style.display = 'block'
 
     return app
 }

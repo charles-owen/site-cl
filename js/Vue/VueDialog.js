@@ -1,10 +1,12 @@
 import Dialog from 'dialog-cl';
+import {VueHelper} from './VueHelper'
 
 /**
  * Dialog box that contains a Vue component
  * @constructor
  */
 export const VueDialog = function(site, config) {
+
 	let vue = null;
 	let data = null;
 	let parent = null;
@@ -49,10 +51,7 @@ export const VueDialog = function(site, config) {
 	template += '></vue>';
 
 	// Create a Vue inside the dialog box
-	new site.Vue({
-		el: '#' + id,
-		site,
-		dialog,
+	const app = VueHelper.createApp({
 		data: function() {
 		   let d = data();
 		   if(parent !== null) {
@@ -65,6 +64,10 @@ export const VueDialog = function(site, config) {
 			vue: vue
 		}
 	})
+
+	app.config.globalProperties.$site = site
+	app.config.globalProperties.$dialog = dialog
+	app.mount('#' + id)
 }
 
 VueDialog.id = 0;

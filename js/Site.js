@@ -1,34 +1,34 @@
-import Vue from '@vue/compat';
-import Toasted from 'vue-toasted';
-import Vuex from 'vuex';
-import {SiteInfo} from './SiteInfo';
-import {ApiService} from './ApiService';
-import {APIResponse} from './APIResponse';
-import Dialog from 'dialog-cl';
+import Vue from '@vue/compat'
+import Toasted from 'vue-toasted'
+import Vuex from 'vuex'
+import {SiteInfo} from './SiteInfo'
+import {ApiService} from './ApiService'
+import {APIResponse} from './APIResponse'
+import Dialog from 'dialog-cl'
 
-import {Autoback} from 'autoback-cl';
-import {Header} from './Header/Header';
-import {Footer} from './Footer/Footer';
-import {Ready} from './Util/Ready';
-import {Clock} from './Util/Clock';
-import {SlideShow} from './SlideShow/SlideShow';
-import {Editor} from './UI/Editor';
-import {Polling} from './Polling/Polling';
-import {Submitter} from './Forms/Submitter';
+import {Autoback} from 'autoback-cl'
+import {Header} from './Header/Header'
+import {Footer} from './Footer/Footer'
+import {Ready} from './Util/Ready'
+import {Clock} from './Util/Clock'
+import {SlideShow} from './SlideShow/SlideShow'
+import {Editor} from './UI/Editor'
+import {Polling} from './Polling/Polling'
+import {Submitter} from './Forms/Submitter'
 import {TimeFormatter} from './TimeFormatter'
-import {PageVue} from './Vue/PageVue';
-import {InlineVue} from './Vue/InlineVue';
-import {Tags} from './Util/Tags';
-import {StickyNav} from './Util/StickyNav';
-import {LogLevels} from './LogLevels';
-import {Sanitize} from './Util/Sanitize';
-import {VueDialog} from './Vue/VueDialog';
-import PageVueBase from './Vue/PageVueBase.vue';
-import PageNav from './Vue/PageNav.vue';
-import MaskVue from './Vue/Mask.vue';
-import MenuVue from './UI/Menu.vue';
-import NotFoundComponent from './Vue/NotFoundComponent.vue';
-
+import {PageVue} from './Vue/PageVue'
+import {InlineVue} from './Vue/InlineVue'
+import {Tags} from './Util/Tags'
+import {StickyNav} from './Util/StickyNav'
+import {LogLevels} from './LogLevels'
+import {Sanitize} from './Util/Sanitize'
+import {VueDialog} from './Vue/VueDialog'
+import PageVueBase from './Vue/PageVueBase.vue'
+import PageNav from './Vue/PageNav.vue'
+import MaskVue from './Vue/Mask.vue'
+import MenuVue from './UI/Menu.vue'
+import NotFoundComponent from './Vue/NotFoundComponent.vue'
+import {VueHelper} from './Vue/VueHelper'
 
 /**
  * The main Site object.
@@ -309,4 +309,5 @@ export const Site = function() {
 	this.VueDialog = VueDialog;
 	this.Dialog = Dialog;
 	this.NotFoundComponent = NotFoundComponent;
+	this.VueHelper = VueHelper
 }

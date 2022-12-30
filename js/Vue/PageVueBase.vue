@@ -30,7 +30,7 @@
 	         * @param {string} title
 	         */
            setTitle(title) {
-                this.$parent.setTitle(title);
+                this.$root.setTitle(title);
            },
            setMenu: function(menu) {
 	           this.$parent.setMenu(menu);

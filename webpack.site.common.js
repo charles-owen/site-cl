@@ -2,10 +2,13 @@ const path = require('path');
 const webpack = require('webpack');
 const { VueLoaderPlugin } = require('vue-loader')
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const { ModuleFederationPlugin } = require('webpack').container;
 
 module.exports = {
 	entry: {
-		Site: path.resolve(__dirname, 'index.js')
+		Site: {
+			import: path.resolve(__dirname, 'index.js')
+		}
 	},
 	plugins: [
 		new VueLoaderPlugin(),
