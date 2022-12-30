@@ -38,6 +38,10 @@ PageVue.create = function(sel, title, component, options) {
         return;
     }
 
+    if(options === undefined) {
+        options = {}
+    }
+
     const nav = options.nav
     let navtag = nav !== undefined ? '<page-nav :menu="menu"></page-nav>' : '';
     let template = `<div><site-header :title="title">${navtag}</site-header>
@@ -109,11 +113,11 @@ PageVue.create = function(sel, title, component, options) {
         app.use(router)
 
         router.isReady().then(() => {
-            VueHelper.mount(app, element)
+            VueHelper.mount(app, element, options.replace)
         })
     }
     else {
-        VueHelper.mount(app, element)
+        VueHelper.mount(app, element, options.replace)
     }
 
     return app

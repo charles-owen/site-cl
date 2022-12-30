@@ -5,17 +5,17 @@
  * @constructor
  */
 export const StickyNav = function(sel) {
-    let navs = [];
-    let spacer = document.createElement('div');
-    let installed = false;
+    let navs = []
+    let spacer = document.createElement('div')
+    let installed = false
 
-    let els = document.querySelectorAll(sel);
+    let els = document.querySelectorAll(sel)
 
     for(let i=0; i<els.length;  i++) {
         navs.push({
             nav:  els[i],
             sticky: els[i].offsetTop
-        });
+        })
     }
 
     window.addEventListener('scroll', (event) => {
