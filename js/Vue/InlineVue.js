@@ -49,12 +49,13 @@ InlineVue.create = function (sel, component) {
     };
 
     const app = VueHelper.createApp({
-        data: {
-            json: json
+        data() {
+            return {
+                json: json
+            }
         },
         template: template,
         components: components,
-        methods: {}
     })
 
     app.config.globalProperties.$site = site
