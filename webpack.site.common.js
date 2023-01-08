@@ -15,6 +15,14 @@ module.exports = {
 		new CopyWebpackPlugin({
 			patterns: [
 				{
+					from: path.resolve(__dirname, 'site.css'),
+					to: path.resolve(__dirname, 'cl')
+				},
+				{
+					from: path.resolve(__dirname, 'site.css.map'),
+					to: path.resolve(__dirname, 'cl')
+				},
+				{
 					from: path.resolve(__dirname, 'cl'),
 					to: path.resolve(__dirname, '../../../cl')
 				},
