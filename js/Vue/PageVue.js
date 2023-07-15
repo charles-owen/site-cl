@@ -11,6 +11,9 @@
  *
  * @constructor PageVue
  */
+
+import {VueHelper} from './VueHelper'
+
 export const PageVue = function() {
 }
 
@@ -22,14 +25,24 @@ export const PageVue = function() {
  * @param sel Selector for a div to replace with the view.
  * @param title Initial title to apply to the page
  * @param component Component to display (Vue)
- * @param nav Optional navigation component, like PageNav
+ * @param options Page options
+ * @return The Vue application component
+ *
+ * Possible options:
+ * nav Optional navigation component, like PageNav
+ * router Optional router to install
  */
-PageVue.create = function(sel, title, component, nav) {
+PageVue.create = function(sel, title, component, options) {
     const element = document.querySelector(sel);
     if(element === null) {
         return;
     }
 
+    if(options === undefined) {
+        options = {}
+    }
+
+    const nav = options.nav
     let navtag = nav !== undefined ? '<page-nav :menu="menu"></page-nav>' : '';
     let template = `<div><site-header :title="title">${navtag}</site-header>
 <page-vue :json="json"></page-vue><site-footer></site-footer>
@@ -52,21 +65,26 @@ PageVue.create = function(sel, title, component, nav) {
         components['page-nav'] = nav;
     }
 
-    new Site.Vue({
-        el: element,
-        site,
-        store,
-        data: {
-            title: title,
-            json: json,
-            menu: []
+    const app = VueHelper.createApp({
+        data() {
+            return {
+                title: title,
+                json: json,
+                menu: []
+            }
+        },
+        provide() {
+            return {
+                site: 'hello'
+            }
+
         },
         template: template,
         components: components,
         methods: {
             /**
              * Set the site title. This can be used from
-             * the child Vue's using this.$parent.setTitle('')
+             * the child Vue's using this.$root.setTitle('')
              * @memberof PageVue
              * @instance
              * @param {string} title Title to set
@@ -83,4 +101,24 @@ PageVue.create = function(sel, title, component, nav) {
             }
         }
     })
+
+    app.config.globalProperties.$site = site
+    app.use(store)
+
+    const router = options.router
+    if(router) {
+        // If we are using a router, install it
+        // and wait to mount the page until the
+        // router is ready
+        app.use(router)
+
+        router.isReady().then(() => {
+            VueHelper.mount(app, element, options.replace)
+        })
+    }
+    else {
+        VueHelper.mount(app, element, options.replace)
+    }
+
+    return app
 }

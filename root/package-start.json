@@ -16,9 +16,12 @@
     "test": "karma start karma.conf.js",
     "serve": "webpack-dev-server  --config webpack.serve.js --open",
     "build:docs:course": "cd vendor/cl/course && npm run build:docs",
+    "build:docs:review": "cd vendor/cl/review && npm run build:docs",
     "build:docs:site": "cd vendor/cl/site && npm run build:docs",
     "build:docs:interact": "cd vendor/cl/interact && npm run build:docs",
-    "build:docs": "npm run build:docs:site && npm run build:docs:course && npm run build:docs:interact",
-    "cl-publish": "yarn node vendor/cl/site/publisher.js"
+    "build:docs": "yarn run build:docs:site && npm run build:docs:course && npm run build:docs:interact",
+    "cl-publish": "yarn node vendor/cl/site/publisher.js",
+    "build:docs:grades": "cd vendor/cl/grades && npm run build:docs",
+    "build:docs:console": "cd vendor/cl/console && npm run build:docs"
   }
 }

@@ -11,7 +11,7 @@ return function(Site $site) {
 	if(strpos($host, 'localhost') !== false) {
 		$site->sandbox = true;
 		$site->root = '';
-		$site->db->configure('mysql:host=127.0.0.1;dbname=cl_test',
+		$site->db->configure('mysql:host=10.10.10.1;dbname=cl_test',
 			'cl_test',
 			'cl_test',
 			'vEascHx9VHKuwevA',
