@@ -86,7 +86,7 @@ class SiteLogger {
 		return $logger;
 	}
 
-
+    private $site = null;
 	private $handler = null;
 	private $loggers = [];
 }
