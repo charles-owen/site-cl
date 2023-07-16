@@ -3,7 +3,7 @@ const path = require('path');
 const cpx = require('cpx');
 const fsExtra = require('fs-extra');
 const makeDir = require('make-dir');
-const rimraf = require('rimraf');
+const {rimraf} = require('rimraf');
 
 /**
  * The Publisher object creates the script that publishes a
@@ -20,7 +20,7 @@ Publisher.verbose = false;
 Publisher.publish = async function(publish) {
 	let root = publish.root;
 
-	console.log('Publishing:');
+	console.log('Publishing:')
 	for(let component in publish.components) {
 		if(!publish.components.hasOwnProperty(component)) {
 			continue;
@@ -34,11 +34,13 @@ Publisher.publish = async function(publish) {
 		const files = commands.files;   // Files to copy
 
 		// Delete the contents of the dist directory first
-		await new Promise(function(resolve, reject) {
-			rimraf(dist + '/*', {}, function(response) {
-				resolve();
-			});
-		});
+		// await new Promise(function(resolve, reject) {
+		// 	rimraf(dist + '/*', {}, function(response) {
+		// 		resolve();
+		// 	});
+		// });
+
+		await rimraf(dist + '/*');
 
 		await Publisher.process(root, 'manifest.dev.json', component, files, dist);
 		await Publisher.process(root, 'manifest.min.json', component, files, dist);
